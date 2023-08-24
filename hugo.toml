@@ -1,0 +1,4 @@
+baseURL = 'https://zyestin.github.io'
+languageCode = 'en-us'
+title = 'zyestin'
+theme = 'ananke'

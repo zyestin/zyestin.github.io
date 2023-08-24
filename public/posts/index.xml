@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on zyestin</title>
+    <link>https://zyestin.github.io/posts/</link>
+    <description>Recent content in Posts on zyestin</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 24 Aug 2023 09:11:47 +0800</lastBuildDate><atom:link href="https://zyestin.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>My First Post</title>
+      <link>https://zyestin.github.io/posts/my-first-post/</link>
+      <pubDate>Thu, 24 Aug 2023 09:11:47 +0800</pubDate>
+      
+      <guid>https://zyestin.github.io/posts/my-first-post/</guid>
+      <description>hello world
+come here</description>
+    </item>
+    
+  </channel>
+</rss>
