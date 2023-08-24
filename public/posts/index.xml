@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on zyestin</title>
-    <link>https://zyestin.github.io/posts/</link>
+    <link>https://zyestin.github.io/zyestin/posts/</link>
     <description>Recent content in Posts on zyestin</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 24 Aug 2023 09:11:47 +0800</lastBuildDate><atom:link href="https://zyestin.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 24 Aug 2023 09:11:47 +0800</lastBuildDate><atom:link href="https://zyestin.github.io/zyestin/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>hugo &#43; github pages usage</title>
-      <link>https://zyestin.github.io/posts/my-first-post/</link>
+      <link>https://zyestin.github.io/zyestin/posts/my-first-post/</link>
       <pubDate>Thu, 24 Aug 2023 09:11:47 +0800</pubDate>
       
-      <guid>https://zyestin.github.io/posts/my-first-post/</guid>
+      <guid>https://zyestin.github.io/zyestin/posts/my-first-post/</guid>
       <description>2023最新 hugo + github pages 使用方式
 网上大多是hugo旧版的使用方式，有好几处明显差异的，不值得借鉴，反正我借鉴后出现各种莫名其妙问题
 严格按照官方这两个链接，就不会出现问题:
