@@ -13,8 +13,13 @@
       <pubDate>Thu, 24 Aug 2023 09:11:47 +0800</pubDate>
       
       <guid>https://zyestin.github.io/posts/my-first-post/</guid>
-      <description>hello world
-come here</description>
+      <description>2023最新 hugo + github pages 使用方式
+网上大多是hugo旧版的使用方式，有好几处明显差异的，不值得借鉴，反正我借鉴后出现各种莫名其妙问题
+严格按照官方这两个链接，就不会出现问题:
+hugo quick start hugo new site quickstart cd quickstart git init git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke echo &amp;#34;theme = &amp;#39;ananke&amp;#39;&amp;#34; &amp;gt;&amp;gt; hugo.toml hugo server hugo new content posts/my-first-post.md open content/posts/my-first-post.md //然后进行修改 hugo server -D //观察 http://localhost:1313/ hugo Host on GitHub Pages 需要注意的地方:
+请先尝试 hugo文档里提供的theme，即ananke，走通一遍流程 我就采坑了，使用了另一个theme，后面在 localhost 一直不出现 my-first-post.md
+.github/workflows/hugo.yaml 一定要注意修改 HUGO_VERSION 的值
+my-first-post.md 注意删掉/注释掉 draft:true 这样 push到github时，public/index.html等几个文件中才包含了 my-first-post.md的内容，访问 https://zyestin.github.io 时才能找到 my-first-post.md入口</description>
     </item>
     
   </channel>
