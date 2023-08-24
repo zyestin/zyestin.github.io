@@ -1,4 +1,0 @@
-baseURL = 'http://zyestin.github.io/'
-languageCode = 'en-us'
-title = 'zyestin'
-theme = 'hugo-book'
