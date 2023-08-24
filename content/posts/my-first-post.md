@@ -1,5 +1,5 @@
 ---
-title: "My First Post"
+title: "hugo + github pages usage"
 date: 2023-08-24T09:11:47+08:00
 # draft: true
 # bookComments: false
