@@ -40,5 +40,5 @@ hugo
 * `.github/workflows/hugo.yaml` 一定要注意修改 `HUGO_VERSION` 的值
 
 * `my-first-post.md` 注意删掉/注释掉 draft:true
-这样 push到github时，`public/index.html`等几个文件中才包含了 `my-first-post.md`的内容，访问 `https://zyestin.github.io` 时才能找到 `my-first-post.md`入口
+这样 push到github时，`public/index.html`等几个文件中才包含了 `my-first-post.md`的内容，访问 <https://zyestin.github.io/zyestin/> 时才能找到 `my-first-post.md`入口
 

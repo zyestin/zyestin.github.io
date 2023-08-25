@@ -3,7 +3,7 @@
 
 Hi there ✋
 
-I'm [zyestin](https://github.com/zyestin/zyestin), Front-end Developer.
+I'm [zyestin](https://github.com/zyestin/), Front-end Developer.
 
 I want to learn things and become a better person. I enjoy reading, thinking and writing in my leisure time.
 
