@@ -25,9 +25,12 @@ hugo server
 hugo new content posts/my-first-post.md
 open content/posts/my-first-post.md 
 //然后进行修改
+
 hugo server -D
-//观察 http://localhost:1313/
+//可以编辑后， 在 http://localhost:1313/ 进行预览
+
 hugo
+//生成web静态资源，以便下一步提交github时进行部署
 ```
 * [Host on GitHub Pages](https://gohugo.io/hosting-and-deployment/hosting-on-github/)
 

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>hugo &#43; github pages usage | zyestin</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="2023最新 hugo &#43; github pages 使用方式
+网上大多是hugo旧版的使用方式，有好几处明显差异的，不值得借鉴，反正我借鉴后出现各种莫名其妙问题
+严格按照官方这两个链接，就不会出现问题:
+hugo quick start hugo new site quickstart cd quickstart git init git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke echo &#34;theme = &#39;ananke&#39;&#34; &gt;&gt; hugo.toml hugo server hugo new content posts/my-first-post.md open content/posts/my-first-post.md //然后进行修改 hugo server -D //可以编辑后， 在 http://localhost:1313/ 进行预览 hugo //生成web静态资源，以便下一步提交github时进行部署 Host on GitHub Pages 需要注意的地方:
+请先尝试 hugo文档里提供的theme，即ananke，走通一遍流程 我就采坑了，使用了另一个theme，后面在 localhost 一直不出现 my-first-post.md
+.github/workflows/hugo.yaml 一定要注意修改 HUGO_VERSION 的值
+my-first-post.md 注意删掉/注释掉 draft:true 这样 push到github时，public/index.html等几个文件中才包含了 my-first-post.md的内容，访问 https://zyestin.github.io/zyestin/ 时才能找到 my-first-post.">
+    <meta name="generator" content="Hugo 0.117.0">
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/zyestin/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="hugo &#43; github pages usage" />
+<meta property="og:description" content="2023最新 hugo &#43; github pages 使用方式
+网上大多是hugo旧版的使用方式，有好几处明显差异的，不值得借鉴，反正我借鉴后出现各种莫名其妙问题
+严格按照官方这两个链接，就不会出现问题:
+hugo quick start hugo new site quickstart cd quickstart git init git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke echo &#34;theme = &#39;ananke&#39;&#34; &gt;&gt; hugo.toml hugo server hugo new content posts/my-first-post.md open content/posts/my-first-post.md //然后进行修改 hugo server -D //可以编辑后， 在 http://localhost:1313/ 进行预览 hugo //生成web静态资源，以便下一步提交github时进行部署 Host on GitHub Pages 需要注意的地方:
+请先尝试 hugo文档里提供的theme，即ananke，走通一遍流程 我就采坑了，使用了另一个theme，后面在 localhost 一直不出现 my-first-post.md
+.github/workflows/hugo.yaml 一定要注意修改 HUGO_VERSION 的值
+my-first-post.md 注意删掉/注释掉 draft:true 这样 push到github时，public/index.html等几个文件中才包含了 my-first-post.md的内容，访问 https://zyestin.github.io/zyestin/ 时才能找到 my-first-post." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zyestin.github.io/zyestin/posts/hugo-usage/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-08-24T09:11:47+08:00" />
+<meta property="article:modified_time" content="2023-08-24T09:11:47+08:00" />
+<meta itemprop="name" content="hugo &#43; github pages usage">
+<meta itemprop="description" content="2023最新 hugo &#43; github pages 使用方式
+网上大多是hugo旧版的使用方式，有好几处明显差异的，不值得借鉴，反正我借鉴后出现各种莫名其妙问题
+严格按照官方这两个链接，就不会出现问题:
+hugo quick start hugo new site quickstart cd quickstart git init git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke echo &#34;theme = &#39;ananke&#39;&#34; &gt;&gt; hugo.toml hugo server hugo new content posts/my-first-post.md open content/posts/my-first-post.md //然后进行修改 hugo server -D //可以编辑后， 在 http://localhost:1313/ 进行预览 hugo //生成web静态资源，以便下一步提交github时进行部署 Host on GitHub Pages 需要注意的地方:
+请先尝试 hugo文档里提供的theme，即ananke，走通一遍流程 我就采坑了，使用了另一个theme，后面在 localhost 一直不出现 my-first-post.md
+.github/workflows/hugo.yaml 一定要注意修改 HUGO_VERSION 的值
+my-first-post.md 注意删掉/注释掉 draft:true 这样 push到github时，public/index.html等几个文件中才包含了 my-first-post.md的内容，访问 https://zyestin.github.io/zyestin/ 时才能找到 my-first-post."><meta itemprop="datePublished" content="2023-08-24T09:11:47+08:00" />
+<meta itemprop="dateModified" content="2023-08-24T09:11:47+08:00" />
+<meta itemprop="wordCount" content="72">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="hugo &#43; github pages usage"/>
+<meta name="twitter:description" content="2023最新 hugo &#43; github pages 使用方式
+网上大多是hugo旧版的使用方式，有好几处明显差异的，不值得借鉴，反正我借鉴后出现各种莫名其妙问题
+严格按照官方这两个链接，就不会出现问题:
+hugo quick start hugo new site quickstart cd quickstart git init git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke echo &#34;theme = &#39;ananke&#39;&#34; &gt;&gt; hugo.toml hugo server hugo new content posts/my-first-post.md open content/posts/my-first-post.md //然后进行修改 hugo server -D //可以编辑后， 在 http://localhost:1313/ 进行预览 hugo //生成web静态资源，以便下一步提交github时进行部署 Host on GitHub Pages 需要注意的地方:
+请先尝试 hugo文档里提供的theme，即ananke，走通一遍流程 我就采坑了，使用了另一个theme，后面在 localhost 一直不出现 my-first-post.md
+.github/workflows/hugo.yaml 一定要注意修改 HUGO_VERSION 的值
+my-first-post.md 注意删掉/注释掉 draft:true 这样 push到github时，public/index.html等几个文件中才包含了 my-first-post.md的内容，访问 https://zyestin.github.io/zyestin/ 时才能找到 my-first-post."/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/zyestin/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        zyestin
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">hugo &#43; github pages usage</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2023-08-24T09:11:47+08:00">August 24, 2023</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>2023最新 <code>hugo</code> + <code>github pages</code> 使用方式</p>
+<p>网上大多是hugo旧版的使用方式，有好几处明显差异的，不值得借鉴，反正我借鉴后出现各种莫名其妙问题</p>
+<hr>
+<p>严格按照官方这两个链接，就不会出现问题:</p>
+<ul>
+<li>hugo <a href="https://gohugo.io/getting-started/quick-start/">quick start</a></li>
+</ul>
+<pre tabindex="0"><code>hugo new site quickstart
+cd quickstart
+git init
+git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke
+echo &#34;theme = &#39;ananke&#39;&#34; &gt;&gt; hugo.toml
+hugo server
+
+hugo new content posts/my-first-post.md
+open content/posts/my-first-post.md 
+//然后进行修改
+
+hugo server -D
+//可以编辑后， 在 http://localhost:1313/ 进行预览
+
+hugo
+//生成web静态资源，以便下一步提交github时进行部署
+</code></pre><ul>
+<li><a href="https://gohugo.io/hosting-and-deployment/hosting-on-github/">Host on GitHub Pages</a></li>
+</ul>
+<hr>
+<p>需要注意的地方:</p>
+<ul>
+<li>
+<p>请先尝试 hugo文档里提供的theme，即ananke，走通一遍流程
+我就采坑了，使用了另一个theme，后面在 <code>localhost</code> 一直不出现 <code>my-first-post.md</code></p>
+</li>
+<li>
+<p><code>.github/workflows/hugo.yaml</code> 一定要注意修改 <code>HUGO_VERSION</code> 的值</p>
+</li>
+<li>
+<p><code>my-first-post.md</code> 注意删掉/注释掉 draft:true
+这样 push到github时，<code>public/index.html</code>等几个文件中才包含了 <code>my-first-post.md</code>的内容，访问 <a href="https://zyestin.github.io/zyestin/">https://zyestin.github.io/zyestin/</a> 时才能找到 <code>my-first-post.md</code>入口</p>
+</li>
+</ul>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://zyestin.github.io/zyestin/" >
+    &copy;  zyestin 2023 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>
