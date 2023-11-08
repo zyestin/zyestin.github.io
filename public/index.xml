@@ -6,7 +6,24 @@
     <description>Recent content on zyestin</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 24 Aug 2023 09:11:47 +0800</lastBuildDate><atom:link href="https://zyestin.github.io/zyestin/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 01 Nov 2023 12:00:11 +0800</lastBuildDate><atom:link href="https://zyestin.github.io/zyestin/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>React Native 开发沉淀</title>
+      <link>https://zyestin.github.io/zyestin/posts/rn/redeame/</link>
+      <pubDate>Wed, 01 Nov 2023 12:00:11 +0800</pubDate>
+      
+      <guid>https://zyestin.github.io/zyestin/posts/rn/redeame/</guid>
+      <description>自实现方案 代码规范
+React Native 编码提效 on VSCode
+基础组件封装
+动态下载&amp;amp;应用字体
+仿抖音/小红书等 对贴图进行拖拽、缩放、旋转的复杂手势
+标签 富文本
+瀑布流列表 自动滚动动画
+横向 瀑布流列表
+三方方案 react-native-exception-handler </description>
+    </item>
+    
     <item>
       <title>hugo &#43; github pages usage</title>
       <link>https://zyestin.github.io/zyestin/posts/my-first-post/</link>
@@ -19,7 +36,7 @@
 hugo quick start hugo new site quickstart cd quickstart git init git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke echo &amp;#34;theme = &amp;#39;ananke&amp;#39;&amp;#34; &amp;gt;&amp;gt; hugo.toml hugo server hugo new content posts/my-first-post.md open content/posts/my-first-post.md //然后进行修改 hugo server -D //观察 http://localhost:1313/ hugo Host on GitHub Pages 需要注意的地方:
 请先尝试 hugo文档里提供的theme，即ananke，走通一遍流程 我就采坑了，使用了另一个theme，后面在 localhost 一直不出现 my-first-post.md
 .github/workflows/hugo.yaml 一定要注意修改 HUGO_VERSION 的值
-my-first-post.md 注意删掉/注释掉 draft:true 这样 push到github时，public/index.html等几个文件中才包含了 my-first-post.md的内容，访问 https://zyestin.github.io 时才能找到 my-first-post.md入口</description>
+my-first-post.md 注意删掉/注释掉 draft:true 这样 push到github时，public/index.html等几个文件中才包含了 my-first-post.md的内容，访问 https://zyestin.github.io/zyestin/ 时才能找到 my-first-post.md入口</description>
     </item>
     
   </channel>
