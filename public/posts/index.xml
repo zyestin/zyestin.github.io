@@ -25,23 +25,6 @@ React Native 编码提效 on VSCode
     </item>
     
     <item>
-      <title>React Native 开发沉淀</title>
-      <link>https://zyestin.github.io/zyestin/posts/rn/redeame/</link>
-      <pubDate>Wed, 01 Nov 2023 12:00:11 +0800</pubDate>
-      
-      <guid>https://zyestin.github.io/zyestin/posts/rn/redeame/</guid>
-      <description>自实现方案 代码规范
-React Native 编码提效 on VSCode
-基础组件封装
-动态下载&amp;amp;应用字体
-仿抖音/小红书等 对贴图进行拖拽、缩放、旋转的复杂手势
-标签 富文本
-瀑布流列表 自动滚动动画
-横向 瀑布流列表
-三方方案 react-native-exception-handler </description>
-    </item>
-    
-    <item>
       <title>hugo &#43; github pages usage</title>
       <link>https://zyestin.github.io/zyestin/posts/hugo-usage/</link>
       <pubDate>Thu, 24 Aug 2023 09:11:47 +0800</pubDate>

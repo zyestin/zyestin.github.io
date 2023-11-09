@@ -8,7 +8,7 @@ draft: false
 ## 自实现方案
 
 
-* [代码规范]()
+* [代码规范](../code-standards/)
 
 
 * [React Native 编码提效 on VSCode]()
@@ -41,5 +41,5 @@ draft: false
 
 
 
-![Alt Text](../images/2.jpg)  
+![Alt Text](images/2.jpg)  
 
