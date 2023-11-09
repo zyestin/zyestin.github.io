@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>代码规范 | zyestin</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="讨论背景 相信大家写代码时 对自己都有一些要求，比如下面的
+基本期望：写出他人能容易看懂的代码 更高追求：写出他人看起来很爽的代码 每经历一个阶段，大家都对编码有不同程度的进步提升，可以分享；同时也会积累一些场景下代码如屎的烦恼，想要破局。
+于是，阶段性的，需要一个机会，大家开个交流会进行讨论
+更多地了解到彼此 阅读代码、写代码的风格习惯 互通有无，集思广益，团队更快提升！ 对现阶段遇到的痛点，找出更优解，或制定调研计划 规范条款上的收获 虽然很少，但也收获了一些代码细节上的技巧或认知，最重要的是 大大增进了互相的了解，协作起来越来越紧密顺畅。
+讨论成果 组件代码结构 关键点: 打开文件后，更方便的看到核心代码（那就尽量靠前咯）
+也就是 render/return组件 之前的代码量尽可能少；那么，就需要通过函数提炼、划分职责等方式转移到别处。
+组件代码 书写顺序 示例如下
+// AAView.js import { xxCalculate, xxUploadEvent } from &#39;app/components/XxModule&#39; import AView from &#39;./components/AView&#39; import BView from &#39;./components/BView&#39; //$$ 用于组件函数内的变量 紧邻写在组件函数上方 const variableUsedInXXComp = ... //组件函数 const AAView = props =&gt; { //$$ props解构, 放第一行 ///reason：即使AAView上面不写@param注释，通过这里的解构也能看出props的参数 const { paramA, paramB } = props //$$ 副作用函数(即use开头的函数)，写在顶层作用域， const [aEverClicked, setAEverClicked] = useState(false) const [bClickedTime, setBClickedTime] = useState(0) .">
+    <meta name="generator" content="Hugo 0.117.0">
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/zyestin/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="代码规范" />
+<meta property="og:description" content="讨论背景 相信大家写代码时 对自己都有一些要求，比如下面的
+基本期望：写出他人能容易看懂的代码 更高追求：写出他人看起来很爽的代码 每经历一个阶段，大家都对编码有不同程度的进步提升，可以分享；同时也会积累一些场景下代码如屎的烦恼，想要破局。
+于是，阶段性的，需要一个机会，大家开个交流会进行讨论
+更多地了解到彼此 阅读代码、写代码的风格习惯 互通有无，集思广益，团队更快提升！ 对现阶段遇到的痛点，找出更优解，或制定调研计划 规范条款上的收获 虽然很少，但也收获了一些代码细节上的技巧或认知，最重要的是 大大增进了互相的了解，协作起来越来越紧密顺畅。
+讨论成果 组件代码结构 关键点: 打开文件后，更方便的看到核心代码（那就尽量靠前咯）
+也就是 render/return组件 之前的代码量尽可能少；那么，就需要通过函数提炼、划分职责等方式转移到别处。
+组件代码 书写顺序 示例如下
+// AAView.js import { xxCalculate, xxUploadEvent } from &#39;app/components/XxModule&#39; import AView from &#39;./components/AView&#39; import BView from &#39;./components/BView&#39; //$$ 用于组件函数内的变量 紧邻写在组件函数上方 const variableUsedInXXComp = ... //组件函数 const AAView = props =&gt; { //$$ props解构, 放第一行 ///reason：即使AAView上面不写@param注释，通过这里的解构也能看出props的参数 const { paramA, paramB } = props //$$ 副作用函数(即use开头的函数)，写在顶层作用域， const [aEverClicked, setAEverClicked] = useState(false) const [bClickedTime, setBClickedTime] = useState(0) ." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zyestin.github.io/zyestin/posts/rn/code-standards/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-11-01T12:00:11+08:00" />
+<meta property="article:modified_time" content="2023-11-01T12:00:11+08:00" />
+<meta itemprop="name" content="代码规范">
+<meta itemprop="description" content="讨论背景 相信大家写代码时 对自己都有一些要求，比如下面的
+基本期望：写出他人能容易看懂的代码 更高追求：写出他人看起来很爽的代码 每经历一个阶段，大家都对编码有不同程度的进步提升，可以分享；同时也会积累一些场景下代码如屎的烦恼，想要破局。
+于是，阶段性的，需要一个机会，大家开个交流会进行讨论
+更多地了解到彼此 阅读代码、写代码的风格习惯 互通有无，集思广益，团队更快提升！ 对现阶段遇到的痛点，找出更优解，或制定调研计划 规范条款上的收获 虽然很少，但也收获了一些代码细节上的技巧或认知，最重要的是 大大增进了互相的了解，协作起来越来越紧密顺畅。
+讨论成果 组件代码结构 关键点: 打开文件后，更方便的看到核心代码（那就尽量靠前咯）
+也就是 render/return组件 之前的代码量尽可能少；那么，就需要通过函数提炼、划分职责等方式转移到别处。
+组件代码 书写顺序 示例如下
+// AAView.js import { xxCalculate, xxUploadEvent } from &#39;app/components/XxModule&#39; import AView from &#39;./components/AView&#39; import BView from &#39;./components/BView&#39; //$$ 用于组件函数内的变量 紧邻写在组件函数上方 const variableUsedInXXComp = ... //组件函数 const AAView = props =&gt; { //$$ props解构, 放第一行 ///reason：即使AAView上面不写@param注释，通过这里的解构也能看出props的参数 const { paramA, paramB } = props //$$ 副作用函数(即use开头的函数)，写在顶层作用域， const [aEverClicked, setAEverClicked] = useState(false) const [bClickedTime, setBClickedTime] = useState(0) ."><meta itemprop="datePublished" content="2023-11-01T12:00:11+08:00" />
+<meta itemprop="dateModified" content="2023-11-01T12:00:11+08:00" />
+<meta itemprop="wordCount" content="516">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="代码规范"/>
+<meta name="twitter:description" content="讨论背景 相信大家写代码时 对自己都有一些要求，比如下面的
+基本期望：写出他人能容易看懂的代码 更高追求：写出他人看起来很爽的代码 每经历一个阶段，大家都对编码有不同程度的进步提升，可以分享；同时也会积累一些场景下代码如屎的烦恼，想要破局。
+于是，阶段性的，需要一个机会，大家开个交流会进行讨论
+更多地了解到彼此 阅读代码、写代码的风格习惯 互通有无，集思广益，团队更快提升！ 对现阶段遇到的痛点，找出更优解，或制定调研计划 规范条款上的收获 虽然很少，但也收获了一些代码细节上的技巧或认知，最重要的是 大大增进了互相的了解，协作起来越来越紧密顺畅。
+讨论成果 组件代码结构 关键点: 打开文件后，更方便的看到核心代码（那就尽量靠前咯）
+也就是 render/return组件 之前的代码量尽可能少；那么，就需要通过函数提炼、划分职责等方式转移到别处。
+组件代码 书写顺序 示例如下
+// AAView.js import { xxCalculate, xxUploadEvent } from &#39;app/components/XxModule&#39; import AView from &#39;./components/AView&#39; import BView from &#39;./components/BView&#39; //$$ 用于组件函数内的变量 紧邻写在组件函数上方 const variableUsedInXXComp = ... //组件函数 const AAView = props =&gt; { //$$ props解构, 放第一行 ///reason：即使AAView上面不写@param注释，通过这里的解构也能看出props的参数 const { paramA, paramB } = props //$$ 副作用函数(即use开头的函数)，写在顶层作用域， const [aEverClicked, setAEverClicked] = useState(false) const [bClickedTime, setBClickedTime] = useState(0) ."/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/zyestin/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        zyestin
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">代码规范</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2023-11-01T12:00:11+08:00">November 1, 2023</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="讨论背景">讨论背景</h1>
+<p>相信大家写代码时 对自己都有一些要求，比如下面的</p>
+<ul>
+<li>基本期望：写出他人能容易看懂的代码</li>
+<li>更高追求：写出他人看起来很爽的代码</li>
+</ul>
+<p>每经历一个阶段，大家都对编码有不同程度的进步提升，可以分享；同时也会积累一些场景下代码如屎的烦恼，想要破局。</p>
+<p>于是，阶段性的，需要一个机会，大家开个交流会进行讨论</p>
+<ul>
+<li>更多地了解到彼此 阅读代码、写代码的风格习惯</li>
+<li>互通有无，集思广益，团队更快提升！</li>
+<li>对现阶段遇到的痛点，找出更优解，或制定调研计划</li>
+</ul>
+<p>规范条款上的收获 虽然很少，但也收获了一些代码细节上的技巧或认知，最重要的是 大大增进了互相的了解，协作起来越来越紧密顺畅。</p>
+<h1 id="讨论成果">讨论成果</h1>
+<h2 id="组件代码结构">组件代码结构</h2>
+<p>关键点: 打开文件后，更方便的看到核心代码（那就尽量靠前咯）</p>
+<blockquote>
+<p>也就是 render/return组件 之前的代码量尽可能少；那么，就需要通过函数提炼、划分职责等方式转移到别处。</p>
+</blockquote>
+<p>组件代码 书写顺序 示例如下</p>
+<pre tabindex="0"><code>// AAView.js
+
+import { xxCalculate, xxUploadEvent } from &#39;app/components/XxModule&#39;
+import AView from &#39;./components/AView&#39;
+import BView from &#39;./components/BView&#39;
+
+//$$ 用于组件函数内的变量 紧邻写在组件函数上方
+const variableUsedInXXComp = ...
+
+//组件函数
+const AAView = props =&gt; {
+
+  //$$ props解构, 放第一行
+  ///reason：即使AAView上面不写@param注释，通过这里的解构也能看出props的参数
+  const { paramA, paramB } = props
+
+  //$$ 副作用函数(即use开头的函数)，写在顶层作用域，
+  const [aEverClicked, setAEverClicked] = useState(false)
+  const [bClickedTime, setBClickedTime] = useState(0)
+  ...
+
+  //$$ 归类逻辑代码到hooks，e.g. 数据处理（获取数据、更新数据）聚合到一个hooks， 滑动相关监听处理 聚合到另一个hooks
+  const {loading, data, error, addData, updateData} = useLoadData({id: paramA})
+  ...
+
+  //$$ 业务逻辑处理。 注意：如果这部分代码较多，一般是可以转移几个api，挪到 某单一职责的hooks里去
+  const onPressAView = () =&gt; {
+    //如果复杂逻辑(多行 e.g. 15行)，抽取纯函数， 与XXComp并列 放其后面
+    addData( calculateAndCreateItemData(inputX, bClickedTime) )
+
+    setAEverClicked(true)
+    xxUploadEvent()
+  }
+
+  const onPressBView = () =&gt; {
+    //简单逻辑(e.g. &lt;10行)，直接写在这里
+    updateData({ count: bClickedTime, key: variableUsedInXXComp })
+    ...
+    setBClickedTime(bClickedTime+1)
+  }
+
+  ...
+  ...
+
+  //$$ render
+  return (
+    &lt;View style={styles.container}&gt;
+      &lt;AView onPress={onPressAView}&gt;
+        {aEverClicked ? &lt;View&gt; ... &lt;/View&gt; : null }
+        ...
+      &lt;/AView&gt;
+      &lt;BView param={inputY} onPress={onPressBView}&gt;
+        ...
+      &lt;/BView&gt;
+      ...
+      {
+        data?.map(item =&gt; (&lt;View style={styles.content}}&gt;
+          &lt;Text style={styles.title}&gt;{styles.title}&lt;/Text&gt;
+          &lt;Image style={styles.cover} source={data[0].cover} /&gt;
+        &lt;/View&gt;))
+      }
+    &lt;/View&gt;
+  )
+
+}
+
+//$$ hooks 数据获取相关逻辑：请求、loading状态、错误、数据处理(response data -&gt; UI data)
+const useLoadData = ({id}) =&gt; {
+  const [data, setData] = useState(null)
+  const [loading, setLoading] = useState(false)
+	const [error, setError] = useState(null)
+
+	useEffect(()=&gt;{
+		request({id}).then(res=&gt;{
+			setData(res.data)
+		});
+	}, [])
+	//请求
+	return {
+	    data,
+	    loading,
+	    error
+	    ...
+	}
+}
+
+//$$ 仅用于组件内部的函数 紧邻写在组件函数下方
+const calculateAndCreateItemData = (a, b) =&gt; {
+  let result = {}
+  //复杂逻辑
+  ...
+  ...
+  result.count = xxCalculate(a, ...)
+  return result
+}
+// 方法提炼到这里 reason：
+// 1.提炼纯函数，略利于性能
+// 2.移到这里，减少对核心代码的干扰
+
+
+//$$ 仅用于样式的变量 紧邻写在styles声明的上方
+const listWidth = px2dp(100)
+
+const styles = StyleSheet.create({
+  container: {
+    //约束自身
+    flex: 1,
+    backgroundColor: &#39;#eee&#39;,
+    marginTop: px2dp(20),
+    //约束子视图的
+    paddingHorizontal: px2dp(15),
+    flexDirection: &#34;row&#34;,
+    alignItems: &#34;center&#34;,
+    justifyContent: &#34;space-between&#34;,
+  },
+
+  list: {
+    marginHorizontal: 10,
+    width: listWidth,
+    ...
+  },
+  ...
+
+})
+</code></pre><h2 id="较复杂模块拆分后的目录结构">较复杂模块拆分后的目录结构</h2>
+<blockquote>
+<p>目录 体现着模块划分思维</p>
+</blockquote>
+<p>取项目里的一个典型示例</p>
+<pre tabindex="0"><code>&gt; tree ./app/screens/graphic/tabs/userHome/   
+
+./app/screens/graphic/tabs/userHome/
+├── components
+│   ├── Header
+│   │   ├── BackgroundImage.js
+│   │   ├── MoreButton.js
+│   │   ├── OpaqueNavBar.js
+│   │   ├── index.js
+│   │   └── useHeader.js
+│   ├── LoadingView.js
+│   ├── Tabbar.js
+│   ├── TabsStickScrollView.js
+│   └── list
+│       ├── HistoryWorkList.js
+│       ├── LikedWorkList.js
+│       ├── MineWorkList.js
+│       ├── UserWorkList.js
+│       └── item
+│           ├── UnpublishedEntryItem.js
+│           ├── UnpublishedType.js
+│           └── index.js
+├── index.js
+├── otherScreens
+│   ├── DraftScreen.js
+│   └── RejectScreen.js
+└── utils
+    └── DraftDataManager.js
+</code></pre><blockquote>
+<p>合理拆分模块，避免单文件代码行数过多，统一命名风格，将大大减少理解阻碍</p>
+</blockquote>
+<h2 id="通知命名">通知命名</h2>
+<p>以后会出这样一个 通知名 集中存放的文件</p>
+<pre tabindex="0"><code>//NotificationCenter.js
+
+export {
+  listen,
+  emit,
+}
+
+// 参考 iOS通知命名，UIKeyboardWillChangeFrameNotification，
+// 命名表达出 who did (/will do) what，（即将）谁做了什么
+
+//画本（某作品）点赞状态改变
+export const kGraphicLikeStatusChangeNotification = &#39;kGraphicLikeStatusChangeNotification&#39;;
+
+/* 使用示例
+import { emit, kGraphicLikeStatusChangeNotification } from &#39;app/.../NotificationCenter&#39;;
+emit(kGraphicLikeStatusChangeNotification, { graphicId: 123, likeStatus: 1 });
+
+import { listen, kGraphicLikeStatusChangeNotification } from &#39;app/.../NotificationCenter&#39;;
+const listener = listen(kGraphicLikeStatusChangeNotification, (data) =&gt; {
+  ...
+}
+listener.remove();
+ */
+</code></pre><h2 id="单个函数的总行数-限制多大合适">单个函数的总行数 限制多大合适？</h2>
+<ul>
+<li>《阿里巴巴 Java 开发手册 v1.4.0（详尽版）》 ：80 行</li>
+</ul>
+<p><a href="https://edu.aliyun.com/article/103">https://edu.aliyun.com/article/103</a> <img src="media/16878312754494/16878347664695.jpg" alt=""></p>
+<p>若结合到咱公司自己项目， <code>&lt;&gt;</code> 与 <code>&lt;/&gt;</code>、<code>{</code> 与 <code>}</code> 等标签的开始、结束（作用域）内尽量不超过 80 行</p>
+<blockquote>
+<p>示例中的组件函数<code>AAView</code>比较特殊，其本身可能超 100 行，甚至更多 也没问题。因为其内部包含多个子函数、子组件；<code>AAView</code>内部的子函数、子组件<code>&lt;View&gt;&lt;/View&gt;</code>等可以参考 80 行限制</p>
+</blockquote>
+<ul>
+<li>《代码不朽》：15 行</li>
+</ul>
+<blockquote>
+<p><a href="https://www.zhihu.com/question/280041384/answer/468623926">https://www.zhihu.com/question/280041384/answer/468623926</a></p>
+</blockquote>
+<p><img src="media/16878312754494/16878366535499.jpg" alt=""></p>
+<ul>
+<li>为什么编程应遵循 “30” 规则</li>
+</ul>
+<blockquote>
+<p><a href="https://www.infoq.cn/article/uu6zgvebe9w1ab1yqilb">https://www.infoq.cn/article/uu6zgvebe9w1ab1yqilb</a></p>
+</blockquote>
+<p>《代码大全》Steve McConnell 指出，理论上，一个方法或函数的最佳最大限制是在一个屏幕上可以容纳的行数。</p>
+<h2 id="单个文件代码行数-限制多大合适">单个文件代码行数 限制多大合适？</h2>
+<p>核心点</p>
+<ul>
+<li>维护成本：长而冗长的代码通常更难以理解、调试和维护。通过设置代码行数限制，可以鼓励开发者编写更简洁、模块化的代码，从而减少维护成本。</li>
+</ul>
+<p>ChatGPT 的看法<br>
+<img src="media/16878312754494/16878361932346.jpg" alt=""></p>
+<p>掘金文章 看法</p>
+<ul>
+<li>
+<p><a href="https://juejin.cn/s/%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E4%BB%A3%E7%A0%81%E8%A1%8C%E6%95%B0%E4%B8%8D%E8%B6%85%E8%BF%87%E5%A4%9A%E5%B0%91">https://juejin.cn/s/一个文件代码行数不超过多少</a> 300~500</p>
+</li>
+<li>
+<p><a href="https://juejin.cn/s/%E4%B8%80%E4%B8%AA%E6%96%87%E4%BB%B6%E4%BB%A3%E7%A0%81%E8%A1%8C%E6%95%B0%E4%B8%8D%E8%B6%85%E8%BF%87%E5%A4%9A%E5%B0%91%E8%A1%8C%20%E5%8D%8E%E4%B8%BA">https://juejin.cn/s/一个文件代码行数不超过多少行%20华为</a> 200</p>
+</li>
+</ul>
+<p>其它看法</p>
+<ul>
+<li>【生理上】人的记忆只有三屏，80 行预计在两屏至两屏半之间。</li>
+<li>【原则上】主干逻辑清晰，简洁易读</li>
+<li>【要纯】初期代码多烂其实问题都不大的, 只要你函数全都是纯的, 以后化简还是拆起来都不是问题.</li>
+<li>按照《重构》去做了，就不会出现单文件代码行数多的问题了</li>
+<li>《好代码，坏代码》<br>
+<img src="media/16878312754494/16878389258066.jpg" alt=""></li>
+</ul>
+<h2 id="单行代码-字符串宽度数量限制">单行代码 字符串宽度/数量限制</h2>
+<p>上面提到的<strong>文件代码行数</strong>、<strong>函数代码行数</strong>在各大公司标准中 基本没有指明，但<strong>代码列数限制</strong>到是不少标准里 提到。</p>
+<p>谷歌的<a href="https://google.github.io/styleguide/jsguide.html#formatting-column-limit">Google JavaScript Style Guide</a> 80</p>
+<p><img src="media/16878312754494/16878399494187.jpg" alt=""></p>
+<h2 id="其它">其它</h2>
+<h3 id="市面上-大而全的-javascript-规范">市面上 大而全的 JavaScript 规范</h3>
+<ul>
+<li><a href="https://airbnb.io/javascript/react/#basic-rules">Airbnb JavaScript Style Guide</a></li>
+<li><a href="https://google.github.io/styleguide/jsguide.html">Google JavaScript Style Guide</a></li>
+<li><a href="https://standardjs.com/">Standard JavaScript</a></li>
+</ul>
+<h3 id="代码规范的常用工具">代码规范的常用工具</h3>
+<p>eslint prettier</p>
+<ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://zyestin.github.io/zyestin/" >
+    &copy;  zyestin 2023 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

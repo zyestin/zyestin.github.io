@@ -25,6 +25,22 @@ React Native 编码提效 on VSCode
     </item>
     
     <item>
+      <title>代码规范</title>
+      <link>https://zyestin.github.io/zyestin/posts/rn/code-standards/</link>
+      <pubDate>Wed, 01 Nov 2023 12:00:11 +0800</pubDate>
+      
+      <guid>https://zyestin.github.io/zyestin/posts/rn/code-standards/</guid>
+      <description>讨论背景 相信大家写代码时 对自己都有一些要求，比如下面的
+基本期望：写出他人能容易看懂的代码 更高追求：写出他人看起来很爽的代码 每经历一个阶段，大家都对编码有不同程度的进步提升，可以分享；同时也会积累一些场景下代码如屎的烦恼，想要破局。
+于是，阶段性的，需要一个机会，大家开个交流会进行讨论
+更多地了解到彼此 阅读代码、写代码的风格习惯 互通有无，集思广益，团队更快提升！ 对现阶段遇到的痛点，找出更优解，或制定调研计划 规范条款上的收获 虽然很少，但也收获了一些代码细节上的技巧或认知，最重要的是 大大增进了互相的了解，协作起来越来越紧密顺畅。
+讨论成果 组件代码结构 关键点: 打开文件后，更方便的看到核心代码（那就尽量靠前咯）
+也就是 render/return组件 之前的代码量尽可能少；那么，就需要通过函数提炼、划分职责等方式转移到别处。
+组件代码 书写顺序 示例如下
+// AAView.js import { xxCalculate, xxUploadEvent } from &amp;#39;app/components/XxModule&amp;#39; import AView from &amp;#39;./components/AView&amp;#39; import BView from &amp;#39;./components/BView&amp;#39; //$$ 用于组件函数内的变量 紧邻写在组件函数上方 const variableUsedInXXComp = ... //组件函数 const AAView = props =&amp;gt; { //$$ props解构, 放第一行 ///reason：即使AAView上面不写@param注释，通过这里的解构也能看出props的参数 const { paramA, paramB } = props //$$ 副作用函数(即use开头的函数)，写在顶层作用域， const [aEverClicked, setAEverClicked] = useState(false) const [bClickedTime, setBClickedTime] = useState(0) .</description>
+    </item>
+    
+    <item>
       <title>hugo &#43; github pages usage</title>
       <link>https://zyestin.github.io/zyestin/posts/hugo-usage/</link>
       <pubDate>Thu, 24 Aug 2023 09:11:47 +0800</pubDate>
