@@ -11,8 +11,7 @@ draft: false
 * [代码规范](../code-standards/)
 
 
-* [React Native 编码提效 on VSCode]()
-
+* [React Native 编码提效 on VSCode](../vscode-efficient/)
 
 * [基础组件封装]()
 
