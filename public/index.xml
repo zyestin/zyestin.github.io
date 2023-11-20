@@ -8,6 +8,30 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 01 Nov 2023 12:00:11 +0800</lastBuildDate><atom:link href="https://zyestin.github.io/zyestin/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>React Native 在VSCode编码提效</title>
+      <link>https://zyestin.github.io/zyestin/posts/rn/vscode-efficient/</link>
+      <pubDate>Wed, 01 Nov 2023 12:00:11 +0800</pubDate>
+      
+      <guid>https://zyestin.github.io/zyestin/posts/rn/vscode-efficient/</guid>
+      <description>插件 代码智能提示 copilot
+触发内联建议 Option (⌥)+\ https://docs.github.com/zh/copilot/configuring-github-copilot/configuring-github-copilot-in-your-environment?tool=vscode#keyboard-shortcuts-for-macos
+(键联提示)代码片段
+ES7+ React/Redux/React-Native snippets massCode assistant (配合打开massCode App使用) 标签修改 自动首尾同步 Auto Rename Tag
+拼写检测 Code Spell Checker
+格式化 prettier
+提升阅读感受
+Gitlens 悬停查看代码改动人 Material Icon Theme / vscode-icons 侧边导航区 目录展示icon indent-rainbow 标签开闭连线 Image Preview 在图片路径引用行 左侧展示icon code snippets React/Redux/React-Native snippets
+指令说明：
+https://github.com/ults-io/vscode-react-javascript-snippets/blob/HEAD/docs/Snippets.md
+优点：
+对常用的hooks支持的简直完美
+可以试试输入useeff...。 会提示useEffectSnippet，enter后挨个填词，tab切换光标，set方法自动驼峰，简直完美！ 使用rnfes创建组件，会根据文件名 命名组件 想根据英文记忆一下快捷指令名称，可以参考 Fullstack React/React Native snippets
+对快捷指令 都有英文解释
+Mac、VSC快捷键 Mac 系统自带
+(shift+) ctrl+ (option+) f/b (shift+) ctrl+ p/n VSC 更改了上述快捷键对应的指令，非常糟糕。可以调整下如下 VSC Next Change （Important）</description>
+    </item>
+    
+    <item>
       <title>React Native 开发沉淀</title>
       <link>https://zyestin.github.io/zyestin/posts/rn/readme/</link>
       <pubDate>Wed, 01 Nov 2023 12:00:11 +0800</pubDate>
@@ -38,6 +62,18 @@ React Native 编码提效 on VSCode
 也就是 render/return组件 之前的代码量尽可能少；那么，就需要通过函数提炼、划分职责等方式转移到别处。
 组件代码 书写顺序 示例如下
 // AAView.js import { xxCalculate, xxUploadEvent } from &amp;#39;app/components/XxModule&amp;#39; import AView from &amp;#39;./components/AView&amp;#39; import BView from &amp;#39;./components/BView&amp;#39; //$$ 用于组件函数内的变量 紧邻写在组件函数上方 const variableUsedInXXComp = ... //组件函数 const AAView = props =&amp;gt; { //$$ props解构, 放第一行 ///reason：即使AAView上面不写@param注释，通过这里的解构也能看出props的参数 const { paramA, paramB } = props //$$ 副作用函数(即use开头的函数)，写在顶层作用域， const [aEverClicked, setAEverClicked] = useState(false) const [bClickedTime, setBClickedTime] = useState(0) .</description>
+    </item>
+    
+    <item>
+      <title>封装常用基础组件</title>
+      <link>https://zyestin.github.io/zyestin/posts/rn/base-components/</link>
+      <pubDate>Wed, 01 Nov 2023 12:00:11 +0800</pubDate>
+      
+      <guid>https://zyestin.github.io/zyestin/posts/rn/base-components/</guid>
+      <description> 瀑布流列表base组件 源码BaseList.js
+将下拉刷新、上拉加载更多相关的 pageNo逻辑，封装到BaseList中，使用方仅需关注 数据请求的api，让使用方代码量降到最少。
+使用示例
+import BaseList from &amp;#34;app/components/list/base&amp;#34;; import { getFanList } from &amp;#34;./service&amp;#34;; const pageSize = 10; const FanList = (props) =&amp;gt; { const { userId } = props; const _requestFunc = (page, pageSize) =&amp;gt; { return getFanList({ userId: userId, pageNo: page, pageSize }); }; const _renderItem = ({ item, index }) =&amp;gt; { return &amp;lt;Item {...item} /&amp;gt;; }; return ( // &amp;lt;View style={{ flex: 1 }}&amp;gt; &amp;lt;BaseList requestFunc={(page) =&amp;gt; _requestFunc(page, pageSize)} contentContainerStyle={{ paddingVertical: px2dp(5), paddingLeft: px2dp(5), }} renderItem={_renderItem} // numColumns={1} uniqueKey={&amp;#34;userId&amp;#34;} /&amp;gt; // &amp;lt;/View&amp;gt; ); }; </description>
     </item>
     
     <item>

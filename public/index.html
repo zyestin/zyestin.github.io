@@ -118,6 +118,45 @@
       
       <div class="blah w-100">
         <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="/zyestin/posts/rn/vscode-efficient/" class="color-inherit dim link">
+            React Native 在VSCode编码提效
+            </a>
+        </h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
+          插件 代码智能提示 copilot
+触发内联建议 Option (⌥)+\ https://docs.github.com/zh/copilot/configuring-github-copilot/configuring-github-copilot-in-your-environment?tool=vscode#keyboard-shortcuts-for-macos
+(键联提示)代码片段
+ES7+ React/Redux/React-Native snippets massCode assistant (配合打开massCode App使用) 标签修改 自动首尾同步 Auto Rename Tag
+拼写检测 Code Spell Checker
+格式化 prettier
+提升阅读感受
+Gitlens 悬停查看代码改动人 Material Icon Theme / vscode-icons 侧边导航区 目录展示icon indent-rainbow 标签开闭连线 Image Preview 在图片路径引用行 左侧展示icon code snippets React/Redux/React-Native snippets
+指令说明：
+https://github.com/ults-io/vscode-react-javascript-snippets/blob/HEAD/docs/Snippets.md
+优点：
+对常用的hooks支持的简直完美
+可以试试输入useeff...。 会提示useEffectSnippet，enter后挨个填词，tab切换光标，set方法自动驼峰，简直完美！ 使用rnfes创建组件，会根据文件名 命名组件 想根据英文记忆一下快捷指令名称，可以参考 Fullstack React/React Native snippets
+对快捷指令 都有英文解释
+Mac、VSC快捷键 Mac 系统自带
+(shift+) ctrl+ (option+) f/b (shift+) ctrl+ p/n VSC 更改了上述快捷键对应的指令，非常糟糕。可以调整下如下 VSC Next Change （Important）
+        </div>
+          <a href="/zyestin/posts/rn/vscode-efficient/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+          </div>
+        
+          <div class="relative w-100 mb4">
+            
+<article class="bb b--black-10">
+  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
+    <div class="flex flex-column flex-row-ns">
+      
+      <div class="blah w-100">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
           <a href="/zyestin/posts/rn/readme/" class="color-inherit dim link">
             React Native 开发沉淀
             </a>
@@ -173,38 +212,31 @@ React Native 编码提效 on VSCode
 
           </div>
         
-          <div class="relative w-100 mb4">
-            
-<article class="bb b--black-10">
-  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
-    <div class="flex flex-column flex-row-ns">
-      
-      <div class="blah w-100">
-        <h1 class="f3 fw1 athelas mt0 lh-title">
-          <a href="/zyestin/posts/hugo-usage/" class="color-inherit dim link">
-            hugo &#43; github pages usage
-            </a>
-        </h1>
-        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
-          2023最新 hugo + github pages 使用方式
-网上大多是hugo旧版的使用方式，有好几处明显差异的，不值得借鉴，反正我借鉴后出现各种莫名其妙问题
-严格按照官方这两个链接，就不会出现问题:
-hugo quick start hugo new site quickstart cd quickstart git init git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke echo &#34;theme = &#39;ananke&#39;&#34; &gt;&gt; hugo.toml hugo server hugo new content posts/my-first-post.md open content/posts/my-first-post.md //然后进行修改 hugo server -D //可以编辑后， 在 http://localhost:1313/ 进行预览 hugo //生成web静态资源，以便下一步提交github时进行部署 Host on GitHub Pages 需要注意的地方:
-请先尝试 hugo文档里提供的theme，即ananke，走通一遍流程 我就采坑了，使用了另一个theme，后面在 localhost 一直不出现 my-first-post.md
-.github/workflows/hugo.yaml 一定要注意修改 HUGO_VERSION 的值
-my-first-post.md 注意删掉/注释掉 draft:true 这样 push到github时，public/index.html等几个文件中才包含了 my-first-post.md的内容，访问 https://zyestin.github.io/zyestin/ 时才能找到 my-first-post.
-        </div>
-          <a href="/zyestin/posts/hugo-usage/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-        
-      </div>
-    </div>
-  </div>
-</article>
-
-          </div>
-        
       </section>
 
+      
+      <section class="w-100">
+        <h1 class="f3">More</h1>
+        
+        
+          <h2 class="f5 fw4 mb4 dib mr3">
+            <a href="/zyestin/posts/rn/base-components/" class="link black dim">
+              封装常用基础组件
+            </a>
+          </h2>
+        
+          <h2 class="f5 fw4 mb4 dib mr3">
+            <a href="/zyestin/posts/hugo-usage/" class="link black dim">
+              hugo &#43; github pages usage
+            </a>
+          </h2>
+        
+
+        
+        
+          <a href="/zyestin/posts/" class="link db f6 pa2 br3 bg-mid-gray white dim w4 tc">All Posts</a>
+        
+        </section>
       
 
       </div>
