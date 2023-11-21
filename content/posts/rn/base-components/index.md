@@ -1,17 +1,16 @@
 ---
 title: "封装常用基础组件"
 date: 2023-11-01T12:00:11+08:00
-draft: false
+draft: true
 ---
 
+# 瀑布流列表base组件
 
-* 瀑布流列表base组件
+源码：[BaseList.js](./BaseList.js)
 
-源码[BaseList.js](./BaseList.js)
+优点：将下拉刷新、上拉加载更多相关的 pageNo逻辑，封装到BaseList中，使用方仅需关注 数据请求的api，让使用方代码量降到最少。
 
-> 将下拉刷新、上拉加载更多相关的 pageNo逻辑，封装到BaseList中，使用方仅需关注 数据请求的api，让使用方代码量降到最少。
-
-使用示例
+### 使用示例
 ```javascript
 import BaseList from "app/components/list/base";
 import { getFanList } from "./service";
@@ -46,3 +45,75 @@ const FanList = (props) => {
 
 ```
 
+
+# 图片base组件
+
+源码：[BaseImage.js](./BaseImage.js)
+
+优点： 使用了高性能图片库FastImage，封装为 可配置图片加载失败后展示的占位error图
+
+
+使用示例
+```javascript
+// aliyun oss image format
+// error image url: https://cdn.xxx.com/pic/illustrationstory/default/default_cover_720-1080.png?x-oss-process=image/resize,w_150/quality,q_85/format,webp
+// normal image url: https://cdn.xxx.com/pic/illustrationstory/custom/scene/202310/2721/1698415166233-0yZkuCBu9I_960-960.png?x-oss-process=image/resize,w_150/quality,q_85/format,webp
+
+import HBImage from "app/components/image/HBImage";
+import { getSize, parseSize } from "app/utils/image/measurer";
+
+const FeedItem = (props) => {
+
+  const coverUrl = useMemo(
+    () => getImageUrl(item.coverUrl, imageWidth), //oss resize 拼接url
+    [item.coverUrl]
+  );
+
+  const imageHeightFromUrl = useMemo(() => {
+    return getHeightFromSize(parseSize(coverUrl)); // parseSize 从url(..._720-1080.png...)中解析出宽高 【正常100%都能取出】
+  }, [coverUrl]);
+
+  const [imageHeight, setImageHeight] = useState(imageHeightFromUrl);
+
+  useEffect(() => {
+    if (!(imageHeightFromUrl > 0)) { 
+    //若从url中未能解析出宽高，就通过RN官方Image.getSize方式获取宽高 【正常100%不可能走这里头】
+      let h = imageSize;
+      getSize(coverUrl)
+        .then((size) => {
+          if (size) {
+            h = getHeightFromSize(size);
+          }
+          setImageHeight(h);
+          kImageHeightCache[coverUrl] = h;
+        })
+        .catch((err) => {
+          setImageHeight(h);
+        });
+    } else {
+      kImageHeightCache[coverUrl] = imageHeightFromUrl;
+    }
+  }, [coverUrl])
+  
+  return <>
+    {imageHeightFromUrl || imageHeight ? (
+        <HBImage
+          style={[
+            localStyles.image,
+            {
+              height: imageHeightFromUrl > 0 ? imageHeightFromUrl : imageHeight,
+            },
+          ]}
+          source={{ uri: coverUrl }}
+          resizeMode={"contain"}
+          errorSource={require("app/components/image/default_cover_720-1080.png")}
+        />
+      ) : null}
+  </>
+}
+
+const getHeightFromSize = (size) => {
+  if (!(size?.width > 0) || !(size?.height > 0)) return 0;
+  return Math.min((imageSize * size.height) / size.width, maxImageHeight);
+};
+```
