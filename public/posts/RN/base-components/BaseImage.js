@@ -1,10 +1,12 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import { Image, View } from "react-native";
+import React, {
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import { Image, Platform, View } from "react-native";
 import FastImage from "react-native-fast-image";
-
-// aliyun oss image format
-// error image url: https://cdn.xxx.com/pic/illustrationstory/default/default_cover_720-1080.png?x-oss-process=image/resize,w_150/quality,q_85/format,webp
-// normal image url: https://cdn.xxx.com/pic/illustrationstory/custom/scene/202310/2721/1698415166233-0yZkuCBu9I_960-960.png?x-oss-process=image/resize,w_150/quality,q_85/format,webp
 
 /**
  * 图片组件
@@ -22,40 +24,33 @@ export default React.memo((props) => {
     // pendingStyle, // loading状态的图片样式
   } = props;
 
-  const { loadStatus, onLoadStart, onLoadEnd, onLoadError } = useWebImage({
+  const {
+    shouldShowError,
+    onLoadStart,
+    onLoadSuccess,
+    onLoadError,
+    onLoadEnd,
+  } = useWebImage({
     source,
   });
-  // console.log("props.source: ", source?.uri);
-  // console.log("loadStatus:", loadStatus);
+  console.log("props.source: ", source?.uri);
+  console.log("shouldShowError:", shouldShowError);
 
   if (!source) {
     return null;
   }
 
   const _style = amendStyle(style);
+  // console.log("_style:", _style);
 
   const isWebImage = useMemo(() => source?.uri?.startsWith("http"), [source]);
-  console.log("isWebImage:", isWebImage);
+  // console.log("isWebImage:", isWebImage);
 
-  // const renderPending = () => {
-  //   return pendingSource ? (
-  //     <View style={{ position: "absolute" }}>
-  //       <Image source={pendingSource} style={pendingStyle} />
-  //     </View>
-  //   ) : (
-  //     <View
-  //       style={[_style, { position: "absolute", backgroundColor: "#ccc" }]}
-  //     />
-  //   );
-  // };
-
-  console.log("_style:", _style);
   const renderError = () => {
-    console.log("renderError:", source?.uri, _style);
+    // console.log("renderError:", source?.uri, _style);
 
     let { width, height } = getWH(_style);
-
-    console.log("width height", width, height);
+    // console.log("width height", width, height);
 
     let w = width; // 340 / 3
     let h = height; // 260 / 3;
@@ -95,64 +90,57 @@ export default React.memo((props) => {
       resizeMode={resizeMode ?? FastImage.resizeMode.cover}
       onLoad={(e) => {
         //console.log("onLoad::", source?.uri);
+        onLoadSuccess();
         onLoad?.(e);
       }}
       onLoadStart={onLoadStart}
-      onLoadEnd={onLoadEnd}
       onError={onLoadError}
+      onLoadEnd={onLoadEnd} //iOS原生FFFastImageView组件，调完onError/onLoad后，会再调onLoadEnd
       source={source}
       onLayout={(e) => {
         //console.log("onLayout:", e.nativeEvent.layout);
       }}
     >
       {props.children}
-      {/* {isWebImage && loadStatus == kLoadStatus.PENDING && renderPending()} */}
-      {isWebImage && loadStatus == kLoadStatus.ERROR && renderError()}
+      {isWebImage && shouldShowError && renderError()}
     </FastImage>
   );
 });
 
-const kLoadStatus = {
-  IDLE: "IDLE",
-  PENDING: "PENDING",
-  SUCCESS: "SUCCESS",
-  ERROR: "ERROR",
-};
-
 function useWebImage({ source }) {
   const uri = source?.uri;
 
-  const [loadStatus, setLoadStatus] = useState(kLoadStatus.IDLE);
-  const isLoadEndRef = useRef(false); //用于解决onLoadError回调后，居然还会走onLoadEnd回调的问题 （判断error走了 end方法就不处理state了）
-
-  useEffect(() => {
-    console.log("setLoadStatus(kLoadStatus.IDLE):", uri);
-    setLoadStatus(kLoadStatus.IDLE);
-    isLoadEndRef.current = false;
-  }, [uri]);
+  const isFailedRef = useRef(null); // true | false
+  const [shouldShowError, setShouldShowError] = useState(false);
 
   const onLoadStart = () => {
-    // console.log("onLoadStart~");
-    setLoadStatus(kLoadStatus.PENDING);
+    // console.log("onLoadStart~", uri);
   };
 
-  const onLoadEnd = (e) => {
-    // console.log("onLoadEnd~ loadStatus", e, loadStatus);
-    !isLoadEndRef.current && setLoadStatus(kLoadStatus.SUCCESS);
-    isLoadEndRef.current = true;
+  const onLoadSuccess = (e) => {
+    // console.log("onLoadSuccess~", uri);
+    isFailedRef.current = false;
   };
 
-  const onLoadError = () => {
-    // console.log("onLoadError~");
-    setLoadStatus(kLoadStatus.ERROR);
-    isLoadEndRef.current = true;
+  const onLoadError = (e) => {
+    // console.log("onLoadError~", uri, "\n", e?.nativeEvent?.code);
+    //Fix: iOS快速滑动Feed流时， 出现许多Item 先展示error占位图 再展示正常图片
+    //Reason: iOS快速滑动Feed流时，经常出现大量的图片加载失败回调方法被调用 code 2002，一会又会调用加载成功的回调，此时是不应该显示errorSource
+    if (Platform.OS == "ios" && e?.nativeEvent?.code == 2002) return;
+    isFailedRef.current = true;
+  };
+
+  const onLoadEnd = () => {
+    // console.log("onLoadEnd~", uri);
+    setShouldShowError(isFailedRef.current);
   };
 
   return {
-    loadStatus,
+    shouldShowError,
     onLoadStart,
-    onLoadEnd,
+    onLoadSuccess,
     onLoadError,
+    onLoadEnd,
   };
 }
 
@@ -205,9 +193,13 @@ const getWH = (style) => {
   return { width: w, height: h };
 };
 
-
 /*
 使用示例
+
+// aliyun oss image format
+// error image url: https://cdn.xxx.com/pic/illustrationstory/default/default_cover_720-1080.png?x-oss-process=image/resize,w_150/quality,q_85/format,webp
+// normal image url: https://cdn.xxx.com/pic/illustrationstory/custom/scene/202310/2721/1698415166233-0yZkuCBu9I_960-960.png?x-oss-process=image/resize,w_150/quality,q_85/format,webp
+
 ```javascript
 import HBImage from "app/components/image/HBImage";
 import { getSize, parseSize } from "app/utils/image/measurer";
@@ -271,4 +263,3 @@ const getHeightFromSize = (size) => {
 
 ```
 */
-
