@@ -65,6 +65,17 @@ React Native 编码提效 on VSCode
     </item>
     
     <item>
+      <title>封装常用基础组件</title>
+      <link>https://zyestin.github.io/zyestin/posts/rn/base-components/</link>
+      <pubDate>Wed, 01 Nov 2023 12:00:11 +0800</pubDate>
+      
+      <guid>https://zyestin.github.io/zyestin/posts/rn/base-components/</guid>
+      <description>瀑布流列表base组件 源码：BaseList.js
+优点：将下拉刷新、上拉加载更多相关的 pageNo逻辑，封装到BaseList中，使用方仅需关注 数据请求的api，让使用方代码量降到最少。
+使用示例 import BaseList from &amp;#34;app/components/list/base&amp;#34;; import { getFanList } from &amp;#34;./service&amp;#34;; const pageSize = 10; const FanList = (props) =&amp;gt; { const { userId } = props; const _requestFunc = (page, pageSize) =&amp;gt; { return getFanList({ userId: userId, pageNo: page, pageSize }); }; const _renderItem = ({ item, index }) =&amp;gt; { return &amp;lt;Item {...item} /&amp;gt;; }; return ( // &amp;lt;View style={{ flex: 1 }}&amp;gt; &amp;lt;BaseList requestFunc={(page) =&amp;gt; _requestFunc(page, pageSize)} contentContainerStyle={{ paddingVertical: px2dp(5), paddingLeft: px2dp(5), }} renderItem={_renderItem} // numColumns={1} uniqueKey={&amp;#34;userId&amp;#34;} /&amp;gt; // &amp;lt;/View&amp;gt; ); }; 图片base组件 源码：BaseImage.</description>
+    </item>
+    
+    <item>
       <title>hugo &#43; github pages usage</title>
       <link>https://zyestin.github.io/zyestin/posts/hugo-usage/</link>
       <pubDate>Thu, 24 Aug 2023 09:11:47 +0800</pubDate>

@@ -1,7 +1,7 @@
 ---
 title: "封装常用基础组件"
 date: 2023-11-01T12:00:11+08:00
-draft: true
+draft: false
 ---
 
 # 瀑布流列表base组件
