@@ -98,8 +98,8 @@
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      ScrollView滚动动画，实现起来就很容易
-import React, { useRef, useEffect } from &#34;react&#34;; import { ScrollView, Text, View, Animated, Easing } from &#34;react-native&#34;; /** * ScrollView自动滚动了！ */ const AutoScrollScrollView = () =&gt; { const scrollViewRef = useRef(); const scrollY = useRef(new Animated.Value(0)).current; const contentHeight = 1000; // 你的内容高度 const scrollDuration = 5000; // 滚动动画的持续时间（毫秒） useEffect(() =&gt; { const startScrollAnimation = () =&gt; { Animated.timing(scrollY, { toValue: contentHeight, duration: scrollDuration, easing: Easing.linear, useNativeDriver: false, }).start(() =&gt; { // 滚动到顶部并重新开始动画 scrollY.
+      ScrollView滚动动画 实现起来就很容易
+import React, { useRef, useEffect } from &#34;react&#34;; import { ScrollView, Text, View, Animated, Easing } from &#34;react-native&#34;; /** * ScrollView自动滚动了！ */ const AutoScrollScrollView = () =&gt; { const scrollViewRef = useRef(); const scrollY = useRef(new Animated.Value(0)).current; const contentHeight = 1000; // 你的内容高度 const scrollDuration = 5000; // 滚动动画的持续时间（毫秒） useEffect(() =&gt; { const startScrollAnimation = () =&gt; { Animated.timing(scrollY, { toValue: contentHeight, duration: scrollDuration, easing: Easing.linear, useNativeDriver: false, }).
     </div>
   </div>
 </div>
@@ -221,6 +221,23 @@ React Native 编码提效 on VSCode
 方案：
 TextInput上浮一个style大小一致的Text，TextInput文字颜色设为透明，Text内嵌套 style为蓝色的Text 用来展示#任意(至少1个)字符
 代码 import React, { useState } from &#34;react&#34;; import { View, TextInput, Text, StyleSheet } from &#34;react-native&#34;; const App = () =&gt; { const [text, setText] = useState(&#34;&#34;); const handleTextChange = (inputText) =&gt; { // 检测输入字符串中是否包含 &#34;#&#34; if (inputText.includes(&#34;#&#34;)) { // 将包含 &#34;#任意(至少1个)字符&#34; 的部分替换为带有蓝色样式的文本组件 const parts = inputText.split(/(?=#|\s)/g); console.log(&#34;parts: &#34;, parts); const formattedText = parts.map((part, index) =&gt; { return part.
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/zyestin/posts/rn/waterfall-list-horizontal/" class="link black dim">
+        横向 瀑布流列表
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      需求 效果展示 源码 import { StyleSheet, Text, TouchableOpacity, View } from &#34;react-native&#34;; import React, { useEffect, useRef, useState } from &#34;react&#34;; import HBImage from &#34;../../../../components/image/HBImage&#34;; import { px2dp } from &#34;../../../../utils/ScreenUtils&#34;; import { MasonryFlashList } from &#34;@shopify/flash-list&#34;; import { bookOpenChoices } from &#34;app/service/MarkService&#34;; import * as indexUtil from &#34;app/utils/index&#34;; const itemWidth = px2dp(12 + 86.5 + 251.5); const itemHeight = px2dp(139); const itemSpace = px2dp(17); const UserChooseBook = (props) =&gt; { const { selectedSex, marks } = props; const [dataList, setDataList] = useState([]); const listViewRef = useRef(null); const { onScrollBeginDrag, onScroll } = useListViewAutoScrollAnimate({ listViewRef: listViewRef, framesPerSecond: 40, // 1000/40 = 25帧/秒 offsetPerFrame: 1, totalScrollDistance: (itemWidth * Math.
     </div>
   </div>
 </div>

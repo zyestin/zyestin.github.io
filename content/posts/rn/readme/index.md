@@ -25,7 +25,7 @@ draft: false
 * [瀑布流列表 自动滚动动画](../waterfall-list-autoscroll/)
 
 
-* [横向 瀑布流列表]()
+* [横向 瀑布流列表](../waterfall-list-horizontal/)
 
 
 * [仿抖音/小红书等 对贴图进行拖拽、缩放、旋转的复杂手势]()

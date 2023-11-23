@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>横向 瀑布流列表 | zyestin</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="需求 效果展示 源码 import { StyleSheet, Text, TouchableOpacity, View } from &#34;react-native&#34;; import React, { useEffect, useRef, useState } from &#34;react&#34;; import HBImage from &#34;../../../../components/image/HBImage&#34;; import { px2dp } from &#34;../../../../utils/ScreenUtils&#34;; import { MasonryFlashList } from &#34;@shopify/flash-list&#34;; import { bookOpenChoices } from &#34;app/service/MarkService&#34;; import * as indexUtil from &#34;app/utils/index&#34;; const itemWidth = px2dp(12 &#43; 86.5 &#43; 251.5); const itemHeight = px2dp(139); const itemSpace = px2dp(17); const UserChooseBook = (props) =&gt; { const { selectedSex, marks } = props; const [dataList, setDataList] = useState([]); const listViewRef = useRef(null); const { onScrollBeginDrag, onScroll } = useListViewAutoScrollAnimate({ listViewRef: listViewRef, framesPerSecond: 40, // 1000/40 = 25帧/秒 offsetPerFrame: 1, totalScrollDistance: (itemWidth * Math.">
+    <meta name="generator" content="Hugo 0.117.0">
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/zyestin/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="横向 瀑布流列表" />
+<meta property="og:description" content="需求 效果展示 源码 import { StyleSheet, Text, TouchableOpacity, View } from &#34;react-native&#34;; import React, { useEffect, useRef, useState } from &#34;react&#34;; import HBImage from &#34;../../../../components/image/HBImage&#34;; import { px2dp } from &#34;../../../../utils/ScreenUtils&#34;; import { MasonryFlashList } from &#34;@shopify/flash-list&#34;; import { bookOpenChoices } from &#34;app/service/MarkService&#34;; import * as indexUtil from &#34;app/utils/index&#34;; const itemWidth = px2dp(12 &#43; 86.5 &#43; 251.5); const itemHeight = px2dp(139); const itemSpace = px2dp(17); const UserChooseBook = (props) =&gt; { const { selectedSex, marks } = props; const [dataList, setDataList] = useState([]); const listViewRef = useRef(null); const { onScrollBeginDrag, onScroll } = useListViewAutoScrollAnimate({ listViewRef: listViewRef, framesPerSecond: 40, // 1000/40 = 25帧/秒 offsetPerFrame: 1, totalScrollDistance: (itemWidth * Math." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zyestin.github.io/zyestin/posts/rn/waterfall-list-horizontal/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-11-01T12:00:11+08:00" />
+<meta property="article:modified_time" content="2023-11-01T12:00:11+08:00" />
+<meta itemprop="name" content="横向 瀑布流列表">
+<meta itemprop="description" content="需求 效果展示 源码 import { StyleSheet, Text, TouchableOpacity, View } from &#34;react-native&#34;; import React, { useEffect, useRef, useState } from &#34;react&#34;; import HBImage from &#34;../../../../components/image/HBImage&#34;; import { px2dp } from &#34;../../../../utils/ScreenUtils&#34;; import { MasonryFlashList } from &#34;@shopify/flash-list&#34;; import { bookOpenChoices } from &#34;app/service/MarkService&#34;; import * as indexUtil from &#34;app/utils/index&#34;; const itemWidth = px2dp(12 &#43; 86.5 &#43; 251.5); const itemHeight = px2dp(139); const itemSpace = px2dp(17); const UserChooseBook = (props) =&gt; { const { selectedSex, marks } = props; const [dataList, setDataList] = useState([]); const listViewRef = useRef(null); const { onScrollBeginDrag, onScroll } = useListViewAutoScrollAnimate({ listViewRef: listViewRef, framesPerSecond: 40, // 1000/40 = 25帧/秒 offsetPerFrame: 1, totalScrollDistance: (itemWidth * Math."><meta itemprop="datePublished" content="2023-11-01T12:00:11+08:00" />
+<meta itemprop="dateModified" content="2023-11-01T12:00:11+08:00" />
+<meta itemprop="wordCount" content="676">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="横向 瀑布流列表"/>
+<meta name="twitter:description" content="需求 效果展示 源码 import { StyleSheet, Text, TouchableOpacity, View } from &#34;react-native&#34;; import React, { useEffect, useRef, useState } from &#34;react&#34;; import HBImage from &#34;../../../../components/image/HBImage&#34;; import { px2dp } from &#34;../../../../utils/ScreenUtils&#34;; import { MasonryFlashList } from &#34;@shopify/flash-list&#34;; import { bookOpenChoices } from &#34;app/service/MarkService&#34;; import * as indexUtil from &#34;app/utils/index&#34;; const itemWidth = px2dp(12 &#43; 86.5 &#43; 251.5); const itemHeight = px2dp(139); const itemSpace = px2dp(17); const UserChooseBook = (props) =&gt; { const { selectedSex, marks } = props; const [dataList, setDataList] = useState([]); const listViewRef = useRef(null); const { onScrollBeginDrag, onScroll } = useListViewAutoScrollAnimate({ listViewRef: listViewRef, framesPerSecond: 40, // 1000/40 = 25帧/秒 offsetPerFrame: 1, totalScrollDistance: (itemWidth * Math."/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/zyestin/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        zyestin
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">横向 瀑布流列表</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2023-11-01T12:00:11+08:00">November 1, 2023</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h2 id="需求">需求</h2>
+<p><img src="media/17007216190381/17007220568253.png" alt="horizontal_waterfall_list"></p>
+<p>效果展示
+<img src="media/17007216190381/17007221852854.gif" alt="horizontal_waterfall_autoscroll"></p>
+<h2 id="源码">源码</h2>
+<pre tabindex="0"><code>import { StyleSheet, Text, TouchableOpacity, View } from &#34;react-native&#34;;
+import React, { useEffect, useRef, useState } from &#34;react&#34;;
+import HBImage from &#34;../../../../components/image/HBImage&#34;;
+import { px2dp } from &#34;../../../../utils/ScreenUtils&#34;;
+import { MasonryFlashList } from &#34;@shopify/flash-list&#34;;
+import { bookOpenChoices } from &#34;app/service/MarkService&#34;;
+import * as indexUtil from &#34;app/utils/index&#34;;
+
+const itemWidth = px2dp(12 + 86.5 + 251.5);
+const itemHeight = px2dp(139);
+const itemSpace = px2dp(17);
+
+const UserChooseBook = (props) =&gt; {
+  const { selectedSex, marks } = props;
+
+  const [dataList, setDataList] = useState([]);
+
+  const listViewRef = useRef(null);
+
+  const { onScrollBeginDrag, onScroll } = useListViewAutoScrollAnimate({
+    listViewRef: listViewRef,
+    framesPerSecond: 40, // 1000/40 = 25帧/秒
+    offsetPerFrame: 1,
+    totalScrollDistance:
+      (itemWidth * Math.max(0, Math.max(0, dataList?.length || 0) - 1)) / 2,
+    disableAnimate: false,
+  });
+
+  useEffect(() =&gt; {
+    bookOpenChoices({
+      gender: selectedSex || &#34;girl&#34;,
+      ...(marks ? { marks: marks } : {}),
+    }).then((res) =&gt; {
+      setDataList(res.books);
+    });
+  }, []);
+
+  const renderItem = (props) =&gt; {
+    console.log(&#34;renderItem props:&#34;, props);
+    return (
+      &lt;BookItem
+        key={props.item?.bookId}
+        {...props}
+        onPress={() =&gt; {
+          goNext(props.item.bookId);
+        }}
+      /&gt;
+    );
+  };
+
+  const goNext = (bookId) =&gt; {};
+
+  return (
+    &lt;View style={styles.container}&gt;
+      &lt;Text style={styles.title}&gt;进站必读&lt;/Text&gt;
+      &lt;View style={styles.scrollContainer}&gt;
+        &lt;MasonryFlashList
+          ref={listViewRef}
+          estimatedItemSize={/* itemStyles.container.height */ 100}
+          data={dataList}
+          keyExtractor={(item, index) =&gt; item?.[&#34;bookId&#34;]}
+          initialNumToRender={5}
+          numColumns={2}
+          renderItem={renderItem}
+          showsVerticalScrollIndicator={false}
+          onScrollBeginDrag={onScrollBeginDrag}
+          onScroll={onScroll}
+        /&gt;
+      &lt;/View&gt;
+      &lt;TouchableOpacity style={styles.button} onPress={() =&gt; goNext()}&gt;
+        &lt;Text style={styles.buttonTitle}&gt;{&#34;跳过&#34;}&lt;/Text&gt;
+      &lt;/TouchableOpacity&gt;
+    &lt;/View&gt;
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: &#34;center&#34;,
+    paddingLeft: itemSpace,
+  },
+  title: {
+    marginTop: px2dp(90),
+    color: &#34;#101417&#34;,
+    fontWeight: &#34;bold&#34;,
+    fontSize: px2dp(17),
+    lineHeight: px2dp(24),
+  },
+  scrollContainer: {
+    marginTop: px2dp(72),
+    width: itemHeight * 2 + itemSpace * 2, //px2dp(139 * 2 + 17),
+    height: px2dp(375),
+    transform: [{ rotate: &#34;270deg&#34; }],
+  },
+});
+
+
+export default UserChooseBook;
+
+// -----  -----  -----  ----- hooks  -----  -----  -----  -----
+
+const useListViewAutoScrollAnimate = ({
+  listViewRef,
+  framesPerSecond,
+  offsetPerFrame,
+  totalScrollDistance,
+}) =&gt; {
+  const scrollInterval = Math.floor(1000 / framesPerSecond); // 每次滚动之间的间隔，每秒动画的帧数
+  const scrollDistance = offsetPerFrame; // 控制每scrollInterval 滚动的距离
+
+  const [disabled, setDisabled] = useState(false);
+
+  const scrollIntervalId = useRef(null);
+
+  const currentScrollDistance = useRef(0);
+
+  useEffect(() =&gt; {
+    const stopAutoScroll = () =&gt; {
+      clearInterval(scrollIntervalId.current);
+    };
+
+    if (totalScrollDistance &gt; 10 &amp;&amp; !disabled) {
+      setTimeout(() =&gt; {
+        startAutoScroll();
+      }, 100);
+    }
+
+    return () =&gt; {
+      stopAutoScroll();
+    };
+  }, [totalScrollDistance, disabled]);
+
+  const scroll = () =&gt; {
+    const nextDistance = Math.min(
+      totalScrollDistance,
+      currentScrollDistance.current + scrollDistance
+    );
+    listViewRef.current.scrollToOffset({
+      offset: nextDistance,
+      animated: false,
+    });
+
+    currentScrollDistance.current = nextDistance;
+    if (currentScrollDistance.current &gt;= totalScrollDistance) {
+      currentScrollDistance.current = 0;
+    }
+  };
+
+  const startAutoScroll = () =&gt; {
+    scrollIntervalId.current = setInterval(scroll, scrollInterval);
+  };
+
+  const onScrollBeginDrag = () =&gt; {
+    setDisabled(true);
+  };
+
+  const onScroll = (e) =&gt; {
+    currentScrollDistance.current = e.nativeEvent.contentOffset.y;
+  };
+
+  return {
+    onScrollBeginDrag,
+    onScroll,
+  };
+};
+
+// -----  -----  -----  ----- component  -----  -----  -----  -----
+
+const BookItem = (props) =&gt; {
+  const { item, index, onPress } = props;
+  const { coverUrl, bookName: title } = item;
+
+  const _coverUrl = indexUtil.getImageUrl(
+    indexUtil.DOMAIN_PICAPP,
+    coverUrl,
+    indexUtil.IMG_BOOK_COVER_LIST
+  );
+  return (
+    &lt;TouchableOpacity
+      style={[itemStyles.container, index == 1 ? { marginTop: 100 } : {}]}
+      onPress={onPress}
+    &gt;
+      &lt;View style={itemStyles.transformContainer}&gt;
+        &lt;HBImage source={{ uri: _coverUrl }} style={itemStyles.cover} /&gt;
+        &lt;View style={itemStyles.infoContainer}&gt;
+          &lt;Text style={itemStyles.title} numberOfLines={1}&gt;
+            {title}
+          &lt;/Text&gt;
+        &lt;/View&gt;
+      &lt;/View&gt;
+    &lt;/TouchableOpacity&gt;
+  );
+};
+
+const itemStyles = StyleSheet.create({
+  container: {
+    height: itemWidth,
+    width: itemHeight,
+    borderRadius: px2dp(12),
+    overflow: &#34;hidden&#34;,
+    backgroundColor: &#34;#F4F8FA&#34;,
+    marginBottom: itemSpace,
+  },
+  transformContainer: {
+    width: itemWidth,
+    height: itemHeight,
+    transform: [
+      { rotate: &#34;90deg&#34; },
+      { translateX: (itemWidth - itemHeight) / 2 },
+      { translateY: (itemWidth - itemHeight) / 2 },
+    ],
+    flexDirection: &#34;row&#34;,
+    alignItems: &#34;center&#34;,
+  },
+  cover: {
+    width: px2dp(86),
+    height: px2dp(115),
+    marginLeft: px2dp(12),
+    borderRadius: px2dp(10),
+  },
+
+  infoContainer: {
+    marginLeft: px2dp(11),
+    flex: 1,
+    height: px2dp(115),
+  },
+  title: {
+    fontSize: px2dp(15),
+    lineHeight: px2dp(21),
+    color: &#34;#000&#34;,
+    paddingRight: px2dp(10),
+  },
+});
+</code></pre><h3 id="代码核心逻辑">代码核心逻辑</h3>
+<ol>
+<li>
+<p>MasonryFlashList 自动慢速滚动动画，借鉴 这一篇<a href="../waterfall-list-autoscroll/">瀑布流列表 自动滚动动画</a>，在这里运用时 封装在<code>useListViewAutoScrollAnimate</code>之中</p>
+</li>
+<li>
+<p><strong>把列表变成水平滑动的方式是，将列表旋转90度，将Item内容反转90度。</strong></p>
+</li>
+</ol>
+<blockquote>
+<p>为何不使用类似<code>ScrollView</code>的<code>horizontal</code>属性，直接设成水平滚动不就好了？<br>
+我也想，只不过<a href="https://shopify.github.io/flash-list/docs/guides/masonry#unsupported-props">MasonryFlashList官方</a>明确表示，不支持呀~</p>
+</blockquote>
+<h4 id="以下是列表垂直变水平的关键步骤">以下是列表垂直变水平的关键步骤</h4>
+<pre tabindex="0"><code>const itemWidth = px2dp(12 + 86.5 + 251.5);  //大值
+const itemHeight = px2dp(139);               //小值
+const itemSpace = px2dp(17);
+</code></pre><ul>
+<li>Item内容，按蓝湖图设置真实宽高</li>
+</ul>
+<pre tabindex="0"><code>transformContainer: {
+    width: itemWidth,  //大
+    height: itemHeight //小
+}
+</code></pre><ul>
+<li>Item 要被颠倒90度，展示在一个垂直列表里，所以<code>transform</code>这样设置</li>
+</ul>
+<pre tabindex="0"><code>transform: [
+      { rotate: &#34;90deg&#34; },
+      { translateX: (itemWidth - itemHeight) / 2 },
+      { translateY: (itemWidth - itemHeight) / 2 },
+    ]
+</code></pre><ul>
+<li>在这个垂直列表里，每个Item的壳容器 宽高是这样的</li>
+</ul>
+<pre tabindex="0"><code>container: {
+    height: itemWidth, //大
+    width: itemHeight, //小
+}
+</code></pre><ul>
+<li>把垂直的列表变成 水平列表，那么对列表反向旋转90度，即这样设</li>
+</ul>
+<pre tabindex="0"><code>scrollContainer: {
+    width: itemHeight * 2 + itemSpace * 2, //px2dp(139 * 2 + 17),
+    height: px2dp(375),
+    transform: [{ rotate: &#34;270deg&#34; }],
+  },
+</code></pre><ul class="pa0">
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://zyestin.github.io/zyestin/" >
+    &copy;  zyestin 2023 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

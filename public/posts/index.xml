@@ -13,8 +13,8 @@
       <pubDate>Wed, 01 Nov 2023 12:00:11 +0800</pubDate>
       
       <guid>https://zyestin.github.io/zyestin/posts/rn/waterfall-list-autoscroll/</guid>
-      <description>ScrollView滚动动画，实现起来就很容易
-import React, { useRef, useEffect } from &amp;#34;react&amp;#34;; import { ScrollView, Text, View, Animated, Easing } from &amp;#34;react-native&amp;#34;; /** * ScrollView自动滚动了！ */ const AutoScrollScrollView = () =&amp;gt; { const scrollViewRef = useRef(); const scrollY = useRef(new Animated.Value(0)).current; const contentHeight = 1000; // 你的内容高度 const scrollDuration = 5000; // 滚动动画的持续时间（毫秒） useEffect(() =&amp;gt; { const startScrollAnimation = () =&amp;gt; { Animated.timing(scrollY, { toValue: contentHeight, duration: scrollDuration, easing: Easing.linear, useNativeDriver: false, }).start(() =&amp;gt; { // 滚动到顶部并重新开始动画 scrollY.</description>
+      <description>ScrollView滚动动画 实现起来就很容易
+import React, { useRef, useEffect } from &amp;#34;react&amp;#34;; import { ScrollView, Text, View, Animated, Easing } from &amp;#34;react-native&amp;#34;; /** * ScrollView自动滚动了！ */ const AutoScrollScrollView = () =&amp;gt; { const scrollViewRef = useRef(); const scrollY = useRef(new Animated.Value(0)).current; const contentHeight = 1000; // 你的内容高度 const scrollDuration = 5000; // 滚动动画的持续时间（毫秒） useEffect(() =&amp;gt; { const startScrollAnimation = () =&amp;gt; { Animated.timing(scrollY, { toValue: contentHeight, duration: scrollDuration, easing: Easing.linear, useNativeDriver: false, }).</description>
     </item>
     
     <item>
@@ -96,6 +96,15 @@ React Native 编码提效 on VSCode
 方案：
 TextInput上浮一个style大小一致的Text，TextInput文字颜色设为透明，Text内嵌套 style为蓝色的Text 用来展示#任意(至少1个)字符
 代码 import React, { useState } from &amp;#34;react&amp;#34;; import { View, TextInput, Text, StyleSheet } from &amp;#34;react-native&amp;#34;; const App = () =&amp;gt; { const [text, setText] = useState(&amp;#34;&amp;#34;); const handleTextChange = (inputText) =&amp;gt; { // 检测输入字符串中是否包含 &amp;#34;#&amp;#34; if (inputText.includes(&amp;#34;#&amp;#34;)) { // 将包含 &amp;#34;#任意(至少1个)字符&amp;#34; 的部分替换为带有蓝色样式的文本组件 const parts = inputText.split(/(?=#|\s)/g); console.log(&amp;#34;parts: &amp;#34;, parts); const formattedText = parts.map((part, index) =&amp;gt; { return part.</description>
+    </item>
+    
+    <item>
+      <title>横向 瀑布流列表</title>
+      <link>https://zyestin.github.io/zyestin/posts/rn/waterfall-list-horizontal/</link>
+      <pubDate>Wed, 01 Nov 2023 12:00:11 +0800</pubDate>
+      
+      <guid>https://zyestin.github.io/zyestin/posts/rn/waterfall-list-horizontal/</guid>
+      <description>需求 效果展示 源码 import { StyleSheet, Text, TouchableOpacity, View } from &amp;#34;react-native&amp;#34;; import React, { useEffect, useRef, useState } from &amp;#34;react&amp;#34;; import HBImage from &amp;#34;../../../../components/image/HBImage&amp;#34;; import { px2dp } from &amp;#34;../../../../utils/ScreenUtils&amp;#34;; import { MasonryFlashList } from &amp;#34;@shopify/flash-list&amp;#34;; import { bookOpenChoices } from &amp;#34;app/service/MarkService&amp;#34;; import * as indexUtil from &amp;#34;app/utils/index&amp;#34;; const itemWidth = px2dp(12 + 86.5 + 251.5); const itemHeight = px2dp(139); const itemSpace = px2dp(17); const UserChooseBook = (props) =&amp;gt; { const { selectedSex, marks } = props; const [dataList, setDataList] = useState([]); const listViewRef = useRef(null); const { onScrollBeginDrag, onScroll } = useListViewAutoScrollAnimate({ listViewRef: listViewRef, framesPerSecond: 40, // 1000/40 = 25帧/秒 offsetPerFrame: 1, totalScrollDistance: (itemWidth * Math.</description>
     </item>
     
     <item>

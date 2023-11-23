@@ -6,8 +6,8 @@
     
     <title> 实现 FlatList 、flashList、masonryFlashList 各种列表的自动滚动动画 | zyestin</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="ScrollView滚动动画，实现起来就很容易
-import React, { useRef, useEffect } from &#34;react&#34;; import { ScrollView, Text, View, Animated, Easing } from &#34;react-native&#34;; /** * ScrollView自动滚动了！ */ const AutoScrollScrollView = () =&gt; { const scrollViewRef = useRef(); const scrollY = useRef(new Animated.Value(0)).current; const contentHeight = 1000; // 你的内容高度 const scrollDuration = 5000; // 滚动动画的持续时间（毫秒） useEffect(() =&gt; { const startScrollAnimation = () =&gt; { Animated.timing(scrollY, { toValue: contentHeight, duration: scrollDuration, easing: Easing.linear, useNativeDriver: false, }).start(() =&gt; { // 滚动到顶部并重新开始动画 scrollY.">
+    <meta name="description" content="ScrollView滚动动画 实现起来就很容易
+import React, { useRef, useEffect } from &#34;react&#34;; import { ScrollView, Text, View, Animated, Easing } from &#34;react-native&#34;; /** * ScrollView自动滚动了！ */ const AutoScrollScrollView = () =&gt; { const scrollViewRef = useRef(); const scrollY = useRef(new Animated.Value(0)).current; const contentHeight = 1000; // 你的内容高度 const scrollDuration = 5000; // 滚动动画的持续时间（毫秒） useEffect(() =&gt; { const startScrollAnimation = () =&gt; { Animated.timing(scrollY, { toValue: contentHeight, duration: scrollDuration, easing: Easing.linear, useNativeDriver: false, }).">
     <meta name="generator" content="Hugo 0.117.0">
     
     
@@ -31,21 +31,21 @@ import React, { useRef, useEffect } from &#34;react&#34;; import { ScrollView, T
     
     
     <meta property="og:title" content=" 实现 FlatList 、flashList、masonryFlashList 各种列表的自动滚动动画" />
-<meta property="og:description" content="ScrollView滚动动画，实现起来就很容易
-import React, { useRef, useEffect } from &#34;react&#34;; import { ScrollView, Text, View, Animated, Easing } from &#34;react-native&#34;; /** * ScrollView自动滚动了！ */ const AutoScrollScrollView = () =&gt; { const scrollViewRef = useRef(); const scrollY = useRef(new Animated.Value(0)).current; const contentHeight = 1000; // 你的内容高度 const scrollDuration = 5000; // 滚动动画的持续时间（毫秒） useEffect(() =&gt; { const startScrollAnimation = () =&gt; { Animated.timing(scrollY, { toValue: contentHeight, duration: scrollDuration, easing: Easing.linear, useNativeDriver: false, }).start(() =&gt; { // 滚动到顶部并重新开始动画 scrollY." />
+<meta property="og:description" content="ScrollView滚动动画 实现起来就很容易
+import React, { useRef, useEffect } from &#34;react&#34;; import { ScrollView, Text, View, Animated, Easing } from &#34;react-native&#34;; /** * ScrollView自动滚动了！ */ const AutoScrollScrollView = () =&gt; { const scrollViewRef = useRef(); const scrollY = useRef(new Animated.Value(0)).current; const contentHeight = 1000; // 你的内容高度 const scrollDuration = 5000; // 滚动动画的持续时间（毫秒） useEffect(() =&gt; { const startScrollAnimation = () =&gt; { Animated.timing(scrollY, { toValue: contentHeight, duration: scrollDuration, easing: Easing.linear, useNativeDriver: false, })." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zyestin.github.io/zyestin/posts/rn/waterfall-list-autoscroll/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-11-01T12:00:11+08:00" />
 <meta property="article:modified_time" content="2023-11-01T12:00:11+08:00" />
 <meta itemprop="name" content=" 实现 FlatList 、flashList、masonryFlashList 各种列表的自动滚动动画">
-<meta itemprop="description" content="ScrollView滚动动画，实现起来就很容易
-import React, { useRef, useEffect } from &#34;react&#34;; import { ScrollView, Text, View, Animated, Easing } from &#34;react-native&#34;; /** * ScrollView自动滚动了！ */ const AutoScrollScrollView = () =&gt; { const scrollViewRef = useRef(); const scrollY = useRef(new Animated.Value(0)).current; const contentHeight = 1000; // 你的内容高度 const scrollDuration = 5000; // 滚动动画的持续时间（毫秒） useEffect(() =&gt; { const startScrollAnimation = () =&gt; { Animated.timing(scrollY, { toValue: contentHeight, duration: scrollDuration, easing: Easing.linear, useNativeDriver: false, }).start(() =&gt; { // 滚动到顶部并重新开始动画 scrollY."><meta itemprop="datePublished" content="2023-11-01T12:00:11+08:00" />
+<meta itemprop="description" content="ScrollView滚动动画 实现起来就很容易
+import React, { useRef, useEffect } from &#34;react&#34;; import { ScrollView, Text, View, Animated, Easing } from &#34;react-native&#34;; /** * ScrollView自动滚动了！ */ const AutoScrollScrollView = () =&gt; { const scrollViewRef = useRef(); const scrollY = useRef(new Animated.Value(0)).current; const contentHeight = 1000; // 你的内容高度 const scrollDuration = 5000; // 滚动动画的持续时间（毫秒） useEffect(() =&gt; { const startScrollAnimation = () =&gt; { Animated.timing(scrollY, { toValue: contentHeight, duration: scrollDuration, easing: Easing.linear, useNativeDriver: false, })."><meta itemprop="datePublished" content="2023-11-01T12:00:11+08:00" />
 <meta itemprop="dateModified" content="2023-11-01T12:00:11+08:00" />
-<meta itemprop="wordCount" content="403">
+<meta itemprop="wordCount" content="409">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content=" 实现 FlatList 、flashList、masonryFlashList 各种列表的自动滚动动画"/>
-<meta name="twitter:description" content="ScrollView滚动动画，实现起来就很容易
-import React, { useRef, useEffect } from &#34;react&#34;; import { ScrollView, Text, View, Animated, Easing } from &#34;react-native&#34;; /** * ScrollView自动滚动了！ */ const AutoScrollScrollView = () =&gt; { const scrollViewRef = useRef(); const scrollY = useRef(new Animated.Value(0)).current; const contentHeight = 1000; // 你的内容高度 const scrollDuration = 5000; // 滚动动画的持续时间（毫秒） useEffect(() =&gt; { const startScrollAnimation = () =&gt; { Animated.timing(scrollY, { toValue: contentHeight, duration: scrollDuration, easing: Easing.linear, useNativeDriver: false, }).start(() =&gt; { // 滚动到顶部并重新开始动画 scrollY."/>
+<meta name="twitter:description" content="ScrollView滚动动画 实现起来就很容易
+import React, { useRef, useEffect } from &#34;react&#34;; import { ScrollView, Text, View, Animated, Easing } from &#34;react-native&#34;; /** * ScrollView自动滚动了！ */ const AutoScrollScrollView = () =&gt; { const scrollViewRef = useRef(); const scrollY = useRef(new Animated.Value(0)).current; const contentHeight = 1000; // 你的内容高度 const scrollDuration = 5000; // 滚动动画的持续时间（毫秒） useEffect(() =&gt; { const startScrollAnimation = () =&gt; { Animated.timing(scrollY, { toValue: contentHeight, duration: scrollDuration, easing: Easing.linear, useNativeDriver: false, })."/>
 
 	
   </head>
@@ -118,7 +118,8 @@ import React, { useRef, useEffect } from &#34;react&#34;; import { ScrollView, T
       
       
     </header>
-    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>ScrollView滚动动画，实现起来就很容易</p>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h2 id="scrollview滚动动画">ScrollView滚动动画</h2>
+<p>实现起来就很容易</p>
 <!-- raw HTML omitted -->
 <pre tabindex="0"><code>import React, { useRef, useEffect } from &#34;react&#34;;
 import { ScrollView, Text, View, Animated, Easing } from &#34;react-native&#34;;
@@ -175,6 +176,7 @@ const AutoScrollScrollView = () =&gt; {
 
 export default AutoScrollScrollView;
 </code></pre><!-- raw HTML omitted -->
+<h2 id="非scrollview类的列表-滚动动画">非ScrollView类的列表 滚动动画</h2>
 <p>然而，FlatList 、flashList、masonryFlashList要实现自动滚动动画， 却用不了<code>ScrollView</code>同样的方式，实现起来就很曲折，经过各种尝试均失败，无奈，使用定时器方式实现了，</p>
 <p>效果图：<br>
 <img src="media/17007124884240/flatlist_auto_scroll.gif" alt="flatlist_auto_scroll"></p>
@@ -290,6 +292,8 @@ export default SlowScrollFlatList;
 <p>每间隔 <code>scrollInterval</code> ms，滚动 <code>scrollDistance</code> 小步距离</p>
 <p>当 <code>scrollInterval</code>足够小，在<code>1/60</code>s 即16ms左右时，就类似于流畅的每秒60帧动画了</p>
 <p>根据实际的效果，调节<code>scrollInterval</code> 、<code>scrollDistance</code> 大小，使达到满意的效果</p>
+<h3 id="实际场景应用">实际场景应用</h3>
+<p>请前往 慢速自动滚动的<a href="../waterfall-list-horizontal/">横向瀑布流列表</a></p>
 <ul class="pa0">
   
 </ul>

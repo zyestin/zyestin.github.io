@@ -5,7 +5,9 @@ draft: false
 ---
 
 
-ScrollView滚动动画，实现起来就很容易
+## ScrollView滚动动画
+
+实现起来就很容易
 <details><summary> 源码 展开查看</summary>
 
 ```
@@ -65,6 +67,8 @@ const AutoScrollScrollView = () => {
 export default AutoScrollScrollView;
 ```
 </details>
+
+## 非ScrollView类的列表 滚动动画
 
 然而，FlatList 、flashList、masonryFlashList要实现自动滚动动画， 却用不了`ScrollView`同样的方式，实现起来就很曲折，经过各种尝试均失败，无奈，使用定时器方式实现了，
 
@@ -190,3 +194,9 @@ export default SlowScrollFlatList;
 当 `scrollInterval`足够小，在`1/60`s 即16ms左右时，就类似于流畅的每秒60帧动画了  
 
 根据实际的效果，调节`scrollInterval` 、`scrollDistance` 大小，使达到满意的效果
+
+
+### 实际场景应用
+
+请前往 慢速自动滚动的[横向瀑布流列表](../waterfall-list-horizontal/) 
+
