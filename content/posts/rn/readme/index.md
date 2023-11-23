@@ -22,7 +22,7 @@ draft: false
 * [模仿抖音、小红书 输入 ***`#标签`*** 高亮 方案](../douyin-label-input/)
 
 
-* [瀑布流列表 自动滚动动画]()
+* [瀑布流列表 自动滚动动画](../waterfall-list-autoscroll/)
 
 
 * [横向 瀑布流列表]()

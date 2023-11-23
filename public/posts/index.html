@@ -93,6 +93,24 @@
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
+      <a href="/zyestin/posts/rn/waterfall-list-autoscroll/" class="link black dim">
+         实现 FlatList 、flashList、masonryFlashList 各种列表的自动滚动动画
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      ScrollView滚动动画，实现起来就很容易
+import React, { useRef, useEffect } from &#34;react&#34;; import { ScrollView, Text, View, Animated, Easing } from &#34;react-native&#34;; /** * ScrollView自动滚动了！ */ const AutoScrollScrollView = () =&gt; { const scrollViewRef = useRef(); const scrollY = useRef(new Animated.Value(0)).current; const contentHeight = 1000; // 你的内容高度 const scrollDuration = 5000; // 滚动动画的持续时间（毫秒） useEffect(() =&gt; { const startScrollAnimation = () =&gt; { Animated.timing(scrollY, { toValue: contentHeight, duration: scrollDuration, easing: Easing.linear, useNativeDriver: false, }).start(() =&gt; { // 滚动到顶部并重新开始动画 scrollY.
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
       <a href="/zyestin/posts/rn/vscode-efficient/" class="link black dim">
         React Native 在VSCode编码提效
       </a>

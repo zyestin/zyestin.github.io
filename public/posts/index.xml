@@ -8,6 +8,16 @@
     <language>en-us</language>
     <lastBuildDate>Wed, 01 Nov 2023 12:00:11 +0800</lastBuildDate><atom:link href="https://zyestin.github.io/zyestin/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title> 实现 FlatList 、flashList、masonryFlashList 各种列表的自动滚动动画</title>
+      <link>https://zyestin.github.io/zyestin/posts/rn/waterfall-list-autoscroll/</link>
+      <pubDate>Wed, 01 Nov 2023 12:00:11 +0800</pubDate>
+      
+      <guid>https://zyestin.github.io/zyestin/posts/rn/waterfall-list-autoscroll/</guid>
+      <description>ScrollView滚动动画，实现起来就很容易
+import React, { useRef, useEffect } from &amp;#34;react&amp;#34;; import { ScrollView, Text, View, Animated, Easing } from &amp;#34;react-native&amp;#34;; /** * ScrollView自动滚动了！ */ const AutoScrollScrollView = () =&amp;gt; { const scrollViewRef = useRef(); const scrollY = useRef(new Animated.Value(0)).current; const contentHeight = 1000; // 你的内容高度 const scrollDuration = 5000; // 滚动动画的持续时间（毫秒） useEffect(() =&amp;gt; { const startScrollAnimation = () =&amp;gt; { Animated.timing(scrollY, { toValue: contentHeight, duration: scrollDuration, easing: Easing.linear, useNativeDriver: false, }).start(() =&amp;gt; { // 滚动到顶部并重新开始动画 scrollY.</description>
+    </item>
+    
+    <item>
       <title>React Native 在VSCode编码提效</title>
       <link>https://zyestin.github.io/zyestin/posts/rn/vscode-efficient/</link>
       <pubDate>Wed, 01 Nov 2023 12:00:11 +0800</pubDate>
