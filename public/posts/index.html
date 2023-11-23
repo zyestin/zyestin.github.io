@@ -133,11 +133,11 @@ Mac、VSC快捷键 Mac 系统自带
       自实现方案 代码规范
 React Native 编码提效 on VSCode
 基础组件封装
-动态下载&amp;应用字体
-仿抖音/小红书等 对贴图进行拖拽、缩放、旋转的复杂手势
-标签 富文本
+瀑布流列表base组件 图片base组件 模仿抖音、小红书 输入 #标签 高亮 方案
 瀑布流列表 自动滚动动画
 横向 瀑布流列表
+仿抖音/小红书等 对贴图进行拖拽、缩放、旋转的复杂手势
+动态下载&amp;应用字体
 三方方案 react-native-exception-handler 
     </div>
   </div>
@@ -182,6 +182,27 @@ React Native 编码提效 on VSCode
       瀑布流列表base组件 源码：BaseList.js
 优点：将下拉刷新、上拉加载更多相关的 pageNo逻辑，封装到BaseList中，使用方仅需关注 数据请求的api，让使用方代码量降到最少。
 使用示例 import BaseList from &#34;app/components/list/base&#34;; import { getFanList } from &#34;./service&#34;; const pageSize = 10; const FanList = (props) =&gt; { const { userId } = props; const _requestFunc = (page, pageSize) =&gt; { return getFanList({ userId: userId, pageNo: page, pageSize }); }; const _renderItem = ({ item, index }) =&gt; { return &lt;Item {...item} /&gt;; }; return ( // &lt;View style={{ flex: 1 }}&gt; &lt;BaseList requestFunc={(page) =&gt; _requestFunc(page, pageSize)} contentContainerStyle={{ paddingVertical: px2dp(5), paddingLeft: px2dp(5), }} renderItem={_renderItem} // numColumns={1} uniqueKey={&#34;userId&#34;} /&gt; // &lt;/View&gt; ); }; 图片base组件 源码：BaseImage.
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/zyestin/posts/rn/douyin-label-input/" class="link black dim">
+        模仿抖音、小红书 输入 #标签 高亮
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      需求 当输入 以#开头的字符串，则判定为标签 并展示为蓝色
+效果图 调研 iOS的TextField可以设定attributedString富文本，但RN的TextInput是不具备的。
+方案：
+TextInput上浮一个style大小一致的Text，TextInput文字颜色设为透明，Text内嵌套 style为蓝色的Text 用来展示#任意(至少1个)字符
+代码 import React, { useState } from &#34;react&#34;; import { View, TextInput, Text, StyleSheet } from &#34;react-native&#34;; const App = () =&gt; { const [text, setText] = useState(&#34;&#34;); const handleTextChange = (inputText) =&gt; { // 检测输入字符串中是否包含 &#34;#&#34; if (inputText.includes(&#34;#&#34;)) { // 将包含 &#34;#任意(至少1个)字符&#34; 的部分替换为带有蓝色样式的文本组件 const parts = inputText.split(/(?=#|\s)/g); console.log(&#34;parts: &#34;, parts); const formattedText = parts.map((part, index) =&gt; { return part.
     </div>
   </div>
 </div>
