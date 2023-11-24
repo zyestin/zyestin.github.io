@@ -9,10 +9,19 @@ I want to learn things and become a better person. I enjoy reading, thinking and
 
 📰 Recent Posts
 
-## react-native 系列
+## [react-native 系列](<https://zyestin.github.io/zyestin/posts/rn/readme/>)
 
-<https://zyestin.github.io/zyestin/posts/rn/readme/>
+[代码规范](https://zyestin.github.io/zyestin/posts/rn/code-standards/)
 
+[React Native 编码提效大全 on VSCode](https://zyestin.github.io/zyestin/posts/rn/vscode-efficient/)
+
+[基础组件封装 - 瀑布流列表、图片](https://zyestin.github.io/zyestin/posts/rn/base-components)
+
+[横向·瀑布流列表+自动滚动动画方案](https://zyestin.github.io/zyestin/posts/rn/waterfall-list-horizontal/)
+
+[仿抖音/小红书，对贴图/贴字 进行拖拽、缩放、旋转等复杂手势](https://zyestin.github.io/zyestin/posts/rn/multi-gestture-sticker/)
+
+...
 
 ## iOS 系列
 
@@ -20,19 +29,19 @@ I want to learn things and become a better person. I enjoy reading, thinking and
 
 [极省代码的CollectionView用法，无须创建XXCollectionView类](https://github.com/wustzhy/ZYFlywheel/tree/master/SuperSimpleCollectionView)
 
-<img src="https://cocoapods.org/favicons/favicon.ico" alt="Image" width="10"> [ZYTextInputAvoidKeyboard](https://github.com/wustzhy/ZYTextInputAvoidKeyboard) 文本编辑框 随键盘联动，避免被键盘遮挡
+<img src="https://cocoapods.org/favicons/favicon.ico" alt="Image" width="20"> [ZYTextInputAvoidKeyboard](https://github.com/wustzhy/ZYTextInputAvoidKeyboard) 文本编辑框 随键盘联动，避免被键盘遮挡
 
-[一个独立的录音按钮封装](https://github.com/wustzhy/ZYAudioRecorderWidget)
+[封装了一个独立的、小而美的录音按钮](https://github.com/wustzhy/ZYAudioRecorderWidget)
 
 [UICollectionView缓存机制探究](https://www.jianshu.com/p/5d817ea3565d)
 
-[多种控制线程最大并发数的方式](https://github.com/wustzhy/ThreadCoutControl)
+[穷举各种控制线程最大并发数的方式](https://github.com/wustzhy/ThreadCoutControl)
 
 [对比 圆角图片4种(高、低性能)处理方式](https://github.com/wustzhy/TableViewOptimize)
 
-[这样hook实现 UIScrollView未提供的滚动停止的回调Api](https://github.com/wustzhy/ZYFlywheel/tree/master/ScrollDidEndHook)
+[这样hook实现 UIScrollView未提供的滚动停止的回调Api，用起来极简便](https://github.com/wustzhy/ZYFlywheel/tree/master/ScrollDidEndHook)
 
-[支持Selected状态换背景色、(按下反馈)高亮态背景色变化的YMBaseButton](https://github.com/wustzhy/ZYFlywheel/tree/master/BgSelectedButton)
+...
 
 ## 其它
 
