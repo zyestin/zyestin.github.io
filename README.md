@@ -1,15 +1,18 @@
 
 [:octocat: Learning :octocat:](https://github.com/zyestin/zyestin#octocat-learning-octocat)
 
-Hi there ✋
+# Hi there ✋
 
-I'm [zyestin](https://github.com/zyestin/), Front-end Developer.
+I'm zyestin. Used to be an iOSer, now an RNer for 2+ years.
 
-I want to learn things and become a better person. I enjoy reading, thinking and writing in my leisure time.
+- 🔭 Currently working on i-hua-ben
+- n🌱 Currently learning react-native
+- 👯 Looking to collaborate on earn more money and do something more meaningful
+- 📫 zyestin@gmail.com
 
 # 📰 Recent Posts
 
-## [react-native 系列](<https://zyestin.github.io/zyestin/posts/rn/readme/>)
+## react-native 系列
 
 [代码规范](https://zyestin.github.io/zyestin/posts/rn/code-standards/)
 
@@ -21,7 +24,7 @@ I want to learn things and become a better person. I enjoy reading, thinking and
 
 [仿抖音/小红书，对贴图/贴字 进行拖拽、缩放、旋转等复杂手势](https://zyestin.github.io/zyestin/posts/rn/multi-gestture-sticker/)
 
-...
+[...更多](https://zyestin.github.io/zyestin/posts/rn/readme)
 
 ## iOS 系列
 
@@ -41,7 +44,7 @@ I want to learn things and become a better person. I enjoy reading, thinking and
 
 [对比 圆角图片4种(高、低性能)处理方式](https://github.com/wustzhy/TableViewOptimize)
 
-...
+[...更多](https://github.com/wustzhy)
 
 ## 其它
 
