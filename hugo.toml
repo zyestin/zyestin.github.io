@@ -10,3 +10,6 @@ theme = 'ananke'
   resampleFilter = 'box'
 
 
+[taxonomies]
+  category = 'categories'
+  tag = 'tags'

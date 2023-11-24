@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>RN 动画 - 缩放、旋转、拖拽 | zyestin</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="需求 仿抖音、小红书，图片视频编辑区，贴图、贴文字功能
+View支持拖拽 View右下角有一个icon比较特殊，该icon可控制View缩放 icon随手指移动 View缩放（以View中心点为圆心） View会旋转（以View为中心点为圆心） icon位置一直保持在View右下角 View支持双指捏 进行缩放 效果图 源码 HBMultiGestureView.js calculator.js CornerToolGestureView.js 解读 HBMultiGestureView.js 使用的什么手势api？ 通过PanResponder为Animted.View添加手势
+将不同的手势操作 处理为拖拽、旋转、缩放等UI表现，从哪着手？ 通过手势回调onPanResponderGrant、onPanResponderMove、onPanResponderRelease去
+如何判断 确定是否操作的右下角特殊icon视图？ 右下角icon onLoad后，拿到target，通过入参rotateScaleTargetRef传递给HBMultiGestureView，HBMultiGestureView内 通过手势回调参数中的e.nativeEvent.target获取所操作的视图target，比较判断是否相等
+解读 calculator.js 里面都是公式函数，用在HBMultiGestureView.js 中，处理这些核心计算：
+计算两指连成的直线移动后的 角度， 从而确定 双指操作时的旋转角度
+计算两指移动后与移动前相比 两指连线的倍数关系， 从而确定 双指操作时的放大倍数
+计算A点、初始触摸位置B点、当前触摸位置C点，计算AC/AB放大比例， 从而确定单指拖动右下角按钮时的放大倍数
+注：A点，即触摸开始时 视图的中心位置
+计算向量AC与AB的夹角， 从而确定单指拖动右下角按钮时的旋转角度 解读 CornerToolGestureView.js CornerToolGestureView，是四个角落携带工具按钮的手势视图
+基于HBMultiGestureView封装的，所以开发时真正用的是这个CornerToolGestureView
+HBMultiGestureView就类似一个三方库，不是面向具体业务的，俗话说就是，拿来用写代码不够简单">
+    <meta name="generator" content="Hugo 0.117.0">
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/zyestin/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="RN 动画 - 缩放、旋转、拖拽" />
+<meta property="og:description" content="需求 仿抖音、小红书，图片视频编辑区，贴图、贴文字功能
+View支持拖拽 View右下角有一个icon比较特殊，该icon可控制View缩放 icon随手指移动 View缩放（以View中心点为圆心） View会旋转（以View为中心点为圆心） icon位置一直保持在View右下角 View支持双指捏 进行缩放 效果图 源码 HBMultiGestureView.js calculator.js CornerToolGestureView.js 解读 HBMultiGestureView.js 使用的什么手势api？ 通过PanResponder为Animted.View添加手势
+将不同的手势操作 处理为拖拽、旋转、缩放等UI表现，从哪着手？ 通过手势回调onPanResponderGrant、onPanResponderMove、onPanResponderRelease去
+如何判断 确定是否操作的右下角特殊icon视图？ 右下角icon onLoad后，拿到target，通过入参rotateScaleTargetRef传递给HBMultiGestureView，HBMultiGestureView内 通过手势回调参数中的e.nativeEvent.target获取所操作的视图target，比较判断是否相等
+解读 calculator.js 里面都是公式函数，用在HBMultiGestureView.js 中，处理这些核心计算：
+计算两指连成的直线移动后的 角度， 从而确定 双指操作时的旋转角度
+计算两指移动后与移动前相比 两指连线的倍数关系， 从而确定 双指操作时的放大倍数
+计算A点、初始触摸位置B点、当前触摸位置C点，计算AC/AB放大比例， 从而确定单指拖动右下角按钮时的放大倍数
+注：A点，即触摸开始时 视图的中心位置
+计算向量AC与AB的夹角， 从而确定单指拖动右下角按钮时的旋转角度 解读 CornerToolGestureView.js CornerToolGestureView，是四个角落携带工具按钮的手势视图
+基于HBMultiGestureView封装的，所以开发时真正用的是这个CornerToolGestureView
+HBMultiGestureView就类似一个三方库，不是面向具体业务的，俗话说就是，拿来用写代码不够简单" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zyestin.github.io/zyestin/posts/rn/multi-gestture-sticker/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-11-01T12:00:11+08:00" />
+<meta property="article:modified_time" content="2023-11-01T12:00:11+08:00" />
+<meta itemprop="name" content="RN 动画 - 缩放、旋转、拖拽">
+<meta itemprop="description" content="需求 仿抖音、小红书，图片视频编辑区，贴图、贴文字功能
+View支持拖拽 View右下角有一个icon比较特殊，该icon可控制View缩放 icon随手指移动 View缩放（以View中心点为圆心） View会旋转（以View为中心点为圆心） icon位置一直保持在View右下角 View支持双指捏 进行缩放 效果图 源码 HBMultiGestureView.js calculator.js CornerToolGestureView.js 解读 HBMultiGestureView.js 使用的什么手势api？ 通过PanResponder为Animted.View添加手势
+将不同的手势操作 处理为拖拽、旋转、缩放等UI表现，从哪着手？ 通过手势回调onPanResponderGrant、onPanResponderMove、onPanResponderRelease去
+如何判断 确定是否操作的右下角特殊icon视图？ 右下角icon onLoad后，拿到target，通过入参rotateScaleTargetRef传递给HBMultiGestureView，HBMultiGestureView内 通过手势回调参数中的e.nativeEvent.target获取所操作的视图target，比较判断是否相等
+解读 calculator.js 里面都是公式函数，用在HBMultiGestureView.js 中，处理这些核心计算：
+计算两指连成的直线移动后的 角度， 从而确定 双指操作时的旋转角度
+计算两指移动后与移动前相比 两指连线的倍数关系， 从而确定 双指操作时的放大倍数
+计算A点、初始触摸位置B点、当前触摸位置C点，计算AC/AB放大比例， 从而确定单指拖动右下角按钮时的放大倍数
+注：A点，即触摸开始时 视图的中心位置
+计算向量AC与AB的夹角， 从而确定单指拖动右下角按钮时的旋转角度 解读 CornerToolGestureView.js CornerToolGestureView，是四个角落携带工具按钮的手势视图
+基于HBMultiGestureView封装的，所以开发时真正用的是这个CornerToolGestureView
+HBMultiGestureView就类似一个三方库，不是面向具体业务的，俗话说就是，拿来用写代码不够简单"><meta itemprop="datePublished" content="2023-11-01T12:00:11+08:00" />
+<meta itemprop="dateModified" content="2023-11-01T12:00:11+08:00" />
+<meta itemprop="wordCount" content="50">
+<meta itemprop="keywords" content="react-native," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="RN 动画 - 缩放、旋转、拖拽"/>
+<meta name="twitter:description" content="需求 仿抖音、小红书，图片视频编辑区，贴图、贴文字功能
+View支持拖拽 View右下角有一个icon比较特殊，该icon可控制View缩放 icon随手指移动 View缩放（以View中心点为圆心） View会旋转（以View为中心点为圆心） icon位置一直保持在View右下角 View支持双指捏 进行缩放 效果图 源码 HBMultiGestureView.js calculator.js CornerToolGestureView.js 解读 HBMultiGestureView.js 使用的什么手势api？ 通过PanResponder为Animted.View添加手势
+将不同的手势操作 处理为拖拽、旋转、缩放等UI表现，从哪着手？ 通过手势回调onPanResponderGrant、onPanResponderMove、onPanResponderRelease去
+如何判断 确定是否操作的右下角特殊icon视图？ 右下角icon onLoad后，拿到target，通过入参rotateScaleTargetRef传递给HBMultiGestureView，HBMultiGestureView内 通过手势回调参数中的e.nativeEvent.target获取所操作的视图target，比较判断是否相等
+解读 calculator.js 里面都是公式函数，用在HBMultiGestureView.js 中，处理这些核心计算：
+计算两指连成的直线移动后的 角度， 从而确定 双指操作时的旋转角度
+计算两指移动后与移动前相比 两指连线的倍数关系， 从而确定 双指操作时的放大倍数
+计算A点、初始触摸位置B点、当前触摸位置C点，计算AC/AB放大比例， 从而确定单指拖动右下角按钮时的放大倍数
+注：A点，即触摸开始时 视图的中心位置
+计算向量AC与AB的夹角， 从而确定单指拖动右下角按钮时的旋转角度 解读 CornerToolGestureView.js CornerToolGestureView，是四个角落携带工具按钮的手势视图
+基于HBMultiGestureView封装的，所以开发时真正用的是这个CornerToolGestureView
+HBMultiGestureView就类似一个三方库，不是面向具体业务的，俗话说就是，拿来用写代码不够简单"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/zyestin/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        zyestin
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">RN 动画 - 缩放、旋转、拖拽</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2023-11-01T12:00:11+08:00">November 1, 2023</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h2 id="需求">需求</h2>
+<p>仿抖音、小红书，图片视频编辑区，贴图、贴文字功能</p>
+<ul>
+<li><strong>View支持拖拽</strong></li>
+<li>View右下角有一个icon比较特殊，该icon可控制View缩放
+<ul>
+<li>icon随手指移动</li>
+<li>View缩放（以View中心点为圆心）</li>
+<li>View会旋转（以View为中心点为圆心）</li>
+<li>icon位置一直保持在View右下角</li>
+</ul>
+</li>
+<li>View支持双指捏 进行缩放</li>
+</ul>
+<p>效果图
+<img src="media/16886388606363/multi-gesture.gif" alt="multi-gesture"></p>
+<h2 id="源码">源码</h2>
+<ul>
+<li><a href="./HBMultiGestureView.js">HBMultiGestureView.js</a></li>
+<li><a href="./calculator.js">calculator.js</a></li>
+<li><a href="./CornerToolGestureView.js">CornerToolGestureView.js</a></li>
+</ul>
+<h3 id="解读-hbmultigestureviewjshbmultigestureviewjs">解读 <a href="./HBMultiGestureView.js">HBMultiGestureView.js</a></h3>
+<ul>
+<li>使用的什么手势api？</li>
+</ul>
+<p>通过<code>PanResponder</code>为<code>Animted.View</code>添加手势</p>
+<ul>
+<li>将不同的手势操作 处理为拖拽、旋转、缩放等UI表现，从哪着手？</li>
+</ul>
+<p>通过手势回调<code>onPanResponderGrant</code>、<code>onPanResponderMove</code>、<code>onPanResponderRelease</code>去</p>
+<ul>
+<li>如何判断 确定是否操作的右下角特殊icon视图？</li>
+</ul>
+<p>右下角icon <code>onLoad</code>后，拿到<code>target</code>，通过入参<code>rotateScaleTargetRef</code>传递给<code>HBMultiGestureView</code>，<code>HBMultiGestureView</code>内 通过手势回调参数中的<code>e.nativeEvent.target</code>获取所操作的视图target，比较判断是否相等</p>
+<h3 id="解读-calculatorjscalculatorjs">解读 <a href="./calculator.js">calculator.js</a></h3>
+<p>里面都是公式函数，用在<a href="./HBMultiGestureView.js">HBMultiGestureView.js</a> 中，处理这些核心计算：</p>
+<ul>
+<li>
+<p>计算两指连成的直线移动后的 角度， 从而确定 双指操作时的<strong>旋转角度</strong></p>
+</li>
+<li>
+<p>计算两指移动后与移动前相比 两指连线的倍数关系， 从而确定 双指操作时的<strong>放大倍数</strong></p>
+</li>
+<li>
+<p>计算A点、初始触摸位置B点、当前触摸位置C点，计算AC/AB放大比例， 从而确定单指拖动右下角按钮时的<strong>放大倍数</strong></p>
+</li>
+</ul>
+<blockquote>
+<p>注：A点，即触摸开始时 视图的中心位置</p>
+</blockquote>
+<ul>
+<li>计算向量AC与AB的夹角， 从而确定单指拖动右下角按钮时的<strong>旋转角度</strong></li>
+</ul>
+<h3 id="解读-cornertoolgestureviewjscornertoolgestureviewjs">解读 <a href="./CornerToolGestureView.js">CornerToolGestureView.js</a></h3>
+<ul>
+<li>
+<p><code>CornerToolGestureView</code>，是四个角落携带工具按钮的手势视图</p>
+</li>
+<li>
+<p>基于<code>HBMultiGestureView</code>封装的，所以开发时真正用的是这个<code>CornerToolGestureView</code></p>
+</li>
+</ul>
+<blockquote>
+<p><code>HBMultiGestureView</code>就类似一个三方库，不是面向具体业务的，俗话说就是，拿来用写代码不够简单</p>
+</blockquote>
+<ul class="pa0">
+  
+   <li class="list di">
+     <a href="/zyestin/tags/react-native/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">react-native</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/waterfall-list-autoscroll/"> 实现 FlatList 、flashList、masonryFlashList 各种列表的自动滚动动画</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/vscode-efficient/">React Native 在VSCode编码提效</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/readme/">React Native 开发沉淀</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/code-standards/">代码规范</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/base-components/">封装常用基础组件</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/douyin-label-input/">模仿抖音、小红书 输入 #标签 高亮</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/waterfall-list-horizontal/">横向 瀑布流列表</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://zyestin.github.io/zyestin/" >
+    &copy;  zyestin 2023 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

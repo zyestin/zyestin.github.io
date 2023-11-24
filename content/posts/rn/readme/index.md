@@ -2,6 +2,7 @@
 title: "React Native 开发沉淀"
 date: 2023-11-01T12:00:11+08:00
 draft: false
+tags: [react-native]
 ---
 
 
@@ -28,7 +29,7 @@ draft: false
 * [横向 瀑布流列表](../waterfall-list-horizontal/)
 
 
-* [仿抖音/小红书等 对贴图进行拖拽、缩放、旋转的复杂手势]()
+* [仿抖音/小红书，对贴图/贴字 进行拖拽、缩放、旋转等复杂手势](../multi-gestture-sticker/)
 
 
 * [动态下载&应用字体]()
@@ -42,6 +43,4 @@ draft: false
 * [react-native-exception-handler](https://github.com/a7ul/react-native-exception-handler)
 
 
-
-![Alt Text](images/2.jpg)  
 

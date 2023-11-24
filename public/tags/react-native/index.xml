@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on zyestin</title>
-    <link>https://zyestin.github.io/zyestin/posts/</link>
-    <description>Recent content in Posts on zyestin</description>
+    <title>react-native on zyestin</title>
+    <link>https://zyestin.github.io/zyestin/tags/react-native/</link>
+    <description>Recent content in react-native on zyestin</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 Nov 2023 12:00:11 +0800</lastBuildDate><atom:link href="https://zyestin.github.io/zyestin/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 01 Nov 2023 12:00:11 +0800</lastBuildDate><atom:link href="https://zyestin.github.io/zyestin/tags/react-native/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title> 实现 FlatList 、flashList、masonryFlashList 各种列表的自动滚动动画</title>
       <link>https://zyestin.github.io/zyestin/posts/rn/waterfall-list-autoscroll/</link>
@@ -125,21 +125,6 @@ TextInput上浮一个style大小一致的Text，TextInput文字颜色设为透�
       
       <guid>https://zyestin.github.io/zyestin/posts/rn/waterfall-list-horizontal/</guid>
       <description>需求 效果展示 源码 import { StyleSheet, Text, TouchableOpacity, View } from &amp;#34;react-native&amp;#34;; import React, { useEffect, useRef, useState } from &amp;#34;react&amp;#34;; import HBImage from &amp;#34;../../../../components/image/HBImage&amp;#34;; import { px2dp } from &amp;#34;../../../../utils/ScreenUtils&amp;#34;; import { MasonryFlashList } from &amp;#34;@shopify/flash-list&amp;#34;; import { bookOpenChoices } from &amp;#34;app/service/MarkService&amp;#34;; import * as indexUtil from &amp;#34;app/utils/index&amp;#34;; const itemWidth = px2dp(12 + 86.5 + 251.5); const itemHeight = px2dp(139); const itemSpace = px2dp(17); const UserChooseBook = (props) =&amp;gt; { const { selectedSex, marks } = props; const [dataList, setDataList] = useState([]); const listViewRef = useRef(null); const { onScrollBeginDrag, onScroll } = useListViewAutoScrollAnimate({ listViewRef: listViewRef, framesPerSecond: 40, // 1000/40 = 25帧/秒 offsetPerFrame: 1, totalScrollDistance: (itemWidth * Math.</description>
-    </item>
-    
-    <item>
-      <title>hugo &#43; github pages usage</title>
-      <link>https://zyestin.github.io/zyestin/posts/hugo-usage/</link>
-      <pubDate>Thu, 24 Aug 2023 09:11:47 +0800</pubDate>
-      
-      <guid>https://zyestin.github.io/zyestin/posts/hugo-usage/</guid>
-      <description>2023最新 hugo + github pages 使用方式
-网上大多是hugo旧版的使用方式，有好几处明显差异的，不值得借鉴，反正我借鉴后出现各种莫名其妙问题
-严格按照官方这两个链接，就不会出现问题:
-hugo quick start hugo new site quickstart cd quickstart git init git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke echo &amp;#34;theme = &amp;#39;ananke&amp;#39;&amp;#34; &amp;gt;&amp;gt; hugo.toml hugo server hugo new content posts/my-first-post.md open content/posts/my-first-post.md //然后进行修改 hugo server -D //可以编辑后， 在 http://localhost:1313/ 进行预览 hugo //生成web静态资源，以便下一步提交github时进行部署 Host on GitHub Pages 需要注意的地方:
-请先尝试 hugo文档里提供的theme，即ananke，走通一遍流程 我就采坑了，使用了另一个theme，后面在 localhost 一直不出现 my-first-post.md
-.github/workflows/hugo.yaml 一定要注意修改 HUGO_VERSION 的值
-my-first-post.md 注意删掉/注释掉 draft:true 这样 push到github时，public/index.html等几个文件中才包含了 my-first-post.md的内容，访问 https://zyestin.github.io/zyestin/ 时才能找到 my-first-post.</description>
     </item>
     
   </channel>

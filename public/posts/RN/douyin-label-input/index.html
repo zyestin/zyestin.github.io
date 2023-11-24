@@ -51,7 +51,7 @@ TextInput上浮一个style大小一致的Text，TextInput文字颜色设为透�
 代码 import React, { useState } from &#34;react&#34;; import { View, TextInput, Text, StyleSheet } from &#34;react-native&#34;; const App = () =&gt; { const [text, setText] = useState(&#34;&#34;); const handleTextChange = (inputText) =&gt; { // 检测输入字符串中是否包含 &#34;#&#34; if (inputText.includes(&#34;#&#34;)) { // 将包含 &#34;#任意(至少1个)字符&#34; 的部分替换为带有蓝色样式的文本组件 const parts = inputText.split(/(?=#|\s)/g); console.log(&#34;parts: &#34;, parts); const formattedText = parts.map((part, index) =&gt; { return part."><meta itemprop="datePublished" content="2023-11-01T12:00:11+08:00" />
 <meta itemprop="dateModified" content="2023-11-01T12:00:11+08:00" />
 <meta itemprop="wordCount" content="200">
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta itemprop="keywords" content="react-native," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="模仿抖音、小红书 输入 #标签 高亮"/>
 <meta name="twitter:description" content="需求 当输入 以#开头的字符串，则判定为标签 并展示为蓝色
 效果图 调研 iOS的TextField可以设定attributedString富文本，但RN的TextInput是不具备的。
@@ -221,6 +221,10 @@ TextInput上浮一个style大小一致的Text，TextInput文字颜色设为透�
 <pre tabindex="0"><code> LOG  parts:  [&#34;好的&#34;, &#34;#记得记&#34;, &#34; 记得记得&#34;, &#34;#记得记得&#34;, &#34; &#34;, &#34;#记得记得&#34;, &#34; &#34;]
 </code></pre><ul class="pa0">
   
+   <li class="list di">
+     <a href="/zyestin/tags/react-native/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">react-native</a>
+   </li>
+  
 </ul>
 <div class="mt6 instapaper_ignoref">
       
@@ -232,6 +236,41 @@ TextInput上浮一个style大小一致的Text，TextInput文字颜色设为透�
 
 
 
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/waterfall-list-autoscroll/"> 实现 FlatList 、flashList、masonryFlashList 各种列表的自动滚动动画</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/multi-gestture-sticker/">RN 动画 - 缩放、旋转、拖拽</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/vscode-efficient/">React Native 在VSCode编码提效</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/readme/">React Native 开发沉淀</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/code-standards/">代码规范</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/base-components/">封装常用基础组件</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/waterfall-list-horizontal/">横向 瀑布流列表</a>
+        </li>
+	    
+    </ul>
+</div>
 
 </aside>
 
