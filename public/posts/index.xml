@@ -75,7 +75,8 @@ View支持拖拽 View右下角有一个icon比较特殊，该icon可控制View�
 注：A点，即触摸开始时 视图的中心位置
 计算向量AC与AB的夹角， 从而确定单指拖动右下角按钮时的旋转角度 解读 CornerToolGestureView.js CornerToolGestureView，是四个角落携带工具按钮的手势视图
 基于HBMultiGestureView封装的，所以开发时真正用的是这个CornerToolGestureView
-HBMultiGestureView就类似一个三方库，不是面向具体业务的，俗话说就是，拿来用写代码不够简单</description>
+HBMultiGestureView就类似一个三方库，不是面向具体业务的，俗话说就是，开发时直接用它去组装UI 不够简单，于是封装为更好用的组件CornerToolGestureView，用于各个地方。
+就像是react-native-fast-image，我们并不在开发功能时直接用它，往往会对这个三方组件封装一层(e.g.增加了设置error占位图能力)，再去用于各个地方，比如 我们封装的图片base组件</description>
     </item>
     
     <item>

@@ -56,11 +56,13 @@ tags: [react-native]
 
 ### 解读 [CornerToolGestureView.js](./CornerToolGestureView.js)
 
-
 * `CornerToolGestureView`，是四个角落携带工具按钮的手势视图 
 
 * 基于`HBMultiGestureView`封装的，所以开发时真正用的是这个`CornerToolGestureView`  
-> `HBMultiGestureView`就类似一个三方库，不是面向具体业务的，俗话说就是，拿来用写代码不够简单
+
+> `HBMultiGestureView`就类似一个三方库，不是面向具体业务的，俗话说就是，开发时直接用它去组装UI 不够简单，于是封装为更好用的组件`CornerToolGestureView`，用于各个地方。
+> 
+> 就像是react-native-fast-image，我们并不在开发功能时直接用它，往往会对这个三方组件封装一层(e.g.增加了设置error占位图能力)，再去用于各个地方，比如 我们封装的[图片base组件](../base-components/#图片base组件)
 
 
 
