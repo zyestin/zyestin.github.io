@@ -25,11 +25,11 @@ I want to learn things and become a better person. I enjoy reading, thinking and
 
 ## iOS 系列
 
-[《遇见App 》上下两collectionView均支持丝滑滑动时互相联动,cell居中丝滑停靠。](https://github.com/wustzhy/TwoCollectionViewsLinkwork)
+[《遇见App 》上下两collectionView均支持丝滑滑动时互相联动,cell居中丝滑停靠](https://github.com/wustzhy/TwoCollectionViewsLinkwork)
 
 [极省代码的CollectionView用法，无须创建XXCollectionView类](https://github.com/wustzhy/ZYFlywheel/tree/master/SuperSimpleCollectionView)
 
-<img src="https://cocoapods.org/favicons/favicon.ico" alt="Image" width="20"> [ZYTextInputAvoidKeyboard](https://github.com/wustzhy/ZYTextInputAvoidKeyboard) 文本编辑框 随键盘联动，避免被键盘遮挡
+<img src="https://cocoapods.org/favicons/favicon.ico" alt="Image" width="15"> [ZYTextInputAvoidKeyboard](https://github.com/wustzhy/ZYTextInputAvoidKeyboard) 文本编辑框 随键盘联动，避免被键盘遮挡
 
 [封装了一个独立的、小而美的录音按钮](https://github.com/wustzhy/ZYAudioRecorderWidget)
 
