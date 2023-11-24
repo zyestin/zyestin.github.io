@@ -7,7 +7,7 @@ I'm [zyestin](https://github.com/zyestin/), Front-end Developer.
 
 I want to learn things and become a better person. I enjoy reading, thinking and writing in my leisure time.
 
-📰 Recent Posts
+# 📰 Recent Posts
 
 ## [react-native 系列](<https://zyestin.github.io/zyestin/posts/rn/readme/>)
 
