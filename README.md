@@ -1,4 +1,4 @@
-
+My blob, about react-native、iOS...
 [:octocat: Learning :octocat:](https://github.com/zyestin/zyestin#octocat-learning-octocat)
 
 # Hi there ✋
