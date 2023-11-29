@@ -1,5 +1,3 @@
-hi
-
 # Hi there ✋
 
 I'm zyestin. Used to be an iOSer, now an RNer for 2+ years.
