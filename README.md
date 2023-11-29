@@ -1,7 +1,3 @@
-My blob, about react-native、iOS...
-
-[:octocat: Learning :octocat:](https://github.com/zyestin/zyestin#octocat-learning-octocat)
-
 # Hi there ✋
 
 I'm zyestin. Used to be an iOSer, now an RNer for 2+ years.
