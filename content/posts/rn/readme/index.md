@@ -6,9 +6,6 @@ tags: [react-native]
 ---
 
 
-## 自实现方案
-
-
 * [代码规范](../code-standards/)
 
 
@@ -32,10 +29,10 @@ tags: [react-native]
 * [仿抖音/小红书，对贴图/贴字 进行拖拽、缩放、旋转等复杂手势](../multi-gestture-sticker/)
 
 
-* [动态下载&应用字体]()
+* [易用的、远程字体动态下载&应用组件]()
 
 
-
+* [如何封装 低耦合、易用的文本输入框弹窗](../textinput-alert/)
 
 
 ## 三方方案
@@ -44,3 +41,7 @@ tags: [react-native]
 
 
 
+
+![pod](https://cocoapods.org/favicons/favicon.ico)
+
+{{<figure src="https://cocoapods.org/favicons/favicon.ico" width="10">}}

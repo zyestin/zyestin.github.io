@@ -154,14 +154,15 @@ Mac、VSC快捷键 Mac 系统自带
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      自实现方案 代码规范
+       代码规范
 React Native 编码提效 on VSCode
 基础组件封装
 瀑布流列表base组件 图片base组件 模仿抖音、小红书 输入 #标签 高亮 方案
 瀑布流列表 自动滚动动画
 横向 瀑布流列表
 仿抖音/小红书，对贴图/贴字 进行拖拽、缩放、旋转等复杂手势
-动态下载&amp;应用字体
+易用的、远程字体动态下载&amp;应用组件
+如何封装 低耦合、易用的文本输入框弹窗
 三方方案 react-native-exception-handler 
     </div>
   </div>
@@ -212,6 +213,23 @@ HBMultiGestureView就类似一个三方库，不是面向具体业务的，俗�
 也就是 render/return组件 之前的代码量尽可能少；那么，就需要通过函数提炼、划分职责等方式转移到别处。
 组件代码 书写顺序 示例如下
 // AAView.js import { xxCalculate, xxUploadEvent } from &#39;app/components/XxModule&#39; import AView from &#39;./components/AView&#39; import BView from &#39;./components/BView&#39; //$$ 用于组件函数内的变量 紧邻写在组件函数上方 const variableUsedInXXComp = ... //组件函数 const AAView = props =&gt; { //$$ props解构, 放第一行 ///reason：即使AAView上面不写@param注释，通过这里的解构也能看出props的参数 const { paramA, paramB } = props //$$ 副作用函数(即use开头的函数)，写在顶层作用域， const [aEverClicked, setAEverClicked] = useState(false) const [bClickedTime, setBClickedTime] = useState(0) .
+    </div>
+  </div>
+</div>
+
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/zyestin/posts/rn/textinput-alert/" class="link black dim">
+        封装 低耦合、易用的文本输入框弹窗
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      效果展示/UI 切换输入法，避开键盘 输入/粘帖时，文字换行，输入框高度准确变化 使用/Usage 封装后，如下这样使用，解耦的干干净净
+import TextInputAlert from &#34;./TextInputAlert&#34;; TextInputAlert.show({ text: &#34;hello&#34;, // maxLength: 20, onChange: function didInputChange(text_) { console.log(&#34;didInputChange::&gt;&gt;&#34;, text_); }, onCompleted: () =&gt; { console.log(&#34;onCompleted::&gt;&gt;&#34;, content); }, }); TextInputAlert.hide(); 像原生一样调api方式展示弹窗，不需要Modal那样耦合过多（视图嵌入、visible字段控制&hellip;），函数调用
+源码/Code TextInputAlert
     </div>
   </div>
 </div>

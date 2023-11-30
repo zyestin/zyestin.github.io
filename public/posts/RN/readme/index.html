@@ -6,14 +6,15 @@
     
     <title>React Native 开发沉淀 | zyestin</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="自实现方案 代码规范
+    <meta name="description" content=" 代码规范
 React Native 编码提效 on VSCode
 基础组件封装
 瀑布流列表base组件 图片base组件 模仿抖音、小红书 输入 #标签 高亮 方案
 瀑布流列表 自动滚动动画
 横向 瀑布流列表
 仿抖音/小红书，对贴图/贴字 进行拖拽、缩放、旋转等复杂手势
-动态下载&amp;应用字体
+易用的、远程字体动态下载&amp;应用组件
+如何封装 低耦合、易用的文本输入框弹窗
 三方方案 react-native-exception-handler ">
     <meta name="generator" content="Hugo 0.117.0">
     
@@ -38,41 +39,44 @@ React Native 编码提效 on VSCode
     
     
     <meta property="og:title" content="React Native 开发沉淀" />
-<meta property="og:description" content="自实现方案 代码规范
+<meta property="og:description" content=" 代码规范
 React Native 编码提效 on VSCode
 基础组件封装
 瀑布流列表base组件 图片base组件 模仿抖音、小红书 输入 #标签 高亮 方案
 瀑布流列表 自动滚动动画
 横向 瀑布流列表
 仿抖音/小红书，对贴图/贴字 进行拖拽、缩放、旋转等复杂手势
-动态下载&amp;应用字体
+易用的、远程字体动态下载&amp;应用组件
+如何封装 低耦合、易用的文本输入框弹窗
 三方方案 react-native-exception-handler " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zyestin.github.io/zyestin/posts/rn/readme/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-11-01T12:00:11+08:00" />
 <meta property="article:modified_time" content="2023-11-01T12:00:11+08:00" />
 <meta itemprop="name" content="React Native 开发沉淀">
-<meta itemprop="description" content="自实现方案 代码规范
+<meta itemprop="description" content=" 代码规范
 React Native 编码提效 on VSCode
 基础组件封装
 瀑布流列表base组件 图片base组件 模仿抖音、小红书 输入 #标签 高亮 方案
 瀑布流列表 自动滚动动画
 横向 瀑布流列表
 仿抖音/小红书，对贴图/贴字 进行拖拽、缩放、旋转等复杂手势
-动态下载&amp;应用字体
+易用的、远程字体动态下载&amp;应用组件
+如何封装 低耦合、易用的文本输入框弹窗
 三方方案 react-native-exception-handler "><meta itemprop="datePublished" content="2023-11-01T12:00:11+08:00" />
 <meta itemprop="dateModified" content="2023-11-01T12:00:11+08:00" />
-<meta itemprop="wordCount" content="24">
+<meta itemprop="wordCount" content="25">
 <meta itemprop="keywords" content="react-native," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="React Native 开发沉淀"/>
-<meta name="twitter:description" content="自实现方案 代码规范
+<meta name="twitter:description" content=" 代码规范
 React Native 编码提效 on VSCode
 基础组件封装
 瀑布流列表base组件 图片base组件 模仿抖音、小红书 输入 #标签 高亮 方案
 瀑布流列表 自动滚动动画
 横向 瀑布流列表
 仿抖音/小红书，对贴图/贴字 进行拖拽、缩放、旋转等复杂手势
-动态下载&amp;应用字体
+易用的、远程字体动态下载&amp;应用组件
+如何封装 低耦合、易用的文本输入框弹窗
 三方方案 react-native-exception-handler "/>
 
 	
@@ -146,8 +150,7 @@ React Native 编码提效 on VSCode
       
       
     </header>
-    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h2 id="自实现方案">自实现方案</h2>
-<ul>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><ul>
 <li>
 <p><a href="../code-standards/">代码规范</a></p>
 </li>
@@ -174,13 +177,20 @@ React Native 编码提效 on VSCode
 <p><a href="../multi-gestture-sticker/">仿抖音/小红书，对贴图/贴字 进行拖拽、缩放、旋转等复杂手势</a></p>
 </li>
 <li>
-<p><a href="">动态下载&amp;应用字体</a></p>
+<p><a href="">易用的、远程字体动态下载&amp;应用组件</a></p>
+</li>
+<li>
+<p><a href="../textinput-alert/">如何封装 低耦合、易用的文本输入框弹窗</a></p>
 </li>
 </ul>
 <h2 id="三方方案">三方方案</h2>
 <ul>
 <li><a href="https://github.com/a7ul/react-native-exception-handler">react-native-exception-handler</a></li>
 </ul>
+<p><img src="https://cocoapods.org/favicons/favicon.ico" alt="pod"></p>
+<figure><img src="https://cocoapods.org/favicons/favicon.ico" width="10"/>
+</figure>
+
 <ul class="pa0">
   
    <li class="list di">
@@ -217,6 +227,10 @@ React Native 编码提效 on VSCode
 	    
 	     <li  class="mb2">
           <a href="/zyestin/posts/rn/code-standards/">代码规范</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/textinput-alert/">封装 低耦合、易用的文本输入框弹窗</a>
         </li>
 	    
 	     <li  class="mb2">
