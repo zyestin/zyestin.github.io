@@ -21,7 +21,7 @@ I'm zyestin. Used to be an iOSer, now an RNer for 2+ years.
 
 - [仿抖音/小红书，对贴图/贴字 进行拖拽、缩放、旋转等复杂手势](https://zyestin.github.io/zyestin/posts/rn/multi-gestture-sticker/)
 
-- [···](https://zyestin.github.io/zyestin/posts/rn/readme)
+- [👉🏻···](https://zyestin.github.io/zyestin/posts/rn/readme)
 
 ## iOS 系列
 
@@ -37,7 +37,7 @@ I'm zyestin. Used to be an iOSer, now an RNer for 2+ years.
 
 - [UICollectionView缓存机制探究](https://www.jianshu.com/p/5d817ea3565d)、[穷举各种控制线程最大并发数的方式](https://github.com/wustzhy/ThreadCoutControl)、[对比 圆角图片4种(高、低性能)处理方式](https://github.com/wustzhy/TableViewOptimize)
 
-- [···](https://github.com/wustzhy)
+- [👉🏻···](https://github.com/wustzhy/wustzhy/blob/main/README.md#ios-系列)
 
 ## 其它
 
