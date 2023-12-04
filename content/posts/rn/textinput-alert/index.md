@@ -32,7 +32,7 @@ TextInputAlert.show({
 TextInputAlert.hide();
 
 ```
-像原生一样调api方式展示弹窗，不需要`Modal`那样耦合过多（视图嵌入、visible字段控制...），函数调用
+像原生一样调api方式展示弹窗，不需要`Modal`那样耦合过多（视图嵌入、visible字段控制...）
 
 ## 源码/Code
 
