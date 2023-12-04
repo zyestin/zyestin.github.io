@@ -140,5 +140,15 @@ TextInput上浮一个style大小一致的Text，TextInput文字颜色设为透�
       <description>需求 效果展示 源码 import { StyleSheet, Text, TouchableOpacity, View } from &amp;#34;react-native&amp;#34;; import React, { useEffect, useRef, useState } from &amp;#34;react&amp;#34;; import HBImage from &amp;#34;../../../../components/image/HBImage&amp;#34;; import { px2dp } from &amp;#34;../../../../utils/ScreenUtils&amp;#34;; import { MasonryFlashList } from &amp;#34;@shopify/flash-list&amp;#34;; import { bookOpenChoices } from &amp;#34;app/service/MarkService&amp;#34;; import * as indexUtil from &amp;#34;app/utils/index&amp;#34;; const itemWidth = px2dp(12 + 86.5 + 251.5); const itemHeight = px2dp(139); const itemSpace = px2dp(17); const UserChooseBook = (props) =&amp;gt; { const { selectedSex, marks } = props; const [dataList, setDataList] = useState([]); const listViewRef = useRef(null); const { onScrollBeginDrag, onScroll } = useListViewAutoScrollAnimate({ listViewRef: listViewRef, framesPerSecond: 40, // 1000/40 = 25帧/秒 offsetPerFrame: 1, totalScrollDistance: (itemWidth * Math.</description>
     </item>
     
+    <item>
+      <title>远程字体的动态加载&amp;应用</title>
+      <link>https://zyestin.github.io/zyestin/posts/rn/art-text/</link>
+      <pubDate>Wed, 01 Nov 2023 12:00:11 +0800</pubDate>
+      
+      <guid>https://zyestin.github.io/zyestin/posts/rn/art-text/</guid>
+      <description>示例效果展示 切换到新字体，经过loading后，应用上新字体 切换到已加载过的字体，直接应用上 iOS Android 使用/Usage 封装后，如下这样使用，解耦的干干净净
+import { StyleSheet, Text, TouchableOpacity, View } from &amp;#34;react-native&amp;#34;; import React, { useState } from &amp;#34;react&amp;#34;; import ArtText from &amp;#34;./ArtText&amp;#34;; const ArtTextDemo = () =&amp;gt; { const [fontInfoIndex, setFontInfoIndex] = useState(0); return ( &amp;lt;View style={{ flex: 1, padding:100 }}&amp;gt; &amp;lt;TouchableOpacity style={{padding:10}} onPress={() =&amp;gt; { setFontInfoIndex((fontInfoIndex + 1) % fontInfoList.length); }} &amp;gt; &amp;lt;Text&amp;gt;{&amp;#34;Switch Font&amp;#34;}&amp;lt;/Text&amp;gt; &amp;lt;/TouchableOpacity&amp;gt; &amp;lt;Text style={{ marginVertical: 20 }}&amp;gt; {&amp;#34;Current font - &amp;#34; + fontInfoIndex + &amp;#34; - &amp;#34; + fontInfoList[fontInfoIndex].</description>
+    </item>
+    
   </channel>
 </rss>

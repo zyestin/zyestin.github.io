@@ -298,25 +298,40 @@ TextInput上浮一个style大小一致的Text，TextInput文字颜色设为透�
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
-      <a href="/zyestin/posts/hugo-usage/" class="link black dim">
-        hugo &#43; github pages usage
+      <a href="/zyestin/posts/rn/art-text/" class="link black dim">
+        远程字体的动态加载&amp;应用
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      2023最新 hugo + github pages 使用方式
-网上大多是hugo旧版的使用方式，有好几处明显差异的，不值得借鉴，反正我借鉴后出现各种莫名其妙问题
-严格按照官方这两个链接，就不会出现问题:
-hugo quick start hugo new site quickstart cd quickstart git init git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke echo &#34;theme = &#39;ananke&#39;&#34; &gt;&gt; hugo.toml hugo server hugo new content posts/my-first-post.md open content/posts/my-first-post.md //然后进行修改 hugo server -D //可以编辑后， 在 http://localhost:1313/ 进行预览 hugo //生成web静态资源，以便下一步提交github时进行部署 Host on GitHub Pages 需要注意的地方:
-请先尝试 hugo文档里提供的theme，即ananke，走通一遍流程 我就采坑了，使用了另一个theme，后面在 localhost 一直不出现 my-first-post.md
-.github/workflows/hugo.yaml 一定要注意修改 HUGO_VERSION 的值
-my-first-post.md 注意删掉/注释掉 draft:true 这样 push到github时，public/index.html等几个文件中才包含了 my-first-post.md的内容，访问 https://zyestin.github.io/zyestin/ 时才能找到 my-first-post.
+      示例效果展示 切换到新字体，经过loading后，应用上新字体 切换到已加载过的字体，直接应用上 iOS Android 使用/Usage 封装后，如下这样使用，解耦的干干净净
+import { StyleSheet, Text, TouchableOpacity, View } from &#34;react-native&#34;; import React, { useState } from &#34;react&#34;; import ArtText from &#34;./ArtText&#34;; const ArtTextDemo = () =&gt; { const [fontInfoIndex, setFontInfoIndex] = useState(0); return ( &lt;View style={{ flex: 1, padding:100 }}&gt; &lt;TouchableOpacity style={{padding:10}} onPress={() =&gt; { setFontInfoIndex((fontInfoIndex + 1) % fontInfoList.length); }} &gt; &lt;Text&gt;{&#34;Switch Font&#34;}&lt;/Text&gt; &lt;/TouchableOpacity&gt; &lt;Text style={{ marginVertical: 20 }}&gt; {&#34;Current font - &#34; + fontInfoIndex + &#34; - &#34; + fontInfoList[fontInfoIndex].
     </div>
   </div>
 </div>
 
         </div>
       
-    </section></article>
+    </section>
+    <ul class="pagination pagination-default">
+      <li class="page-item disabled">
+        <a aria-disabled="true" aria-label="First" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&laquo;&laquo;</span></a>
+      </li>
+      <li class="page-item disabled">
+        <a aria-disabled="true" aria-label="Previous" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&laquo;</span></a>
+      </li>
+      <li class="page-item active">
+        <a aria-current="page" aria-label="Page 1" class="page-link" role="button">1</a>
+      </li>
+      <li class="page-item">
+        <a href="/zyestin/posts/page/2/" aria-label="Page 2" class="page-link" role="button">2</a>
+      </li>
+      <li class="page-item">
+        <a href="/zyestin/posts/page/2/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
+      </li>
+      <li class="page-item">
+        <a href="/zyestin/posts/page/2/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+      </li>
+    </ul></article>
 
     </main>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">

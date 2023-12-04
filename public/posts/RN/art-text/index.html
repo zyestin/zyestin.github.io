@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>远程字体的动态加载&amp;应用 | zyestin</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="示例效果展示 切换到新字体，经过loading后，应用上新字体 切换到已加载过的字体，直接应用上 iOS Android 使用/Usage 封装后，如下这样使用，解耦的干干净净
+import { StyleSheet, Text, TouchableOpacity, View } from &#34;react-native&#34;; import React, { useState } from &#34;react&#34;; import ArtText from &#34;./ArtText&#34;; const ArtTextDemo = () =&gt; { const [fontInfoIndex, setFontInfoIndex] = useState(0); return ( &lt;View style={{ flex: 1, padding:100 }}&gt; &lt;TouchableOpacity style={{padding:10}} onPress={() =&gt; { setFontInfoIndex((fontInfoIndex &#43; 1) % fontInfoList.length); }} &gt; &lt;Text&gt;{&#34;Switch Font&#34;}&lt;/Text&gt; &lt;/TouchableOpacity&gt; &lt;Text style={{ marginVertical: 20 }}&gt; {&#34;Current font - &#34; &#43; fontInfoIndex &#43; &#34; - &#34; &#43; fontInfoList[fontInfoIndex].">
+    <meta name="generator" content="Hugo 0.117.0">
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/zyestin/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+
+    
+
+    
+    
+    <meta property="og:title" content="远程字体的动态加载&amp;应用" />
+<meta property="og:description" content="示例效果展示 切换到新字体，经过loading后，应用上新字体 切换到已加载过的字体，直接应用上 iOS Android 使用/Usage 封装后，如下这样使用，解耦的干干净净
+import { StyleSheet, Text, TouchableOpacity, View } from &#34;react-native&#34;; import React, { useState } from &#34;react&#34;; import ArtText from &#34;./ArtText&#34;; const ArtTextDemo = () =&gt; { const [fontInfoIndex, setFontInfoIndex] = useState(0); return ( &lt;View style={{ flex: 1, padding:100 }}&gt; &lt;TouchableOpacity style={{padding:10}} onPress={() =&gt; { setFontInfoIndex((fontInfoIndex &#43; 1) % fontInfoList.length); }} &gt; &lt;Text&gt;{&#34;Switch Font&#34;}&lt;/Text&gt; &lt;/TouchableOpacity&gt; &lt;Text style={{ marginVertical: 20 }}&gt; {&#34;Current font - &#34; &#43; fontInfoIndex &#43; &#34; - &#34; &#43; fontInfoList[fontInfoIndex]." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zyestin.github.io/zyestin/posts/rn/art-text/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-11-01T12:00:11+08:00" />
+<meta property="article:modified_time" content="2023-11-01T12:00:11+08:00" />
+<meta itemprop="name" content="远程字体的动态加载&amp;应用">
+<meta itemprop="description" content="示例效果展示 切换到新字体，经过loading后，应用上新字体 切换到已加载过的字体，直接应用上 iOS Android 使用/Usage 封装后，如下这样使用，解耦的干干净净
+import { StyleSheet, Text, TouchableOpacity, View } from &#34;react-native&#34;; import React, { useState } from &#34;react&#34;; import ArtText from &#34;./ArtText&#34;; const ArtTextDemo = () =&gt; { const [fontInfoIndex, setFontInfoIndex] = useState(0); return ( &lt;View style={{ flex: 1, padding:100 }}&gt; &lt;TouchableOpacity style={{padding:10}} onPress={() =&gt; { setFontInfoIndex((fontInfoIndex &#43; 1) % fontInfoList.length); }} &gt; &lt;Text&gt;{&#34;Switch Font&#34;}&lt;/Text&gt; &lt;/TouchableOpacity&gt; &lt;Text style={{ marginVertical: 20 }}&gt; {&#34;Current font - &#34; &#43; fontInfoIndex &#43; &#34; - &#34; &#43; fontInfoList[fontInfoIndex]."><meta itemprop="datePublished" content="2023-11-01T12:00:11+08:00" />
+<meta itemprop="dateModified" content="2023-11-01T12:00:11+08:00" />
+<meta itemprop="wordCount" content="134">
+<meta itemprop="keywords" content="react-native," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="远程字体的动态加载&amp;应用"/>
+<meta name="twitter:description" content="示例效果展示 切换到新字体，经过loading后，应用上新字体 切换到已加载过的字体，直接应用上 iOS Android 使用/Usage 封装后，如下这样使用，解耦的干干净净
+import { StyleSheet, Text, TouchableOpacity, View } from &#34;react-native&#34;; import React, { useState } from &#34;react&#34;; import ArtText from &#34;./ArtText&#34;; const ArtTextDemo = () =&gt; { const [fontInfoIndex, setFontInfoIndex] = useState(0); return ( &lt;View style={{ flex: 1, padding:100 }}&gt; &lt;TouchableOpacity style={{padding:10}} onPress={() =&gt; { setFontInfoIndex((fontInfoIndex &#43; 1) % fontInfoList.length); }} &gt; &lt;Text&gt;{&#34;Switch Font&#34;}&lt;/Text&gt; &lt;/TouchableOpacity&gt; &lt;Text style={{ marginVertical: 20 }}&gt; {&#34;Current font - &#34; &#43; fontInfoIndex &#43; &#34; - &#34; &#43; fontInfoList[fontInfoIndex]."/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/zyestin/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        zyestin
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">远程字体的动态加载&amp;应用</h1>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2023-11-01T12:00:11+08:00">November 1, 2023</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy serif f4 nested-links mid-gray pr4-l w-two-thirds-l"><h2 id="示例效果展示">示例效果展示</h2>
+<ul>
+<li>切换到新字体，经过loading后，应用上新字体</li>
+<li>切换到已加载过的字体，直接应用上</li>
+</ul>
+<p>iOS
+<img src="media/17016760060792/font-down-apply-1.gif" alt="font-down-apply"></p>
+<p>Android
+<img src="media/17016760060792/17016823818119.gif" alt="font-down-apply-android"></p>
+<h2 id="使用usage">使用/Usage</h2>
+<p>封装后，如下这样使用，解耦的干干净净</p>
+<pre tabindex="0"><code>import { StyleSheet, Text, TouchableOpacity, View } from &#34;react-native&#34;;
+import React, { useState } from &#34;react&#34;;
+import ArtText from &#34;./ArtText&#34;;
+
+const ArtTextDemo = () =&gt; {
+  const [fontInfoIndex, setFontInfoIndex] = useState(0);
+
+  return (
+    &lt;View style={{ flex: 1, padding:100 }}&gt;
+      &lt;TouchableOpacity
+        style={{padding:10}}
+        onPress={() =&gt; { setFontInfoIndex((fontInfoIndex + 1) % fontInfoList.length); }}
+      &gt;
+        &lt;Text&gt;{&#34;Switch Font&#34;}&lt;/Text&gt;
+      &lt;/TouchableOpacity&gt;
+      
+      &lt;Text style={{ marginVertical: 20 }}&gt;
+        {&#34;Current font - &#34; + fontInfoIndex + &#34; - &#34; + fontInfoList[fontInfoIndex].fontName}
+      &lt;/Text&gt;
+
+      &lt;ArtText
+        text=&#34;Hello World&#34;
+        style={{ fontSize: 20 }}
+        fontInfo={fontInfoList[fontInfoIndex]}
+      /&gt;
+    &lt;/View&gt;
+  );
+};
+
+const fontInfoList = [
+  {
+    fontName: &#34;美呗嘿嘿体&#34;,
+    fontUrl: &#34;https://imgcn.cdn.com/app/download/fonts/meibeiheiehiti2.ttf&#34;,
+  },
+  ...
+];
+</code></pre><h2 id="源码code">源码/Code</h2>
+<ul>
+<li>RN组件 <a href="media/17016760060792/ArtText.js">ArtText.js</a></li>
+<li>iOS桥接类 <a href="media/17016760060792/CustomFontManager.h">CustomFontManager.h</a> <a href="media/17016760060792/CustomFontManager.m">CustomFontManager.m</a></li>
+<li>Android桥接类 <a href="media/17016760060792/WordArtModule.java">WordArtModule.java</a></li>
+</ul>
+<h3 id="逻辑解读">逻辑解读</h3>
+<h4 id="1切换字体背后-会经历什么">1.切换字体背后 会经历什么</h4>
+<p>判断若是新字体，需要经历如下过程，使字体达到可以应用到Text组件里的状态</p>
+<ul>
+<li>字体文件夹不存在则创建</li>
+<li>下载字体到指定路径</li>
+<li>通过原生层处理使得字体达到可应用状态</li>
+</ul>
+<blockquote>
+<p>若是切换到旧字体会省略其中一些步骤</p>
+</blockquote>
+<h4 id="2为什么有个可应用状态">2.为什么有个「可应用」状态</h4>
+<p>这是由iOS、安卓原生决定的</p>
+<ul>
+<li>iOS 不仅需要下载到本地就完事了，还需要加载到内存，再设置RN的Text组件的<code>fontFamily</code>就不会报错/失效了</li>
+<li>Android 则是需要拿到<code>Text</code>组件所对应的原生对象，通过将JS层的<code>target ID</code>传到原生去，在原生层去应用字体的</li>
+</ul>
+<h4 id="3其中有哪些需要注意的">3.其中有哪些需要注意的？</h4>
+<p>RN应用 所下载的远程字体，不仅应用起来麻烦 需要原生层处理一道，而且在<code>style</code>的设置上还要做特别处理规避bug，并且两端还有差异，如下</p>
+<ul>
+<li>
+<p>iOS，若在字体未达到可应用状态时，提前为Text设置了<code>fontFamily</code>，App在debugging时会发生报错。。。</p>
+</li>
+<li>
+<p>Android，通过原生去设置远程下载的字体，若再在style里设置fontFamily，竟然会导致字体会应用失效。。。</p>
+</li>
+</ul>
+<blockquote>
+<p>BTW：文章开头的示例效果，所对应的Demo
+<a href="media/17016760060792/ArtTextDemo.js">ArtTextDemo</a></p>
+</blockquote>
+<ul class="pa0">
+  
+   <li class="list di">
+     <a href="/zyestin/tags/react-native/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">react-native</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/waterfall-list-autoscroll/"> 实现 FlatList 、flashList、masonryFlashList 各种列表的自动滚动动画</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/multi-gestture-sticker/">RN 动画 - 缩放、旋转、拖拽</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/vscode-efficient/">React Native 在VSCode编码提效</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/readme/">React Native 开发沉淀</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/code-standards/">代码规范</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/textinput-alert/">封装 低耦合、易用的文本输入框弹窗</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/base-components/">封装常用基础组件</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/douyin-label-input/">模仿抖音、小红书 输入 #标签 高亮</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/waterfall-list-horizontal/">横向 瀑布流列表</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://zyestin.github.io/zyestin/" >
+    &copy;  zyestin 2023 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>
