@@ -47,7 +47,7 @@ Mac、VSC快捷键 Mac 系统自带
       <pubDate>Wed, 01 Nov 2023 12:00:11 +0800</pubDate>
       
       <guid>https://zyestin.github.io/zyestin/posts/rn/readme/</guid>
-      <description> 代码规范
+      <description>代码规范
 React Native 编码提效 on VSCode
 基础组件封装
 瀑布流列表base组件 图片base组件 模仿抖音、小红书 输入 #标签 高亮 方案
@@ -55,8 +55,7 @@ React Native 编码提效 on VSCode
 横向 瀑布流列表
 仿抖音/小红书，对贴图/贴字 进行拖拽、缩放、旋转等复杂手势
 易用的、远程字体动态下载&amp;amp;应用组件
-如何封装 低耦合、易用的文本输入框弹窗
-三方方案 react-native-exception-handler </description>
+如何封装 低耦合、易用的文本输入框弹窗</description>
     </item>
     
     <item>

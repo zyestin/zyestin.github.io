@@ -35,11 +35,6 @@ tags: [react-native]
 * [如何封装 低耦合、易用的文本输入框弹窗](../textinput-alert/)
 
 
-## 三方方案
-
-* [react-native-exception-handler](https://github.com/a7ul/react-native-exception-handler)
-
-
 
 
 ![pod](https://cocoapods.org/favicons/favicon.ico)
