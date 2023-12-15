@@ -28,13 +28,13 @@ timeZone = 'Asia/Shanghai'
 
 
 [[params.ananke_socials]]
-  name = "All"
+  name = "ALL"
     url = "https://zyestin.github.io/zyestin/posts/rn/readme/"
 [[params.ananke_socials]]
   name = "github"
     url = "https://github.com/zyestin"
 [[params.ananke_socials]]
-  name = "Jian"
+  name = "jianshu"
     url = "https://www.jianshu.com/u/3601cd1fe82d"
     label = "Jian"
 [[params.ananke_socials]]
