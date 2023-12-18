@@ -97,4 +97,5 @@ RN应用 所下载的远程字体，不仅应用起来麻烦 需要原生层处�
 > [ArtTextDemo](media/17016760060792/ArtTextDemo.js)
 
 
-
+-----
+后来，基于这份代码，制作了一个npm库 [react-native-remote-font](https://github.com/zyestin/react-native-remote-font)

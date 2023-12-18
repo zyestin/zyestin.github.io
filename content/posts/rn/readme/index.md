@@ -37,6 +37,12 @@ tags: [react-native]
 
 * [用脚手架 制作一个RN库 放npm(含踏坑记录)](../create-npm-lib)
 
+* [在github提交给react-native的第一个PR]() [todo]
+
+* [React Hooks 学习收获]() [todo]
+	* [常用hooks依赖检查，从源头提醒避免奇葩bug]() 
+
+* [从0到1用Jenkins实现对RN项目一键打包、发布]() [todo]
 
 
 <!-- 
