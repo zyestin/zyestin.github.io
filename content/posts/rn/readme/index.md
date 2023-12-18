@@ -23,6 +23,8 @@ tags: [react-native]
 
 * [封装一个 低耦合、易用的文本输入框弹窗](../textinput-alert/)
 
+* [优雅实现 RN多层弹窗]() [todo]
+
 
 ## 组件库
 
@@ -37,7 +39,7 @@ tags: [react-native]
 
 * [用脚手架 制作一个RN库 放npm(含踏坑记录)](../create-npm-lib)
 
-* [在github提交给react-native的第一个PR]() [todo]
+* [贡献给react-native的第一个PR](../rn-pull-request/) 
 
 * [React Hooks 学习收获]() [todo]
 	* [常用hooks依赖检查，从源头提醒避免奇葩bug]() 
