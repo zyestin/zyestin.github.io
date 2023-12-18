@@ -3,7 +3,7 @@
 I'm zyestin. Used to be an iOSer, now an RNer for 2+ years.
 
 - 🔭 Currently working on i-hua-ben
-- n🌱 Currently learning react-native
+- 🌱 Currently learning react-native
 - 👯 Looking to collaborate on earn more money and do something more meaningful
 - 📫 zyestin@gmail.com
 
@@ -40,7 +40,6 @@ I'm zyestin. Used to be an iOSer, now an RNer for 2+ years.
 - [👉🏻···](https://github.com/wustzhy/wustzhy/blob/main/README.md#ios-系列)
 
 ## 其它
-
-[多个父仓库共享某一子模块/代码/仓库 方案对比](https://github.com/zyestin/MainRepoDemo/blob/main/README.md#多人协作-子仓库多人次修改和提交)
-
-[使用hugo + github pages 搭建博客](https://zyestin.github.io/zyestin/posts/hugo-usage/)
+* [多个父仓库共享某一子模块/代码/仓库 方案对比](https://github.com/zyestin/MainRepoDemo/blob/main/README.md#多人协作-子仓库多人次修改和提交)
+* [使用hugo + github pages 搭建博客](https://zyestin.github.io/zyestin/posts/hugo-usage/)
+* [用脚手架 制作一个RN库 放npm(含踏坑记录)](https://zyestin.github.io/zyestin/posts/rn/create-npm-lib/)
