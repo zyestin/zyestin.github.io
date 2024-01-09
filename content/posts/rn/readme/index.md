@@ -23,7 +23,7 @@ tags: [react-native]
 
 * [封装一个 低耦合、易用的文本输入框弹窗](../textinput-alert/)
 
-* [实现 RN弹窗 - 差不多理想的极简弹窗](../alert-multiple)
+* [实现 差不多理想的极简RN弹窗](../alert-multiple)
 
 * [实践 多tab多列表滑动吸顶效果]() [todo]
 
