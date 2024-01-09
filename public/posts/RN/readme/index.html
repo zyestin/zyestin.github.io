@@ -6,15 +6,23 @@
     
     <title>React Native 开发沉淀 | zyestin</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="代码规范
+    <meta name="description" content="一些业务的最佳实践探索 基础组件封装
+瀑布流列表base组件 图片base组件 实现 模仿抖音、小红书 输入 #标签 高亮
+实现 瀑布流列表·自动滚动动画
+实现 横向·瀑布流列表
+实现 仿抖音/小红书 对贴图/贴字 进行拖拽、缩放、旋转等复杂手势
+封装一个 易用的、远程字体动态下载&amp;应用组件
+封装一个 低耦合、易用的文本输入框弹窗
+优雅实现 RN弹窗 支持多层弹窗
+实践 多tab多列表滑动吸顶效果 [todo]
+实践 列表Item精确曝光埋点 [todo]
+实践 拆包 [todo]
+组件库 易用的应用远程字体的text组件库 - react-native-remote-font 其它（提效、工具&hellip;) 探究 代码规范
 React Native 编码提效 on VSCode
-基础组件封装
-瀑布流列表base组件 图片base组件 模仿抖音、小红书 输入 #标签 高亮 方案
-瀑布流列表 自动滚动动画
-横向 瀑布流列表
-仿抖音/小红书，对贴图/贴字 进行拖拽、缩放、旋转等复杂手势
-易用的、远程字体动态下载&amp;应用组件
-如何封装 低耦合、易用的文本输入框弹窗">
+用脚手架 制作一个RN库 放npm(含踏坑记录)
+贡献给react-native的第一个PR
+React Hooks 学习收获 [todo]
+常用hooks依赖检查，从源头提醒避免奇葩bug 从0到1用Jenkins实现对RN项目一键打包、发布 [todo]">
     <meta name="generator" content="Hugo 0.117.0">
     
     
@@ -40,42 +48,66 @@ React Native 编码提效 on VSCode
     
     
     <meta property="og:title" content="React Native 开发沉淀" />
-<meta property="og:description" content="代码规范
+<meta property="og:description" content="一些业务的最佳实践探索 基础组件封装
+瀑布流列表base组件 图片base组件 实现 模仿抖音、小红书 输入 #标签 高亮
+实现 瀑布流列表·自动滚动动画
+实现 横向·瀑布流列表
+实现 仿抖音/小红书 对贴图/贴字 进行拖拽、缩放、旋转等复杂手势
+封装一个 易用的、远程字体动态下载&amp;应用组件
+封装一个 低耦合、易用的文本输入框弹窗
+优雅实现 RN弹窗 支持多层弹窗
+实践 多tab多列表滑动吸顶效果 [todo]
+实践 列表Item精确曝光埋点 [todo]
+实践 拆包 [todo]
+组件库 易用的应用远程字体的text组件库 - react-native-remote-font 其它（提效、工具&hellip;) 探究 代码规范
 React Native 编码提效 on VSCode
-基础组件封装
-瀑布流列表base组件 图片base组件 模仿抖音、小红书 输入 #标签 高亮 方案
-瀑布流列表 自动滚动动画
-横向 瀑布流列表
-仿抖音/小红书，对贴图/贴字 进行拖拽、缩放、旋转等复杂手势
-易用的、远程字体动态下载&amp;应用组件
-如何封装 低耦合、易用的文本输入框弹窗" />
+用脚手架 制作一个RN库 放npm(含踏坑记录)
+贡献给react-native的第一个PR
+React Hooks 学习收获 [todo]
+常用hooks依赖检查，从源头提醒避免奇葩bug 从0到1用Jenkins实现对RN项目一键打包、发布 [todo]" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zyestin.github.io/zyestin/posts/rn/readme/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-11-01T12:00:11+08:00" />
 <meta property="article:modified_time" content="2023-11-01T12:00:11+08:00" />
 <meta itemprop="name" content="React Native 开发沉淀">
-<meta itemprop="description" content="代码规范
+<meta itemprop="description" content="一些业务的最佳实践探索 基础组件封装
+瀑布流列表base组件 图片base组件 实现 模仿抖音、小红书 输入 #标签 高亮
+实现 瀑布流列表·自动滚动动画
+实现 横向·瀑布流列表
+实现 仿抖音/小红书 对贴图/贴字 进行拖拽、缩放、旋转等复杂手势
+封装一个 易用的、远程字体动态下载&amp;应用组件
+封装一个 低耦合、易用的文本输入框弹窗
+优雅实现 RN弹窗 支持多层弹窗
+实践 多tab多列表滑动吸顶效果 [todo]
+实践 列表Item精确曝光埋点 [todo]
+实践 拆包 [todo]
+组件库 易用的应用远程字体的text组件库 - react-native-remote-font 其它（提效、工具&hellip;) 探究 代码规范
 React Native 编码提效 on VSCode
-基础组件封装
-瀑布流列表base组件 图片base组件 模仿抖音、小红书 输入 #标签 高亮 方案
-瀑布流列表 自动滚动动画
-横向 瀑布流列表
-仿抖音/小红书，对贴图/贴字 进行拖拽、缩放、旋转等复杂手势
-易用的、远程字体动态下载&amp;应用组件
-如何封装 低耦合、易用的文本输入框弹窗"><meta itemprop="datePublished" content="2023-11-01T12:00:11+08:00" />
+用脚手架 制作一个RN库 放npm(含踏坑记录)
+贡献给react-native的第一个PR
+React Hooks 学习收获 [todo]
+常用hooks依赖检查，从源头提醒避免奇葩bug 从0到1用Jenkins实现对RN项目一键打包、发布 [todo]"><meta itemprop="datePublished" content="2023-11-01T12:00:11+08:00" />
 <meta itemprop="dateModified" content="2023-11-01T12:00:11+08:00" />
-<meta itemprop="wordCount" content="23">
+<meta itemprop="wordCount" content="56">
 <meta itemprop="keywords" content="react-native," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="React Native 开发沉淀"/>
-<meta name="twitter:description" content="代码规范
+<meta name="twitter:description" content="一些业务的最佳实践探索 基础组件封装
+瀑布流列表base组件 图片base组件 实现 模仿抖音、小红书 输入 #标签 高亮
+实现 瀑布流列表·自动滚动动画
+实现 横向·瀑布流列表
+实现 仿抖音/小红书 对贴图/贴字 进行拖拽、缩放、旋转等复杂手势
+封装一个 易用的、远程字体动态下载&amp;应用组件
+封装一个 低耦合、易用的文本输入框弹窗
+优雅实现 RN弹窗 支持多层弹窗
+实践 多tab多列表滑动吸顶效果 [todo]
+实践 列表Item精确曝光埋点 [todo]
+实践 拆包 [todo]
+组件库 易用的应用远程字体的text组件库 - react-native-remote-font 其它（提效、工具&hellip;) 探究 代码规范
 React Native 编码提效 on VSCode
-基础组件封装
-瀑布流列表base组件 图片base组件 模仿抖音、小红书 输入 #标签 高亮 方案
-瀑布流列表 自动滚动动画
-横向 瀑布流列表
-仿抖音/小红书，对贴图/贴字 进行拖拽、缩放、旋转等复杂手势
-易用的、远程字体动态下载&amp;应用组件
-如何封装 低耦合、易用的文本输入框弹窗"/>
+用脚手架 制作一个RN库 放npm(含踏坑记录)
+贡献给react-native的第一个PR
+React Hooks 学习收获 [todo]
+常用hooks依赖检查，从源头提醒避免奇葩bug 从0到1用Jenkins实现对RN项目一键打包、发布 [todo]"/>
 
 	
   </head>
@@ -103,9 +135,9 @@ React Native 编码提效 on VSCode
 <div class="ananke-socials">
   
     
-    <a href="https://zyestin.github.io/zyestin/posts/rn/readme/" target="_blank" rel="noopener" class="All ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="All link" aria-label="follow on All——Opens in a new window">
+    <a href="https://zyestin.github.io/zyestin/posts/rn/readme/" target="_blank" rel="noopener" class="ALL ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="ALL link" aria-label="follow on ALL——Opens in a new window">
       
-        All
+        ALL
       
 <span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
 <path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
@@ -126,7 +158,7 @@ React Native 编码提效 on VSCode
 </span></a>
   
     
-    <a href="https://www.jianshu.com/u/3601cd1fe82d" target="_blank" rel="noopener" class="Jian ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Jian link" aria-label="follow on Jian——Opens in a new window">
+    <a href="https://www.jianshu.com/u/3601cd1fe82d" target="_blank" rel="noopener" class="jianshu ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Jian link" aria-label="follow on Jian——Opens in a new window">
       
         Jian
       
@@ -195,13 +227,8 @@ React Native 编码提效 on VSCode
       
       
     </header>
-    <div class="nested-copy-line-height lh-copy avenir bg-near-white f4 nested-links mid-gray pr4-l w-two-thirds-l"><ul>
-<li>
-<p><a href="../code-standards/">代码规范</a></p>
-</li>
-<li>
-<p><a href="../vscode-efficient/">React Native 编码提效 on VSCode</a></p>
-</li>
+    <div class="nested-copy-line-height lh-copy avenir bg-near-white f4 nested-links mid-gray pr4-l w-two-thirds-l"><h2 id="一些业务的最佳实践探索">一些业务的最佳实践探索</h2>
+<ul>
 <li>
 <p><a href="../base-components/">基础组件封装</a></p>
 <ul>
@@ -210,28 +237,66 @@ React Native 编码提效 on VSCode
 </ul>
 </li>
 <li>
-<p><a href="../douyin-label-input/">模仿抖音、小红书 输入 <em><strong><code>#标签</code></strong></em> 高亮 方案</a></p>
+<p><a href="../douyin-label-input/">实现 模仿抖音、小红书 输入 <em><strong><code>#标签</code></strong></em> 高亮</a></p>
 </li>
 <li>
-<p><a href="../waterfall-list-autoscroll/">瀑布流列表 自动滚动动画</a></p>
+<p><a href="../waterfall-list-autoscroll/">实现 瀑布流列表·自动滚动动画</a></p>
 </li>
 <li>
-<p><a href="../waterfall-list-horizontal/">横向 瀑布流列表</a></p>
+<p><a href="../waterfall-list-horizontal/">实现 横向·瀑布流列表</a></p>
 </li>
 <li>
-<p><a href="../multi-gestture-sticker/">仿抖音/小红书，对贴图/贴字 进行拖拽、缩放、旋转等复杂手势</a></p>
+<p><a href="../multi-gestture-sticker/">实现 仿抖音/小红书 对贴图/贴字 进行拖拽、缩放、旋转等复杂手势</a></p>
 </li>
 <li>
-<p><a href="../art-text/">易用的、远程字体动态下载&amp;应用组件</a></p>
+<p><a href="../art-text/">封装一个 易用的、远程字体动态下载&amp;应用组件</a></p>
 </li>
 <li>
-<p><a href="../textinput-alert/">如何封装 低耦合、易用的文本输入框弹窗</a></p>
+<p><a href="../textinput-alert/">封装一个 低耦合、易用的文本输入框弹窗</a></p>
+</li>
+<li>
+<p><a href="../alert-multiple">优雅实现 RN弹窗 支持多层弹窗</a></p>
+</li>
+<li>
+<p><a href="">实践 多tab多列表滑动吸顶效果</a> [todo]</p>
+</li>
+<li>
+<p><a href="">实践 列表Item精确曝光埋点</a> [todo]</p>
+</li>
+<li>
+<p><a href="">实践 拆包</a> [todo]</p>
 </li>
 </ul>
-<p><img src="https://cocoapods.org/favicons/favicon.ico" alt="pod"></p>
-<figure><img src="https://cocoapods.org/favicons/favicon.ico" width="10"/>
-</figure>
-
+<h2 id="组件库">组件库</h2>
+<ul>
+<li><a href="https://github.com/zyestin/react-native-remote-font">易用的应用远程字体的text组件库</a> - <a href="https://www.npmjs.com/package/react-native-remote-font">react-native-remote-font</a></li>
+</ul>
+<h2 id="其它提效工具">其它（提效、工具&hellip;)</h2>
+<ul>
+<li>
+<p><a href="../code-standards/">探究 代码规范</a></p>
+</li>
+<li>
+<p><a href="../vscode-efficient/">React Native 编码提效 on VSCode</a></p>
+</li>
+<li>
+<p><a href="../create-npm-lib">用脚手架 制作一个RN库 放npm(含踏坑记录)</a></p>
+</li>
+<li>
+<p><a href="../rn-pull-request/">贡献给react-native的第一个PR</a></p>
+</li>
+<li>
+<p><a href="">React Hooks 学习收获</a> [todo]</p>
+<ul>
+<li><a href="">常用hooks依赖检查，从源头提醒避免奇葩bug</a></li>
+</ul>
+</li>
+<li>
+<p><a href="">从0到1用Jenkins实现对RN项目一键打包、发布</a> [todo]</p>
+</li>
+</ul>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <ul class="pa0">
   
    <li class="list di">
@@ -271,6 +336,10 @@ React Native 编码提效 on VSCode
         </li>
 	    
 	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/alert-multiple/">优雅实现 RN弹窗 支持多层弹窗</a>
+        </li>
+	    
+	     <li  class="mb2">
           <a href="/zyestin/posts/rn/textinput-alert/">封装 低耦合、易用的文本输入框弹窗</a>
         </li>
 	    
@@ -284,6 +353,10 @@ React Native 编码提效 on VSCode
 	    
 	     <li  class="mb2">
           <a href="/zyestin/posts/rn/waterfall-list-horizontal/">横向 瀑布流列表</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/create-npm-lib/">用脚手架 制作一个RN库 放npm</a>
         </li>
 	    
 	     <li  class="mb2">
@@ -301,15 +374,15 @@ React Native 编码提效 on VSCode
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
   <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://zyestin.github.io/zyestin/" >
-    &copy;  zyestin 2023 
+    &copy;  zyestin 2024 
   </a>
     <div>
 <div class="ananke-socials">
   
     
-    <a href="https://zyestin.github.io/zyestin/posts/rn/readme/" target="_blank" rel="noopener" class="All ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="All link" aria-label="follow on All——Opens in a new window">
+    <a href="https://zyestin.github.io/zyestin/posts/rn/readme/" target="_blank" rel="noopener" class="ALL ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="ALL link" aria-label="follow on ALL——Opens in a new window">
       
-        All
+        ALL
       
 <span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
 <path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
@@ -330,7 +403,7 @@ React Native 编码提效 on VSCode
 </span></a>
   
     
-    <a href="https://www.jianshu.com/u/3601cd1fe82d" target="_blank" rel="noopener" class="Jian ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Jian link" aria-label="follow on Jian——Opens in a new window">
+    <a href="https://www.jianshu.com/u/3601cd1fe82d" target="_blank" rel="noopener" class="jianshu ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Jian link" aria-label="follow on Jian——Opens in a new window">
       
         Jian
       

@@ -4,10 +4,25 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title> 实现 FlatList 、flashList、masonryFlashList 各种列表的自动滚动动画 | zyestin</title>
+    <title>第一次提交PR给react-native | zyestin</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="ScrollView滚动动画 实现起来就很容易
-import React, { useRef, useEffect } from &#34;react&#34;; import { ScrollView, Text, View, Animated, Easing } from &#34;react-native&#34;; /** * ScrollView自动滚动了！ */ const AutoScrollScrollView = () =&gt; { const scrollViewRef = useRef(); const scrollY = useRef(new Animated.Value(0)).current; const contentHeight = 1000; // 你的内容高度 const scrollDuration = 5000; // 滚动动画的持续时间（毫秒） useEffect(() =&gt; { const startScrollAnimation = () =&gt; { Animated.timing(scrollY, { toValue: contentHeight, duration: scrollDuration, easing: Easing.linear, useNativeDriver: false, }).">
+    <meta name="description" content="用了3年RN了，第一次给RN提交PR，有点激动，值得记录呀！
+操作记录 git操作全在github完成
+2023.12.05 7:52PM 提交 fork -&gt; 创建分支 -&gt; 改代码 -&gt; 提交
+然后进入pull request tab ，就能看到Compare &amp; pull request入口，点击它
+生成的PR地址： https://github.com/facebook/react-native/pull/41803
+然后就进入 PR描述编辑区，按提示编辑完，提交即可
+首次提交PR，提示需要签署CLA
+跳转到这里 https://github.com/facebook/react-native/pull/41803/checks?check_run_id=19326140445
+再打开 https://code.facebook.com/cla， 进行签署CLA
+签署后，这个页面就进入一个无法编辑的状态，虽然顶部有提示，如果在签CLA之前已经提交了一个，再耐心等待会，会自动处理的
+👉🏻这个友人的经历是很好的借鉴
+于是，从21:49，等啊等，到了 23:54，才有反馈
+第二天早上一看 10:13，还给了我建议，我点击一下 Commit suggestion就ok了
+最后就差maintainer批准了 一般多久批准呢？ 浏览了2个merged的PR，都是2天
+2023.12.13 11:24PM 终于收到邮件 PR被合并 This pull request was successfully merged by @zyestin in 5217cc9. 并且紧接着收到邮件 PR被关闭 Closed #41803 via 5217cc9. 那何时 带有我贡献的代码 会被发布呢？
+等待下一个版本被推出的时候咯
+待续~">
     <meta name="generator" content="Hugo 0.117.0">
     
     
@@ -32,22 +47,67 @@ import React, { useRef, useEffect } from &#34;react&#34;; import { ScrollView, T
 
     
     
-    <meta property="og:title" content=" 实现 FlatList 、flashList、masonryFlashList 各种列表的自动滚动动画" />
-<meta property="og:description" content="ScrollView滚动动画 实现起来就很容易
-import React, { useRef, useEffect } from &#34;react&#34;; import { ScrollView, Text, View, Animated, Easing } from &#34;react-native&#34;; /** * ScrollView自动滚动了！ */ const AutoScrollScrollView = () =&gt; { const scrollViewRef = useRef(); const scrollY = useRef(new Animated.Value(0)).current; const contentHeight = 1000; // 你的内容高度 const scrollDuration = 5000; // 滚动动画的持续时间（毫秒） useEffect(() =&gt; { const startScrollAnimation = () =&gt; { Animated.timing(scrollY, { toValue: contentHeight, duration: scrollDuration, easing: Easing.linear, useNativeDriver: false, })." />
+    <meta property="og:title" content="第一次提交PR给react-native" />
+<meta property="og:description" content="用了3年RN了，第一次给RN提交PR，有点激动，值得记录呀！
+操作记录 git操作全在github完成
+2023.12.05 7:52PM 提交 fork -&gt; 创建分支 -&gt; 改代码 -&gt; 提交
+然后进入pull request tab ，就能看到Compare &amp; pull request入口，点击它
+生成的PR地址： https://github.com/facebook/react-native/pull/41803
+然后就进入 PR描述编辑区，按提示编辑完，提交即可
+首次提交PR，提示需要签署CLA
+跳转到这里 https://github.com/facebook/react-native/pull/41803/checks?check_run_id=19326140445
+再打开 https://code.facebook.com/cla， 进行签署CLA
+签署后，这个页面就进入一个无法编辑的状态，虽然顶部有提示，如果在签CLA之前已经提交了一个，再耐心等待会，会自动处理的
+👉🏻这个友人的经历是很好的借鉴
+于是，从21:49，等啊等，到了 23:54，才有反馈
+第二天早上一看 10:13，还给了我建议，我点击一下 Commit suggestion就ok了
+最后就差maintainer批准了 一般多久批准呢？ 浏览了2个merged的PR，都是2天
+2023.12.13 11:24PM 终于收到邮件 PR被合并 This pull request was successfully merged by @zyestin in 5217cc9. 并且紧接着收到邮件 PR被关闭 Closed #41803 via 5217cc9. 那何时 带有我贡献的代码 会被发布呢？
+等待下一个版本被推出的时候咯
+待续~" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://zyestin.github.io/zyestin/posts/rn/waterfall-list-autoscroll/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-11-01T12:00:11+08:00" />
-<meta property="article:modified_time" content="2023-11-01T12:00:11+08:00" />
-<meta itemprop="name" content=" 实现 FlatList 、flashList、masonryFlashList 各种列表的自动滚动动画">
-<meta itemprop="description" content="ScrollView滚动动画 实现起来就很容易
-import React, { useRef, useEffect } from &#34;react&#34;; import { ScrollView, Text, View, Animated, Easing } from &#34;react-native&#34;; /** * ScrollView自动滚动了！ */ const AutoScrollScrollView = () =&gt; { const scrollViewRef = useRef(); const scrollY = useRef(new Animated.Value(0)).current; const contentHeight = 1000; // 你的内容高度 const scrollDuration = 5000; // 滚动动画的持续时间（毫秒） useEffect(() =&gt; { const startScrollAnimation = () =&gt; { Animated.timing(scrollY, { toValue: contentHeight, duration: scrollDuration, easing: Easing.linear, useNativeDriver: false, })."><meta itemprop="datePublished" content="2023-11-01T12:00:11+08:00" />
-<meta itemprop="dateModified" content="2023-11-01T12:00:11+08:00" />
-<meta itemprop="wordCount" content="409">
+<meta property="og:url" content="https://zyestin.github.io/zyestin/posts/rn/rn-pull-request/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-12-18T12:00:11+08:00" />
+<meta property="article:modified_time" content="2023-12-18T12:00:11+08:00" />
+<meta itemprop="name" content="第一次提交PR给react-native">
+<meta itemprop="description" content="用了3年RN了，第一次给RN提交PR，有点激动，值得记录呀！
+操作记录 git操作全在github完成
+2023.12.05 7:52PM 提交 fork -&gt; 创建分支 -&gt; 改代码 -&gt; 提交
+然后进入pull request tab ，就能看到Compare &amp; pull request入口，点击它
+生成的PR地址： https://github.com/facebook/react-native/pull/41803
+然后就进入 PR描述编辑区，按提示编辑完，提交即可
+首次提交PR，提示需要签署CLA
+跳转到这里 https://github.com/facebook/react-native/pull/41803/checks?check_run_id=19326140445
+再打开 https://code.facebook.com/cla， 进行签署CLA
+签署后，这个页面就进入一个无法编辑的状态，虽然顶部有提示，如果在签CLA之前已经提交了一个，再耐心等待会，会自动处理的
+👉🏻这个友人的经历是很好的借鉴
+于是，从21:49，等啊等，到了 23:54，才有反馈
+第二天早上一看 10:13，还给了我建议，我点击一下 Commit suggestion就ok了
+最后就差maintainer批准了 一般多久批准呢？ 浏览了2个merged的PR，都是2天
+2023.12.13 11:24PM 终于收到邮件 PR被合并 This pull request was successfully merged by @zyestin in 5217cc9. 并且紧接着收到邮件 PR被关闭 Closed #41803 via 5217cc9. 那何时 带有我贡献的代码 会被发布呢？
+等待下一个版本被推出的时候咯
+待续~"><meta itemprop="datePublished" content="2023-12-18T12:00:11+08:00" />
+<meta itemprop="dateModified" content="2023-12-18T12:00:11+08:00" />
+<meta itemprop="wordCount" content="66">
 <meta itemprop="keywords" content="react-native," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content=" 实现 FlatList 、flashList、masonryFlashList 各种列表的自动滚动动画"/>
-<meta name="twitter:description" content="ScrollView滚动动画 实现起来就很容易
-import React, { useRef, useEffect } from &#34;react&#34;; import { ScrollView, Text, View, Animated, Easing } from &#34;react-native&#34;; /** * ScrollView自动滚动了！ */ const AutoScrollScrollView = () =&gt; { const scrollViewRef = useRef(); const scrollY = useRef(new Animated.Value(0)).current; const contentHeight = 1000; // 你的内容高度 const scrollDuration = 5000; // 滚动动画的持续时间（毫秒） useEffect(() =&gt; { const startScrollAnimation = () =&gt; { Animated.timing(scrollY, { toValue: contentHeight, duration: scrollDuration, easing: Easing.linear, useNativeDriver: false, })."/>
+<meta name="twitter:title" content="第一次提交PR给react-native"/>
+<meta name="twitter:description" content="用了3年RN了，第一次给RN提交PR，有点激动，值得记录呀！
+操作记录 git操作全在github完成
+2023.12.05 7:52PM 提交 fork -&gt; 创建分支 -&gt; 改代码 -&gt; 提交
+然后进入pull request tab ，就能看到Compare &amp; pull request入口，点击它
+生成的PR地址： https://github.com/facebook/react-native/pull/41803
+然后就进入 PR描述编辑区，按提示编辑完，提交即可
+首次提交PR，提示需要签署CLA
+跳转到这里 https://github.com/facebook/react-native/pull/41803/checks?check_run_id=19326140445
+再打开 https://code.facebook.com/cla， 进行签署CLA
+签署后，这个页面就进入一个无法编辑的状态，虽然顶部有提示，如果在签CLA之前已经提交了一个，再耐心等待会，会自动处理的
+👉🏻这个友人的经历是很好的借鉴
+于是，从21:49，等啊等，到了 23:54，才有反馈
+第二天早上一看 10:13，还给了我建议，我点击一下 Commit suggestion就ok了
+最后就差maintainer批准了 一般多久批准呢？ 浏览了2个merged的PR，都是2天
+2023.12.13 11:24PM 终于收到邮件 PR被合并 This pull request was successfully merged by @zyestin in 5217cc9. 并且紧接着收到邮件 PR被关闭 Closed #41803 via 5217cc9. 那何时 带有我贡献的代码 会被发布呢？
+等待下一个版本被推出的时候咯
+待续~"/>
 
 	
   </head>
@@ -153,7 +213,7 @@ import React, { useRef, useEffect } from &#34;react&#34;; import { ScrollView, T
   </div>
 
 
-      <h1 class="f1 athelas mt3 mb1"> 实现 FlatList 、flashList、masonryFlashList 各种列表的自动滚动动画</h1>
+      <h1 class="f1 athelas mt3 mb1">第一次提交PR给react-native</h1>
       
       <p class="tracked">
         By <strong>yestin</strong>
@@ -161,188 +221,60 @@ import React, { useRef, useEffect } from &#34;react&#34;; import { ScrollView, T
       
       
       
-      <time class="f6 mv4 dib tracked" datetime="2023-11-01T12:00:11+08:00">November 1, 2023</time>
+      <time class="f6 mv4 dib tracked" datetime="2023-12-18T12:00:11+08:00">December 18, 2023</time>
       
 
       
       
     </header>
-    <div class="nested-copy-line-height lh-copy avenir bg-near-white f4 nested-links mid-gray pr4-l w-two-thirds-l"><h2 id="scrollview滚动动画">ScrollView滚动动画</h2>
-<p>实现起来就很容易</p>
-<!-- raw HTML omitted -->
-<pre tabindex="0"><code>import React, { useRef, useEffect } from &#34;react&#34;;
-import { ScrollView, Text, View, Animated, Easing } from &#34;react-native&#34;;
-
-/**
- * ScrollView自动滚动了！
- */
-const AutoScrollScrollView = () =&gt; {
-  const scrollViewRef = useRef();
-  const scrollY = useRef(new Animated.Value(0)).current;
-
-  const contentHeight = 1000; // 你的内容高度
-  const scrollDuration = 5000; // 滚动动画的持续时间（毫秒）
-
-  useEffect(() =&gt; {
-    const startScrollAnimation = () =&gt; {
-      Animated.timing(scrollY, {
-        toValue: contentHeight,
-        duration: scrollDuration,
-        easing: Easing.linear,
-        useNativeDriver: false,
-      }).start(() =&gt; {
-        // 滚动到顶部并重新开始动画
-        scrollY.setValue(0);
-        startScrollAnimation();
-      });
-    };
-
-    startScrollAnimation();
-  }, []);
-
-  return (
-    &lt;ScrollView
-      ref={scrollViewRef}
-      contentContainerStyle={{ height: contentHeight }}
-      onScroll={(event) =&gt; {
-        const offsetY = event.nativeEvent.contentOffset.y;
-        // 可以在滚动时执行一些其他操作
-      }}
-      scrollEventThrottle={16}
-    &gt;
-      &lt;Animated.View
-        style={{
-          height: contentHeight,
-          transform: [{ translateY: scrollY }],
-        }}
-      &gt;
-        &lt;Text&gt;Scrolling Content&lt;/Text&gt;
-        {/* 这里可以放置你的滚动内容 */}
-      &lt;/Animated.View&gt;
-    &lt;/ScrollView&gt;
-  );
-};
-
-export default AutoScrollScrollView;
-</code></pre><!-- raw HTML omitted -->
-<h2 id="非scrollview类的列表-滚动动画">非ScrollView类的列表 滚动动画</h2>
-<p>然而，FlatList 、flashList、masonryFlashList要实现自动滚动动画， 却用不了<code>ScrollView</code>同样的方式，实现起来就很曲折，经过各种尝试均失败，无奈，使用定时器方式实现了，</p>
-<p>效果图：<br>
-<img src="media/17007124884240/flatlist_auto_scroll.gif" alt="flatlist_auto_scroll"></p>
-<p>源码如下</p>
-<pre tabindex="0"><code>import React, { useRef, useEffect, useState } from &#34;react&#34;;
-import { FlatList, View, Text } from &#34;react-native&#34;;
-import { MasonryFlashList } from &#34;@shopify/flash-list&#34;;
-
-const data = Array.from({ length: 20 }, (_, index) =&gt; ({
-  key: index.toString(),
-  text: `Item ${index}`,
-}));
-
-const renderItem = ({ item }) =&gt; (
-  &lt;View
-    style={{
-      height: 100,
-      justifyContent: &#34;center&#34;,
-      alignItems: &#34;center&#34;,
-    }}
-  &gt;
-    &lt;Text&gt;{item.text}&lt;/Text&gt;
-  &lt;/View&gt;
-);
-
-const SlowScrollFlatList = ({ duration }) =&gt; {
-  const flatListRef = useRef();
-  const scrollDistance = 2; // 控制每次滚动的距离
-  const scrollInterval = 20; // 每次滚动之间的间隔时间（毫秒）
-  const [isDragging, setIsDragging] = useState(false);
-
-  const scrollIntervalId = useRef(null);
-  const currentScrollDistance = useRef(0);
-
-  const totalScrollDistance = 100 * (data.length - 1);
-
-  const scroll = () =&gt; {
-    if (currentScrollDistance.current &lt; totalScrollDistance &amp;&amp; !isDragging) {
-      const nextDistance = Math.min(
-        totalScrollDistance,
-        currentScrollDistance.current + scrollDistance
-      );
-      flatListRef.current.scrollToOffset({
-        offset: nextDistance,
-        animated: false,
-      });
-      currentScrollDistance.current = nextDistance;
-    }
-  };
-
-  const startAutoScroll = () =&gt; {
-    scrollIntervalId.current = setInterval(scroll, scrollInterval);
-  };
-
-  // 监听FlatList的滚动位置
-  const onScroll = (event) =&gt; {
-    currentScrollDistance.current = event.nativeEvent.contentOffset.y;
-  };
-
-  useEffect(() =&gt; {
-    const stopAutoScroll = () =&gt; {
-      clearInterval(scrollIntervalId.current);
-    };
-
-    flatListRef.current.scrollToOffset({
-      offset: currentScrollDistance.current,
-      animated: false,
-    });
-
-    startAutoScroll(); // 初始启动自动滚动
-
-    return () =&gt; {
-      stopAutoScroll();
-    };
-  }, [isDragging]);
-
-  return (
-    // &lt;FlatList
-    //   ref={flatListRef}
-    //   data={data}
-    //   renderItem={renderItem}
-    //   keyExtractor={(item) =&gt; item.key}
-    //   onScrollBeginDrag={() =&gt; setIsDragging(true)}
-    //   onScrollEndDrag={() =&gt; {
-    //     setIsDragging(false);
-    //     startAutoScroll(); // 用户停止拖动后，重新启动自动滚动
-    //   }}
-    //   onScroll={onScroll}
-    //   // 设置其他 FlatList 的属性
-    // /&gt;
-
-    &lt;MasonryFlashList
-      ref={flatListRef}
-      estimatedItemSize={/* itemStyles.container.height */ 100}
-      data={data}
-      keyExtractor={(item, index) =&gt; item?.key}
-      initialNumToRender={5}
-      numColumns={2}
-      renderItem={renderItem}
-      showsVerticalScrollIndicator={false}
-      onScrollBeginDrag={() =&gt; setIsDragging(true)}
-      onScrollEndDrag={() =&gt; {
-        setIsDragging(false);
-        startAutoScroll(); // 用户停止拖动后，重新启动自动滚动
-      }}
-      onScroll={onScroll}
-    /&gt;
-  );
-};
-
-export default SlowScrollFlatList;
-</code></pre><p><strong>核心逻辑</strong>：</p>
-<p>每间隔 <code>scrollInterval</code> ms，滚动 <code>scrollDistance</code> 小步距离</p>
-<p>当 <code>scrollInterval</code>足够小，在<code>1/60</code>s 即16ms左右时，就类似于流畅的每秒60帧动画了</p>
-<p>根据实际的效果，调节<code>scrollInterval</code> 、<code>scrollDistance</code> 大小，使达到满意的效果</p>
-<h3 id="实际场景应用">实际场景应用</h3>
-<p>请前往 慢速自动滚动的<a href="../waterfall-list-horizontal/">横向瀑布流列表</a></p>
+    <div class="nested-copy-line-height lh-copy avenir bg-near-white f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>用了3年RN了，第一次给RN提交PR，有点激动，值得记录呀！</p>
+<h2 id="操作记录">操作记录</h2>
+<p>git操作全在github完成</p>
+<ul>
+<li><strong><!-- raw HTML omitted -->2023.12.05 7:52PM<!-- raw HTML omitted --></strong> 提交</li>
+</ul>
+<p><code>fork</code> -&gt; 创建分支 -&gt; 改代码 -&gt; 提交</p>
+<p>然后进入<code>pull request</code> tab ，就能看到<code>Compare &amp; pull request</code>入口，点击它</p>
+<blockquote>
+<p>生成的PR地址：
+<a href="https://github.com/facebook/react-native/pull/41803">https://github.com/facebook/react-native/pull/41803</a></p>
+</blockquote>
+<p>然后就进入 PR描述编辑区，按提示编辑完，提交即可</p>
+<p>首次提交PR，提示需要签署CLA</p>
+<p><img src="media/17017774574258/17017777560530.jpg" alt=""></p>
+<p>跳转到这里
+<a href="https://github.com/facebook/react-native/pull/41803/checks?check_run_id=19326140445">https://github.com/facebook/react-native/pull/41803/checks?check_run_id=19326140445</a></p>
+<p>再打开  <a href="https://code.facebook.com/cla">https://code.facebook.com/cla</a>， 进行签署CLA</p>
+<p><img src="media/17017774574258/17017774633833.jpg" alt=""></p>
+<p>签署后，这个页面就进入一个无法编辑的状态，虽然顶部有提示，如果在签CLA之前已经提交了一个，再耐心等待会，会自动处理的</p>
+<blockquote>
+<p>👉🏻<a href="https://juejin.cn/post/7056792726104178702">这个友人的经历是很好的借鉴</a></p>
+</blockquote>
+<p>于是，从21:49，等啊等，到了 23:54，才有反馈</p>
+<p><img src="media/17017774574258/17018283116105.jpg" alt=""></p>
+<p>第二天早上一看 10:13，还给了我建议，我点击一下 <code>Commit suggestion</code>就ok了</p>
+<p>最后就差<code>maintainer</code>批准了
+<img src="media/17017774574258/17018284043383.jpg" alt=""></p>
+<blockquote>
+<p>一般多久批准呢？
+浏览了2个merged的PR，都是2天</p>
+</blockquote>
+<hr>
+<ul>
+<li><strong><!-- raw HTML omitted -->2023.12.13 11:24PM<!-- raw HTML omitted --></strong> 终于收到邮件 PR被合并</li>
+</ul>
+<pre tabindex="0"><code>This pull request was successfully merged by @zyestin in 5217cc9.
+</code></pre><ul>
+<li>并且紧接着收到邮件 PR被关闭</li>
+</ul>
+<pre tabindex="0"><code>Closed #41803 via 5217cc9.
+</code></pre><p><img src="media/17017774574258/17026222613956.jpg" alt=""></p>
+<blockquote>
+<p>那何时 带有我贡献的代码 会被发布呢？<br>
+等待下一个版本被推出的时候咯</p>
+</blockquote>
+<hr>
+<p>待续~</p>
 <ul class="pa0">
   
    <li class="list di">
@@ -365,6 +297,10 @@ export default SlowScrollFlatList;
     <p class="f5 b mb3">Related</p>
     <ul class="pa0 list">
 	   
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/waterfall-list-autoscroll/"> 实现 FlatList 、flashList、masonryFlashList 各种列表的自动滚动动画</a>
+        </li>
+	    
 	     <li  class="mb2">
           <a href="/zyestin/posts/rn/multi-gestture-sticker/">RN 动画 - 缩放、旋转、拖拽</a>
         </li>

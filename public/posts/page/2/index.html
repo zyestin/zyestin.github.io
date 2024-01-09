@@ -69,9 +69,9 @@
 <div class="ananke-socials">
   
     
-    <a href="https://zyestin.github.io/zyestin/posts/rn/readme/" target="_blank" rel="noopener" class="All ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="All link" aria-label="follow on All——Opens in a new window">
+    <a href="https://zyestin.github.io/zyestin/posts/rn/readme/" target="_blank" rel="noopener" class="ALL ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="ALL link" aria-label="follow on ALL——Opens in a new window">
       
-        All
+        ALL
       
 <span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
 <path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
@@ -92,7 +92,7 @@
 </span></a>
   
     
-    <a href="https://www.jianshu.com/u/3601cd1fe82d" target="_blank" rel="noopener" class="Jian ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Jian link" aria-label="follow on Jian——Opens in a new window">
+    <a href="https://www.jianshu.com/u/3601cd1fe82d" target="_blank" rel="noopener" class="jianshu ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Jian link" aria-label="follow on Jian——Opens in a new window">
       
         Jian
       
@@ -132,6 +132,60 @@
   <article class="pa3 pa4-ns nested-copy-line-height">
     <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy mid-gray"></section>
     <section class="flex-ns flex-wrap justify-around mt5">
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/zyestin/posts/rn/waterfall-list-horizontal/" class="link black dim">
+        横向 瀑布流列表
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      需求 效果展示 源码 import { StyleSheet, Text, TouchableOpacity, View } from &#34;react-native&#34;; import React, { useEffect, useRef, useState } from &#34;react&#34;; import HBImage from &#34;../../../../components/image/HBImage&#34;; import { px2dp } from &#34;../../../../utils/ScreenUtils&#34;; import { MasonryFlashList } from &#34;@shopify/flash-list&#34;; import { bookOpenChoices } from &#34;app/service/MarkService&#34;; import * as indexUtil from &#34;app/utils/index&#34;; const itemWidth = px2dp(12 + 86.5 + 251.5); const itemHeight = px2dp(139); const itemSpace = px2dp(17); const UserChooseBook = (props) =&gt; { const { selectedSex, marks } = props; const [dataList, setDataList] = useState([]); const listViewRef = useRef(null); const { onScrollBeginDrag, onScroll } = useListViewAutoScrollAnimate({ listViewRef: listViewRef, framesPerSecond: 40, // 1000/40 = 25帧/秒 offsetPerFrame: 1, totalScrollDistance: (itemWidth * Math.
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/zyestin/posts/rn/create-npm-lib/" class="link black dim">
+        用脚手架 制作一个RN库 放npm
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      脚手架 create-react-native-module
+脚手架使用（顺利） 工具安装 npm install -g yarn npm install -g create-react-native-module 脚手架命令 create-react-native-module RemoteFont --object-class-name react-native-remote-font --object-class-name RemoteFontLoader --native-package-id com.yestin.font --platforms ios,android --github-account zyestin --author-name yestin --author-email zyestin@gmail.com --generate-example --example-react-native-template react-native@0.62 过程中发现，若不指定--example-react-native-template react-native@0.62，发现总有这样的报错日志
+pod --version failure, aborting with broken example app Error while creating library module react-native-remote-font Error: Command failed with ENOENT: pod --version spawnSync pod ENOENT at Object.spawnSync (internal/child_process.js:1077:20) at Object.spawnSync (child_process.js:776:24) at Function.module.exports.sync (/usr/local/lib/node_modules/create-react-native-module/node_modules/execa/index.js:174:25) at module.exports.commandSync (/usr/local/lib/node_modules/create-react-native-module/node_modules/execa/index.js:235:15) at /usr/local/lib/node_modules/create-react-native-module/lib/lib.
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/zyestin/posts/rn/art-text/" class="link black dim">
+        远程字体的动态加载&amp;应用
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      示例效果展示 切换到新字体，经过loading后，应用上新字体 切换到已加载过的字体，直接应用上 iOS Android 使用/Usage 封装后，如下这样使用，解耦的干干净净
+import { StyleSheet, Text, TouchableOpacity, View } from &#34;react-native&#34;; import React, { useState } from &#34;react&#34;; import ArtText from &#34;./ArtText&#34;; const ArtTextDemo = () =&gt; { const [fontInfoIndex, setFontInfoIndex] = useState(0); return ( &lt;View style={{ flex: 1, padding:100 }}&gt; &lt;TouchableOpacity style={{padding:10}} onPress={() =&gt; { setFontInfoIndex((fontInfoIndex + 1) % fontInfoList.length); }} &gt; &lt;Text&gt;{&#34;Switch Font&#34;}&lt;/Text&gt; &lt;/TouchableOpacity&gt; &lt;Text style={{ marginVertical: 20 }}&gt; {&#34;Current font - &#34; + fontInfoIndex + &#34; - &#34; + fontInfoList[fontInfoIndex].
+    </div>
+  </div>
+</div>
+
+        </div>
       
         <div class="relative w-100 w-30-l mb4 bg-white">
           <div class="relative w-100 mb4 bg-white nested-copy-line-height">
@@ -182,15 +236,15 @@ my-first-post.md 注意删掉/注释掉 draft:true 这样 push到github时，pub
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
   <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://zyestin.github.io/zyestin/" >
-    &copy;  zyestin 2023 
+    &copy;  zyestin 2024 
   </a>
     <div>
 <div class="ananke-socials">
   
     
-    <a href="https://zyestin.github.io/zyestin/posts/rn/readme/" target="_blank" rel="noopener" class="All ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="All link" aria-label="follow on All——Opens in a new window">
+    <a href="https://zyestin.github.io/zyestin/posts/rn/readme/" target="_blank" rel="noopener" class="ALL ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="ALL link" aria-label="follow on ALL——Opens in a new window">
       
-        All
+        ALL
       
 <span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
 <path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
@@ -211,7 +265,7 @@ my-first-post.md 注意删掉/注释掉 draft:true 这样 push到github时，pub
 </span></a>
   
     
-    <a href="https://www.jianshu.com/u/3601cd1fe82d" target="_blank" rel="noopener" class="Jian ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Jian link" aria-label="follow on Jian——Opens in a new window">
+    <a href="https://www.jianshu.com/u/3601cd1fe82d" target="_blank" rel="noopener" class="jianshu ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Jian link" aria-label="follow on Jian——Opens in a new window">
       
         Jian
       

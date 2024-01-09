@@ -69,9 +69,9 @@
 <div class="ananke-socials">
   
     
-    <a href="https://zyestin.github.io/zyestin/posts/rn/readme/" target="_blank" rel="noopener" class="All ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="All link" aria-label="follow on All——Opens in a new window">
+    <a href="https://zyestin.github.io/zyestin/posts/rn/readme/" target="_blank" rel="noopener" class="ALL ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="ALL link" aria-label="follow on ALL——Opens in a new window">
       
-        All
+        ALL
       
 <span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
 <path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
@@ -92,7 +92,7 @@
 </span></a>
   
     
-    <a href="https://www.jianshu.com/u/3601cd1fe82d" target="_blank" rel="noopener" class="Jian ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Jian link" aria-label="follow on Jian——Opens in a new window">
+    <a href="https://www.jianshu.com/u/3601cd1fe82d" target="_blank" rel="noopener" class="jianshu ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Jian link" aria-label="follow on Jian——Opens in a new window">
       
         Jian
       
@@ -154,6 +154,46 @@
 
       <section class="w-100 mw8">
         
+        
+          <div class="relative w-100 mb4">
+            
+<article class="bb b--black-10">
+  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
+    <div class="flex flex-column flex-row-ns">
+      
+      <div class="blah w-100">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="/zyestin/posts/rn/rn-pull-request/" class="color-inherit dim link">
+            第一次提交PR给react-native
+            </a>
+        </h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
+          用了3年RN了，第一次给RN提交PR，有点激动，值得记录呀！
+操作记录 git操作全在github完成
+2023.12.05 7:52PM 提交 fork -&gt; 创建分支 -&gt; 改代码 -&gt; 提交
+然后进入pull request tab ，就能看到Compare &amp; pull request入口，点击它
+生成的PR地址： https://github.com/facebook/react-native/pull/41803
+然后就进入 PR描述编辑区，按提示编辑完，提交即可
+首次提交PR，提示需要签署CLA
+跳转到这里 https://github.com/facebook/react-native/pull/41803/checks?check_run_id=19326140445
+再打开 https://code.facebook.com/cla， 进行签署CLA
+签署后，这个页面就进入一个无法编辑的状态，虽然顶部有提示，如果在签CLA之前已经提交了一个，再耐心等待会，会自动处理的
+👉🏻这个友人的经历是很好的借鉴
+于是，从21:49，等啊等，到了 23:54，才有反馈
+第二天早上一看 10:13，还给了我建议，我点击一下 Commit suggestion就ok了
+最后就差maintainer批准了 一般多久批准呢？ 浏览了2个merged的PR，都是2天
+2023.12.13 11:24PM 终于收到邮件 PR被合并 This pull request was successfully merged by @zyestin in 5217cc9. 并且紧接着收到邮件 PR被关闭 Closed #41803 via 5217cc9. 那何时 带有我贡献的代码 会被发布呢？
+等待下一个版本被推出的时候咯
+待续~
+        </div>
+          <a href="/zyestin/posts/rn/rn-pull-request/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+          </div>
         
           <div class="relative w-100 mb4">
             
@@ -232,15 +272,23 @@ Mac、VSC快捷键 Mac 系统自带
             </a>
         </h1>
         <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
-          代码规范
+          一些业务的最佳实践探索 基础组件封装
+瀑布流列表base组件 图片base组件 实现 模仿抖音、小红书 输入 #标签 高亮
+实现 瀑布流列表·自动滚动动画
+实现 横向·瀑布流列表
+实现 仿抖音/小红书 对贴图/贴字 进行拖拽、缩放、旋转等复杂手势
+封装一个 易用的、远程字体动态下载&amp;应用组件
+封装一个 低耦合、易用的文本输入框弹窗
+优雅实现 RN弹窗 支持多层弹窗
+实践 多tab多列表滑动吸顶效果 [todo]
+实践 列表Item精确曝光埋点 [todo]
+实践 拆包 [todo]
+组件库 易用的应用远程字体的text组件库 - react-native-remote-font 其它（提效、工具&hellip;) 探究 代码规范
 React Native 编码提效 on VSCode
-基础组件封装
-瀑布流列表base组件 图片base组件 模仿抖音、小红书 输入 #标签 高亮 方案
-瀑布流列表 自动滚动动画
-横向 瀑布流列表
-仿抖音/小红书，对贴图/贴字 进行拖拽、缩放、旋转等复杂手势
-易用的、远程字体动态下载&amp;应用组件
-如何封装 低耦合、易用的文本输入框弹窗
+用脚手架 制作一个RN库 放npm(含踏坑记录)
+贡献给react-native的第一个PR
+React Hooks 学习收获 [todo]
+常用hooks依赖检查，从源头提醒避免奇葩bug 从0到1用Jenkins实现对RN项目一键打包、发布 [todo]
         </div>
           <a href="/zyestin/posts/rn/readme/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
         
@@ -287,43 +335,24 @@ HBMultiGestureView就类似一个三方库，不是面向具体业务的，俗�
 
           </div>
         
-          <div class="relative w-100 mb4">
-            
-<article class="bb b--black-10">
-  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
-    <div class="flex flex-column flex-row-ns">
-      
-      <div class="blah w-100">
-        <h1 class="f3 fw1 athelas mt0 lh-title">
-          <a href="/zyestin/posts/rn/code-standards/" class="color-inherit dim link">
-            代码规范
-            </a>
-        </h1>
-        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
-          讨论背景 相信大家写代码时 对自己都有一些要求，比如下面的
-基本期望：写出他人能容易看懂的代码 更高追求：写出他人看起来很爽的代码 每经历一个阶段，大家都对编码有不同程度的进步提升，可以分享；同时也会积累一些场景下代码如屎的烦恼，想要破局。
-于是，阶段性的，需要一个机会，大家开个交流会进行讨论
-（对于每个个体）互通有无，集思广益，团队每人都有所提升 （对于互相之间协作）更多地了解到彼此 阅读代码、写代码的风格习惯，增进理解 （对于工作）对现阶段遇到的痛点，找出更优解，或制定调研计划 每次讨论，规范条款上的收获，不在于多少，至少会收获了一些代码细节上的技巧或认知，最重要的是 大大增进了互相的了解，协作起来将越来越紧密顺畅。
-讨论成果 组件代码结构 关键点: 打开文件后，更方便的看到核心代码（那就尽量靠前咯）
-也就是 render/return组件 之前的代码量尽可能少；那么，就需要通过函数提炼、划分职责等方式转移到别处。
-组件代码 书写顺序 示例如下
-// AAView.js import { xxCalculate, xxUploadEvent } from &#39;app/components/XxModule&#39; import AView from &#39;./components/AView&#39; import BView from &#39;./components/BView&#39; //$$ 用于组件函数内的变量 紧邻写在组件函数上方 const variableUsedInXXComp = ... //组件函数 const AAView = props =&gt; { //$$ props解构, 放第一行 ///reason：即使AAView上面不写@param注释，通过这里的解构也能看出props的参数 const { paramA, paramB } = props //$$ 副作用函数(即use开头的函数)，写在顶层作用域， const [aEverClicked, setAEverClicked] = useState(false) const [bClickedTime, setBClickedTime] = useState(0) .
-        </div>
-          <a href="/zyestin/posts/rn/code-standards/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-        
-      </div>
-    </div>
-  </div>
-</article>
-
-          </div>
-        
       </section>
 
       
       <section class="w-100">
         <h1 class="f3">More</h1>
         
+        
+          <h2 class="f5 fw4 mb4 dib mr3">
+            <a href="/zyestin/posts/rn/code-standards/" class="link black dim">
+              代码规范
+            </a>
+          </h2>
+        
+          <h2 class="f5 fw4 mb4 dib mr3">
+            <a href="/zyestin/posts/rn/alert-multiple/" class="link black dim">
+              优雅实现 RN弹窗 支持多层弹窗
+            </a>
+          </h2>
         
           <h2 class="f5 fw4 mb4 dib mr3">
             <a href="/zyestin/posts/rn/textinput-alert/" class="link black dim">
@@ -334,18 +363,6 @@ HBMultiGestureView就类似一个三方库，不是面向具体业务的，俗�
           <h2 class="f5 fw4 mb4 dib mr3">
             <a href="/zyestin/posts/rn/base-components/" class="link black dim">
               封装常用基础组件
-            </a>
-          </h2>
-        
-          <h2 class="f5 fw4 mb4 dib mr3">
-            <a href="/zyestin/posts/rn/douyin-label-input/" class="link black dim">
-              模仿抖音、小红书 输入 #标签 高亮
-            </a>
-          </h2>
-        
-          <h2 class="f5 fw4 mb4 dib mr3">
-            <a href="/zyestin/posts/rn/waterfall-list-horizontal/" class="link black dim">
-              横向 瀑布流列表
             </a>
           </h2>
         
@@ -364,15 +381,15 @@ HBMultiGestureView就类似一个三方库，不是面向具体业务的，俗�
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
   <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://zyestin.github.io/zyestin/" >
-    &copy;  zyestin 2023 
+    &copy;  zyestin 2024 
   </a>
     <div>
 <div class="ananke-socials">
   
     
-    <a href="https://zyestin.github.io/zyestin/posts/rn/readme/" target="_blank" rel="noopener" class="All ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="All link" aria-label="follow on All——Opens in a new window">
+    <a href="https://zyestin.github.io/zyestin/posts/rn/readme/" target="_blank" rel="noopener" class="ALL ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="ALL link" aria-label="follow on ALL——Opens in a new window">
       
-        All
+        ALL
       
 <span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
 <path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
@@ -393,7 +410,7 @@ HBMultiGestureView就类似一个三方库，不是面向具体业务的，俗�
 </span></a>
   
     
-    <a href="https://www.jianshu.com/u/3601cd1fe82d" target="_blank" rel="noopener" class="Jian ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Jian link" aria-label="follow on Jian——Opens in a new window">
+    <a href="https://www.jianshu.com/u/3601cd1fe82d" target="_blank" rel="noopener" class="jianshu ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Jian link" aria-label="follow on Jian——Opens in a new window">
       
         Jian
       

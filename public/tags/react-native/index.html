@@ -69,9 +69,9 @@
 <div class="ananke-socials">
   
     
-    <a href="https://zyestin.github.io/zyestin/posts/rn/readme/" target="_blank" rel="noopener" class="All ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="All link" aria-label="follow on All——Opens in a new window">
+    <a href="https://zyestin.github.io/zyestin/posts/rn/readme/" target="_blank" rel="noopener" class="ALL ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="ALL link" aria-label="follow on ALL——Opens in a new window">
       
-        All
+        ALL
       
 <span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
 <path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
@@ -92,7 +92,7 @@
 </span></a>
   
     
-    <a href="https://www.jianshu.com/u/3601cd1fe82d" target="_blank" rel="noopener" class="Jian ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Jian link" aria-label="follow on Jian——Opens in a new window">
+    <a href="https://www.jianshu.com/u/3601cd1fe82d" target="_blank" rel="noopener" class="jianshu ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Jian link" aria-label="follow on Jian——Opens in a new window">
       
         Jian
       
@@ -136,6 +136,39 @@
   </article>
   <div class="mw8 center">
     <section class="flex-ns flex-wrap justify-around mt5">
+      
+        <div class="relative w-100  mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/zyestin/posts/rn/rn-pull-request/" class="link black dim">
+        第一次提交PR给react-native
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      用了3年RN了，第一次给RN提交PR，有点激动，值得记录呀！
+操作记录 git操作全在github完成
+2023.12.05 7:52PM 提交 fork -&gt; 创建分支 -&gt; 改代码 -&gt; 提交
+然后进入pull request tab ，就能看到Compare &amp; pull request入口，点击它
+生成的PR地址： https://github.com/facebook/react-native/pull/41803
+然后就进入 PR描述编辑区，按提示编辑完，提交即可
+首次提交PR，提示需要签署CLA
+跳转到这里 https://github.com/facebook/react-native/pull/41803/checks?check_run_id=19326140445
+再打开 https://code.facebook.com/cla， 进行签署CLA
+签署后，这个页面就进入一个无法编辑的状态，虽然顶部有提示，如果在签CLA之前已经提交了一个，再耐心等待会，会自动处理的
+👉🏻这个友人的经历是很好的借鉴
+于是，从21:49，等啊等，到了 23:54，才有反馈
+第二天早上一看 10:13，还给了我建议，我点击一下 Commit suggestion就ok了
+最后就差maintainer批准了 一般多久批准呢？ 浏览了2个merged的PR，都是2天
+2023.12.13 11:24PM 终于收到邮件 PR被合并 This pull request was successfully merged by @zyestin in 5217cc9. 并且紧接着收到邮件 PR被关闭 Closed #41803 via 5217cc9. 那何时 带有我贡献的代码 会被发布呢？
+等待下一个版本被推出的时候咯
+待续~
+    </div>
+  </div>
+</div>
+
+        </div>
       
         <div class="relative w-100  mb4 bg-white">
           <div class="relative w-100 mb4 bg-white nested-copy-line-height">
@@ -197,15 +230,23 @@ Mac、VSC快捷键 Mac 系统自带
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      代码规范
+      一些业务的最佳实践探索 基础组件封装
+瀑布流列表base组件 图片base组件 实现 模仿抖音、小红书 输入 #标签 高亮
+实现 瀑布流列表·自动滚动动画
+实现 横向·瀑布流列表
+实现 仿抖音/小红书 对贴图/贴字 进行拖拽、缩放、旋转等复杂手势
+封装一个 易用的、远程字体动态下载&amp;应用组件
+封装一个 低耦合、易用的文本输入框弹窗
+优雅实现 RN弹窗 支持多层弹窗
+实践 多tab多列表滑动吸顶效果 [todo]
+实践 列表Item精确曝光埋点 [todo]
+实践 拆包 [todo]
+组件库 易用的应用远程字体的text组件库 - react-native-remote-font 其它（提效、工具&hellip;) 探究 代码规范
 React Native 编码提效 on VSCode
-基础组件封装
-瀑布流列表base组件 图片base组件 模仿抖音、小红书 输入 #标签 高亮 方案
-瀑布流列表 自动滚动动画
-横向 瀑布流列表
-仿抖音/小红书，对贴图/贴字 进行拖拽、缩放、旋转等复杂手势
-易用的、远程字体动态下载&amp;应用组件
-如何封装 低耦合、易用的文本输入框弹窗
+用脚手架 制作一个RN库 放npm(含踏坑记录)
+贡献给react-native的第一个PR
+React Hooks 学习收获 [todo]
+常用hooks依赖检查，从源头提醒避免奇葩bug 从0到1用Jenkins实现对RN项目一键打包、发布 [todo]
     </div>
   </div>
 </div>
@@ -259,6 +300,28 @@ HBMultiGestureView就类似一个三方库，不是面向具体业务的，俗�
 也就是 render/return组件 之前的代码量尽可能少；那么，就需要通过函数提炼、划分职责等方式转移到别处。
 组件代码 书写顺序 示例如下
 // AAView.js import { xxCalculate, xxUploadEvent } from &#39;app/components/XxModule&#39; import AView from &#39;./components/AView&#39; import BView from &#39;./components/BView&#39; //$$ 用于组件函数内的变量 紧邻写在组件函数上方 const variableUsedInXXComp = ... //组件函数 const AAView = props =&gt; { //$$ props解构, 放第一行 ///reason：即使AAView上面不写@param注释，通过这里的解构也能看出props的参数 const { paramA, paramB } = props //$$ 副作用函数(即use开头的函数)，写在顶层作用域， const [aEverClicked, setAEverClicked] = useState(false) const [bClickedTime, setBClickedTime] = useState(0) .
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100  mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/zyestin/posts/rn/alert-multiple/" class="link black dim">
+        优雅实现 RN弹窗 支持多层弹窗
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Q: 调用弹窗的极简使用方式是什么？ A: 这样子👉🏻 XxModuleAlert.show({..})
+为了这个极简用法的目标，我曾经 使用rn-global-modal封装过TextInputAlert，但依然有些问题或难用点，比如遮挡了Toast、更改mask颜色要改源码、布局上有些非正常的地方
+因为不希望弹窗遮挡Toast，于是研究了react-native-root-toast，从而找到了封装理想弹窗的更快的方式
+于是，才造了一个 AlertManager
+Why need AlertManager 相信大家使用过RN官方Modal的，都知道，iOS弹窗无法弹两个，使用起来不满足高内聚低耦合，难受。。。
+RN官方Modal 缺点：耦合过多！须visible属性，多1个import useState，多1行代码setVisble声明，弹窗组件须嵌入容器组件 rn-global-modal 优点：函数式调起弹窗，任意处可调用 缺点：iOS 不支持同时多层弹窗；toast的层级低于它 导致看不到/看不清 What AlertManager provide 封装者：封装出高度解耦的弹窗。 使用方：使用极简！ 优势 vs Modal：去掉visible vs rn-global-modal: 支持多层弹窗, TextInput弹窗对键盘支持更好？？ How to use AlertManager 使用方： XxModuleAlert.show({...}); XxModuleAlert.hide(); 封装方: class XxModuleAlert { static show() { AlertManager.show(&lt;XxModuleView /&gt;, { key: XxModuleView.name, }); } static hide() { AlertManager.hide(XxModuleView.name); } } export XxModuleAlert const XxModuleView = () =&gt; { ... return (.
     </div>
   </div>
 </div>
@@ -346,6 +409,25 @@ TextInput上浮一个style大小一致的Text，TextInput文字颜色设为透�
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
+      <a href="/zyestin/posts/rn/create-npm-lib/" class="link black dim">
+        用脚手架 制作一个RN库 放npm
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      脚手架 create-react-native-module
+脚手架使用（顺利） 工具安装 npm install -g yarn npm install -g create-react-native-module 脚手架命令 create-react-native-module RemoteFont --object-class-name react-native-remote-font --object-class-name RemoteFontLoader --native-package-id com.yestin.font --platforms ios,android --github-account zyestin --author-name yestin --author-email zyestin@gmail.com --generate-example --example-react-native-template react-native@0.62 过程中发现，若不指定--example-react-native-template react-native@0.62，发现总有这样的报错日志
+pod --version failure, aborting with broken example app Error while creating library module react-native-remote-font Error: Command failed with ENOENT: pod --version spawnSync pod ENOENT at Object.spawnSync (internal/child_process.js:1077:20) at Object.spawnSync (child_process.js:776:24) at Function.module.exports.sync (/usr/local/lib/node_modules/create-react-native-module/node_modules/execa/index.js:174:25) at module.exports.commandSync (/usr/local/lib/node_modules/create-react-native-module/node_modules/execa/index.js:235:15) at /usr/local/lib/node_modules/create-react-native-module/lib/lib.
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100  mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
       <a href="/zyestin/posts/rn/art-text/" class="link black dim">
         远程字体的动态加载&amp;应用
       </a>
@@ -366,15 +448,15 @@ import { StyleSheet, Text, TouchableOpacity, View } from &#34;react-native&#34;;
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
   <div class="flex justify-between">
   <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://zyestin.github.io/zyestin/" >
-    &copy;  zyestin 2023 
+    &copy;  zyestin 2024 
   </a>
     <div>
 <div class="ananke-socials">
   
     
-    <a href="https://zyestin.github.io/zyestin/posts/rn/readme/" target="_blank" rel="noopener" class="All ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="All link" aria-label="follow on All——Opens in a new window">
+    <a href="https://zyestin.github.io/zyestin/posts/rn/readme/" target="_blank" rel="noopener" class="ALL ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="ALL link" aria-label="follow on ALL——Opens in a new window">
       
-        All
+        ALL
       
 <span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
 <path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
@@ -395,7 +477,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from &#34;react-native&#34;;
 </span></a>
   
     
-    <a href="https://www.jianshu.com/u/3601cd1fe82d" target="_blank" rel="noopener" class="Jian ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Jian link" aria-label="follow on Jian——Opens in a new window">
+    <a href="https://www.jianshu.com/u/3601cd1fe82d" target="_blank" rel="noopener" class="jianshu ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Jian link" aria-label="follow on Jian——Opens in a new window">
       
         Jian
       
