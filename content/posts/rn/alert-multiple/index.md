@@ -6,19 +6,19 @@ tags: [react-native]
 ---
 
 
-## Q: 代码调用一个弹窗的极简方式是怎样的？
+# Q: 代码调用一个弹窗的极简方式是怎样的？
 
 A: 这样子👉🏻 ***`XxModuleAlert.show({..})`***
 
 
 > 为了这个极简用法的目标，我曾经 使用`rn-global-modal`封装过[TextInputAlert](../textinput-alert/)，但依然有些问题或难用点，比如遮挡了`Toast`、更改mask颜色要改源码、布局上有些非正常的地方
 >
->因为不希望弹窗遮挡`Toast`，于是研究了[`react-native-root-toast`](https://github.com/magicismight/react-native-root-toast)，从而找到了封装理想弹窗的更快的方式
+>因为不希望弹窗遮挡`Toast`，于是研究了[`react-native-root-toast`](https://github.com/magicismight/react-native-root-toast)，用的`react-native-root-siblings`，从而找到了封装理想弹窗的更快的方式
 >
->于是，才造了一个 `AlertManager`
+>于是，基于`react-native-root-siblings 5.0.1`，造了一个 `AlertManager`
 
 
-## ***Why*** need `AlertManager`
+# ***Why*** need `AlertManager`
 
 相信大家使用过RN官方`Modal`的，都知道，iOS弹窗无法弹两个，使用起来不满足`高内聚低耦合`，难受。。。
 
@@ -30,7 +30,7 @@ A: 这样子👉🏻 ***`XxModuleAlert.show({..})`***
 - 缺点：iOS 不支持同时多层弹窗；toast的层级低于它 导致看不到/看不清
 
 
-## ***What*** `AlertManager` provide
+# ***What*** `AlertManager` provide
 - 封装者：封装出高度解耦的弹窗。
 - 使用方：使用极简！
 
@@ -39,7 +39,7 @@ A: 这样子👉🏻 ***`XxModuleAlert.show({..})`***
 - vs rn-global-modal: 支持多层弹窗, TextInput弹窗对键盘支持更好？？
 
 
-## ***How*** to use `AlertManager`
+# ***How*** to use `AlertManager`
 
 - 使用方：
 ```
@@ -69,7 +69,7 @@ const XxModuleView = () => {
 ```
 
 
-## 源码
+# 源码
 
 ```
 import React from "react";
