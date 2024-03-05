@@ -6,221 +6,112 @@
     <description>Recent content on zyestin</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 18 Dec 2023 12:00:11 +0800</lastBuildDate><atom:link href="https://zyestin.github.io/zyestin/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 05 Mar 2024 19:36:11 +0800</lastBuildDate>
+    <atom:link href="https://zyestin.github.io/zyestin/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>瀑布流最佳实践：双列均匀分布，高度计算&amp;缓存</title>
+      <link>https://zyestin.github.io/zyestin/posts/rn/waterfall-perfect/</link>
+      <pubDate>Tue, 05 Mar 2024 19:36:11 +0800</pubDate>
+      <guid>https://zyestin.github.io/zyestin/posts/rn/waterfall-perfect/</guid>
+      <description>MasonryFlashList 瀑布流布局列高不均 解决方案 瀑布流布局列高不均 演示效果&#xA;最终我对此做了回复 👉🏻 issues/946#issuecomment-1972392998&#xA;方法1：【仅解决了双列】58的方案 方案源码 👉🏻 https://github.com/jiangleo/react-native-classroom/blob/main/src/11_Waterfall/lib/RecyclerListView/WaterfallLayoutProvider.ts&#xA;但，只修改为了 支持双列瀑布流布局，也不是基于最新recyclerlistview版本&#xA;58大佬分析的 recyclerlistview的布局原理，Nice 方法2：【较完美的】Masonry layout manager and provider #526 方案 可惜，并没有被merge，作者似乎不再关注这个项目了。&#xA;然后，也没有提供patch，但有人提供了package 和 Demo，非常赞！&#xA;👉🏻 方案来源&#xA;package: recyclerlistview-masonrylayoutmanager Demo: https://snack.expo.dev/@robertli93/grid_example&#xA;Demo效果非常棒！ 滚动流畅 + 布局均匀 为何未被合并？&#xA;难道是因为PR评论区的已知小bug？还是作者不再维护？&#xA;方法3:【最完美】MasonryFlashList 本身支持优化排列 见官方文档 masonry#optimizeitemarrangement&#xA;If enabled, MasonryFlashList will try to reduce difference in column height by modifying item order. If true, specifying overrideItemLayout is required. Default value is false. 在看源码时，发现MasonryFlashList.tsx中，底部可见如下说明&#xA;* FlashList variant that enables rendering of masonry layouts.</description>
+    </item>
     <item>
       <title>第一次提交PR给react-native</title>
       <link>https://zyestin.github.io/zyestin/posts/rn/rn-pull-request/</link>
       <pubDate>Mon, 18 Dec 2023 12:00:11 +0800</pubDate>
-      
       <guid>https://zyestin.github.io/zyestin/posts/rn/rn-pull-request/</guid>
-      <description>用了3年RN了，第一次给RN提交PR，有点激动，值得记录呀！
-操作记录 git操作全在github完成
-2023.12.05 7:52PM 提交 fork -&amp;gt; 创建分支 -&amp;gt; 改代码 -&amp;gt; 提交
-然后进入pull request tab ，就能看到Compare &amp;amp; pull request入口，点击它
-生成的PR地址： https://github.com/facebook/react-native/pull/41803
-然后就进入 PR描述编辑区，按提示编辑完，提交即可
-首次提交PR，提示需要签署CLA
-跳转到这里 https://github.com/facebook/react-native/pull/41803/checks?check_run_id=19326140445
-再打开 https://code.facebook.com/cla， 进行签署CLA
-签署后，这个页面就进入一个无法编辑的状态，虽然顶部有提示，如果在签CLA之前已经提交了一个，再耐心等待会，会自动处理的
-👉🏻这个友人的经历是很好的借鉴
-于是，从21:49，等啊等，到了 23:54，才有反馈
-第二天早上一看 10:13，还给了我建议，我点击一下 Commit suggestion就ok了
-最后就差maintainer批准了 一般多久批准呢？ 浏览了2个merged的PR，都是2天
-2023.12.13 11:24PM 终于收到邮件 PR被合并 This pull request was successfully merged by @zyestin in 5217cc9. 并且紧接着收到邮件 PR被关闭 Closed #41803 via 5217cc9. 那何时 带有我贡献的代码 会被发布呢？
-等待下一个版本被推出的时候咯
-待续~</description>
+      <description>用了3年RN了，第一次给RN提交PR，有点激动，值得记录呀！&#xA;操作记录 git操作全在github完成&#xA;2023.12.05 7:52PM 提交 fork -&amp;gt; 创建分支 -&amp;gt; 改代码 -&amp;gt; 提交&#xA;然后进入pull request tab ，就能看到Compare &amp;amp; pull request入口，点击它&#xA;生成的PR地址： https://github.com/facebook/react-native/pull/41803&#xA;然后就进入 PR描述编辑区，按提示编辑完，提交即可&#xA;首次提交PR，提示需要签署CLA&#xA;跳转到这里 https://github.com/facebook/react-native/pull/41803/checks?check_run_id=19326140445&#xA;再打开 https://code.facebook.com/cla， 进行签署CLA&#xA;签署后，这个页面就进入一个无法编辑的状态，虽然顶部有提示，如果在签CLA之前已经提交了一个，再耐心等待会，会自动处理的&#xA;👉🏻这个友人的经历是很好的借鉴&#xA;于是，从21:49，等啊等，到了 23:54，才有反馈&#xA;第二天早上一看 10:13，还给了我建议，我点击一下 Commit suggestion就ok了&#xA;最后就差maintainer批准了 一般多久批准呢？ 浏览了2个merged的PR，都是2天&#xA;2023.12.13 11:24PM 终于收到邮件 PR被合并 This pull request was successfully merged by @zyestin in 5217cc9. 并且紧接着收到邮件 PR被关闭 Closed #41803 via 5217cc9. 那何时 带有我贡献的代码 会被发布呢？&#xA;等待下一个版本被推出的时候咯&#xA;待续~</description>
     </item>
-    
     <item>
       <title> 实现 FlatList 、flashList、masonryFlashList 各种列表的自动滚动动画</title>
       <link>https://zyestin.github.io/zyestin/posts/rn/waterfall-list-autoscroll/</link>
       <pubDate>Wed, 01 Nov 2023 12:00:11 +0800</pubDate>
-      
       <guid>https://zyestin.github.io/zyestin/posts/rn/waterfall-list-autoscroll/</guid>
-      <description>ScrollView滚动动画 实现起来就很容易
-import React, { useRef, useEffect } from &amp;#34;react&amp;#34;; import { ScrollView, Text, View, Animated, Easing } from &amp;#34;react-native&amp;#34;; /** * ScrollView自动滚动了！ */ const AutoScrollScrollView = () =&amp;gt; { const scrollViewRef = useRef(); const scrollY = useRef(new Animated.Value(0)).current; const contentHeight = 1000; // 你的内容高度 const scrollDuration = 5000; // 滚动动画的持续时间（毫秒） useEffect(() =&amp;gt; { const startScrollAnimation = () =&amp;gt; { Animated.timing(scrollY, { toValue: contentHeight, duration: scrollDuration, easing: Easing.linear, useNativeDriver: false, }).</description>
+      <description>ScrollView滚动动画 实现起来就很容易&#xA;import React, { useRef, useEffect } from &amp;#34;react&amp;#34;; import { ScrollView, Text, View, Animated, Easing } from &amp;#34;react-native&amp;#34;; /** * ScrollView自动滚动了！ */ const AutoScrollScrollView = () =&amp;gt; { const scrollViewRef = useRef(); const scrollY = useRef(new Animated.Value(0)).current; const contentHeight = 1000; // 你的内容高度 const scrollDuration = 5000; // 滚动动画的持续时间（毫秒） useEffect(() =&amp;gt; { const startScrollAnimation = () =&amp;gt; { Animated.timing(scrollY, { toValue: contentHeight, duration: scrollDuration, easing: Easing.linear, useNativeDriver: false, }).</description>
     </item>
-    
     <item>
       <title>React Native 在VSCode编码提效</title>
       <link>https://zyestin.github.io/zyestin/posts/rn/vscode-efficient/</link>
       <pubDate>Wed, 01 Nov 2023 12:00:11 +0800</pubDate>
-      
       <guid>https://zyestin.github.io/zyestin/posts/rn/vscode-efficient/</guid>
-      <description>插件 代码智能提示 copilot
-触发内联建议 Option (⌥)+\ https://docs.github.com/zh/copilot/configuring-github-copilot/configuring-github-copilot-in-your-environment?tool=vscode#keyboard-shortcuts-for-macos
-(键联提示)代码片段
-ES7+ React/Redux/React-Native snippets massCode assistant (配合打开massCode App使用) 标签修改 自动首尾同步 Auto Rename Tag
-拼写检测 Code Spell Checker
-格式化 prettier
-提升阅读感受
-Gitlens 悬停查看代码改动人 Material Icon Theme / vscode-icons 侧边导航区 目录展示icon indent-rainbow 标签开闭连线 Image Preview 在图片路径引用行 左侧展示icon code snippets React/Redux/React-Native snippets
-指令说明：
-https://github.com/ults-io/vscode-react-javascript-snippets/blob/HEAD/docs/Snippets.md
-优点：
-对常用的hooks支持的简直完美
-可以试试输入useeff...。 会提示useEffectSnippet，enter后挨个填词，tab切换光标，set方法自动驼峰，简直完美！ 使用rnfes创建组件，会根据文件名 命名组件 想根据英文记忆一下快捷指令名称，可以参考 Fullstack React/React Native snippets
-对快捷指令 都有英文解释
-Mac、VSC快捷键 Mac 系统自带
-(shift+) ctrl+ (option+) f/b (shift+) ctrl+ p/n VSC 更改了上述快捷键对应的指令，非常糟糕。可以调整下如下 VSC Next Change （Important）</description>
+      <description>插件 代码智能提示 copilot&#xA;触发内联建议 Option (⌥)+\ https://docs.github.com/zh/copilot/configuring-github-copilot/configuring-github-copilot-in-your-environment?tool=vscode#keyboard-shortcuts-for-macos&#xA;(键联提示)代码片段&#xA;ES7+ React/Redux/React-Native snippets massCode assistant (配合打开massCode App使用) 标签修改 自动首尾同步 Auto Rename Tag&#xA;拼写检测 Code Spell Checker&#xA;格式化 prettier&#xA;提升阅读感受&#xA;Gitlens 悬停查看代码改动人 Material Icon Theme / vscode-icons 侧边导航区 目录展示icon indent-rainbow 标签开闭连线 Image Preview 在图片路径引用行 左侧展示icon code snippets React/Redux/React-Native snippets&#xA;指令说明：&#xA;https://github.com/ults-io/vscode-react-javascript-snippets/blob/HEAD/docs/Snippets.md&#xA;优点：&#xA;对常用的hooks支持的简直完美&#xA;可以试试输入useeff...。 会提示useEffectSnippet，enter后挨个填词，tab切换光标，set方法自动驼峰，简直完美！ 使用rnfes创建组件，会根据文件名 命名组件 想根据英文记忆一下快捷指令名称，可以参考 Fullstack React/React Native snippets&#xA;对快捷指令 都有英文解释&#xA;Mac、VSC快捷键 Mac 系统自带&#xA;(shift+) ctrl+ (option+) f/b (shift+) ctrl+ p/n VSC 更改了上述快捷键对应的指令，非常糟糕。可以调整下如下 VSC Next Change （Important）</description>
     </item>
-    
     <item>
       <title>React Native 开发沉淀</title>
       <link>https://zyestin.github.io/zyestin/posts/rn/readme/</link>
       <pubDate>Wed, 01 Nov 2023 12:00:11 +0800</pubDate>
-      
       <guid>https://zyestin.github.io/zyestin/posts/rn/readme/</guid>
-      <description>一些业务的最佳实践探索 基础组件封装
-瀑布流列表base组件 图片base组件 实现 模仿抖音、小红书 输入 #标签 高亮
-实现 瀑布流列表·自动滚动动画
-实现 横向·瀑布流列表
-实现 仿抖音/小红书 对贴图/贴字 进行拖拽、缩放、旋转等复杂手势
-封装一个 易用的、远程字体动态下载&amp;amp;应用组件
-封装一个 低耦合、易用的文本输入框弹窗
-优雅实现 RN弹窗 支持多层弹窗
-实践 多tab多列表滑动吸顶效果 [todo]
-实践 列表Item精确曝光埋点 [todo]
-实践 拆包 [todo]
-组件库 易用的应用远程字体的text组件库 - react-native-remote-font 其它（提效、工具&amp;hellip;) 探究 代码规范
-React Native 编码提效 on VSCode
-用脚手架 制作一个RN库 放npm(含踏坑记录)
-贡献给react-native的第一个PR
-React Hooks 学习收获 [todo]
-常用hooks依赖检查，从源头提醒避免奇葩bug 从0到1用Jenkins实现对RN项目一键打包、发布 [todo]</description>
+      <description>一些业务的最佳实践探索 基础组件封装&#xA;瀑布流列表base组件 图片base组件 实现 模仿抖音、小红书 输入 #标签 高亮&#xA;瀑布流列表&#xA;瀑布流最佳实践：双列均匀分布，高度计算&amp;amp;缓存 实现 瀑布流列表·自动滚动动画 实现 横向·瀑布流列表 实现 仿抖音/小红书 对贴图/贴字 进行拖拽、缩放、旋转等复杂手势&#xA;封装一个 易用的、远程字体动态下载&amp;amp;应用组件&#xA;封装一个 低耦合、易用的文本输入框弹窗&#xA;实现 差不多理想的极简RN弹窗&#xA;实践 多tab多列表滑动吸顶效果 [todo]&#xA;实践 列表Item精确曝光埋点 [todo]&#xA;实践 拆包 [todo]&#xA;组件库 易用的应用远程字体的text组件库 - react-native-remote-font 其它（提效、工具&amp;hellip;) 探究 代码规范&#xA;React Native 编码提效 on VSCode&#xA;用脚手架 制作一个RN库 放npm(含踏坑记录)&#xA;贡献给react-native的第一个PR&#xA;React Hooks 学习收获 [todo]&#xA;常用hooks依赖检查，从源头提醒避免奇葩bug [todo] 从0到1用Jenkins实现对RN项目一键打包、发布 [todo]</description>
     </item>
-    
     <item>
       <title>RN 动画 - 缩放、旋转、拖拽</title>
       <link>https://zyestin.github.io/zyestin/posts/rn/multi-gestture-sticker/</link>
       <pubDate>Wed, 01 Nov 2023 12:00:11 +0800</pubDate>
-      
       <guid>https://zyestin.github.io/zyestin/posts/rn/multi-gestture-sticker/</guid>
-      <description>需求 仿抖音、小红书，图片视频编辑区，贴图、贴文字功能
-View支持拖拽 View右下角有一个icon比较特殊，该icon可控制View缩放 icon随手指移动 View缩放（以View中心点为圆心） View会旋转（以View为中心点为圆心） icon位置一直保持在View右下角 View支持双指捏 进行缩放 效果图 源码 HBMultiGestureView.js calculator.js CornerToolGestureView.js 解读 HBMultiGestureView.js 使用的什么手势api？ 通过PanResponder为Animted.View添加手势
-将不同的手势操作 处理为拖拽、旋转、缩放等UI表现，从哪着手？ 通过手势回调onPanResponderGrant、onPanResponderMove、onPanResponderRelease去
-如何判断 确定是否操作的右下角特殊icon视图？ 右下角icon onLoad后，拿到target，通过入参rotateScaleTargetRef传递给HBMultiGestureView，HBMultiGestureView内 通过手势回调参数中的e.nativeEvent.target获取所操作的视图target，比较判断是否相等
-解读 calculator.js 里面都是公式函数，用在HBMultiGestureView.js 中，处理这些核心计算：
-计算两指连成的直线移动后的 角度， 从而确定 双指操作时的旋转角度
-计算两指移动后与移动前相比 两指连线的倍数关系， 从而确定 双指操作时的放大倍数
-计算A点、初始触摸位置B点、当前触摸位置C点，计算AC/AB放大比例， 从而确定单指拖动右下角按钮时的放大倍数
-注：A点，即触摸开始时 视图的中心位置
-计算向量AC与AB的夹角， 从而确定单指拖动右下角按钮时的旋转角度 解读 CornerToolGestureView.js CornerToolGestureView，是四个角落携带工具按钮的手势视图
-基于HBMultiGestureView封装的，所以开发时真正用的是这个CornerToolGestureView
-HBMultiGestureView就类似一个三方库，不是面向具体业务的，俗话说就是，开发时直接用它去组装UI 不够简单，于是封装为更好用的组件CornerToolGestureView，用于各个地方。
-就像是react-native-fast-image，我们并不在开发功能时直接用它，往往会对这个三方组件封装一层(e.g.增加了设置error占位图能力)，再去用于各个地方，比如 我们封装的图片base组件</description>
+      <description>需求 仿抖音、小红书，图片视频编辑区，贴图、贴文字功能&#xA;View支持拖拽 View右下角有一个icon比较特殊，该icon可控制View缩放 icon随手指移动 View缩放（以View中心点为圆心） View会旋转（以View为中心点为圆心） icon位置一直保持在View右下角 View支持双指捏 进行缩放 效果图 源码 HBMultiGestureView.js calculator.js CornerToolGestureView.js 解读 HBMultiGestureView.js 使用的什么手势api？ 通过PanResponder为Animted.View添加手势&#xA;将不同的手势操作 处理为拖拽、旋转、缩放等UI表现，从哪着手？ 通过手势回调onPanResponderGrant、onPanResponderMove、onPanResponderRelease去&#xA;如何判断 确定是否操作的右下角特殊icon视图？ 右下角icon onLoad后，拿到target，通过入参rotateScaleTargetRef传递给HBMultiGestureView，HBMultiGestureView内 通过手势回调参数中的e.nativeEvent.target获取所操作的视图target，比较判断是否相等&#xA;解读 calculator.js 里面都是公式函数，用在HBMultiGestureView.js 中，处理这些核心计算：&#xA;计算两指连成的直线移动后的 角度， 从而确定 双指操作时的旋转角度&#xA;计算两指移动后与移动前相比 两指连线的倍数关系， 从而确定 双指操作时的放大倍数&#xA;计算A点、初始触摸位置B点、当前触摸位置C点，计算AC/AB放大比例， 从而确定单指拖动右下角按钮时的放大倍数&#xA;注：A点，即触摸开始时 视图的中心位置&#xA;计算向量AC与AB的夹角， 从而确定单指拖动右下角按钮时的旋转角度 解读 CornerToolGestureView.js CornerToolGestureView，是四个角落携带工具按钮的手势视图&#xA;基于HBMultiGestureView封装的，所以开发时真正用的是这个CornerToolGestureView&#xA;HBMultiGestureView就类似一个三方库，不是面向具体业务的，俗话说就是，开发时直接用它去组装UI 不够简单，于是封装为更好用的组件CornerToolGestureView，用于各个地方。&#xA;就像是react-native-fast-image，我们并不在开发功能时直接用它，往往会对这个三方组件封装一层(e.g.增加了设置error占位图能力)，再去用于各个地方，比如 我们封装的图片base组件</description>
     </item>
-    
     <item>
       <title>代码规范</title>
       <link>https://zyestin.github.io/zyestin/posts/rn/code-standards/</link>
       <pubDate>Wed, 01 Nov 2023 12:00:11 +0800</pubDate>
-      
       <guid>https://zyestin.github.io/zyestin/posts/rn/code-standards/</guid>
-      <description>讨论背景 相信大家写代码时 对自己都有一些要求，比如下面的
-基本期望：写出他人能容易看懂的代码 更高追求：写出他人看起来很爽的代码 每经历一个阶段，大家都对编码有不同程度的进步提升，可以分享；同时也会积累一些场景下代码如屎的烦恼，想要破局。
-于是，阶段性的，需要一个机会，大家开个交流会进行讨论
-（对于每个个体）互通有无，集思广益，团队每人都有所提升 （对于互相之间协作）更多地了解到彼此 阅读代码、写代码的风格习惯，增进理解 （对于工作）对现阶段遇到的痛点，找出更优解，或制定调研计划 每次讨论，规范条款上的收获，不在于多少，至少会收获了一些代码细节上的技巧或认知，最重要的是 大大增进了互相的了解，协作起来将越来越紧密顺畅。
-讨论成果 组件代码结构 关键点: 打开文件后，更方便的看到核心代码（那就尽量靠前咯）
-也就是 render/return组件 之前的代码量尽可能少；那么，就需要通过函数提炼、划分职责等方式转移到别处。
-组件代码 书写顺序 示例如下
-// AAView.js import { xxCalculate, xxUploadEvent } from &amp;#39;app/components/XxModule&amp;#39; import AView from &amp;#39;./components/AView&amp;#39; import BView from &amp;#39;./components/BView&amp;#39; //$$ 用于组件函数内的变量 紧邻写在组件函数上方 const variableUsedInXXComp = ... //组件函数 const AAView = props =&amp;gt; { //$$ props解构, 放第一行 ///reason：即使AAView上面不写@param注释，通过这里的解构也能看出props的参数 const { paramA, paramB } = props //$$ 副作用函数(即use开头的函数)，写在顶层作用域， const [aEverClicked, setAEverClicked] = useState(false) const [bClickedTime, setBClickedTime] = useState(0) .</description>
+      <description>讨论背景 相信大家写代码时 对自己都有一些要求，比如下面的&#xA;基本期望：写出他人能容易看懂的代码 更高追求：写出他人看起来很爽的代码 每经历一个阶段，大家都对编码有不同程度的进步提升，可以分享；同时也会积累一些场景下代码如屎的烦恼，想要破局。&#xA;于是，阶段性的，需要一个机会，大家开个交流会进行讨论&#xA;（对于每个个体）互通有无，集思广益，团队每人都有所提升 （对于互相之间协作）更多地了解到彼此 阅读代码、写代码的风格习惯，增进理解 （对于工作）对现阶段遇到的痛点，找出更优解，或制定调研计划 每次讨论，规范条款上的收获，不在于多少，至少会收获了一些代码细节上的技巧或认知，最重要的是 大大增进了互相的了解，协作起来将越来越紧密顺畅。&#xA;讨论成果 组件代码结构 关键点: 打开文件后，更方便的看到核心代码（那就尽量靠前咯）&#xA;也就是 render/return组件 之前的代码量尽可能少；那么，就需要通过函数提炼、划分职责等方式转移到别处。&#xA;组件代码 书写顺序 示例如下&#xA;// AAView.js import { xxCalculate, xxUploadEvent } from &amp;#39;app/components/XxModule&amp;#39; import AView from &amp;#39;./components/AView&amp;#39; import BView from &amp;#39;./components/BView&amp;#39; //$$ 用于组件函数内的变量 紧邻写在组件函数上方 const variableUsedInXXComp = ... //组件函数 const AAView = props =&amp;gt; { //$$ props解构, 放第一行 ///reason：即使AAView上面不写@param注释，通过这里的解构也能看出props的参数 const { paramA, paramB } = props //$$ 副作用函数(即use开头的函数)，写在顶层作用域， const [aEverClicked, setAEverClicked] = useState(false) const [bClickedTime, setBClickedTime] = useState(0) .</description>
     </item>
-    
     <item>
-      <title>优雅实现 RN弹窗 支持多层弹窗</title>
+      <title>实现 差不多理想的极简RN弹窗</title>
       <link>https://zyestin.github.io/zyestin/posts/rn/alert-multiple/</link>
       <pubDate>Wed, 01 Nov 2023 12:00:11 +0800</pubDate>
-      
       <guid>https://zyestin.github.io/zyestin/posts/rn/alert-multiple/</guid>
-      <description>Q: 调用弹窗的极简使用方式是什么？ A: 这样子👉🏻 XxModuleAlert.show({..})
-为了这个极简用法的目标，我曾经 使用rn-global-modal封装过TextInputAlert，但依然有些问题或难用点，比如遮挡了Toast、更改mask颜色要改源码、布局上有些非正常的地方
-因为不希望弹窗遮挡Toast，于是研究了react-native-root-toast，从而找到了封装理想弹窗的更快的方式
-于是，才造了一个 AlertManager
-Why need AlertManager 相信大家使用过RN官方Modal的，都知道，iOS弹窗无法弹两个，使用起来不满足高内聚低耦合，难受。。。
-RN官方Modal 缺点：耦合过多！须visible属性，多1个import useState，多1行代码setVisble声明，弹窗组件须嵌入容器组件 rn-global-modal 优点：函数式调起弹窗，任意处可调用 缺点：iOS 不支持同时多层弹窗；toast的层级低于它 导致看不到/看不清 What AlertManager provide 封装者：封装出高度解耦的弹窗。 使用方：使用极简！ 优势 vs Modal：去掉visible vs rn-global-modal: 支持多层弹窗, TextInput弹窗对键盘支持更好？？ How to use AlertManager 使用方： XxModuleAlert.show({...}); XxModuleAlert.hide(); 封装方: class XxModuleAlert { static show() { AlertManager.show(&amp;lt;XxModuleView /&amp;gt;, { key: XxModuleView.name, }); } static hide() { AlertManager.hide(XxModuleView.name); } } export XxModuleAlert const XxModuleView = () =&amp;gt; { ... return (.</description>
+      <description>Q: 代码调用一个弹窗的极简方式是怎样的？ A: 这样子👉🏻 XxModuleAlert.show({..})&#xA;为了这个极简用法的目标，我曾经 使用rn-global-modal封装过TextInputAlert，但依然有些问题或难用点，比如遮挡了Toast、更改mask颜色要改源码、布局上有些非正常的地方&#xA;因为不希望弹窗遮挡Toast，于是研究了react-native-root-toast，用的react-native-root-siblings，从而找到了封装理想弹窗的更快的方式&#xA;于是，基于react-native-root-siblings 5.0.1，造了一个 AlertManager&#xA;Why need AlertManager 相信大家使用过RN官方Modal的，都知道，iOS弹窗无法弹两个，使用起来不满足高内聚低耦合，难受。。。&#xA;RN官方Modal 缺点：耦合过多！须visible属性，多1个import useState，多1行代码setVisble声明，弹窗组件须嵌入容器组件 rn-global-modal 优点：函数式调起弹窗，任意处可调用 缺点：iOS 不支持同时多层弹窗；toast的层级低于它 导致看不到/看不清 What AlertManager provide 封装者：封装出高度解耦的弹窗。 使用方：使用极简！ 优势 vs Modal：去掉visible vs rn-global-modal: 支持多层弹窗, TextInput弹窗对键盘支持更好？？ How to use AlertManager 使用方： XxModuleAlert.show({...}); XxModuleAlert.hide(); 封装方: class XxModuleAlert { static show() { AlertManager.show(&amp;lt;XxModuleView /&amp;gt;, { key: XxModuleView.name, }); } static hide() { AlertManager.hide(XxModuleView.name); } } export XxModuleAlert const XxModuleView = () =&amp;gt; { .</description>
     </item>
-    
     <item>
       <title>封装 低耦合、易用的文本输入框弹窗</title>
       <link>https://zyestin.github.io/zyestin/posts/rn/textinput-alert/</link>
       <pubDate>Wed, 01 Nov 2023 12:00:11 +0800</pubDate>
-      
       <guid>https://zyestin.github.io/zyestin/posts/rn/textinput-alert/</guid>
-      <description>效果展示/UI 切换输入法，避开键盘 输入/粘帖时，文字换行，输入框高度准确变化 使用/Usage 封装后，如下这样使用，解耦的干干净净
-import TextInputAlert from &amp;#34;./TextInputAlert&amp;#34;; TextInputAlert.show({ text: &amp;#34;hello&amp;#34;, // maxLength: 20, onChange: function didInputChange(text_) { console.log(&amp;#34;didInputChange::&amp;gt;&amp;gt;&amp;#34;, text_); }, onCompleted: () =&amp;gt; { console.log(&amp;#34;onCompleted::&amp;gt;&amp;gt;&amp;#34;, content); }, }); TextInputAlert.hide(); 像原生一样调api方式展示弹窗，不需要Modal那样耦合过多（视图嵌入、visible字段控制&amp;hellip;）
-源码/Code TextInputAlert</description>
+      <description>效果展示/UI 切换输入法，避开键盘 输入/粘帖时，文字换行，输入框高度准确变化 使用/Usage 封装后，如下这样使用，解耦的干干净净&#xA;import TextInputAlert from &amp;#34;./TextInputAlert&amp;#34;; TextInputAlert.show({ text: &amp;#34;hello&amp;#34;, // maxLength: 20, onChange: function didInputChange(text_) { console.log(&amp;#34;didInputChange::&amp;gt;&amp;gt;&amp;#34;, text_); }, onCompleted: () =&amp;gt; { console.log(&amp;#34;onCompleted::&amp;gt;&amp;gt;&amp;#34;, content); }, }); TextInputAlert.hide(); 像原生一样调api方式展示弹窗，不需要Modal那样耦合过多（视图嵌入、visible字段控制&amp;hellip;）&#xA;源码/Code TextInputAlert</description>
     </item>
-    
     <item>
       <title>封装常用基础组件</title>
       <link>https://zyestin.github.io/zyestin/posts/rn/base-components/</link>
       <pubDate>Wed, 01 Nov 2023 12:00:11 +0800</pubDate>
-      
       <guid>https://zyestin.github.io/zyestin/posts/rn/base-components/</guid>
-      <description>瀑布流列表base组件 源码：BaseList.js
-优点：将下拉刷新、上拉加载更多相关的 pageNo逻辑，封装到BaseList中，使用方仅需关注 数据请求的api，让使用方代码量降到最少。
-使用示例 import BaseList from &amp;#34;app/components/list/base&amp;#34;; import { getFanList } from &amp;#34;./service&amp;#34;; const pageSize = 10; const FanList = (props) =&amp;gt; { const { userId } = props; const _requestFunc = (page, pageSize) =&amp;gt; { return getFanList({ userId: userId, pageNo: page, pageSize }); }; const _renderItem = ({ item, index }) =&amp;gt; { return &amp;lt;Item {...item} /&amp;gt;; }; return ( // &amp;lt;View style={{ flex: 1 }}&amp;gt; &amp;lt;BaseList requestFunc={(page) =&amp;gt; _requestFunc(page, pageSize)} contentContainerStyle={{ paddingVertical: px2dp(5), paddingLeft: px2dp(5), }} renderItem={_renderItem} // numColumns={1} uniqueKey={&amp;#34;userId&amp;#34;} /&amp;gt; // &amp;lt;/View&amp;gt; ); }; 图片base组件 源码：BaseImage.</description>
+      <description>瀑布流列表base组件 源码：BaseList.js&#xA;优点：将下拉刷新、上拉加载更多相关的 pageNo逻辑，封装到BaseList中，使用方仅需关注 数据请求的api，让使用方代码量降到最少。&#xA;使用示例 import BaseList from &amp;#34;app/components/list/base&amp;#34;; import { getFanList } from &amp;#34;./service&amp;#34;; const pageSize = 10; const FanList = (props) =&amp;gt; { const { userId } = props; const _requestFunc = (page, pageSize) =&amp;gt; { return getFanList({ userId: userId, pageNo: page, pageSize }); }; const _renderItem = ({ item, index }) =&amp;gt; { return &amp;lt;Item {...item} /&amp;gt;; }; return ( // &amp;lt;View style={{ flex: 1 }}&amp;gt; &amp;lt;BaseList requestFunc={(page) =&amp;gt; _requestFunc(page, pageSize)} contentContainerStyle={{ paddingVertical: px2dp(5), paddingLeft: px2dp(5), }} renderItem={_renderItem} // numColumns={1} uniqueKey={&amp;#34;userId&amp;#34;} /&amp;gt; // &amp;lt;/View&amp;gt; ); }; 图片base组件 源码：BaseImage.</description>
     </item>
-    
     <item>
       <title>模仿抖音、小红书 输入 #标签 高亮</title>
       <link>https://zyestin.github.io/zyestin/posts/rn/douyin-label-input/</link>
       <pubDate>Wed, 01 Nov 2023 12:00:11 +0800</pubDate>
-      
       <guid>https://zyestin.github.io/zyestin/posts/rn/douyin-label-input/</guid>
-      <description>需求 当输入 以#开头的字符串，则判定为标签 并展示为蓝色
-效果图 调研 iOS的TextField可以设定attributedString富文本，但RN的TextInput是不具备的。
-方案：
-TextInput上浮一个style大小一致的Text，TextInput文字颜色设为透明，Text内嵌套 style为蓝色的Text 用来展示#任意(至少1个)字符
-代码 import React, { useState } from &amp;#34;react&amp;#34;; import { View, TextInput, Text, StyleSheet } from &amp;#34;react-native&amp;#34;; const App = () =&amp;gt; { const [text, setText] = useState(&amp;#34;&amp;#34;); const handleTextChange = (inputText) =&amp;gt; { // 检测输入字符串中是否包含 &amp;#34;#&amp;#34; if (inputText.includes(&amp;#34;#&amp;#34;)) { // 将包含 &amp;#34;#任意(至少1个)字符&amp;#34; 的部分替换为带有蓝色样式的文本组件 const parts = inputText.split(/(?=#|\s)/g); console.log(&amp;#34;parts: &amp;#34;, parts); const formattedText = parts.map((part, index) =&amp;gt; { return part.</description>
+      <description>需求 当输入 以#开头的字符串，则判定为标签 并展示为蓝色&#xA;效果图 调研 iOS的TextField可以设定attributedString富文本，但RN的TextInput是不具备的。&#xA;方案：&#xA;TextInput上浮一个style大小一致的Text，TextInput文字颜色设为透明，Text内嵌套 style为蓝色的Text 用来展示#任意(至少1个)字符&#xA;代码 import React, { useState } from &amp;#34;react&amp;#34;; import { View, TextInput, Text, StyleSheet } from &amp;#34;react-native&amp;#34;; const App = () =&amp;gt; { const [text, setText] = useState(&amp;#34;&amp;#34;); const handleTextChange = (inputText) =&amp;gt; { // 检测输入字符串中是否包含 &amp;#34;#&amp;#34; if (inputText.includes(&amp;#34;#&amp;#34;)) { // 将包含 &amp;#34;#任意(至少1个)字符&amp;#34; 的部分替换为带有蓝色样式的文本组件 const parts = inputText.split(/(?=#|\s)/g); console.log(&amp;#34;parts: &amp;#34;, parts); const formattedText = parts.map((part, index) =&amp;gt; { return part.</description>
     </item>
-    
     <item>
       <title>横向 瀑布流列表</title>
       <link>https://zyestin.github.io/zyestin/posts/rn/waterfall-list-horizontal/</link>
       <pubDate>Wed, 01 Nov 2023 12:00:11 +0800</pubDate>
-      
       <guid>https://zyestin.github.io/zyestin/posts/rn/waterfall-list-horizontal/</guid>
       <description>需求 效果展示 源码 import { StyleSheet, Text, TouchableOpacity, View } from &amp;#34;react-native&amp;#34;; import React, { useEffect, useRef, useState } from &amp;#34;react&amp;#34;; import HBImage from &amp;#34;../../../../components/image/HBImage&amp;#34;; import { px2dp } from &amp;#34;../../../../utils/ScreenUtils&amp;#34;; import { MasonryFlashList } from &amp;#34;@shopify/flash-list&amp;#34;; import { bookOpenChoices } from &amp;#34;app/service/MarkService&amp;#34;; import * as indexUtil from &amp;#34;app/utils/index&amp;#34;; const itemWidth = px2dp(12 + 86.5 + 251.5); const itemHeight = px2dp(139); const itemSpace = px2dp(17); const UserChooseBook = (props) =&amp;gt; { const { selectedSex, marks } = props; const [dataList, setDataList] = useState([]); const listViewRef = useRef(null); const { onScrollBeginDrag, onScroll } = useListViewAutoScrollAnimate({ listViewRef: listViewRef, framesPerSecond: 40, // 1000/40 = 25帧/秒 offsetPerFrame: 1, totalScrollDistance: (itemWidth * Math.</description>
     </item>
-    
     <item>
       <title>用脚手架 制作一个RN库 放npm</title>
       <link>https://zyestin.github.io/zyestin/posts/rn/create-npm-lib/</link>
       <pubDate>Wed, 01 Nov 2023 12:00:11 +0800</pubDate>
-      
       <guid>https://zyestin.github.io/zyestin/posts/rn/create-npm-lib/</guid>
-      <description>脚手架 create-react-native-module
-脚手架使用（顺利） 工具安装 npm install -g yarn npm install -g create-react-native-module 脚手架命令 create-react-native-module RemoteFont --object-class-name react-native-remote-font --object-class-name RemoteFontLoader --native-package-id com.yestin.font --platforms ios,android --github-account zyestin --author-name yestin --author-email zyestin@gmail.com --generate-example --example-react-native-template react-native@0.62 过程中发现，若不指定--example-react-native-template react-native@0.62，发现总有这样的报错日志
-pod --version failure, aborting with broken example app Error while creating library module react-native-remote-font Error: Command failed with ENOENT: pod --version spawnSync pod ENOENT at Object.spawnSync (internal/child_process.js:1077:20) at Object.spawnSync (child_process.js:776:24) at Function.module.exports.sync (/usr/local/lib/node_modules/create-react-native-module/node_modules/execa/index.js:174:25) at module.exports.commandSync (/usr/local/lib/node_modules/create-react-native-module/node_modules/execa/index.js:235:15) at /usr/local/lib/node_modules/create-react-native-module/lib/lib.</description>
+      <description>脚手架 create-react-native-module&#xA;脚手架使用（顺利） 工具安装 npm install -g yarn npm install -g create-react-native-module 脚手架命令 create-react-native-module RemoteFont --object-class-name react-native-remote-font --object-class-name RemoteFontLoader --native-package-id com.yestin.font --platforms ios,android --github-account zyestin --author-name yestin --author-email zyestin@gmail.com --generate-example --example-react-native-template react-native@0.62 过程中发现，若不指定--example-react-native-template react-native@0.62，发现总有这样的报错日志&#xA;pod --version failure, aborting with broken example app Error while creating library module react-native-remote-font Error: Command failed with ENOENT: pod --version spawnSync pod ENOENT at Object.spawnSync (internal/child_process.js:1077:20) at Object.spawnSync (child_process.js:776:24) at Function.module.exports.sync (/usr/local/lib/node_modules/create-react-native-module/node_modules/execa/index.js:174:25) at module.exports.commandSync (/usr/local/lib/node_modules/create-react-native-module/node_modules/execa/index.js:235:15) at /usr/local/lib/node_modules/create-react-native-module/lib/lib.</description>
     </item>
-    
     <item>
       <title>远程字体的动态加载&amp;应用</title>
       <link>https://zyestin.github.io/zyestin/posts/rn/art-text/</link>
       <pubDate>Wed, 01 Nov 2023 12:00:11 +0800</pubDate>
-      
       <guid>https://zyestin.github.io/zyestin/posts/rn/art-text/</guid>
-      <description>示例效果展示 切换到新字体，经过loading后，应用上新字体 切换到已加载过的字体，直接应用上 iOS Android 使用/Usage 封装后，如下这样使用，解耦的干干净净
-import { StyleSheet, Text, TouchableOpacity, View } from &amp;#34;react-native&amp;#34;; import React, { useState } from &amp;#34;react&amp;#34;; import ArtText from &amp;#34;./ArtText&amp;#34;; const ArtTextDemo = () =&amp;gt; { const [fontInfoIndex, setFontInfoIndex] = useState(0); return ( &amp;lt;View style={{ flex: 1, padding:100 }}&amp;gt; &amp;lt;TouchableOpacity style={{padding:10}} onPress={() =&amp;gt; { setFontInfoIndex((fontInfoIndex + 1) % fontInfoList.length); }} &amp;gt; &amp;lt;Text&amp;gt;{&amp;#34;Switch Font&amp;#34;}&amp;lt;/Text&amp;gt; &amp;lt;/TouchableOpacity&amp;gt; &amp;lt;Text style={{ marginVertical: 20 }}&amp;gt; {&amp;#34;Current font - &amp;#34; + fontInfoIndex + &amp;#34; - &amp;#34; + fontInfoList[fontInfoIndex].</description>
+      <description>示例效果展示 切换到新字体，经过loading后，应用上新字体 切换到已加载过的字体，直接应用上 iOS Android 使用/Usage 封装后，如下这样使用，解耦的干干净净&#xA;import { StyleSheet, Text, TouchableOpacity, View } from &amp;#34;react-native&amp;#34;; import React, { useState } from &amp;#34;react&amp;#34;; import ArtText from &amp;#34;./ArtText&amp;#34;; const ArtTextDemo = () =&amp;gt; { const [fontInfoIndex, setFontInfoIndex] = useState(0); return ( &amp;lt;View style={{ flex: 1, padding:100 }}&amp;gt; &amp;lt;TouchableOpacity style={{padding:10}} onPress={() =&amp;gt; { setFontInfoIndex((fontInfoIndex + 1) % fontInfoList.length); }} &amp;gt; &amp;lt;Text&amp;gt;{&amp;#34;Switch Font&amp;#34;}&amp;lt;/Text&amp;gt; &amp;lt;/TouchableOpacity&amp;gt; &amp;lt;Text style={{ marginVertical: 20 }}&amp;gt; {&amp;#34;Current font - &amp;#34; + fontInfoIndex + &amp;#34; - &amp;#34; + fontInfoList[fontInfoIndex].</description>
     </item>
-    
     <item>
       <title>hugo &#43; github pages usage</title>
       <link>https://zyestin.github.io/zyestin/posts/hugo-usage/</link>
       <pubDate>Thu, 24 Aug 2023 09:11:47 +0800</pubDate>
-      
       <guid>https://zyestin.github.io/zyestin/posts/hugo-usage/</guid>
-      <description>2023最新 hugo + github pages 使用方式
-网上大多是hugo旧版的使用方式，有好几处明显差异的，不值得借鉴，反正我借鉴后出现各种莫名其妙问题
-严格按照官方这两个链接，就不会出现问题:
-hugo quick start hugo new site quickstart cd quickstart git init git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke echo &amp;#34;theme = &amp;#39;ananke&amp;#39;&amp;#34; &amp;gt;&amp;gt; hugo.toml hugo server hugo new content posts/my-first-post.md open content/posts/my-first-post.md //然后进行修改 hugo server -D //可以编辑后， 在 http://localhost:1313/ 进行预览 hugo //生成web静态资源，以便下一步提交github时进行部署 Host on GitHub Pages 需要注意的地方:
-请先尝试 hugo文档里提供的theme，即ananke，走通一遍流程 我就采坑了，使用了另一个theme，后面在 localhost 一直不出现 my-first-post.md
-.github/workflows/hugo.yaml 一定要注意修改 HUGO_VERSION 的值
-my-first-post.md 注意删掉/注释掉 draft:true 这样 push到github时，public/index.html等几个文件中才包含了 my-first-post.md的内容，访问 https://zyestin.github.io/zyestin/ 时才能找到 my-first-post.</description>
+      <description>2023最新 hugo + github pages 使用方式&#xA;网上大多是hugo旧版的使用方式，有好几处明显差异的，不值得借鉴，反正我借鉴后出现各种莫名其妙问题&#xA;严格按照官方这两个链接，就不会出现问题:&#xA;hugo quick start hugo new site quickstart cd quickstart git init git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke echo &amp;#34;theme = &amp;#39;ananke&amp;#39;&amp;#34; &amp;gt;&amp;gt; hugo.toml hugo server hugo new content posts/my-first-post.md open content/posts/my-first-post.md //然后进行修改 hugo server -D //可以编辑后， 在 http://localhost:1313/ 进行预览 hugo //生成web静态资源，以便下一步提交github时进行部署 Host on GitHub Pages 需要注意的地方:&#xA;请先尝试 hugo文档里提供的theme，即ananke，走通一遍流程 我就采坑了，使用了另一个theme，后面在 localhost 一直不出现 my-first-post.md&#xA;.github/workflows/hugo.yaml 一定要注意修改 HUGO_VERSION 的值&#xA;my-first-post.md 注意删掉/注释掉 draft:true 这样 push到github时，public/index.html等几个文件中才包含了 my-first-post.md的内容，访问 https://zyestin.github.io/zyestin/ 时才能找到 my-first-post.</description>
     </item>
-    
   </channel>
 </rss>

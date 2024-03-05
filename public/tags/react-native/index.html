@@ -7,7 +7,7 @@
     <title>react-native | zyestin</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="yestin (Front-end Developer)">
-    <meta name="generator" content="Hugo 0.117.0">
+    <meta name="generator" content="Hugo 0.122.0">
     
     
     
@@ -40,9 +40,9 @@
 <meta property="og:description" content="yestin (Front-end Developer)" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://zyestin.github.io/zyestin/tags/react-native/" />
+
 <meta itemprop="name" content="react-native">
-<meta itemprop="description" content="yestin (Front-end Developer)"><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="react-native"/>
+<meta itemprop="description" content="yestin (Front-end Developer)"><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="react-native"/>
 <meta name="twitter:description" content="yestin (Front-end Developer)"/>
 
 	
@@ -142,6 +142,35 @@
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
+      <a href="/zyestin/posts/rn/waterfall-perfect/" class="link black dim">
+        瀑布流最佳实践：双列均匀分布，高度计算&amp;缓存
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      MasonryFlashList 瀑布流布局列高不均 解决方案 瀑布流布局列高不均 演示效果
+最终我对此做了回复 👉🏻 issues/946#issuecomment-1972392998
+方法1：【仅解决了双列】58的方案 方案源码 👉🏻 https://github.com/jiangleo/react-native-classroom/blob/main/src/11_Waterfall/lib/RecyclerListView/WaterfallLayoutProvider.ts
+但，只修改为了 支持双列瀑布流布局，也不是基于最新recyclerlistview版本
+58大佬分析的 recyclerlistview的布局原理，Nice 方法2：【较完美的】Masonry layout manager and provider #526 方案 可惜，并没有被merge，作者似乎不再关注这个项目了。
+然后，也没有提供patch，但有人提供了package 和 Demo，非常赞！
+👉🏻 方案来源
+package: recyclerlistview-masonrylayoutmanager Demo: https://snack.expo.dev/@robertli93/grid_example
+Demo效果非常棒！ 滚动流畅 + 布局均匀 为何未被合并？
+难道是因为PR评论区的已知小bug？还是作者不再维护？
+方法3:【最完美】MasonryFlashList 本身支持优化排列 见官方文档 masonry#optimizeitemarrangement
+If enabled, MasonryFlashList will try to reduce difference in column height by modifying item order. If true, specifying overrideItemLayout is required. Default value is false. 在看源码时，发现MasonryFlashList.tsx中，底部可见如下说明
+* FlashList variant that enables rendering of masonry layouts.
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100  mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
       <a href="/zyestin/posts/rn/rn-pull-request/" class="link black dim">
         第一次提交PR给react-native
       </a>
@@ -232,12 +261,11 @@ Mac、VSC快捷键 Mac 系统自带
     <div class="nested-links f5 lh-copy nested-copy-line-height">
       一些业务的最佳实践探索 基础组件封装
 瀑布流列表base组件 图片base组件 实现 模仿抖音、小红书 输入 #标签 高亮
-实现 瀑布流列表·自动滚动动画
-实现 横向·瀑布流列表
-实现 仿抖音/小红书 对贴图/贴字 进行拖拽、缩放、旋转等复杂手势
+瀑布流列表
+瀑布流最佳实践：双列均匀分布，高度计算&amp;缓存 实现 瀑布流列表·自动滚动动画 实现 横向·瀑布流列表 实现 仿抖音/小红书 对贴图/贴字 进行拖拽、缩放、旋转等复杂手势
 封装一个 易用的、远程字体动态下载&amp;应用组件
 封装一个 低耦合、易用的文本输入框弹窗
-优雅实现 RN弹窗 支持多层弹窗
+实现 差不多理想的极简RN弹窗
 实践 多tab多列表滑动吸顶效果 [todo]
 实践 列表Item精确曝光埋点 [todo]
 实践 拆包 [todo]
@@ -246,7 +274,7 @@ React Native 编码提效 on VSCode
 用脚手架 制作一个RN库 放npm(含踏坑记录)
 贡献给react-native的第一个PR
 React Hooks 学习收获 [todo]
-常用hooks依赖检查，从源头提醒避免奇葩bug 从0到1用Jenkins实现对RN项目一键打包、发布 [todo]
+常用hooks依赖检查，从源头提醒避免奇葩bug [todo] 从0到1用Jenkins实现对RN项目一键打包、发布 [todo]
     </div>
   </div>
 </div>
@@ -312,16 +340,16 @@ HBMultiGestureView就类似一个三方库，不是面向具体业务的，俗�
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
       <a href="/zyestin/posts/rn/alert-multiple/" class="link black dim">
-        优雅实现 RN弹窗 支持多层弹窗
+        实现 差不多理想的极简RN弹窗
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Q: 调用弹窗的极简使用方式是什么？ A: 这样子👉🏻 XxModuleAlert.show({..})
+      Q: 代码调用一个弹窗的极简方式是怎样的？ A: 这样子👉🏻 XxModuleAlert.show({..})
 为了这个极简用法的目标，我曾经 使用rn-global-modal封装过TextInputAlert，但依然有些问题或难用点，比如遮挡了Toast、更改mask颜色要改源码、布局上有些非正常的地方
-因为不希望弹窗遮挡Toast，于是研究了react-native-root-toast，从而找到了封装理想弹窗的更快的方式
-于是，才造了一个 AlertManager
+因为不希望弹窗遮挡Toast，于是研究了react-native-root-toast，用的react-native-root-siblings，从而找到了封装理想弹窗的更快的方式
+于是，基于react-native-root-siblings 5.0.1，造了一个 AlertManager
 Why need AlertManager 相信大家使用过RN官方Modal的，都知道，iOS弹窗无法弹两个，使用起来不满足高内聚低耦合，难受。。。
-RN官方Modal 缺点：耦合过多！须visible属性，多1个import useState，多1行代码setVisble声明，弹窗组件须嵌入容器组件 rn-global-modal 优点：函数式调起弹窗，任意处可调用 缺点：iOS 不支持同时多层弹窗；toast的层级低于它 导致看不到/看不清 What AlertManager provide 封装者：封装出高度解耦的弹窗。 使用方：使用极简！ 优势 vs Modal：去掉visible vs rn-global-modal: 支持多层弹窗, TextInput弹窗对键盘支持更好？？ How to use AlertManager 使用方： XxModuleAlert.show({...}); XxModuleAlert.hide(); 封装方: class XxModuleAlert { static show() { AlertManager.show(&lt;XxModuleView /&gt;, { key: XxModuleView.name, }); } static hide() { AlertManager.hide(XxModuleView.name); } } export XxModuleAlert const XxModuleView = () =&gt; { ... return (.
+RN官方Modal 缺点：耦合过多！须visible属性，多1个import useState，多1行代码setVisble声明，弹窗组件须嵌入容器组件 rn-global-modal 优点：函数式调起弹窗，任意处可调用 缺点：iOS 不支持同时多层弹窗；toast的层级低于它 导致看不到/看不清 What AlertManager provide 封装者：封装出高度解耦的弹窗。 使用方：使用极简！ 优势 vs Modal：去掉visible vs rn-global-modal: 支持多层弹窗, TextInput弹窗对键盘支持更好？？ How to use AlertManager 使用方： XxModuleAlert.show({...}); XxModuleAlert.hide(); 封装方: class XxModuleAlert { static show() { AlertManager.show(&lt;XxModuleView /&gt;, { key: XxModuleView.name, }); } static hide() { AlertManager.hide(XxModuleView.name); } } export XxModuleAlert const XxModuleView = () =&gt; { .
     </div>
   </div>
 </div>

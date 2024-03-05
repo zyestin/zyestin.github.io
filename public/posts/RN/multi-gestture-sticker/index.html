@@ -19,7 +19,7 @@ View支持拖拽 View右下角有一个icon比较特殊，该icon可控制View�
 基于HBMultiGestureView封装的，所以开发时真正用的是这个CornerToolGestureView
 HBMultiGestureView就类似一个三方库，不是面向具体业务的，俗话说就是，开发时直接用它去组装UI 不够简单，于是封装为更好用的组件CornerToolGestureView，用于各个地方。
 就像是react-native-fast-image，我们并不在开发功能时直接用它，往往会对这个三方组件封装一层(e.g.增加了设置error占位图能力)，再去用于各个地方，比如 我们封装的图片base组件">
-    <meta name="generator" content="Hugo 0.117.0">
+    <meta name="generator" content="Hugo 0.122.0">
     
     
     
@@ -61,6 +61,7 @@ HBMultiGestureView就类似一个三方库，不是面向具体业务的，俗�
 <meta property="og:url" content="https://zyestin.github.io/zyestin/posts/rn/multi-gestture-sticker/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-11-01T12:00:11+08:00" />
 <meta property="article:modified_time" content="2023-11-01T12:00:11+08:00" />
+
 <meta itemprop="name" content="RN 动画 - 缩放、旋转、拖拽">
 <meta itemprop="description" content="需求 仿抖音、小红书，图片视频编辑区，贴图、贴文字功能
 View支持拖拽 View右下角有一个icon比较特殊，该icon可控制View缩放 icon随手指移动 View缩放（以View中心点为圆心） View会旋转（以View为中心点为圆心） icon位置一直保持在View右下角 View支持双指捏 进行缩放 效果图 源码 HBMultiGestureView.js calculator.js CornerToolGestureView.js 解读 HBMultiGestureView.js 使用的什么手势api？ 通过PanResponder为Animted.View添加手势
@@ -77,8 +78,7 @@ HBMultiGestureView就类似一个三方库，不是面向具体业务的，俗�
 就像是react-native-fast-image，我们并不在开发功能时直接用它，往往会对这个三方组件封装一层(e.g.增加了设置error占位图能力)，再去用于各个地方，比如 我们封装的图片base组件"><meta itemprop="datePublished" content="2023-11-01T12:00:11+08:00" />
 <meta itemprop="dateModified" content="2023-11-01T12:00:11+08:00" />
 <meta itemprop="wordCount" content="53">
-<meta itemprop="keywords" content="react-native," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="RN 动画 - 缩放、旋转、拖拽"/>
+<meta itemprop="keywords" content="react-native," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="RN 动画 - 缩放、旋转、拖拽"/>
 <meta name="twitter:description" content="需求 仿抖音、小红书，图片视频编辑区，贴图、贴文字功能
 View支持拖拽 View右下角有一个icon比较特殊，该icon可控制View缩放 icon随手指移动 View缩放（以View中心点为圆心） View会旋转（以View为中心点为圆心） icon位置一直保持在View右下角 View支持双指捏 进行缩放 效果图 源码 HBMultiGestureView.js calculator.js CornerToolGestureView.js 解读 HBMultiGestureView.js 使用的什么手势api？ 通过PanResponder为Animted.View添加手势
 将不同的手势操作 处理为拖拽、旋转、缩放等UI表现，从哪着手？ 通过手势回调onPanResponderGrant、onPanResponderMove、onPanResponderRelease去
@@ -317,7 +317,7 @@ HBMultiGestureView就类似一个三方库，不是面向具体业务的，俗�
         </li>
 	    
 	     <li  class="mb2">
-          <a href="/zyestin/posts/rn/alert-multiple/">优雅实现 RN弹窗 支持多层弹窗</a>
+          <a href="/zyestin/posts/rn/alert-multiple/">实现 差不多理想的极简RN弹窗</a>
         </li>
 	    
 	     <li  class="mb2">

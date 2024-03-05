@@ -7,7 +7,7 @@
     <title>横向 瀑布流列表 | zyestin</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="需求 效果展示 源码 import { StyleSheet, Text, TouchableOpacity, View } from &#34;react-native&#34;; import React, { useEffect, useRef, useState } from &#34;react&#34;; import HBImage from &#34;../../../../components/image/HBImage&#34;; import { px2dp } from &#34;../../../../utils/ScreenUtils&#34;; import { MasonryFlashList } from &#34;@shopify/flash-list&#34;; import { bookOpenChoices } from &#34;app/service/MarkService&#34;; import * as indexUtil from &#34;app/utils/index&#34;; const itemWidth = px2dp(12 &#43; 86.5 &#43; 251.5); const itemHeight = px2dp(139); const itemSpace = px2dp(17); const UserChooseBook = (props) =&gt; { const { selectedSex, marks } = props; const [dataList, setDataList] = useState([]); const listViewRef = useRef(null); const { onScrollBeginDrag, onScroll } = useListViewAutoScrollAnimate({ listViewRef: listViewRef, framesPerSecond: 40, // 1000/40 = 25帧/秒 offsetPerFrame: 1, totalScrollDistance: (itemWidth * Math.">
-    <meta name="generator" content="Hugo 0.117.0">
+    <meta name="generator" content="Hugo 0.122.0">
     
     
     
@@ -37,12 +37,12 @@
 <meta property="og:url" content="https://zyestin.github.io/zyestin/posts/rn/waterfall-list-horizontal/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-11-01T12:00:11+08:00" />
 <meta property="article:modified_time" content="2023-11-01T12:00:11+08:00" />
+
 <meta itemprop="name" content="横向 瀑布流列表">
 <meta itemprop="description" content="需求 效果展示 源码 import { StyleSheet, Text, TouchableOpacity, View } from &#34;react-native&#34;; import React, { useEffect, useRef, useState } from &#34;react&#34;; import HBImage from &#34;../../../../components/image/HBImage&#34;; import { px2dp } from &#34;../../../../utils/ScreenUtils&#34;; import { MasonryFlashList } from &#34;@shopify/flash-list&#34;; import { bookOpenChoices } from &#34;app/service/MarkService&#34;; import * as indexUtil from &#34;app/utils/index&#34;; const itemWidth = px2dp(12 &#43; 86.5 &#43; 251.5); const itemHeight = px2dp(139); const itemSpace = px2dp(17); const UserChooseBook = (props) =&gt; { const { selectedSex, marks } = props; const [dataList, setDataList] = useState([]); const listViewRef = useRef(null); const { onScrollBeginDrag, onScroll } = useListViewAutoScrollAnimate({ listViewRef: listViewRef, framesPerSecond: 40, // 1000/40 = 25帧/秒 offsetPerFrame: 1, totalScrollDistance: (itemWidth * Math."><meta itemprop="datePublished" content="2023-11-01T12:00:11+08:00" />
 <meta itemprop="dateModified" content="2023-11-01T12:00:11+08:00" />
 <meta itemprop="wordCount" content="676">
-<meta itemprop="keywords" content="react-native," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="横向 瀑布流列表"/>
+<meta itemprop="keywords" content="react-native," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="横向 瀑布流列表"/>
 <meta name="twitter:description" content="需求 效果展示 源码 import { StyleSheet, Text, TouchableOpacity, View } from &#34;react-native&#34;; import React, { useEffect, useRef, useState } from &#34;react&#34;; import HBImage from &#34;../../../../components/image/HBImage&#34;; import { px2dp } from &#34;../../../../utils/ScreenUtils&#34;; import { MasonryFlashList } from &#34;@shopify/flash-list&#34;; import { bookOpenChoices } from &#34;app/service/MarkService&#34;; import * as indexUtil from &#34;app/utils/index&#34;; const itemWidth = px2dp(12 &#43; 86.5 &#43; 251.5); const itemHeight = px2dp(139); const itemSpace = px2dp(17); const UserChooseBook = (props) =&gt; { const { selectedSex, marks } = props; const [dataList, setDataList] = useState([]); const listViewRef = useRef(null); const { onScrollBeginDrag, onScroll } = useListViewAutoScrollAnimate({ listViewRef: listViewRef, framesPerSecond: 40, // 1000/40 = 25帧/秒 offsetPerFrame: 1, totalScrollDistance: (itemWidth * Math."/>
 
 	
@@ -492,7 +492,7 @@ const itemSpace = px2dp(17);
         </li>
 	    
 	     <li  class="mb2">
-          <a href="/zyestin/posts/rn/alert-multiple/">优雅实现 RN弹窗 支持多层弹窗</a>
+          <a href="/zyestin/posts/rn/alert-multiple/">实现 差不多理想的极简RN弹窗</a>
         </li>
 	    
 	     <li  class="mb2">

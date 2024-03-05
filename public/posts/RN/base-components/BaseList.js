@@ -1,11 +1,13 @@
 //"use strict"
 import React, {
   forwardRef,
+  useCallback,
   useEffect,
   useImperativeHandle,
+  useRef,
   useState,
 } from "react";
-import { View, Text, ActivityIndicator } from "react-native";
+import { View, Text, ActivityIndicator, RefreshControl } from "react-native";
 import { MasonryFlashList } from "@shopify/flash-list";
 import { px2W, px2dp } from "app/utils/ScreenUtils";
 import EmptyView from "app/components/empty/index";
@@ -29,6 +31,12 @@ const kHasMoreStatus = {
  * @param {Number} numColumns                列表列数
  * @param {Function} renderItem              item组件渲染  ({item, index}) => {}
  * @param {String} uniqueKey                 列表item的唯一key，eg. 一般取 id 或 userId...
+ * @param {Function} getItemType             列表item的类型，eg. 一般取 type，用于区分不同类型的item，以便在列表中渲染不同的item组件
+ * @param {Boolean} headRefreshEnable        是否开启下拉刷新
+ * @param {Function} ListHeaderComponent     列表头部组件
+ * @param {Function} ListEmptyComponent      列表空数据组件
+ * @param {Function} onViewableItemsChanged  列表滚动时，可见item发生变化时的回调  ({viewableItems, changed}) => {}
+ * @param {Function} sizeForItem             列表item的高度or宽度  (item, index) => { return 100 } . 📢这将开启MasonryFlashList瀑布流优化排列，即 按每列累计高度而均匀排列
  * * -------------- ref public api --------------
  * @api dataList setDataList loadNew lastSuccessRequestPage
  *
@@ -43,6 +51,12 @@ const BaseList = forwardRef(
       numColumns,
       renderItem,
       uniqueKey,
+      getItemType,
+      headRefreshEnable,
+      ListHeaderComponent,
+      ListEmptyComponent,
+      onViewableItemsChanged,
+      sizeForItem,
     },
     ref
   ) => {
@@ -55,11 +69,19 @@ const BaseList = forwardRef(
     const columnCount = numColumns || 1;
     const estimatedItemSize = px2W(100) / columnCount;
 
+    const listRef = useRef(null);
+
     useImperativeHandle(ref, () => ({
       dataList: dataList,
       setDataList: setDataList,
       loadNew: _loadNew,
       lastSuccessRequestPage: lastSuccessRequestPage,
+      scrollToOffset: ({ animated, offset }) => {
+        listRef.current?.scrollToOffset?.({ animated, offset });
+      },
+      recordInteraction: () => {
+        listRef?.current?.recordInteraction?.();
+      },
     }));
 
     useEffect(() => {
@@ -70,10 +92,23 @@ const BaseList = forwardRef(
       setIsLoadingNew(true);
       setLastSuccessRequestPage(1);
 
+      listRef?.current?.recordInteraction?.();
+
       requestFunc(1)
         .then((data) => {
           setHasMore(data?.length >= 1);
-          setDataList(data);
+          if (sizeForItem) {
+            //用于外界计算后 缓存（可多个）尺寸，e.g. height、titleHeight、imageHeight ...
+            setDataList(
+              data.map((item) => ({
+                ...item,
+                cache: {},
+              }))
+            );
+          } else {
+            setDataList(data);
+          }
+          listRef?.current?.recordInteraction?.();
         })
         .finally(() => {
           setIsLoadingNew(false);
@@ -86,14 +121,23 @@ const BaseList = forwardRef(
         .then((data) => {
           setHasMore(data?.length >= 1);
           setLastSuccessRequestPage(lastSuccessRequestPage + 1);
-          setDataList([...dataList, ...data]);
+          if (sizeForItem) {
+            setDataList(
+              [...dataList, ...data].map((item) => ({
+                ...item,
+                cache: {},
+              }))
+            );
+          } else {
+            setDataList([...dataList, ...data]);
+          }
         })
         .finally(() => {
           setIsLoadingMore(false);
         });
     };
 
-    return isLoadingNew ? (
+    return isLoadingNew && !headRefreshEnable ? (
       <ActivityIndicator
         animating
         size="small"
@@ -106,12 +150,14 @@ const BaseList = forwardRef(
       />
     ) : (
       <MasonryFlashList
+        ref={listRef}
         contentContainerStyle={contentContainerStyle}
         estimatedItemSize={estimatedItemSize}
         data={dataList}
         keyExtractor={(item, index) => item?.[uniqueKey] || index.toString()}
         initialNumToRender={5}
         numColumns={columnCount}
+        getItemType={getItemType}
         renderItem={renderItem}
         onEndReachedThreshold={0.1}
         onEndReached={() => {
@@ -120,6 +166,7 @@ const BaseList = forwardRef(
             _loadMore();
           }
         }}
+        ListHeaderComponent={ListHeaderComponent}
         ListFooterComponent={() => (
           <View
             style={{
@@ -139,9 +186,33 @@ const BaseList = forwardRef(
           </View>
         )}
         ListEmptyComponent={
-          !dataList?.length && hasMore == kHasMoreStatus.HAS_NO_MORE ? (
-            <EmptyView msg={"暂无数据"} />
-          ) : null
+          !dataList?.length && hasMore == kHasMoreStatus.HAS_NO_MORE
+            ? ListEmptyComponent ?? <EmptyView msg={"暂无数据"} />
+            : null
+        }
+        refreshControl={
+          headRefreshEnable && (
+            <RefreshControl
+              refreshing={isLoadingNew}
+              onRefresh={() => {
+                _loadNew();
+              }}
+            />
+          )
+        }
+        viewabilityConfig={{
+          waitForInteraction: true,
+          itemVisiblePercentThreshold: 50,
+          minimumViewTime: 1000,
+        }}
+        onViewableItemsChanged={onViewableItemsChanged}
+        optimizeItemArrangement={sizeForItem ? true : false}
+        overrideItemLayout={
+          sizeForItem
+            ? (layoutObject, sourceData, i, columnCount, extraData) => {
+                layoutObject.size = sizeForItem(sourceData, i);
+              }
+            : undefined
         }
       />
     );

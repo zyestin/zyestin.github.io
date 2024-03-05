@@ -7,7 +7,7 @@
     <title>zyestin</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="yestin (Front-end Developer)">
-    <meta name="generator" content="Hugo 0.117.0">
+    <meta name="generator" content="Hugo 0.122.0">
     
     
     
@@ -40,9 +40,9 @@
 <meta property="og:description" content="yestin (Front-end Developer)" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://zyestin.github.io/zyestin/posts/" />
+
 <meta itemprop="name" content="Posts">
-<meta itemprop="description" content="yestin (Front-end Developer)"><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Posts"/>
+<meta itemprop="description" content="yestin (Front-end Developer)"><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="Posts"/>
 <meta name="twitter:description" content="yestin (Front-end Developer)"/>
 
 	
@@ -132,6 +132,27 @@
   <article class="pa3 pa4-ns nested-copy-line-height">
     <section class="cf ph3 ph5-l pv3 pv4-l f4 tc-l center measure-wide lh-copy mid-gray"></section>
     <section class="flex-ns flex-wrap justify-around mt5">
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/zyestin/posts/rn/douyin-label-input/" class="link black dim">
+        模仿抖音、小红书 输入 #标签 高亮
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      需求 当输入 以#开头的字符串，则判定为标签 并展示为蓝色
+效果图 调研 iOS的TextField可以设定attributedString富文本，但RN的TextInput是不具备的。
+方案：
+TextInput上浮一个style大小一致的Text，TextInput文字颜色设为透明，Text内嵌套 style为蓝色的Text 用来展示#任意(至少1个)字符
+代码 import React, { useState } from &#34;react&#34;; import { View, TextInput, Text, StyleSheet } from &#34;react-native&#34;; const App = () =&gt; { const [text, setText] = useState(&#34;&#34;); const handleTextChange = (inputText) =&gt; { // 检测输入字符串中是否包含 &#34;#&#34; if (inputText.includes(&#34;#&#34;)) { // 将包含 &#34;#任意(至少1个)字符&#34; 的部分替换为带有蓝色样式的文本组件 const parts = inputText.split(/(?=#|\s)/g); console.log(&#34;parts: &#34;, parts); const formattedText = parts.map((part, index) =&gt; { return part.
+    </div>
+  </div>
+</div>
+
+        </div>
       
         <div class="relative w-100 w-30-l mb4 bg-white">
           <div class="relative w-100 mb4 bg-white nested-copy-line-height">

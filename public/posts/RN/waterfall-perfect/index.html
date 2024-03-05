@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>瀑布流最佳实践：双列均匀分布，高度计算&amp;缓存 | zyestin</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="MasonryFlashList 瀑布流布局列高不均 解决方案 瀑布流布局列高不均 演示效果
+最终我对此做了回复 👉🏻 issues/946#issuecomment-1972392998
+方法1：【仅解决了双列】58的方案 方案源码 👉🏻 https://github.com/jiangleo/react-native-classroom/blob/main/src/11_Waterfall/lib/RecyclerListView/WaterfallLayoutProvider.ts
+但，只修改为了 支持双列瀑布流布局，也不是基于最新recyclerlistview版本
+58大佬分析的 recyclerlistview的布局原理，Nice 方法2：【较完美的】Masonry layout manager and provider #526 方案 可惜，并没有被merge，作者似乎不再关注这个项目了。
+然后，也没有提供patch，但有人提供了package 和 Demo，非常赞！
+👉🏻 方案来源
+package: recyclerlistview-masonrylayoutmanager Demo: https://snack.expo.dev/@robertli93/grid_example
+Demo效果非常棒！ 滚动流畅 &#43; 布局均匀 为何未被合并？
+难道是因为PR评论区的已知小bug？还是作者不再维护？
+方法3:【最完美】MasonryFlashList 本身支持优化排列 见官方文档 masonry#optimizeitemarrangement
+If enabled, MasonryFlashList will try to reduce difference in column height by modifying item order. If true, specifying overrideItemLayout is required. Default value is false. 在看源码时，发现MasonryFlashList.tsx中，底部可见如下说明
+* FlashList variant that enables rendering of masonry layouts.">
+    <meta name="generator" content="Hugo 0.122.0">
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/zyestin/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+<link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/51897571?s=40&amp;v=4" type="image/x-icon" />
+
+
+    
+
+    
+    
+    <meta property="og:title" content="瀑布流最佳实践：双列均匀分布，高度计算&amp;缓存" />
+<meta property="og:description" content="MasonryFlashList 瀑布流布局列高不均 解决方案 瀑布流布局列高不均 演示效果
+最终我对此做了回复 👉🏻 issues/946#issuecomment-1972392998
+方法1：【仅解决了双列】58的方案 方案源码 👉🏻 https://github.com/jiangleo/react-native-classroom/blob/main/src/11_Waterfall/lib/RecyclerListView/WaterfallLayoutProvider.ts
+但，只修改为了 支持双列瀑布流布局，也不是基于最新recyclerlistview版本
+58大佬分析的 recyclerlistview的布局原理，Nice 方法2：【较完美的】Masonry layout manager and provider #526 方案 可惜，并没有被merge，作者似乎不再关注这个项目了。
+然后，也没有提供patch，但有人提供了package 和 Demo，非常赞！
+👉🏻 方案来源
+package: recyclerlistview-masonrylayoutmanager Demo: https://snack.expo.dev/@robertli93/grid_example
+Demo效果非常棒！ 滚动流畅 &#43; 布局均匀 为何未被合并？
+难道是因为PR评论区的已知小bug？还是作者不再维护？
+方法3:【最完美】MasonryFlashList 本身支持优化排列 见官方文档 masonry#optimizeitemarrangement
+If enabled, MasonryFlashList will try to reduce difference in column height by modifying item order. If true, specifying overrideItemLayout is required. Default value is false. 在看源码时，发现MasonryFlashList.tsx中，底部可见如下说明
+* FlashList variant that enables rendering of masonry layouts." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zyestin.github.io/zyestin/posts/rn/waterfall-perfect/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-03-05T19:36:11+08:00" />
+<meta property="article:modified_time" content="2024-03-05T19:36:11+08:00" />
+
+<meta itemprop="name" content="瀑布流最佳实践：双列均匀分布，高度计算&amp;缓存">
+<meta itemprop="description" content="MasonryFlashList 瀑布流布局列高不均 解决方案 瀑布流布局列高不均 演示效果
+最终我对此做了回复 👉🏻 issues/946#issuecomment-1972392998
+方法1：【仅解决了双列】58的方案 方案源码 👉🏻 https://github.com/jiangleo/react-native-classroom/blob/main/src/11_Waterfall/lib/RecyclerListView/WaterfallLayoutProvider.ts
+但，只修改为了 支持双列瀑布流布局，也不是基于最新recyclerlistview版本
+58大佬分析的 recyclerlistview的布局原理，Nice 方法2：【较完美的】Masonry layout manager and provider #526 方案 可惜，并没有被merge，作者似乎不再关注这个项目了。
+然后，也没有提供patch，但有人提供了package 和 Demo，非常赞！
+👉🏻 方案来源
+package: recyclerlistview-masonrylayoutmanager Demo: https://snack.expo.dev/@robertli93/grid_example
+Demo效果非常棒！ 滚动流畅 &#43; 布局均匀 为何未被合并？
+难道是因为PR评论区的已知小bug？还是作者不再维护？
+方法3:【最完美】MasonryFlashList 本身支持优化排列 见官方文档 masonry#optimizeitemarrangement
+If enabled, MasonryFlashList will try to reduce difference in column height by modifying item order. If true, specifying overrideItemLayout is required. Default value is false. 在看源码时，发现MasonryFlashList.tsx中，底部可见如下说明
+* FlashList variant that enables rendering of masonry layouts."><meta itemprop="datePublished" content="2024-03-05T19:36:11+08:00" />
+<meta itemprop="dateModified" content="2024-03-05T19:36:11+08:00" />
+<meta itemprop="wordCount" content="244">
+<meta itemprop="keywords" content="react-native," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="瀑布流最佳实践：双列均匀分布，高度计算&amp;缓存"/>
+<meta name="twitter:description" content="MasonryFlashList 瀑布流布局列高不均 解决方案 瀑布流布局列高不均 演示效果
+最终我对此做了回复 👉🏻 issues/946#issuecomment-1972392998
+方法1：【仅解决了双列】58的方案 方案源码 👉🏻 https://github.com/jiangleo/react-native-classroom/blob/main/src/11_Waterfall/lib/RecyclerListView/WaterfallLayoutProvider.ts
+但，只修改为了 支持双列瀑布流布局，也不是基于最新recyclerlistview版本
+58大佬分析的 recyclerlistview的布局原理，Nice 方法2：【较完美的】Masonry layout manager and provider #526 方案 可惜，并没有被merge，作者似乎不再关注这个项目了。
+然后，也没有提供patch，但有人提供了package 和 Demo，非常赞！
+👉🏻 方案来源
+package: recyclerlistview-masonrylayoutmanager Demo: https://snack.expo.dev/@robertli93/grid_example
+Demo效果非常棒！ 滚动流畅 &#43; 布局均匀 为何未被合并？
+难道是因为PR评论区的已知小bug？还是作者不再维护？
+方法3:【最完美】MasonryFlashList 本身支持优化排列 见官方文档 masonry#optimizeitemarrangement
+If enabled, MasonryFlashList will try to reduce difference in column height by modifying item order. If true, specifying overrideItemLayout is required. Default value is false. 在看源码时，发现MasonryFlashList.tsx中，底部可见如下说明
+* FlashList variant that enables rendering of masonry layouts."/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/zyestin/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        <img src="https://avatars.githubusercontent.com/u/51897571?s=40&amp;v=4" class="w100 mw5-ns" alt="zyestin" />
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+    
+    <a href="https://zyestin.github.io/zyestin/posts/rn/readme/" target="_blank" rel="noopener" class="ALL ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="ALL link" aria-label="follow on ALL——Opens in a new window">
+      
+        ALL
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    
+    <a href="https://github.com/zyestin" target="_blank" rel="noopener" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" aria-label="follow on GitHub——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    
+    <a href="https://www.jianshu.com/u/3601cd1fe82d" target="_blank" rel="noopener" class="jianshu ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Jian link" aria-label="follow on Jian——Opens in a new window">
+      
+        Jian
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    
+    <a href="https://blog.csdn.net/wustzhy2016" target="_blank" rel="noopener" class="CSDN ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="csdn link" aria-label="follow on csdn——Opens in a new window">
+      
+        csdn
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">瀑布流最佳实践：双列均匀分布，高度计算&amp;缓存</h1>
+      
+      <p class="tracked">
+        By <strong>yestin</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2024-03-05T19:36:11+08:00">March 5, 2024</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy avenir bg-near-white f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="masonryflashlist-瀑布流布局列高不均-解决方案">MasonryFlashList 瀑布流布局列高不均 解决方案</h1>
+<p>瀑布流布局列高不均 <a href="https://github.com/Shopify/flash-list/issues/946#issue-1985047991">演示效果</a></p>
+<p>最终我对此做了回复 👉🏻 <a href="https://github.com/Shopify/flash-list/issues/946#issuecomment-1972392998">issues/946#issuecomment-1972392998</a></p>
+<h2 id="方法1仅解决了双列58的方案">方法1：【仅解决了双列】58的方案</h2>
+<p>方案源码 👉🏻 <a href="https://github.com/jiangleo/react-native-classroom/blob/main/src/11_Waterfall/lib/RecyclerListView/WaterfallLayoutProvider.ts">https://github.com/jiangleo/react-native-classroom/blob/main/src/11_Waterfall/lib/RecyclerListView/WaterfallLayoutProvider.ts</a></p>
+<p>但，只修改为了 支持双列瀑布流布局，也不是基于最新<code>recyclerlistview</code>版本</p>
+<blockquote>
+<p>58大佬分析的 recyclerlistview的布局原理，Nice
+<img src="media/17091118627441/17091213783869.jpg" alt=""></p>
+</blockquote>
+<h2 id="方法2较完美的masonry-layout-manager-and-provider-526httpsgithubcomflipkartrecyclerlistviewpull526-方案">方法2：【较完美的】<a href="https://github.com/Flipkart/recyclerlistview/pull/526">Masonry layout manager and provider #526</a> 方案</h2>
+<p>可惜，并没有被merge，作者似乎不再关注这个项目了。<br>
+然后，也没有提供<code>patch</code>，但有人提供了<code>package</code> 和 <code>Demo</code>，非常赞！</p>
+<blockquote>
+<p>👉🏻 <a href="https://github.com/Flipkart/recyclerlistview/pull/526#issuecomment-1012718981">方案来源</a></p>
+<ul>
+<li>package: <a href="https://snyk.io/advisor/npm-package/recyclerlistview-masonrylayoutmanager">recyclerlistview-masonrylayoutmanager</a></li>
+<li>Demo: <a href="https://snack.expo.dev/@robertli93/grid_example">https://snack.expo.dev/@robertli93/grid_example</a><br>
+Demo效果非常棒！ 滚动流畅 + 布局均匀</li>
+</ul>
+</blockquote>
+<p>为何未被合并？<br>
+难道是因为PR评论区的已知小bug？还是作者不再维护？</p>
+<h2 id="方法3最完美masonryflashlist-本身支持优化排列">方法3:【最完美】MasonryFlashList 本身支持<code>优化排列</code></h2>
+<p>见官方文档 <a href="https://shopify.github.io/flash-list/docs/guides/masonry#optimizeitemarrangement">masonry#optimizeitemarrangement</a></p>
+<pre tabindex="0"><code>If enabled, MasonryFlashList will try to reduce difference in column height by modifying item order. If true, specifying overrideItemLayout is required. Default value is false.
+</code></pre><p>在看源码时，发现<code>MasonryFlashList.tsx</code>中，底部可见如下说明</p>
+<pre tabindex="0"><code> * FlashList variant that enables rendering of masonry layouts.
+ * If you want `MasonryFlashList` to optimize item arrangement, enable `optimizeItemArrangement` and pass a valid `overrideItemLayout` function.
+</code></pre><p><code>optimize Item Arrangement</code>，即 优化Item的布置/排列</p>
+<p>布局规则 核心代码
+<img src="media/17091118627441/17091955879019.jpg" alt=""></p>
+<p>默认分配规则</p>
+<blockquote>
+<p>columnCount列，对应dataSet下有多少个数组，对应有多少个FlashList<br>
+dataSet下各数组(各列表数据) 是根据<code>i % columnCount</code>在数量上公平分配的</p>
+</blockquote>
+<p><!-- raw HTML omitted --><strong>optimizeItemArrangement</strong><!-- raw HTML omitted --> 排列规则</p>
+<blockquote>
+<p>optimizeItemArrangement，则改为 基于<!-- raw HTML omitted --><code>列高度累计</code><!-- raw HTML omitted -->上公平分配。<br>
+每次分配前，通过<code>columnHeightTracker[j] &lt; columnHeightTracker[nextColumnIndex]</code>判断，每次把Item分配给 高度累计最少的那一列</p>
+</blockquote>
+<p>基于此，做如下改动</p>
+<ul>
+<li>
+<p>对底层封装组件<code>BaseList</code>，增加 入参 - 高度计算函数<code>sizeForItem</code></p>
+<p><img src="media/17091118627441/17096391792658.jpg" alt="">
+注意：其中还为dataList中的各个元素 增加了cache键，用于缓存各种计算值</p>
+<blockquote>
+<p>附:<br>
+<code>BaseList</code>源码 👉🏻 <a href="media/17091118627441/base.js">base</a></p>
+</blockquote>
+</li>
+<li>
+<p>在<code>Item</code>组件中，增加 高度计算函数实现</p>
+<pre tabindex="0"><code>export const sizeForItem = (item) =&gt; {
+  const { previewUri, title, tags, cache } = item;
+  console.log(&#34;item.cache:&#34;, item.cache);
+  //使用缓存高度，避免重复计算，减少性能消耗
+  if (cache[kHeightCacheKey]) return cache[kHeightCacheKey] + px2dp(15);
+
+  let imageHeight = getHeightFromSize(parseSize(previewUri)) || imageSize;
+  cache[kImageHeightCacheKey] = imageHeight;
+
+  let titleH = getHeightWithText({
+    text: title,
+    fontSize: styles.title.fontSize,
+    lineHeight: styles.title.lineHeight,
+    maxNumberOfLines: 2,
+    maxWidth: cellWidth - styles.title.paddingHorizontal * 2,
+  });
+  cache[kTitleHeightCacheKey] = titleH;
+
+  let totalH =
+    Math.ceil(imageHeight) +
+    cellBorderWidth * 2 +
+    Math.ceil(styles.title.marginTop) +
+    Math.ceil(titleH) +
+    Math.ceil(tags?.[0] ? px2dp(5) : 0) +
+    Math.ceil(tags?.[0] ? px2dp(20) : 0) +
+    Math.ceil(px2dp(30));
+  cache[kHeightCacheKey] = totalH;
+
+  return totalH + px2dp(15);
+};
+</code></pre><p>注意:<br>
+实际上， 组件自适应高度 与 计算所得高度 有点偏差，会导致列表数据刷多了后，仍会出现两列分布不均</p>
+<p>于是，上面代码中每个(带text的)组件高度计算后，需要向上取整，比如 23.3 -&gt; 24<br>
+并且，<!-- raw HTML omitted -->将计算的各组件高度，缓存到cache对象中，并且将使用这些值 设为组件style中的height<!-- raw HTML omitted --><br>
+<strong>这样就避免了 组件自适应高度 与 计算高度 之间的偏差！！</strong></p>
+<p>另外， 调用<code>sizeForItem</code>时，<strong>优先使用缓存高度，避免重复计算</strong>，减少性能消耗</p>
+<blockquote>
+<p>附:<br>
+1种<code>Item</code>使用源码 👉🏻 <a href="media/17091118627441/ImageTextFeed.js">ImageTextFeed</a></p>
+</blockquote>
+</li>
+<li>
+<p>高度计算对比了2个，发现<a href="https://mp.weixin.qq.com/s/kN4MxfEkvICq3JneUvM56w">58的方案</a>更好</p>
+<p>源码: <a href="https://github.com/jiangleo/react-native-classroom/blob/d09d5a6937f9e8b3b9878566e6a251a814705739/src/12_HomePage/utils/getNumberOfLine.ts#L32">https://github.com/jiangleo/react-native-classroom/blob/d09d5a6937f9e8b3b9878566e6a251a814705739/src/12_HomePage/utils/getNumberOfLine.ts#L32</a></p>
+</li>
+</ul>
+<ul class="pa0">
+  
+   <li class="list di">
+     <a href="/zyestin/tags/react-native/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">react-native</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/rn-pull-request/">第一次提交PR给react-native</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/waterfall-list-autoscroll/"> 实现 FlatList 、flashList、masonryFlashList 各种列表的自动滚动动画</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/multi-gestture-sticker/">RN 动画 - 缩放、旋转、拖拽</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/vscode-efficient/">React Native 在VSCode编码提效</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/readme/">React Native 开发沉淀</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/code-standards/">代码规范</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/alert-multiple/">实现 差不多理想的极简RN弹窗</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/textinput-alert/">封装 低耦合、易用的文本输入框弹窗</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/base-components/">封装常用基础组件</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/douyin-label-input/">模仿抖音、小红书 输入 #标签 高亮</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/waterfall-list-horizontal/">横向 瀑布流列表</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/create-npm-lib/">用脚手架 制作一个RN库 放npm</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/art-text/">远程字体的动态加载&amp;应用</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://zyestin.github.io/zyestin/" >
+    &copy;  zyestin 2024 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+    
+    <a href="https://zyestin.github.io/zyestin/posts/rn/readme/" target="_blank" rel="noopener" class="ALL ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="ALL link" aria-label="follow on ALL——Opens in a new window">
+      
+        ALL
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    
+    <a href="https://github.com/zyestin" target="_blank" rel="noopener" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" aria-label="follow on GitHub——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    
+    <a href="https://www.jianshu.com/u/3601cd1fe82d" target="_blank" rel="noopener" class="jianshu ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Jian link" aria-label="follow on Jian——Opens in a new window">
+      
+        Jian
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    
+    <a href="https://blog.csdn.net/wustzhy2016" target="_blank" rel="noopener" class="CSDN ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="csdn link" aria-label="follow on csdn——Opens in a new window">
+      
+        csdn
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

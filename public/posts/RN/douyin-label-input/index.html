@@ -11,7 +11,7 @@
 方案：
 TextInput上浮一个style大小一致的Text，TextInput文字颜色设为透明，Text内嵌套 style为蓝色的Text 用来展示#任意(至少1个)字符
 代码 import React, { useState } from &#34;react&#34;; import { View, TextInput, Text, StyleSheet } from &#34;react-native&#34;; const App = () =&gt; { const [text, setText] = useState(&#34;&#34;); const handleTextChange = (inputText) =&gt; { // 检测输入字符串中是否包含 &#34;#&#34; if (inputText.includes(&#34;#&#34;)) { // 将包含 &#34;#任意(至少1个)字符&#34; 的部分替换为带有蓝色样式的文本组件 const parts = inputText.split(/(?=#|\s)/g); console.log(&#34;parts: &#34;, parts); const formattedText = parts.map((part, index) =&gt; { return part.">
-    <meta name="generator" content="Hugo 0.117.0">
+    <meta name="generator" content="Hugo 0.122.0">
     
     
     
@@ -45,6 +45,7 @@ TextInput上浮一个style大小一致的Text，TextInput文字颜色设为透�
 <meta property="og:url" content="https://zyestin.github.io/zyestin/posts/rn/douyin-label-input/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-11-01T12:00:11+08:00" />
 <meta property="article:modified_time" content="2023-11-01T12:00:11+08:00" />
+
 <meta itemprop="name" content="模仿抖音、小红书 输入 #标签 高亮">
 <meta itemprop="description" content="需求 当输入 以#开头的字符串，则判定为标签 并展示为蓝色
 效果图 调研 iOS的TextField可以设定attributedString富文本，但RN的TextInput是不具备的。
@@ -53,8 +54,7 @@ TextInput上浮一个style大小一致的Text，TextInput文字颜色设为透�
 代码 import React, { useState } from &#34;react&#34;; import { View, TextInput, Text, StyleSheet } from &#34;react-native&#34;; const App = () =&gt; { const [text, setText] = useState(&#34;&#34;); const handleTextChange = (inputText) =&gt; { // 检测输入字符串中是否包含 &#34;#&#34; if (inputText.includes(&#34;#&#34;)) { // 将包含 &#34;#任意(至少1个)字符&#34; 的部分替换为带有蓝色样式的文本组件 const parts = inputText.split(/(?=#|\s)/g); console.log(&#34;parts: &#34;, parts); const formattedText = parts.map((part, index) =&gt; { return part."><meta itemprop="datePublished" content="2023-11-01T12:00:11+08:00" />
 <meta itemprop="dateModified" content="2023-11-01T12:00:11+08:00" />
 <meta itemprop="wordCount" content="200">
-<meta itemprop="keywords" content="react-native," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="模仿抖音、小红书 输入 #标签 高亮"/>
+<meta itemprop="keywords" content="react-native," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="模仿抖音、小红书 输入 #标签 高亮"/>
 <meta name="twitter:description" content="需求 当输入 以#开头的字符串，则判定为标签 并展示为蓝色
 效果图 调研 iOS的TextField可以设定attributedString富文本，但RN的TextInput是不具备的。
 方案：
@@ -311,7 +311,7 @@ TextInput上浮一个style大小一致的Text，TextInput文字颜色设为透�
         </li>
 	    
 	     <li  class="mb2">
-          <a href="/zyestin/posts/rn/alert-multiple/">优雅实现 RN弹窗 支持多层弹窗</a>
+          <a href="/zyestin/posts/rn/alert-multiple/">实现 差不多理想的极简RN弹窗</a>
         </li>
 	    
 	     <li  class="mb2">

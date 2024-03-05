@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="示例效果展示 切换到新字体，经过loading后，应用上新字体 切换到已加载过的字体，直接应用上 iOS Android 使用/Usage 封装后，如下这样使用，解耦的干干净净
 import { StyleSheet, Text, TouchableOpacity, View } from &#34;react-native&#34;; import React, { useState } from &#34;react&#34;; import ArtText from &#34;./ArtText&#34;; const ArtTextDemo = () =&gt; { const [fontInfoIndex, setFontInfoIndex] = useState(0); return ( &lt;View style={{ flex: 1, padding:100 }}&gt; &lt;TouchableOpacity style={{padding:10}} onPress={() =&gt; { setFontInfoIndex((fontInfoIndex &#43; 1) % fontInfoList.length); }} &gt; &lt;Text&gt;{&#34;Switch Font&#34;}&lt;/Text&gt; &lt;/TouchableOpacity&gt; &lt;Text style={{ marginVertical: 20 }}&gt; {&#34;Current font - &#34; &#43; fontInfoIndex &#43; &#34; - &#34; &#43; fontInfoList[fontInfoIndex].">
-    <meta name="generator" content="Hugo 0.117.0">
+    <meta name="generator" content="Hugo 0.122.0">
     
     
     
@@ -39,13 +39,13 @@ import { StyleSheet, Text, TouchableOpacity, View } from &#34;react-native&#34;;
 <meta property="og:url" content="https://zyestin.github.io/zyestin/posts/rn/art-text/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-11-01T12:00:11+08:00" />
 <meta property="article:modified_time" content="2023-11-01T12:00:11+08:00" />
+
 <meta itemprop="name" content="远程字体的动态加载&amp;应用">
 <meta itemprop="description" content="示例效果展示 切换到新字体，经过loading后，应用上新字体 切换到已加载过的字体，直接应用上 iOS Android 使用/Usage 封装后，如下这样使用，解耦的干干净净
 import { StyleSheet, Text, TouchableOpacity, View } from &#34;react-native&#34;; import React, { useState } from &#34;react&#34;; import ArtText from &#34;./ArtText&#34;; const ArtTextDemo = () =&gt; { const [fontInfoIndex, setFontInfoIndex] = useState(0); return ( &lt;View style={{ flex: 1, padding:100 }}&gt; &lt;TouchableOpacity style={{padding:10}} onPress={() =&gt; { setFontInfoIndex((fontInfoIndex &#43; 1) % fontInfoList.length); }} &gt; &lt;Text&gt;{&#34;Switch Font&#34;}&lt;/Text&gt; &lt;/TouchableOpacity&gt; &lt;Text style={{ marginVertical: 20 }}&gt; {&#34;Current font - &#34; &#43; fontInfoIndex &#43; &#34; - &#34; &#43; fontInfoList[fontInfoIndex]."><meta itemprop="datePublished" content="2023-11-01T12:00:11+08:00" />
 <meta itemprop="dateModified" content="2023-11-01T12:00:11+08:00" />
 <meta itemprop="wordCount" content="136">
-<meta itemprop="keywords" content="react-native," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="远程字体的动态加载&amp;应用"/>
+<meta itemprop="keywords" content="react-native," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="远程字体的动态加载&amp;应用"/>
 <meta name="twitter:description" content="示例效果展示 切换到新字体，经过loading后，应用上新字体 切换到已加载过的字体，直接应用上 iOS Android 使用/Usage 封装后，如下这样使用，解耦的干干净净
 import { StyleSheet, Text, TouchableOpacity, View } from &#34;react-native&#34;; import React, { useState } from &#34;react&#34;; import ArtText from &#34;./ArtText&#34;; const ArtTextDemo = () =&gt; { const [fontInfoIndex, setFontInfoIndex] = useState(0); return ( &lt;View style={{ flex: 1, padding:100 }}&gt; &lt;TouchableOpacity style={{padding:10}} onPress={() =&gt; { setFontInfoIndex((fontInfoIndex &#43; 1) % fontInfoList.length); }} &gt; &lt;Text&gt;{&#34;Switch Font&#34;}&lt;/Text&gt; &lt;/TouchableOpacity&gt; &lt;Text style={{ marginVertical: 20 }}&gt; {&#34;Current font - &#34; &#43; fontInfoIndex &#43; &#34; - &#34; &#43; fontInfoList[fontInfoIndex]."/>
 
@@ -296,7 +296,7 @@ const fontInfoList = [
         </li>
 	    
 	     <li  class="mb2">
-          <a href="/zyestin/posts/rn/alert-multiple/">优雅实现 RN弹窗 支持多层弹窗</a>
+          <a href="/zyestin/posts/rn/alert-multiple/">实现 差不多理想的极简RN弹窗</a>
         </li>
 	    
 	     <li  class="mb2">

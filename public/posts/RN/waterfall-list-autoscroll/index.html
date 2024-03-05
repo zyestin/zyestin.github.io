@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width,minimum-scale=1">
     <meta name="description" content="ScrollView滚动动画 实现起来就很容易
 import React, { useRef, useEffect } from &#34;react&#34;; import { ScrollView, Text, View, Animated, Easing } from &#34;react-native&#34;; /** * ScrollView自动滚动了！ */ const AutoScrollScrollView = () =&gt; { const scrollViewRef = useRef(); const scrollY = useRef(new Animated.Value(0)).current; const contentHeight = 1000; // 你的内容高度 const scrollDuration = 5000; // 滚动动画的持续时间（毫秒） useEffect(() =&gt; { const startScrollAnimation = () =&gt; { Animated.timing(scrollY, { toValue: contentHeight, duration: scrollDuration, easing: Easing.linear, useNativeDriver: false, }).">
-    <meta name="generator" content="Hugo 0.117.0">
+    <meta name="generator" content="Hugo 0.122.0">
     
     
     
@@ -39,13 +39,13 @@ import React, { useRef, useEffect } from &#34;react&#34;; import { ScrollView, T
 <meta property="og:url" content="https://zyestin.github.io/zyestin/posts/rn/waterfall-list-autoscroll/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-11-01T12:00:11+08:00" />
 <meta property="article:modified_time" content="2023-11-01T12:00:11+08:00" />
+
 <meta itemprop="name" content=" 实现 FlatList 、flashList、masonryFlashList 各种列表的自动滚动动画">
 <meta itemprop="description" content="ScrollView滚动动画 实现起来就很容易
 import React, { useRef, useEffect } from &#34;react&#34;; import { ScrollView, Text, View, Animated, Easing } from &#34;react-native&#34;; /** * ScrollView自动滚动了！ */ const AutoScrollScrollView = () =&gt; { const scrollViewRef = useRef(); const scrollY = useRef(new Animated.Value(0)).current; const contentHeight = 1000; // 你的内容高度 const scrollDuration = 5000; // 滚动动画的持续时间（毫秒） useEffect(() =&gt; { const startScrollAnimation = () =&gt; { Animated.timing(scrollY, { toValue: contentHeight, duration: scrollDuration, easing: Easing.linear, useNativeDriver: false, })."><meta itemprop="datePublished" content="2023-11-01T12:00:11+08:00" />
 <meta itemprop="dateModified" content="2023-11-01T12:00:11+08:00" />
 <meta itemprop="wordCount" content="409">
-<meta itemprop="keywords" content="react-native," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content=" 实现 FlatList 、flashList、masonryFlashList 各种列表的自动滚动动画"/>
+<meta itemprop="keywords" content="react-native," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content=" 实现 FlatList 、flashList、masonryFlashList 各种列表的自动滚动动画"/>
 <meta name="twitter:description" content="ScrollView滚动动画 实现起来就很容易
 import React, { useRef, useEffect } from &#34;react&#34;; import { ScrollView, Text, View, Animated, Easing } from &#34;react-native&#34;; /** * ScrollView自动滚动了！ */ const AutoScrollScrollView = () =&gt; { const scrollViewRef = useRef(); const scrollY = useRef(new Animated.Value(0)).current; const contentHeight = 1000; // 你的内容高度 const scrollDuration = 5000; // 滚动动画的持续时间（毫秒） useEffect(() =&gt; { const startScrollAnimation = () =&gt; { Animated.timing(scrollY, { toValue: contentHeight, duration: scrollDuration, easing: Easing.linear, useNativeDriver: false, })."/>
 
@@ -382,7 +382,7 @@ export default SlowScrollFlatList;
         </li>
 	    
 	     <li  class="mb2">
-          <a href="/zyestin/posts/rn/alert-multiple/">优雅实现 RN弹窗 支持多层弹窗</a>
+          <a href="/zyestin/posts/rn/alert-multiple/">实现 差不多理想的极简RN弹窗</a>
         </li>
 	    
 	     <li  class="mb2">

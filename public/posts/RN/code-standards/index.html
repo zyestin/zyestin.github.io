@@ -14,7 +14,7 @@
 也就是 render/return组件 之前的代码量尽可能少；那么，就需要通过函数提炼、划分职责等方式转移到别处。
 组件代码 书写顺序 示例如下
 // AAView.js import { xxCalculate, xxUploadEvent } from &#39;app/components/XxModule&#39; import AView from &#39;./components/AView&#39; import BView from &#39;./components/BView&#39; //$$ 用于组件函数内的变量 紧邻写在组件函数上方 const variableUsedInXXComp = ... //组件函数 const AAView = props =&gt; { //$$ props解构, 放第一行 ///reason：即使AAView上面不写@param注释，通过这里的解构也能看出props的参数 const { paramA, paramB } = props //$$ 副作用函数(即use开头的函数)，写在顶层作用域， const [aEverClicked, setAEverClicked] = useState(false) const [bClickedTime, setBClickedTime] = useState(0) .">
-    <meta name="generator" content="Hugo 0.117.0">
+    <meta name="generator" content="Hugo 0.122.0">
     
     
     
@@ -51,6 +51,7 @@
 <meta property="og:url" content="https://zyestin.github.io/zyestin/posts/rn/code-standards/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-11-01T12:00:11+08:00" />
 <meta property="article:modified_time" content="2023-11-01T12:00:11+08:00" />
+
 <meta itemprop="name" content="代码规范">
 <meta itemprop="description" content="讨论背景 相信大家写代码时 对自己都有一些要求，比如下面的
 基本期望：写出他人能容易看懂的代码 更高追求：写出他人看起来很爽的代码 每经历一个阶段，大家都对编码有不同程度的进步提升，可以分享；同时也会积累一些场景下代码如屎的烦恼，想要破局。
@@ -62,8 +63,7 @@
 // AAView.js import { xxCalculate, xxUploadEvent } from &#39;app/components/XxModule&#39; import AView from &#39;./components/AView&#39; import BView from &#39;./components/BView&#39; //$$ 用于组件函数内的变量 紧邻写在组件函数上方 const variableUsedInXXComp = ... //组件函数 const AAView = props =&gt; { //$$ props解构, 放第一行 ///reason：即使AAView上面不写@param注释，通过这里的解构也能看出props的参数 const { paramA, paramB } = props //$$ 副作用函数(即use开头的函数)，写在顶层作用域， const [aEverClicked, setAEverClicked] = useState(false) const [bClickedTime, setBClickedTime] = useState(0) ."><meta itemprop="datePublished" content="2023-11-01T12:00:11+08:00" />
 <meta itemprop="dateModified" content="2023-11-01T12:00:11+08:00" />
 <meta itemprop="wordCount" content="515">
-<meta itemprop="keywords" content="react-native," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="代码规范"/>
+<meta itemprop="keywords" content="react-native," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="代码规范"/>
 <meta name="twitter:description" content="讨论背景 相信大家写代码时 对自己都有一些要求，比如下面的
 基本期望：写出他人能容易看懂的代码 更高追求：写出他人看起来很爽的代码 每经历一个阶段，大家都对编码有不同程度的进步提升，可以分享；同时也会积累一些场景下代码如屎的烦恼，想要破局。
 于是，阶段性的，需要一个机会，大家开个交流会进行讨论
@@ -497,7 +497,7 @@ listener.remove();
         </li>
 	    
 	     <li  class="mb2">
-          <a href="/zyestin/posts/rn/alert-multiple/">优雅实现 RN弹窗 支持多层弹窗</a>
+          <a href="/zyestin/posts/rn/alert-multiple/">实现 差不多理想的极简RN弹窗</a>
         </li>
 	    
 	     <li  class="mb2">

@@ -4,15 +4,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>优雅实现 RN弹窗 支持多层弹窗 | zyestin</title>
+    <title>实现 差不多理想的极简RN弹窗 | zyestin</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    <meta name="description" content="Q: 调用弹窗的极简使用方式是什么？ A: 这样子👉🏻 XxModuleAlert.show({..})
+    <meta name="description" content="Q: 代码调用一个弹窗的极简方式是怎样的？ A: 这样子👉🏻 XxModuleAlert.show({..})
 为了这个极简用法的目标，我曾经 使用rn-global-modal封装过TextInputAlert，但依然有些问题或难用点，比如遮挡了Toast、更改mask颜色要改源码、布局上有些非正常的地方
-因为不希望弹窗遮挡Toast，于是研究了react-native-root-toast，从而找到了封装理想弹窗的更快的方式
-于是，才造了一个 AlertManager
+因为不希望弹窗遮挡Toast，于是研究了react-native-root-toast，用的react-native-root-siblings，从而找到了封装理想弹窗的更快的方式
+于是，基于react-native-root-siblings 5.0.1，造了一个 AlertManager
 Why need AlertManager 相信大家使用过RN官方Modal的，都知道，iOS弹窗无法弹两个，使用起来不满足高内聚低耦合，难受。。。
-RN官方Modal 缺点：耦合过多！须visible属性，多1个import useState，多1行代码setVisble声明，弹窗组件须嵌入容器组件 rn-global-modal 优点：函数式调起弹窗，任意处可调用 缺点：iOS 不支持同时多层弹窗；toast的层级低于它 导致看不到/看不清 What AlertManager provide 封装者：封装出高度解耦的弹窗。 使用方：使用极简！ 优势 vs Modal：去掉visible vs rn-global-modal: 支持多层弹窗, TextInput弹窗对键盘支持更好？？ How to use AlertManager 使用方： XxModuleAlert.show({...}); XxModuleAlert.hide(); 封装方: class XxModuleAlert { static show() { AlertManager.show(&lt;XxModuleView /&gt;, { key: XxModuleView.name, }); } static hide() { AlertManager.hide(XxModuleView.name); } } export XxModuleAlert const XxModuleView = () =&gt; { ... return (.">
-    <meta name="generator" content="Hugo 0.117.0">
+RN官方Modal 缺点：耦合过多！须visible属性，多1个import useState，多1行代码setVisble声明，弹窗组件须嵌入容器组件 rn-global-modal 优点：函数式调起弹窗，任意处可调用 缺点：iOS 不支持同时多层弹窗；toast的层级低于它 导致看不到/看不清 What AlertManager provide 封装者：封装出高度解耦的弹窗。 使用方：使用极简！ 优势 vs Modal：去掉visible vs rn-global-modal: 支持多层弹窗, TextInput弹窗对键盘支持更好？？ How to use AlertManager 使用方： XxModuleAlert.show({...}); XxModuleAlert.hide(); 封装方: class XxModuleAlert { static show() { AlertManager.show(&lt;XxModuleView /&gt;, { key: XxModuleView.name, }); } static hide() { AlertManager.hide(XxModuleView.name); } } export XxModuleAlert const XxModuleView = () =&gt; { .">
+    <meta name="generator" content="Hugo 0.122.0">
     
     
     
@@ -36,34 +36,34 @@ RN官方Modal 缺点：耦合过多！须visible属性，多1个import useState�
 
     
     
-    <meta property="og:title" content="优雅实现 RN弹窗 支持多层弹窗" />
-<meta property="og:description" content="Q: 调用弹窗的极简使用方式是什么？ A: 这样子👉🏻 XxModuleAlert.show({..})
+    <meta property="og:title" content="实现 差不多理想的极简RN弹窗" />
+<meta property="og:description" content="Q: 代码调用一个弹窗的极简方式是怎样的？ A: 这样子👉🏻 XxModuleAlert.show({..})
 为了这个极简用法的目标，我曾经 使用rn-global-modal封装过TextInputAlert，但依然有些问题或难用点，比如遮挡了Toast、更改mask颜色要改源码、布局上有些非正常的地方
-因为不希望弹窗遮挡Toast，于是研究了react-native-root-toast，从而找到了封装理想弹窗的更快的方式
-于是，才造了一个 AlertManager
+因为不希望弹窗遮挡Toast，于是研究了react-native-root-toast，用的react-native-root-siblings，从而找到了封装理想弹窗的更快的方式
+于是，基于react-native-root-siblings 5.0.1，造了一个 AlertManager
 Why need AlertManager 相信大家使用过RN官方Modal的，都知道，iOS弹窗无法弹两个，使用起来不满足高内聚低耦合，难受。。。
-RN官方Modal 缺点：耦合过多！须visible属性，多1个import useState，多1行代码setVisble声明，弹窗组件须嵌入容器组件 rn-global-modal 优点：函数式调起弹窗，任意处可调用 缺点：iOS 不支持同时多层弹窗；toast的层级低于它 导致看不到/看不清 What AlertManager provide 封装者：封装出高度解耦的弹窗。 使用方：使用极简！ 优势 vs Modal：去掉visible vs rn-global-modal: 支持多层弹窗, TextInput弹窗对键盘支持更好？？ How to use AlertManager 使用方： XxModuleAlert.show({...}); XxModuleAlert.hide(); 封装方: class XxModuleAlert { static show() { AlertManager.show(&lt;XxModuleView /&gt;, { key: XxModuleView.name, }); } static hide() { AlertManager.hide(XxModuleView.name); } } export XxModuleAlert const XxModuleView = () =&gt; { ... return (." />
+RN官方Modal 缺点：耦合过多！须visible属性，多1个import useState，多1行代码setVisble声明，弹窗组件须嵌入容器组件 rn-global-modal 优点：函数式调起弹窗，任意处可调用 缺点：iOS 不支持同时多层弹窗；toast的层级低于它 导致看不到/看不清 What AlertManager provide 封装者：封装出高度解耦的弹窗。 使用方：使用极简！ 优势 vs Modal：去掉visible vs rn-global-modal: 支持多层弹窗, TextInput弹窗对键盘支持更好？？ How to use AlertManager 使用方： XxModuleAlert.show({...}); XxModuleAlert.hide(); 封装方: class XxModuleAlert { static show() { AlertManager.show(&lt;XxModuleView /&gt;, { key: XxModuleView.name, }); } static hide() { AlertManager.hide(XxModuleView.name); } } export XxModuleAlert const XxModuleView = () =&gt; { ." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://zyestin.github.io/zyestin/posts/rn/alert-multiple/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-11-01T12:00:11+08:00" />
 <meta property="article:modified_time" content="2023-11-01T12:00:11+08:00" />
-<meta itemprop="name" content="优雅实现 RN弹窗 支持多层弹窗">
-<meta itemprop="description" content="Q: 调用弹窗的极简使用方式是什么？ A: 这样子👉🏻 XxModuleAlert.show({..})
+
+<meta itemprop="name" content="实现 差不多理想的极简RN弹窗">
+<meta itemprop="description" content="Q: 代码调用一个弹窗的极简方式是怎样的？ A: 这样子👉🏻 XxModuleAlert.show({..})
 为了这个极简用法的目标，我曾经 使用rn-global-modal封装过TextInputAlert，但依然有些问题或难用点，比如遮挡了Toast、更改mask颜色要改源码、布局上有些非正常的地方
-因为不希望弹窗遮挡Toast，于是研究了react-native-root-toast，从而找到了封装理想弹窗的更快的方式
-于是，才造了一个 AlertManager
+因为不希望弹窗遮挡Toast，于是研究了react-native-root-toast，用的react-native-root-siblings，从而找到了封装理想弹窗的更快的方式
+于是，基于react-native-root-siblings 5.0.1，造了一个 AlertManager
 Why need AlertManager 相信大家使用过RN官方Modal的，都知道，iOS弹窗无法弹两个，使用起来不满足高内聚低耦合，难受。。。
-RN官方Modal 缺点：耦合过多！须visible属性，多1个import useState，多1行代码setVisble声明，弹窗组件须嵌入容器组件 rn-global-modal 优点：函数式调起弹窗，任意处可调用 缺点：iOS 不支持同时多层弹窗；toast的层级低于它 导致看不到/看不清 What AlertManager provide 封装者：封装出高度解耦的弹窗。 使用方：使用极简！ 优势 vs Modal：去掉visible vs rn-global-modal: 支持多层弹窗, TextInput弹窗对键盘支持更好？？ How to use AlertManager 使用方： XxModuleAlert.show({...}); XxModuleAlert.hide(); 封装方: class XxModuleAlert { static show() { AlertManager.show(&lt;XxModuleView /&gt;, { key: XxModuleView.name, }); } static hide() { AlertManager.hide(XxModuleView.name); } } export XxModuleAlert const XxModuleView = () =&gt; { ... return (."><meta itemprop="datePublished" content="2023-11-01T12:00:11+08:00" />
+RN官方Modal 缺点：耦合过多！须visible属性，多1个import useState，多1行代码setVisble声明，弹窗组件须嵌入容器组件 rn-global-modal 优点：函数式调起弹窗，任意处可调用 缺点：iOS 不支持同时多层弹窗；toast的层级低于它 导致看不到/看不清 What AlertManager provide 封装者：封装出高度解耦的弹窗。 使用方：使用极简！ 优势 vs Modal：去掉visible vs rn-global-modal: 支持多层弹窗, TextInput弹窗对键盘支持更好？？ How to use AlertManager 使用方： XxModuleAlert.show({...}); XxModuleAlert.hide(); 封装方: class XxModuleAlert { static show() { AlertManager.show(&lt;XxModuleView /&gt;, { key: XxModuleView.name, }); } static hide() { AlertManager.hide(XxModuleView.name); } } export XxModuleAlert const XxModuleView = () =&gt; { ."><meta itemprop="datePublished" content="2023-11-01T12:00:11+08:00" />
 <meta itemprop="dateModified" content="2023-11-01T12:00:11+08:00" />
-<meta itemprop="wordCount" content="362">
-<meta itemprop="keywords" content="react-native," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="优雅实现 RN弹窗 支持多层弹窗"/>
-<meta name="twitter:description" content="Q: 调用弹窗的极简使用方式是什么？ A: 这样子👉🏻 XxModuleAlert.show({..})
+<meta itemprop="wordCount" content="363">
+<meta itemprop="keywords" content="react-native," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="实现 差不多理想的极简RN弹窗"/>
+<meta name="twitter:description" content="Q: 代码调用一个弹窗的极简方式是怎样的？ A: 这样子👉🏻 XxModuleAlert.show({..})
 为了这个极简用法的目标，我曾经 使用rn-global-modal封装过TextInputAlert，但依然有些问题或难用点，比如遮挡了Toast、更改mask颜色要改源码、布局上有些非正常的地方
-因为不希望弹窗遮挡Toast，于是研究了react-native-root-toast，从而找到了封装理想弹窗的更快的方式
-于是，才造了一个 AlertManager
+因为不希望弹窗遮挡Toast，于是研究了react-native-root-toast，用的react-native-root-siblings，从而找到了封装理想弹窗的更快的方式
+于是，基于react-native-root-siblings 5.0.1，造了一个 AlertManager
 Why need AlertManager 相信大家使用过RN官方Modal的，都知道，iOS弹窗无法弹两个，使用起来不满足高内聚低耦合，难受。。。
-RN官方Modal 缺点：耦合过多！须visible属性，多1个import useState，多1行代码setVisble声明，弹窗组件须嵌入容器组件 rn-global-modal 优点：函数式调起弹窗，任意处可调用 缺点：iOS 不支持同时多层弹窗；toast的层级低于它 导致看不到/看不清 What AlertManager provide 封装者：封装出高度解耦的弹窗。 使用方：使用极简！ 优势 vs Modal：去掉visible vs rn-global-modal: 支持多层弹窗, TextInput弹窗对键盘支持更好？？ How to use AlertManager 使用方： XxModuleAlert.show({...}); XxModuleAlert.hide(); 封装方: class XxModuleAlert { static show() { AlertManager.show(&lt;XxModuleView /&gt;, { key: XxModuleView.name, }); } static hide() { AlertManager.hide(XxModuleView.name); } } export XxModuleAlert const XxModuleView = () =&gt; { ... return (."/>
+RN官方Modal 缺点：耦合过多！须visible属性，多1个import useState，多1行代码setVisble声明，弹窗组件须嵌入容器组件 rn-global-modal 优点：函数式调起弹窗，任意处可调用 缺点：iOS 不支持同时多层弹窗；toast的层级低于它 导致看不到/看不清 What AlertManager provide 封装者：封装出高度解耦的弹窗。 使用方：使用极简！ 优势 vs Modal：去掉visible vs rn-global-modal: 支持多层弹窗, TextInput弹窗对键盘支持更好？？ How to use AlertManager 使用方： XxModuleAlert.show({...}); XxModuleAlert.hide(); 封装方: class XxModuleAlert { static show() { AlertManager.show(&lt;XxModuleView /&gt;, { key: XxModuleView.name, }); } static hide() { AlertManager.hide(XxModuleView.name); } } export XxModuleAlert const XxModuleView = () =&gt; { ."/>
 
 	
   </head>
@@ -169,7 +169,7 @@ RN官方Modal 缺点：耦合过多！须visible属性，多1个import useState�
   </div>
 
 
-      <h1 class="f1 athelas mt3 mb1">优雅实现 RN弹窗 支持多层弹窗</h1>
+      <h1 class="f1 athelas mt3 mb1">实现 差不多理想的极简RN弹窗</h1>
       
       <p class="tracked">
         By <strong>yestin</strong>
@@ -183,14 +183,14 @@ RN官方Modal 缺点：耦合过多！须visible属性，多1个import useState�
       
       
     </header>
-    <div class="nested-copy-line-height lh-copy avenir bg-near-white f4 nested-links mid-gray pr4-l w-two-thirds-l"><h2 id="q-调用弹窗的极简使用方式是什么">Q: 调用弹窗的极简使用方式是什么？</h2>
+    <div class="nested-copy-line-height lh-copy avenir bg-near-white f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="q-代码调用一个弹窗的极简方式是怎样的">Q: 代码调用一个弹窗的极简方式是怎样的？</h1>
 <p>A: 这样子👉🏻 <em><strong><code>XxModuleAlert.show({..})</code></strong></em></p>
 <blockquote>
 <p>为了这个极简用法的目标，我曾经 使用<code>rn-global-modal</code>封装过<a href="../textinput-alert/">TextInputAlert</a>，但依然有些问题或难用点，比如遮挡了<code>Toast</code>、更改mask颜色要改源码、布局上有些非正常的地方</p>
-<p>因为不希望弹窗遮挡<code>Toast</code>，于是研究了<a href="https://github.com/magicismight/react-native-root-toast"><code>react-native-root-toast</code></a>，从而找到了封装理想弹窗的更快的方式</p>
-<p>于是，才造了一个 <code>AlertManager</code></p>
+<p>因为不希望弹窗遮挡<code>Toast</code>，于是研究了<a href="https://github.com/magicismight/react-native-root-toast"><code>react-native-root-toast</code></a>，用的<code>react-native-root-siblings</code>，从而找到了封装理想弹窗的更快的方式</p>
+<p>于是，基于<code>react-native-root-siblings 5.0.1</code>，造了一个 <code>AlertManager</code></p>
 </blockquote>
-<h2 id="why-need-alertmanager"><em><strong>Why</strong></em> need <code>AlertManager</code></h2>
+<h1 id="why-need-alertmanager"><em><strong>Why</strong></em> need <code>AlertManager</code></h1>
 <p>相信大家使用过RN官方<code>Modal</code>的，都知道，iOS弹窗无法弹两个，使用起来不满足<code>高内聚低耦合</code>，难受。。。</p>
 <h3 id="rn官方modal">RN官方Modal</h3>
 <ul>
@@ -201,7 +201,7 @@ RN官方Modal 缺点：耦合过多！须visible属性，多1个import useState�
 <li>优点：函数式调起弹窗，任意处可调用</li>
 <li>缺点：iOS 不支持同时多层弹窗；toast的层级低于它 导致看不到/看不清</li>
 </ul>
-<h2 id="what-alertmanager-provide"><em><strong>What</strong></em> <code>AlertManager</code> provide</h2>
+<h1 id="what-alertmanager-provide"><em><strong>What</strong></em> <code>AlertManager</code> provide</h1>
 <ul>
 <li>封装者：封装出高度解耦的弹窗。</li>
 <li>使用方：使用极简！</li>
@@ -211,7 +211,7 @@ RN官方Modal 缺点：耦合过多！须visible属性，多1个import useState�
 <li>vs Modal：去掉visible</li>
 <li>vs rn-global-modal: 支持多层弹窗, TextInput弹窗对键盘支持更好？？</li>
 </ul>
-<h2 id="how-to-use-alertmanager"><em><strong>How</strong></em> to use <code>AlertManager</code></h2>
+<h1 id="how-to-use-alertmanager"><em><strong>How</strong></em> to use <code>AlertManager</code></h1>
 <ul>
 <li>使用方：</li>
 </ul>
@@ -237,7 +237,7 @@ const XxModuleView = () =&gt; {
 	...
 	return (...)
 }
-</code></pre><h2 id="源码">源码</h2>
+</code></pre><h1 id="源码">源码</h1>
 <pre tabindex="0"><code>import React from &#34;react&#34;;
 import { Dimensions, TouchableOpacity, View } from &#34;react-native&#34;;
 import RootSiblingsManager from &#34;react-native-root-siblings&#34;;

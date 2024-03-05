@@ -9,7 +9,7 @@
     <meta name="description" content="瀑布流列表base组件 源码：BaseList.js
 优点：将下拉刷新、上拉加载更多相关的 pageNo逻辑，封装到BaseList中，使用方仅需关注 数据请求的api，让使用方代码量降到最少。
 使用示例 import BaseList from &#34;app/components/list/base&#34;; import { getFanList } from &#34;./service&#34;; const pageSize = 10; const FanList = (props) =&gt; { const { userId } = props; const _requestFunc = (page, pageSize) =&gt; { return getFanList({ userId: userId, pageNo: page, pageSize }); }; const _renderItem = ({ item, index }) =&gt; { return &lt;Item {...item} /&gt;; }; return ( // &lt;View style={{ flex: 1 }}&gt; &lt;BaseList requestFunc={(page) =&gt; _requestFunc(page, pageSize)} contentContainerStyle={{ paddingVertical: px2dp(5), paddingLeft: px2dp(5), }} renderItem={_renderItem} // numColumns={1} uniqueKey={&#34;userId&#34;} /&gt; // &lt;/View&gt; ); }; 图片base组件 源码：BaseImage.">
-    <meta name="generator" content="Hugo 0.117.0">
+    <meta name="generator" content="Hugo 0.122.0">
     
     
     
@@ -41,14 +41,14 @@
 <meta property="og:url" content="https://zyestin.github.io/zyestin/posts/rn/base-components/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-11-01T12:00:11+08:00" />
 <meta property="article:modified_time" content="2023-11-01T12:00:11+08:00" />
+
 <meta itemprop="name" content="封装常用基础组件">
 <meta itemprop="description" content="瀑布流列表base组件 源码：BaseList.js
 优点：将下拉刷新、上拉加载更多相关的 pageNo逻辑，封装到BaseList中，使用方仅需关注 数据请求的api，让使用方代码量降到最少。
 使用示例 import BaseList from &#34;app/components/list/base&#34;; import { getFanList } from &#34;./service&#34;; const pageSize = 10; const FanList = (props) =&gt; { const { userId } = props; const _requestFunc = (page, pageSize) =&gt; { return getFanList({ userId: userId, pageNo: page, pageSize }); }; const _renderItem = ({ item, index }) =&gt; { return &lt;Item {...item} /&gt;; }; return ( // &lt;View style={{ flex: 1 }}&gt; &lt;BaseList requestFunc={(page) =&gt; _requestFunc(page, pageSize)} contentContainerStyle={{ paddingVertical: px2dp(5), paddingLeft: px2dp(5), }} renderItem={_renderItem} // numColumns={1} uniqueKey={&#34;userId&#34;} /&gt; // &lt;/View&gt; ); }; 图片base组件 源码：BaseImage."><meta itemprop="datePublished" content="2023-11-01T12:00:11+08:00" />
 <meta itemprop="dateModified" content="2023-11-01T12:00:11+08:00" />
 <meta itemprop="wordCount" content="261">
-<meta itemprop="keywords" content="react-native," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="封装常用基础组件"/>
+<meta itemprop="keywords" content="react-native," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="封装常用基础组件"/>
 <meta name="twitter:description" content="瀑布流列表base组件 源码：BaseList.js
 优点：将下拉刷新、上拉加载更多相关的 pageNo逻辑，封装到BaseList中，使用方仅需关注 数据请求的api，让使用方代码量降到最少。
 使用示例 import BaseList from &#34;app/components/list/base&#34;; import { getFanList } from &#34;./service&#34;; const pageSize = 10; const FanList = (props) =&gt; { const { userId } = props; const _requestFunc = (page, pageSize) =&gt; { return getFanList({ userId: userId, pageNo: page, pageSize }); }; const _renderItem = ({ item, index }) =&gt; { return &lt;Item {...item} /&gt;; }; return ( // &lt;View style={{ flex: 1 }}&gt; &lt;BaseList requestFunc={(page) =&gt; _requestFunc(page, pageSize)} contentContainerStyle={{ paddingVertical: px2dp(5), paddingLeft: px2dp(5), }} renderItem={_renderItem} // numColumns={1} uniqueKey={&#34;userId&#34;} /&gt; // &lt;/View&gt; ); }; 图片base组件 源码：BaseImage."/>
@@ -313,7 +313,7 @@
         </li>
 	    
 	     <li  class="mb2">
-          <a href="/zyestin/posts/rn/alert-multiple/">优雅实现 RN弹窗 支持多层弹窗</a>
+          <a href="/zyestin/posts/rn/alert-multiple/">实现 差不多理想的极简RN弹窗</a>
         </li>
 	    
 	     <li  class="mb2">
