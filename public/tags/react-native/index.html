@@ -387,7 +387,7 @@ import TextInputAlert from &#34;./TextInputAlert&#34;; TextInputAlert.show({ tex
     <div class="nested-links f5 lh-copy nested-copy-line-height">
       瀑布流列表base组件 源码：BaseList.js
 优点：将下拉刷新、上拉加载更多相关的 pageNo逻辑，封装到BaseList中，使用方仅需关注 数据请求的api，让使用方代码量降到最少。
-使用示例 import BaseList from &#34;app/components/list/base&#34;; import { getFanList } from &#34;./service&#34;; const pageSize = 10; const FanList = (props) =&gt; { const { userId } = props; const _requestFunc = (page, pageSize) =&gt; { return getFanList({ userId: userId, pageNo: page, pageSize }); }; const _renderItem = ({ item, index }) =&gt; { return &lt;Item {...item} /&gt;; }; return ( // &lt;View style={{ flex: 1 }}&gt; &lt;BaseList requestFunc={(page) =&gt; _requestFunc(page, pageSize)} contentContainerStyle={{ paddingVertical: px2dp(5), paddingLeft: px2dp(5), }} renderItem={_renderItem} // numColumns={1} uniqueKey={&#34;userId&#34;} /&gt; // &lt;/View&gt; ); }; 图片base组件 源码：BaseImage.
+使用示例 平替 FlatList import BaseList from &#34;app/components/list/base&#34;; import { getFanList } from &#34;./service&#34;; const pageSize = 10; const FanList = (props) =&gt; { const { userId } = props; const _requestFunc = (page, pageSize) =&gt; { return getFanList({ userId: userId, pageNo: page, pageSize }); }; const _renderItem = ({ item, index }) =&gt; { return &lt;Item {...item} /&gt;; }; return ( // &lt;View style={{ flex: 1 }}&gt; &lt;BaseList requestFunc={(page) =&gt; _requestFunc(page, pageSize)} contentContainerStyle={{ paddingVertical: px2dp(5), paddingLeft: px2dp(5), }} renderItem={_renderItem} // numColumns={1} uniqueKey={&#34;userId&#34;} /&gt; // &lt;/View&gt; ); }; 可能会有双列分布不均问题，即某一列大量空白现象
     </div>
   </div>
 </div>

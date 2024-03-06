@@ -12,6 +12,8 @@ tags: [react-native]
 优点：将下拉刷新、上拉加载更多相关的 pageNo逻辑，封装到BaseList中，使用方仅需关注 数据请求的api，让使用方代码量降到最少。
 
 ### 使用示例
+
+* 平替 `FlatList`
 ```javascript
 import BaseList from "app/components/list/base";
 import { getFanList } from "./service";
@@ -44,6 +46,69 @@ const FanList = (props) => {
   );
 };
 
+```
+> 可能会有双列分布不均问题，即某一列大量空白现象
+
+* 最完美（渲染均匀、性能最佳）用法
+```javascript
+import { StyleSheet, Text, View } from "react-native";
+import React, { forwardRef, useCallback, useEffect } from "react";
+import ImageTextFeed, {
+  sizeForItem as imageTextFeedSizeForItem,
+} from "./Feed/ImageTextFeed";
+import TextFeed, { sizeForItem as textFeedSizeForItem } from "./Feed/TextFeed";
+import { px2dp } from "app/utils/ScreenUtils";
+import BaseList from "app/components/list/base";
+import SA from "app/utils/SaUtil";
+
+const FeedList = forwardRef((props, ref) => {
+  const {
+    requestFunc,
+    ListHeaderComponent,
+    disableAutoLoadNew,
+    ListEmptyComponent,
+  } = props;
+
+  useEffect(() => {
+    console.log("useEffect:FeedList");
+  }, []);
+
+  const _renderItem = ({ item, index }) => {
+    if (item.previewUri) {
+      return <ImageTextFeed item={item} />;
+    } else {
+      return <TextFeed item={item} />;
+    }
+  };
+
+  return (
+    <BaseList
+      ref={ref}
+      requestFunc={(page) => requestFunc(page)}
+      contentContainerStyle={{
+        paddingVertical: px2dp(0),
+        paddingLeft: px2dp(12),
+      }}
+      renderItem={_renderItem}
+      numColumns={2}
+      uniqueKey={"id"}
+      getItemType={(item) => {
+        return item.previewUri ? "ImageText" : "Text";
+      }}
+      headRefreshEnable={true}
+      ListHeaderComponent={ListHeaderComponent}
+      disableAutoLoadNew={disableAutoLoadNew}
+      ListEmptyComponent={ListEmptyComponent}
+      sizeForItem={(item, index) => {
+        return item.previewUri
+          ? imageTextFeedSizeForItem(item)
+          : textFeedSizeForItem(item);
+      }}
+    />
+  );
+});
+
+export default FeedList;
 ```
 
 
