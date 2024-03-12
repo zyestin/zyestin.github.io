@@ -30,6 +30,13 @@
       <description>ScrollView滚动动画 实现起来就很容易&#xA;import React, { useRef, useEffect } from &amp;#34;react&amp;#34;; import { ScrollView, Text, View, Animated, Easing } from &amp;#34;react-native&amp;#34;; /** * ScrollView自动滚动了！ */ const AutoScrollScrollView = () =&amp;gt; { const scrollViewRef = useRef(); const scrollY = useRef(new Animated.Value(0)).current; const contentHeight = 1000; // 你的内容高度 const scrollDuration = 5000; // 滚动动画的持续时间（毫秒） useEffect(() =&amp;gt; { const startScrollAnimation = () =&amp;gt; { Animated.timing(scrollY, { toValue: contentHeight, duration: scrollDuration, easing: Easing.linear, useNativeDriver: false, }).</description>
     </item>
     <item>
+      <title>hooks开发工具</title>
+      <link>https://zyestin.github.io/zyestin/posts/rn/react-hooks-dev-tool/</link>
+      <pubDate>Wed, 01 Nov 2023 12:00:11 +0800</pubDate>
+      <guid>https://zyestin.github.io/zyestin/posts/rn/react-hooks-dev-tool/</guid>
+      <description>常用hooks依赖检查，从源头提醒避免奇葩bug https://github.com/facebook/react/issues/14920&#xA;ESLint提供，检查useEffect依赖 &amp;amp;&amp;amp; autoFix，&#xA;用上后 估计能大大降低 无法获取state最新值、漏掉依赖后奇怪的bug</description>
+    </item>
+    <item>
       <title>React Native 在VSCode编码提效</title>
       <link>https://zyestin.github.io/zyestin/posts/rn/vscode-efficient/</link>
       <pubDate>Wed, 01 Nov 2023 12:00:11 +0800</pubDate>
@@ -41,7 +48,14 @@
       <link>https://zyestin.github.io/zyestin/posts/rn/readme/</link>
       <pubDate>Wed, 01 Nov 2023 12:00:11 +0800</pubDate>
       <guid>https://zyestin.github.io/zyestin/posts/rn/readme/</guid>
-      <description>一些业务的最佳实践探索 基础组件封装&#xA;瀑布流列表base组件 图片base组件 实现 模仿抖音、小红书 输入 #标签 高亮&#xA;瀑布流列表&#xA;瀑布流最佳实践：双列均匀分布，高度计算&amp;amp;缓存 实现 瀑布流列表·自动滚动动画 实现 横向·瀑布流列表 实现 仿抖音/小红书 对贴图/贴字 进行拖拽、缩放、旋转等复杂手势&#xA;封装一个 易用的、远程字体动态下载&amp;amp;应用组件&#xA;封装一个 低耦合、易用的文本输入框弹窗&#xA;实现 差不多理想的极简RN弹窗&#xA;实践 多tab多列表滑动吸顶效果 [todo]&#xA;实践 列表Item精确曝光埋点 [todo]&#xA;实践 拆包 [todo]&#xA;组件库 易用的应用远程字体的text组件库 - react-native-remote-font 其它（提效、工具&amp;hellip;) 探究 代码规范&#xA;React Native 编码提效 on VSCode&#xA;用脚手架 制作一个RN库 放npm(含踏坑记录)&#xA;贡献给react-native的第一个PR&#xA;React Hooks 学习收获 [todo]&#xA;常用hooks依赖检查，从源头提醒避免奇葩bug [todo] 从0到1用Jenkins实现对RN项目一键打包、发布 [todo]</description>
+      <description>一些业务的最佳实践探索 基础组件封装&#xA;瀑布流列表base组件 图片base组件 实现 模仿抖音、小红书 输入 #标签 高亮&#xA;瀑布流列表&#xA;瀑布流最佳实践：双列均匀分布，高度计算&amp;amp;缓存 实现 瀑布流列表·自动滚动动画 实现 横向·瀑布流列表 实现 仿抖音/小红书 对贴图/贴字 进行拖拽、缩放、旋转等复杂手势&#xA;封装一个 易用的、远程字体动态下载&amp;amp;应用组件&#xA;封装一个 低耦合、易用的文本输入框弹窗&#xA;实现 差不多理想的极简RN弹窗&#xA;实践 列表Item精确曝光埋点 [todo]&#xA;实践 多tab多列表滑动吸顶效果 [todo]&#xA;实践 服务端下发自定义组件代码 前端接收&amp;amp;渲染[todo]&#xA;实践 拆包 [todo]&#xA;组件库 易用的应用远程字体的text组件库 - react-native-remote-font 其它（提效、工具&amp;hellip;) 探究 代码规范&#xA;React Native 编码提效 on VSCode&#xA;用脚手架 制作一个RN库 放npm(含踏坑记录)&#xA;贡献给react-native的第一个PR&#xA;React学习收获 [todo]&#xA;学习《React Hooks 核心原理与实战》笔记 常用hooks依赖检查，从源头提醒避免奇葩bug [todo] 从0到1用Jenkins实现对RN项目一键打包、发布 [todo]</description>
+    </item>
+    <item>
+      <title>React 学习</title>
+      <link>https://zyestin.github.io/zyestin/posts/rn/react-learn/</link>
+      <pubDate>Wed, 01 Nov 2023 12:00:11 +0800</pubDate>
+      <guid>https://zyestin.github.io/zyestin/posts/rn/react-learn/</guid>
+      <description> 学习《React Hooks 核心原理与实战》笔记&#xA;hooks开发工具&#xA;常用hooks依赖检查，从源头提醒避免奇葩bug[todo] </description>
     </item>
     <item>
       <title>RN 动画 - 缩放、旋转、拖拽</title>
@@ -56,6 +70,13 @@
       <pubDate>Wed, 01 Nov 2023 12:00:11 +0800</pubDate>
       <guid>https://zyestin.github.io/zyestin/posts/rn/code-standards/</guid>
       <description>讨论背景 相信大家写代码时 对自己都有一些要求，比如下面的&#xA;基本期望：写出他人能容易看懂的代码 更高追求：写出他人看起来很爽的代码 每经历一个阶段，大家都对编码有不同程度的进步提升，可以分享；同时也会积累一些场景下代码如屎的烦恼，想要破局。&#xA;于是，阶段性的，需要一个机会，大家开个交流会进行讨论&#xA;（对于每个个体）互通有无，集思广益，团队每人都有所提升 （对于互相之间协作）更多地了解到彼此 阅读代码、写代码的风格习惯，增进理解 （对于工作）对现阶段遇到的痛点，找出更优解，或制定调研计划 每次讨论，规范条款上的收获，不在于多少，至少会收获了一些代码细节上的技巧或认知，最重要的是 大大增进了互相的了解，协作起来将越来越紧密顺畅。&#xA;讨论成果 组件代码结构 关键点: 打开文件后，更方便的看到核心代码（那就尽量靠前咯）&#xA;也就是 render/return组件 之前的代码量尽可能少；那么，就需要通过函数提炼、划分职责等方式转移到别处。&#xA;组件代码 书写顺序 示例如下&#xA;// AAView.js import { xxCalculate, xxUploadEvent } from &amp;#39;app/components/XxModule&amp;#39; import AView from &amp;#39;./components/AView&amp;#39; import BView from &amp;#39;./components/BView&amp;#39; //$$ 用于组件函数内的变量 紧邻写在组件函数上方 const variableUsedInXXComp = ... //组件函数 const AAView = props =&amp;gt; { //$$ props解构, 放第一行 ///reason：即使AAView上面不写@param注释，通过这里的解构也能看出props的参数 const { paramA, paramB } = props //$$ 副作用函数(即use开头的函数)，写在顶层作用域， const [aEverClicked, setAEverClicked] = useState(false) const [bClickedTime, setBClickedTime] = useState(0) .</description>
+    </item>
+    <item>
+      <title>学习《React Hooks 核心原理与实战》笔记</title>
+      <link>https://zyestin.github.io/zyestin/posts/rn/react-hooks-course1/</link>
+      <pubDate>Wed, 01 Nov 2023 12:00:11 +0800</pubDate>
+      <guid>https://zyestin.github.io/zyestin/posts/rn/react-hooks-course1/</guid>
+      <description>《React Hooks 核心原理与实战》学习 hooks Q: 为什么 Facebook 要发明React Hooks？React Hooks 解决了什么问题？&#xA;A: 简化了逻辑重用&#xA;hooks之前，复用逻辑要用到高阶组件或者render props&#xA;组件每次渲染，内部的函数会重新创建，导致 接收传递函数的子组件 也重新渲染&#xA;useCallback 对组件间传递的 (回调)函数 尽量都包裹 useMemo 缓存计算 useCallback，useMemo 只是为了避免 React 组件的重复渲染而导致的性能损失。&#xA;而对于原生的节点，比如 div, input 这些，它们已经是原子节点了，不再有子节点， 所以不存在重复刷新带来的性能损失。&#xA;useEffect执行时机是 DOM渲染后 useEffect中用到的变量，需要作为依赖参数 拆分复杂组件：不同逻辑拆到不同的Hooks里 Context 适用场景：仅 主题色、语言切换 redux 数据共享 避免不必要的请求 state 使用注意 state 避免定义多余的，找唯一数据源头 去发起改变 上次同事libin提到过这个场景：A传参value1给B，B又传value1给C，C里面能触发改变value1&#xA;方案1：C中的操作触发value1变更时，C不维护value1 state，由C回调给B再回调给A，由A改变value1，从而重新渲染B、C&#xA;方案2：C中的操作触发value1变更时，C改变C内部的value1，同时回调给B、A去更新(C外部)对应的value1&#xA;根据这篇来看，更倾向于方案1 。避免在子组件定义多余的state(value1)，找唯一数据源头A 去发起改变&#xA;设计模式 所谓「设计模式」，就是针对特定场景，提供一种公认的最佳实践&#xA;保证状态的唯一数据源 语义化的拆分复杂组件 Hooks 的一个重要规则，即：Hooks 必须在顶层作用域调用 而不能放在条件判断、循环等语句中，同时也不能在可能的 return 语句之后执行。换句话说，Hooks 必须按顺序被执行到。&#xA;容器模式，把条件判断的结果放到两个组件之中。可用Hooks替代 function CounterRenderProps({ children }) { .</description>
     </item>
     <item>
       <title>实现 差不多理想的极简RN弹窗</title>

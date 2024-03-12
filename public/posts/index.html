@@ -218,6 +218,25 @@ import React, { useRef, useEffect } from &#34;react&#34;; import { ScrollView, T
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
+      <a href="/zyestin/posts/rn/react-hooks-dev-tool/" class="link black dim">
+        hooks开发工具
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      常用hooks依赖检查，从源头提醒避免奇葩bug https://github.com/facebook/react/issues/14920
+ESLint提供，检查useEffect依赖 &amp;&amp; autoFix，
+用上后 估计能大大降低 无法获取state最新值、漏掉依赖后奇怪的bug
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
       <a href="/zyestin/posts/rn/vscode-efficient/" class="link black dim">
         React Native 在VSCode编码提效
       </a>
@@ -262,15 +281,35 @@ Mac、VSC快捷键 Mac 系统自带
 封装一个 易用的、远程字体动态下载&amp;应用组件
 封装一个 低耦合、易用的文本输入框弹窗
 实现 差不多理想的极简RN弹窗
-实践 多tab多列表滑动吸顶效果 [todo]
 实践 列表Item精确曝光埋点 [todo]
+实践 多tab多列表滑动吸顶效果 [todo]
+实践 服务端下发自定义组件代码 前端接收&amp;渲染[todo]
 实践 拆包 [todo]
 组件库 易用的应用远程字体的text组件库 - react-native-remote-font 其它（提效、工具&hellip;) 探究 代码规范
 React Native 编码提效 on VSCode
 用脚手架 制作一个RN库 放npm(含踏坑记录)
 贡献给react-native的第一个PR
-React Hooks 学习收获 [todo]
-常用hooks依赖检查，从源头提醒避免奇葩bug [todo] 从0到1用Jenkins实现对RN项目一键打包、发布 [todo]
+React学习收获 [todo]
+学习《React Hooks 核心原理与实战》笔记 常用hooks依赖检查，从源头提醒避免奇葩bug [todo] 从0到1用Jenkins实现对RN项目一键打包、发布 [todo]
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/zyestin/posts/rn/react-learn/" class="link black dim">
+        React 学习
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+       学习《React Hooks 核心原理与实战》笔记
+hooks开发工具
+常用hooks依赖检查，从源头提醒避免奇葩bug[todo] 
     </div>
   </div>
 </div>
@@ -335,55 +374,24 @@ HBMultiGestureView就类似一个三方库，不是面向具体业务的，俗�
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
-      <a href="/zyestin/posts/rn/alert-multiple/" class="link black dim">
-        实现 差不多理想的极简RN弹窗
+      <a href="/zyestin/posts/rn/react-hooks-course1/" class="link black dim">
+        学习《React Hooks 核心原理与实战》笔记
       </a>
     </h1>
     <div class="nested-links f5 lh-copy nested-copy-line-height">
-      Q: 代码调用一个弹窗的极简方式是怎样的？ A: 这样子👉🏻 XxModuleAlert.show({..})
-为了这个极简用法的目标，我曾经 使用rn-global-modal封装过TextInputAlert，但依然有些问题或难用点，比如遮挡了Toast、更改mask颜色要改源码、布局上有些非正常的地方
-因为不希望弹窗遮挡Toast，于是研究了react-native-root-toast，用的react-native-root-siblings，从而找到了封装理想弹窗的更快的方式
-于是，基于react-native-root-siblings 5.0.1，造了一个 AlertManager
-Why need AlertManager 相信大家使用过RN官方Modal的，都知道，iOS弹窗无法弹两个，使用起来不满足高内聚低耦合，难受。。。
-RN官方Modal 缺点：耦合过多！须visible属性，多1个import useState，多1行代码setVisble声明，弹窗组件须嵌入容器组件 rn-global-modal 优点：函数式调起弹窗，任意处可调用 缺点：iOS 不支持同时多层弹窗；toast的层级低于它 导致看不到/看不清 What AlertManager provide 封装者：封装出高度解耦的弹窗。 使用方：使用极简！ 优势 vs Modal：去掉visible vs rn-global-modal: 支持多层弹窗, TextInput弹窗对键盘支持更好？？ How to use AlertManager 使用方： XxModuleAlert.show({...}); XxModuleAlert.hide(); 封装方: class XxModuleAlert { static show() { AlertManager.show(&lt;XxModuleView /&gt;, { key: XxModuleView.name, }); } static hide() { AlertManager.hide(XxModuleView.name); } } export XxModuleAlert const XxModuleView = () =&gt; { .
-    </div>
-  </div>
-</div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/zyestin/posts/rn/textinput-alert/" class="link black dim">
-        封装 低耦合、易用的文本输入框弹窗
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      效果展示/UI 切换输入法，避开键盘 输入/粘帖时，文字换行，输入框高度准确变化 使用/Usage 封装后，如下这样使用，解耦的干干净净
-import TextInputAlert from &#34;./TextInputAlert&#34;; TextInputAlert.show({ text: &#34;hello&#34;, // maxLength: 20, onChange: function didInputChange(text_) { console.log(&#34;didInputChange::&gt;&gt;&#34;, text_); }, onCompleted: () =&gt; { console.log(&#34;onCompleted::&gt;&gt;&#34;, content); }, }); TextInputAlert.hide(); 像原生一样调api方式展示弹窗，不需要Modal那样耦合过多（视图嵌入、visible字段控制&hellip;）
-源码/Code TextInputAlert
-    </div>
-  </div>
-</div>
-
-        </div>
-      
-        <div class="relative w-100 w-30-l mb4 bg-white">
-          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
-  <div class="bg-white mb3 pa4 gray overflow-hidden">
-    <span class="f6 db">Posts</span>
-    <h1 class="f3 near-black">
-      <a href="/zyestin/posts/rn/base-components/" class="link black dim">
-        封装常用基础组件
-      </a>
-    </h1>
-    <div class="nested-links f5 lh-copy nested-copy-line-height">
-      瀑布流列表base组件 源码：BaseList.js
-优点：将下拉刷新、上拉加载更多相关的 pageNo逻辑，封装到BaseList中，使用方仅需关注 数据请求的api，让使用方代码量降到最少。
-使用示例 平替 FlatList import BaseList from &#34;app/components/list/base&#34;; import { getFanList } from &#34;./service&#34;; const pageSize = 10; const FanList = (props) =&gt; { const { userId } = props; const _requestFunc = (page, pageSize) =&gt; { return getFanList({ userId: userId, pageNo: page, pageSize }); }; const _renderItem = ({ item, index }) =&gt; { return &lt;Item {...item} /&gt;; }; return ( // &lt;View style={{ flex: 1 }}&gt; &lt;BaseList requestFunc={(page) =&gt; _requestFunc(page, pageSize)} contentContainerStyle={{ paddingVertical: px2dp(5), paddingLeft: px2dp(5), }} renderItem={_renderItem} // numColumns={1} uniqueKey={&#34;userId&#34;} /&gt; // &lt;/View&gt; ); }; 可能会有双列分布不均问题，即某一列大量空白现象
+      《React Hooks 核心原理与实战》学习 hooks Q: 为什么 Facebook 要发明React Hooks？React Hooks 解决了什么问题？
+A: 简化了逻辑重用
+hooks之前，复用逻辑要用到高阶组件或者render props
+组件每次渲染，内部的函数会重新创建，导致 接收传递函数的子组件 也重新渲染
+useCallback 对组件间传递的 (回调)函数 尽量都包裹 useMemo 缓存计算 useCallback，useMemo 只是为了避免 React 组件的重复渲染而导致的性能损失。
+而对于原生的节点，比如 div, input 这些，它们已经是原子节点了，不再有子节点， 所以不存在重复刷新带来的性能损失。
+useEffect执行时机是 DOM渲染后 useEffect中用到的变量，需要作为依赖参数 拆分复杂组件：不同逻辑拆到不同的Hooks里 Context 适用场景：仅 主题色、语言切换 redux 数据共享 避免不必要的请求 state 使用注意 state 避免定义多余的，找唯一数据源头 去发起改变 上次同事libin提到过这个场景：A传参value1给B，B又传value1给C，C里面能触发改变value1
+方案1：C中的操作触发value1变更时，C不维护value1 state，由C回调给B再回调给A，由A改变value1，从而重新渲染B、C
+方案2：C中的操作触发value1变更时，C改变C内部的value1，同时回调给B、A去更新(C外部)对应的value1
+根据这篇来看，更倾向于方案1 。避免在子组件定义多余的state(value1)，找唯一数据源头A 去发起改变
+设计模式 所谓「设计模式」，就是针对特定场景，提供一种公认的最佳实践
+保证状态的唯一数据源 语义化的拆分复杂组件 Hooks 的一个重要规则，即：Hooks 必须在顶层作用域调用 而不能放在条件判断、循环等语句中，同时也不能在可能的 return 语句之后执行。换句话说，Hooks 必须按顺序被执行到。
+容器模式，把条件判断的结果放到两个组件之中。可用Hooks替代 function CounterRenderProps({ children }) { .
     </div>
   </div>
 </div>

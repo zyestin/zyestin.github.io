@@ -138,6 +138,66 @@
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
+      <a href="/zyestin/posts/rn/alert-multiple/" class="link black dim">
+        实现 差不多理想的极简RN弹窗
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      Q: 代码调用一个弹窗的极简方式是怎样的？ A: 这样子👉🏻 XxModuleAlert.show({..})
+为了这个极简用法的目标，我曾经 使用rn-global-modal封装过TextInputAlert，但依然有些问题或难用点，比如遮挡了Toast、更改mask颜色要改源码、布局上有些非正常的地方
+因为不希望弹窗遮挡Toast，于是研究了react-native-root-toast，用的react-native-root-siblings，从而找到了封装理想弹窗的更快的方式
+于是，基于react-native-root-siblings 5.0.1，造了一个 AlertManager
+Why need AlertManager 相信大家使用过RN官方Modal的，都知道，iOS弹窗无法弹两个，使用起来不满足高内聚低耦合，难受。。。
+RN官方Modal 缺点：耦合过多！须visible属性，多1个import useState，多1行代码setVisble声明，弹窗组件须嵌入容器组件 rn-global-modal 优点：函数式调起弹窗，任意处可调用 缺点：iOS 不支持同时多层弹窗；toast的层级低于它 导致看不到/看不清 What AlertManager provide 封装者：封装出高度解耦的弹窗。 使用方：使用极简！ 优势 vs Modal：去掉visible vs rn-global-modal: 支持多层弹窗, TextInput弹窗对键盘支持更好？？ How to use AlertManager 使用方： XxModuleAlert.show({...}); XxModuleAlert.hide(); 封装方: class XxModuleAlert { static show() { AlertManager.show(&lt;XxModuleView /&gt;, { key: XxModuleView.name, }); } static hide() { AlertManager.hide(XxModuleView.name); } } export XxModuleAlert const XxModuleView = () =&gt; { .
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/zyestin/posts/rn/textinput-alert/" class="link black dim">
+        封装 低耦合、易用的文本输入框弹窗
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      效果展示/UI 切换输入法，避开键盘 输入/粘帖时，文字换行，输入框高度准确变化 使用/Usage 封装后，如下这样使用，解耦的干干净净
+import TextInputAlert from &#34;./TextInputAlert&#34;; TextInputAlert.show({ text: &#34;hello&#34;, // maxLength: 20, onChange: function didInputChange(text_) { console.log(&#34;didInputChange::&gt;&gt;&#34;, text_); }, onCompleted: () =&gt; { console.log(&#34;onCompleted::&gt;&gt;&#34;, content); }, }); TextInputAlert.hide(); 像原生一样调api方式展示弹窗，不需要Modal那样耦合过多（视图嵌入、visible字段控制&hellip;）
+源码/Code TextInputAlert
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
+      <a href="/zyestin/posts/rn/base-components/" class="link black dim">
+        封装常用基础组件
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      瀑布流列表base组件 源码：BaseList.js
+优点：将下拉刷新、上拉加载更多相关的 pageNo逻辑，封装到BaseList中，使用方仅需关注 数据请求的api，让使用方代码量降到最少。
+使用示例 平替 FlatList import BaseList from &#34;app/components/list/base&#34;; import { getFanList } from &#34;./service&#34;; const pageSize = 10; const FanList = (props) =&gt; { const { userId } = props; const _requestFunc = (page, pageSize) =&gt; { return getFanList({ userId: userId, pageNo: page, pageSize }); }; const _renderItem = ({ item, index }) =&gt; { return &lt;Item {...item} /&gt;; }; return ( // &lt;View style={{ flex: 1 }}&gt; &lt;BaseList requestFunc={(page) =&gt; _requestFunc(page, pageSize)} contentContainerStyle={{ paddingVertical: px2dp(5), paddingLeft: px2dp(5), }} renderItem={_renderItem} // numColumns={1} uniqueKey={&#34;userId&#34;} /&gt; // &lt;/View&gt; ); }; 可能会有双列分布不均问题，即某一列大量空白现象
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
       <a href="/zyestin/posts/rn/douyin-label-input/" class="link black dim">
         模仿抖音、小红书 输入 #标签 高亮
       </a>
