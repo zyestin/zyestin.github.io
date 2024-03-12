@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>patch-package 补丁工具使用 | zyestin</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="patch-package 官方地址 https://www.npmjs.com/package/patch-package
+首次安装 失败&amp;&amp;解决 package.json内scripts下 添加
+&#34;postinstall&#34;: &#34;patch-package&#34; 安装，失败
+npm i patch-package 10:18:05 npm ERR! code ECONNREFUSED npm ERR! errno ECONNREFUSED npm ERR! FetchError: request to https://mirrors.huaweicloud.com/repository/npm/patch-package failed, reason: connect ECONNREFUSED 127.0.0.1:1087 npm ERR! at ClientRequest.&lt;anonymous&gt; (/usr/local/lib/node_modules/npm/node_modules/node-fetch-npm/src/index.js:68:14) npm ERR! at ClientRequest.emit (events.js:400:28) npm ERR! at onerror (/usr/local/lib/node_modules/npm/node_modules/agent-base/index.js:101:9) npm ERR! at callbackError (/usr/local/lib/node_modules/npm/node_modules/agent-base/index.js:123:5) npm ERR! at processTicksAndRejections (internal/process/task_queues.js:95:5) npm ERR! FetchError: request to https://mirrors.huaweicloud.com/repository/npm/patch-package failed, reason: connect ECONNREFUSED 127.0.0.1:1087 npm ERR!">
+    <meta name="generator" content="Hugo 0.122.0">
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/zyestin/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+<link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/51897571?s=40&amp;v=4" type="image/x-icon" />
+
+
+    
+
+    
+    
+    <meta property="og:title" content="patch-package 补丁工具使用" />
+<meta property="og:description" content="patch-package 官方地址 https://www.npmjs.com/package/patch-package
+首次安装 失败&amp;&amp;解决 package.json内scripts下 添加
+&#34;postinstall&#34;: &#34;patch-package&#34; 安装，失败
+npm i patch-package 10:18:05 npm ERR! code ECONNREFUSED npm ERR! errno ECONNREFUSED npm ERR! FetchError: request to https://mirrors.huaweicloud.com/repository/npm/patch-package failed, reason: connect ECONNREFUSED 127.0.0.1:1087 npm ERR! at ClientRequest.&lt;anonymous&gt; (/usr/local/lib/node_modules/npm/node_modules/node-fetch-npm/src/index.js:68:14) npm ERR! at ClientRequest.emit (events.js:400:28) npm ERR! at onerror (/usr/local/lib/node_modules/npm/node_modules/agent-base/index.js:101:9) npm ERR! at callbackError (/usr/local/lib/node_modules/npm/node_modules/agent-base/index.js:123:5) npm ERR! at processTicksAndRejections (internal/process/task_queues.js:95:5) npm ERR! FetchError: request to https://mirrors.huaweicloud.com/repository/npm/patch-package failed, reason: connect ECONNREFUSED 127.0.0.1:1087 npm ERR!" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zyestin.github.io/zyestin/posts/rn/npm-tool-patch/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-11-01T12:00:11+08:00" />
+<meta property="article:modified_time" content="2023-11-01T12:00:11+08:00" />
+
+<meta itemprop="name" content="patch-package 补丁工具使用">
+<meta itemprop="description" content="patch-package 官方地址 https://www.npmjs.com/package/patch-package
+首次安装 失败&amp;&amp;解决 package.json内scripts下 添加
+&#34;postinstall&#34;: &#34;patch-package&#34; 安装，失败
+npm i patch-package 10:18:05 npm ERR! code ECONNREFUSED npm ERR! errno ECONNREFUSED npm ERR! FetchError: request to https://mirrors.huaweicloud.com/repository/npm/patch-package failed, reason: connect ECONNREFUSED 127.0.0.1:1087 npm ERR! at ClientRequest.&lt;anonymous&gt; (/usr/local/lib/node_modules/npm/node_modules/node-fetch-npm/src/index.js:68:14) npm ERR! at ClientRequest.emit (events.js:400:28) npm ERR! at onerror (/usr/local/lib/node_modules/npm/node_modules/agent-base/index.js:101:9) npm ERR! at callbackError (/usr/local/lib/node_modules/npm/node_modules/agent-base/index.js:123:5) npm ERR! at processTicksAndRejections (internal/process/task_queues.js:95:5) npm ERR! FetchError: request to https://mirrors.huaweicloud.com/repository/npm/patch-package failed, reason: connect ECONNREFUSED 127.0.0.1:1087 npm ERR!"><meta itemprop="datePublished" content="2023-11-01T12:00:11+08:00" />
+<meta itemprop="dateModified" content="2023-11-01T12:00:11+08:00" />
+<meta itemprop="wordCount" content="768">
+<meta itemprop="keywords" content="react-native," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="patch-package 补丁工具使用"/>
+<meta name="twitter:description" content="patch-package 官方地址 https://www.npmjs.com/package/patch-package
+首次安装 失败&amp;&amp;解决 package.json内scripts下 添加
+&#34;postinstall&#34;: &#34;patch-package&#34; 安装，失败
+npm i patch-package 10:18:05 npm ERR! code ECONNREFUSED npm ERR! errno ECONNREFUSED npm ERR! FetchError: request to https://mirrors.huaweicloud.com/repository/npm/patch-package failed, reason: connect ECONNREFUSED 127.0.0.1:1087 npm ERR! at ClientRequest.&lt;anonymous&gt; (/usr/local/lib/node_modules/npm/node_modules/node-fetch-npm/src/index.js:68:14) npm ERR! at ClientRequest.emit (events.js:400:28) npm ERR! at onerror (/usr/local/lib/node_modules/npm/node_modules/agent-base/index.js:101:9) npm ERR! at callbackError (/usr/local/lib/node_modules/npm/node_modules/agent-base/index.js:123:5) npm ERR! at processTicksAndRejections (internal/process/task_queues.js:95:5) npm ERR! FetchError: request to https://mirrors.huaweicloud.com/repository/npm/patch-package failed, reason: connect ECONNREFUSED 127.0.0.1:1087 npm ERR!"/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/zyestin/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        <img src="https://avatars.githubusercontent.com/u/51897571?s=40&amp;v=4" class="w100 mw5-ns" alt="zyestin" />
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+    
+    <a href="https://zyestin.github.io/zyestin/posts/rn/readme/" target="_blank" rel="noopener" class="ALL ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="ALL link" aria-label="follow on ALL——Opens in a new window">
+      
+        ALL
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    
+    <a href="https://github.com/zyestin" target="_blank" rel="noopener" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" aria-label="follow on GitHub——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    
+    <a href="https://www.jianshu.com/u/3601cd1fe82d" target="_blank" rel="noopener" class="jianshu ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Jian link" aria-label="follow on Jian——Opens in a new window">
+      
+        Jian
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    
+    <a href="https://blog.csdn.net/wustzhy2016" target="_blank" rel="noopener" class="CSDN ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="csdn link" aria-label="follow on csdn——Opens in a new window">
+      
+        csdn
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">patch-package 补丁工具使用</h1>
+      
+      <p class="tracked">
+        By <strong>yestin</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2023-11-01T12:00:11+08:00">November 1, 2023</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy avenir bg-near-white f4 nested-links mid-gray pr4-l w-two-thirds-l"><p>patch-package 官方地址
+<a href="https://www.npmjs.com/package/patch-package">https://www.npmjs.com/package/patch-package</a></p>
+<h2 id="首次安装-失败解决">首次安装 失败&amp;&amp;解决</h2>
+<p>package.json内<code>scripts</code>下 添加</p>
+<pre tabindex="0"><code>&#34;postinstall&#34;: &#34;patch-package&#34;
+</code></pre><p>安装，失败</p>
+<pre tabindex="0"><code>npm i patch-package                                                                                                                          10:18:05
+npm ERR! code ECONNREFUSED
+npm ERR! errno ECONNREFUSED
+npm ERR! FetchError: request to https://mirrors.huaweicloud.com/repository/npm/patch-package failed, reason: connect ECONNREFUSED 127.0.0.1:1087
+npm ERR!     at ClientRequest.&lt;anonymous&gt; (/usr/local/lib/node_modules/npm/node_modules/node-fetch-npm/src/index.js:68:14)
+npm ERR!     at ClientRequest.emit (events.js:400:28)
+npm ERR!     at onerror (/usr/local/lib/node_modules/npm/node_modules/agent-base/index.js:101:9)
+npm ERR!     at callbackError (/usr/local/lib/node_modules/npm/node_modules/agent-base/index.js:123:5)
+npm ERR!     at processTicksAndRejections (internal/process/task_queues.js:95:5)
+npm ERR!  FetchError: request to https://mirrors.huaweicloud.com/repository/npm/patch-package failed, reason: connect ECONNREFUSED 127.0.0.1:1087
+npm ERR!     at ClientRequest.&lt;anonymous&gt; (/usr/local/lib/node_modules/npm/node_modules/node-fetch-npm/src/index.js:68:14)
+npm ERR!     at ClientRequest.emit (events.js:400:28)
+npm ERR!     at onerror (/usr/local/lib/node_modules/npm/node_modules/agent-base/index.js:101:9)
+npm ERR!     at callbackError (/usr/local/lib/node_modules/npm/node_modules/agent-base/index.js:123:5)
+npm ERR!     at processTicksAndRejections (internal/process/task_queues.js:95:5) {
+npm ERR!   type: &#39;system&#39;,
+npm ERR!   errno: &#39;ECONNREFUSED&#39;,
+npm ERR!   code: &#39;ECONNREFUSED&#39;
+npm ERR! }
+npm ERR! 
+npm ERR! If you are behind a proxy, please make sure that the
+npm ERR! &#39;proxy&#39; config is set properly.  See: &#39;npm help config&#39;
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /Users/yestin/.npm/_logs/2022-07-14T02_30_35_701Z-debug.log
+</code></pre><h2 id="搜">搜</h2>
+<p><a href="https://segmentfault.com/a/1190000023314583">https://segmentfault.com/a/1190000023314583</a></p>
+<p>solution:</p>
+<pre tabindex="0"><code># 配置指向源
+$ npm config set registry http://registry.npm.taobao.org
+</code></pre><blockquote>
+<p>配置前</p>
+</blockquote>
+<pre tabindex="0"><code>~/workspace/ihuaben-app dev_zy_i *2 !1 &gt; npm config list                                                                                                                    1m 12s 10:34:40
+; cli configs
+metrics-registry = &#34;https://mirrors.huaweicloud.com/repository/npm/&#34;
+scope = &#34;&#34;
+user-agent = &#34;npm/6.14.15 node/v14.18.3 darwin x64&#34;
+
+; userconfig /Users/yestin/.npmrc
+home = &#34;https://npm.taobao.org&#34;
+registry = &#34;https://mirrors.huaweicloud.com/repository/npm/&#34;
+
+; node bin location = /usr/local/bin/node
+; cwd = /Users/yestin/workspace/ihuaben-app
+; HOME = /Users/yestin
+; &#34;npm config ls -l&#34; to show all defaults.
+</code></pre><blockquote>
+<p>配置后</p>
+</blockquote>
+<pre tabindex="0"><code> npm config list                                                                                                                           10:39:05
+; cli configs
+metrics-registry = &#34;http://registry.npm.taobao.org/&#34;
+scope = &#34;&#34;
+user-agent = &#34;npm/6.14.15 node/v14.18.3 darwin x64&#34;
+
+; userconfig /Users/yestin/.npmrc
+home = &#34;https://npm.taobao.org&#34;
+registry = &#34;http://registry.npm.taobao.org/&#34;
+
+; node bin location = /usr/local/bin/node
+; cwd = /Users/yestin/workspace/ihuaben-app
+; HOME = /Users/yestin
+; &#34;npm config ls -l&#34; to show all defaults.
+</code></pre><p>然后 安装成功</p>
+<pre tabindex="0"><code>npm i patch-package                                                                                                                       10:39:10
+npm WARN @babel/plugin-bugfix-v8-spread-parameters-in-optional-chaining@7.14.5 requires a peer of @babel/core@^7.13.0 but none is installed. You must install peer dependencies yourself.
+npm WARN @babel/plugin-proposal-class-static-block@7.14.5 requires a peer of @babel/core@^7.12.0 but none is installed. You must install peer dependencies yourself.
+npm WARN @react-native-community/cameraroll@1.2.1 requires a peer of react-native@&gt;=0.57 &lt;=0.59 but none is installed. You must install peer dependencies yourself.
+...
+
++ patch-package@6.4.7
+added 12 packages from 23 contributors and removed 153 packages in 40.037s
+
+52 packages are looking for funding
+  run `npm fund` for details
+</code></pre><p>yarn</p>
+<pre tabindex="0"><code>yarn add patch-package postinstall-postinstall                                                                                        41s 10:40:04
+yarn add v1.22.19
+warning package-lock.json found. Your project contains lock files generated by tools other than Yarn. It is advised not to mix package managers in order to avoid resolution inconsistencies caused by unsynchronized lock files. To clear this warning, remove package-lock.json.
+[1/4] 🔍  Resolving packages...
+info There appears to be trouble with your network connection. Retrying...
+[2/4] 🚚  Fetching packages...
+[3/4] 🔗  Linking dependencies...
+warning &#34;hox &gt; react-reconciler@0.25.1&#34; has incorrect peer dependency &#34;react@^16.13.1&#34;.
+warning &#34; &gt; mobx-react@5.3.5&#34; has unmet peer dependency &#34;mobx@^4.0.0 || ^5.0.0&#34;.
+warning &#34; &gt; react-native-elements@3.4.2&#34; has unmet peer dependency &#34;react-native-safe-area-context@^3.1.9&#34;.
+warning &#34; &gt; react-native-elements@3.4.2&#34; has incorrect peer dependency &#34;react-native-vector-icons@&gt;7.0.0&#34;.
+warning &#34; &gt; react-native-fs@2.18.0&#34; has unmet peer dependency &#34;react-native-windows@*&#34;.
+warning &#34; &gt; react-native-head-tab-view@2.1.7&#34; has incorrect peer dependency &#34;@react-native-community/viewpager@^3.3.0&#34;.
+warning &#34; &gt; react-native-iap@6.2.1&#34; has incorrect peer dependency &#34;react@&gt;=16.13.1&#34;.
+warning &#34;react-native-router-flux &gt; react-navigation-stack@1.10.3&#34; has incorrect peer dependency &#34;react-native-screens@^1.0.0 || ^1.0.0-alpha&#34;.
+warning &#34; &gt; react-native-selfadapt-modal@1.1.3&#34; has incorrect peer dependency &#34;react-native@^0.41.2&#34;.
+warning &#34;@react-native-community/eslint-config &gt; @typescript-eslint/eslint-plugin@1.13.0&#34; has incorrect peer dependency &#34;eslint@^5.0.0&#34;.
+warning &#34;@react-native-community/eslint-config &gt; @typescript-eslint/parser@1.13.0&#34; has incorrect peer dependency &#34;eslint@^5.0.0&#34;.
+warning &#34;@react-native-community/eslint-config &gt; eslint-plugin-react@7.12.4&#34; has incorrect peer dependency &#34;eslint@^3.0.0 || ^4.0.0 || ^5.0.0&#34;.
+warning &#34;@react-native-community/eslint-config &gt; eslint-plugin-react-native@3.6.0&#34; has incorrect peer dependency &#34;eslint@^3.17.0 || ^4 || ^5&#34;.
+[4/4] 🔨  Building fresh packages...
+success Saved lockfile.
+success Saved 10 new dependencies.
+info Direct dependencies
+├─ patch-package@6.4.7
+├─ postinstall-postinstall@2.1.0
+├─ react-native-gesture-handler@1.10.3
+└─ react-native-head-tab-view@2.1.7
+info All dependencies
+├─ @yarnpkg/lockfile@1.1.0
+├─ cross-fetch@3.1.5
+├─ find-yarn-workspace-root@2.0.0
+├─ klaw-sync@6.0.0
+├─ patch-package@6.4.7
+├─ picomatch@2.3.1
+├─ postinstall-postinstall@2.1.0
+├─ react-native-gesture-handler@1.10.3
+├─ react-native-head-tab-view@2.1.7
+└─ whatwg-url@5.0.0
+$ patch-package
+patch-package 6.4.7
+Applying patches...
+No patch files found
+✨  Done in 93.67s.
+</code></pre><h2 id="优势">优势</h2>
+<p>一人 操作下面3步，其它人完全无感知，<code>npm i</code>时 自动完成补丁的应用</p>
+<pre tabindex="0"><code>//package.json
+ &#34;scripts&#34;: {
++  &#34;postinstall&#34;: &#34;patch-package&#34;
+ }
+</code></pre><pre tabindex="0"><code>npm i patch-package
+</code></pre><pre tabindex="0"><code>npx patch-package libxx
+</code></pre><h2 id="遇到过的bug">遇到过的bug</h2>
+<h3 id="执行npm-ireact-native-image-crop-picker0380patch-apply会失败">执行<code>npm i</code>，<code>react-native-image-crop-picker+0.38.0.patch </code>apply会失败</h3>
+<ul>
+<li>方法1 删三方库重新安装（较快）</li>
+</ul>
+<pre tabindex="0"><code>rm -rf node_modules/react-native-image-crop-picker &amp;&amp; npm i
+</code></pre><ul>
+<li>方法2</li>
+</ul>
+<p>于是照着<code>react-native-image-crop-picker+0.38.0.patch</code>改文件里的源码，再次执行</p>
+<pre tabindex="0"><code>npx patch-package react-native-image-crop-picker --include &#39;PickerModule.java&#39;
+</code></pre><p>发现<code>react-native-image-crop-picker+0.38.0.patch</code>什么也没改
+然后执行<code>npm i</code>就成功了</p>
+<p>后来发现原因，如下，<code>.patch</code>文件中，会出现好多行 带有绝对路径<code>/Users/...</code>的文件路径</p>
+<pre tabindex="0"><code>-#Wed Jun 29 16:49:45 CST 2022
+-/Users/lsye/ihuaben-app/node_modules/react-native-picker/android/src/main/res/layout/picker_view_linkage.xml=/Users/lsye/ihuaben-app/node_modules/react-native-picker/android/build/intermediates/packaged_res/debug/layout/picker_view_linkage.xml
+... 
+</code></pre><p>可能是同事执行时，出现异常情况了</p>
+<h3 id="执行npx-patch-package-react-native-xx-patch会出现许多多余的文件字符串">执行<code>npx patch-package react-native-xx</code>, <code>.patch</code>会出现许多多余的文件字符串</h3>
+<pre tabindex="0"><code>...
+index 408362c..5fd7d55 100644
+Binary files a/node_modules/react-native-picker/android/build/intermediates/runtime_library_classes/release/classes.jar and b/node_modules/react-native-picker/android/build/intermediates/runtime_library_classes/release/classes.jar differ
+diff --git a/node_modules/react-native-picker/android/src/main/java/com/beefe/picker/.DS_Store b/node_modules/react-native-picker/android/src/main/java/com/beefe/picker/.DS_Store
+new file mode 100644
+index 0000000..7a08108
+Binary files /dev/null and b/node_modules/react-native-picker/android/src/main/java/com/beefe/picker/.DS_Store differ
+diff --git a/node_modules/react-native-picker/android/src/main/java/com/beefe/picker/view/OnItemSelectedRunnable.java b/node_modules/react-native-picker/android/src/main/java/com/beefe/picker/view/OnItemSelectedRunnable.java
+index c52b1a7..7990d96 100644
+--- a/node_modules/react-native-picker/android/src/main/java/com/beefe/picker/view/OnItemSelectedRunnable.java
++++ b/node_modules/react-native-picker/android/src/main/java/com/beefe/picker/view/OnItemSelectedRunnable.java
+@@ -10,6 +10,10 @@ final class OnItemSelectedRunnable implements Runnable {
+ 
+     @Override
+     public final void run() {
+-        loopView.onItemSelectedListener.onItemSelected(loopView.getSelectedItem(),loopView.getSelectedIndex());
++        try {
++            loopView.onItemSelectedListener.onItemSelected(loopView.getSelectedItem(), loopView.getSelectedIndex());
++        } catch (Exception e) {
++            e.printStackTrace();
++        }
+     }
+ }
+</code></pre><p>原因是 安卓build之后的产物，在执行<code>npx patch-package ...</code>时 被莫名其妙带进去了</p>
+<p><strong>解决方案</strong></p>
+<ul>
+<li>
+<p>方法1<br>
+可以把改后的文件拷贝出来，将三方库删了重装，再覆盖 拷贝的文件，再执行<code>npx patch-package ...</code></p>
+</li>
+<li>
+<p>方法2<br>
+使用绝对路径</p>
+<pre tabindex="0"><code>npx patch-package react-native-xx --include &#39;file1|file2&#39;
+</code></pre></li>
+</ul>
+<ul class="pa0">
+  
+   <li class="list di">
+     <a href="/zyestin/tags/react-native/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">react-native</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/waterfall-list-autoscroll/"> 实现 FlatList 、flashList、masonryFlashList 各种列表的自动滚动动画</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/multi-gestture-sticker/">RN 动画 - 缩放、旋转、拖拽</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/vscode-efficient/">React Native 在VSCode编码提效</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/readme/">React Native 开发沉淀</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/react-learn/">React 学习</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/react-hooks-dev-tool/">hooks开发工具</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/npm-tool/">npm 工具</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/code-standards/">代码规范</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/react-hooks-course1/">学习《React Hooks 核心原理与实战》笔记</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/alert-multiple/">实现 差不多理想的极简RN弹窗</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/textinput-alert/">封装 低耦合、易用的文本输入框弹窗</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/base-components/">封装常用基础组件</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/douyin-label-input/">模仿抖音、小红书 输入 #标签 高亮</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/waterfall-list-horizontal/">横向 瀑布流列表</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/create-npm-lib/">用脚手架 制作一个RN库 放npm</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://zyestin.github.io/zyestin/" >
+    &copy;  zyestin 2024 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+    
+    <a href="https://zyestin.github.io/zyestin/posts/rn/readme/" target="_blank" rel="noopener" class="ALL ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="ALL link" aria-label="follow on ALL——Opens in a new window">
+      
+        ALL
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    
+    <a href="https://github.com/zyestin" target="_blank" rel="noopener" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" aria-label="follow on GitHub——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    
+    <a href="https://www.jianshu.com/u/3601cd1fe82d" target="_blank" rel="noopener" class="jianshu ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Jian link" aria-label="follow on Jian——Opens in a new window">
+      
+        Jian
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    
+    <a href="https://blog.csdn.net/wustzhy2016" target="_blank" rel="noopener" class="CSDN ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="csdn link" aria-label="follow on csdn——Opens in a new window">
+      
+        csdn
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

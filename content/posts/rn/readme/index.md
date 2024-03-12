@@ -50,9 +50,11 @@ tags: [react-native]
 
 * [贡献给react-native的第一个PR](../rn-pull-request/) 
 
-* [React学习收获](../react-learn/) [todo]
+* [React学习收获](../react-learn/) 
 	* [学习《React Hooks 核心原理与实战》笔记](../react-hooks-course1/)
-	* [常用hooks依赖检查，从源头提醒避免奇葩bug]() [todo]
+	* [常用hooks依赖检查，从源头提醒避免奇葩bug](../react-hooks-dev-tool/) 
+
+* [patch-package 补丁工具使用](../npm-tool/)
 
 * [从0到1用Jenkins实现对RN项目一键打包、发布]() [todo]
 

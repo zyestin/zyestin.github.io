@@ -37,6 +37,20 @@
       <description>常用hooks依赖检查，从源头提醒避免奇葩bug https://github.com/facebook/react/issues/14920&#xA;ESLint提供，检查useEffect依赖 &amp;amp;&amp;amp; autoFix，&#xA;用上后 估计能大大降低 无法获取state最新值、漏掉依赖后奇怪的bug</description>
     </item>
     <item>
+      <title>npm 工具</title>
+      <link>https://zyestin.github.io/zyestin/posts/rn/npm-tool/</link>
+      <pubDate>Wed, 01 Nov 2023 12:00:11 +0800</pubDate>
+      <guid>https://zyestin.github.io/zyestin/posts/rn/npm-tool/</guid>
+      <description> patch-package 补丁工具使用 </description>
+    </item>
+    <item>
+      <title>patch-package 补丁工具使用</title>
+      <link>https://zyestin.github.io/zyestin/posts/rn/npm-tool-patch/</link>
+      <pubDate>Wed, 01 Nov 2023 12:00:11 +0800</pubDate>
+      <guid>https://zyestin.github.io/zyestin/posts/rn/npm-tool-patch/</guid>
+      <description>patch-package 官方地址 https://www.npmjs.com/package/patch-package&#xA;首次安装 失败&amp;amp;&amp;amp;解决 package.json内scripts下 添加&#xA;&amp;#34;postinstall&amp;#34;: &amp;#34;patch-package&amp;#34; 安装，失败&#xA;npm i patch-package 10:18:05 npm ERR! code ECONNREFUSED npm ERR! errno ECONNREFUSED npm ERR! FetchError: request to https://mirrors.huaweicloud.com/repository/npm/patch-package failed, reason: connect ECONNREFUSED 127.0.0.1:1087 npm ERR! at ClientRequest.&amp;lt;anonymous&amp;gt; (/usr/local/lib/node_modules/npm/node_modules/node-fetch-npm/src/index.js:68:14) npm ERR! at ClientRequest.emit (events.js:400:28) npm ERR! at onerror (/usr/local/lib/node_modules/npm/node_modules/agent-base/index.js:101:9) npm ERR! at callbackError (/usr/local/lib/node_modules/npm/node_modules/agent-base/index.js:123:5) npm ERR! at processTicksAndRejections (internal/process/task_queues.js:95:5) npm ERR! FetchError: request to https://mirrors.huaweicloud.com/repository/npm/patch-package failed, reason: connect ECONNREFUSED 127.0.0.1:1087 npm ERR!</description>
+    </item>
+    <item>
       <title>React Native 在VSCode编码提效</title>
       <link>https://zyestin.github.io/zyestin/posts/rn/vscode-efficient/</link>
       <pubDate>Wed, 01 Nov 2023 12:00:11 +0800</pubDate>
@@ -48,7 +62,7 @@
       <link>https://zyestin.github.io/zyestin/posts/rn/readme/</link>
       <pubDate>Wed, 01 Nov 2023 12:00:11 +0800</pubDate>
       <guid>https://zyestin.github.io/zyestin/posts/rn/readme/</guid>
-      <description>一些业务的最佳实践探索 基础组件封装&#xA;瀑布流列表base组件 图片base组件 实现 模仿抖音、小红书 输入 #标签 高亮&#xA;瀑布流列表&#xA;瀑布流最佳实践：双列均匀分布，高度计算&amp;amp;缓存 实现 瀑布流列表·自动滚动动画 实现 横向·瀑布流列表 实现 仿抖音/小红书 对贴图/贴字 进行拖拽、缩放、旋转等复杂手势&#xA;封装一个 易用的、远程字体动态下载&amp;amp;应用组件&#xA;封装一个 低耦合、易用的文本输入框弹窗&#xA;实现 差不多理想的极简RN弹窗&#xA;实践 列表Item精确曝光埋点 [todo]&#xA;实践 多tab多列表滑动吸顶效果 [todo]&#xA;实践 服务端下发自定义组件代码 前端接收&amp;amp;渲染[todo]&#xA;实践 拆包 [todo]&#xA;组件库 易用的应用远程字体的text组件库 - react-native-remote-font 其它（提效、工具&amp;hellip;) 探究 代码规范&#xA;React Native 编码提效 on VSCode&#xA;用脚手架 制作一个RN库 放npm(含踏坑记录)&#xA;贡献给react-native的第一个PR&#xA;React学习收获 [todo]&#xA;学习《React Hooks 核心原理与实战》笔记 常用hooks依赖检查，从源头提醒避免奇葩bug [todo] 从0到1用Jenkins实现对RN项目一键打包、发布 [todo]</description>
+      <description>一些业务的最佳实践探索 基础组件封装&#xA;瀑布流列表base组件 图片base组件 实现 模仿抖音、小红书 输入 #标签 高亮&#xA;瀑布流列表&#xA;瀑布流最佳实践：双列均匀分布，高度计算&amp;amp;缓存 实现 瀑布流列表·自动滚动动画 实现 横向·瀑布流列表 实现 仿抖音/小红书 对贴图/贴字 进行拖拽、缩放、旋转等复杂手势&#xA;封装一个 易用的、远程字体动态下载&amp;amp;应用组件&#xA;封装一个 低耦合、易用的文本输入框弹窗&#xA;实现 差不多理想的极简RN弹窗&#xA;实践 列表Item精确曝光埋点 [todo]&#xA;实践 多tab多列表滑动吸顶效果 [todo]&#xA;实践 服务端下发自定义组件代码 前端接收&amp;amp;渲染[todo]&#xA;实践 拆包 [todo]&#xA;组件库 易用的应用远程字体的text组件库 - react-native-remote-font 其它（提效、工具&amp;hellip;) 探究 代码规范&#xA;React Native 编码提效 on VSCode&#xA;用脚手架 制作一个RN库 放npm(含踏坑记录)&#xA;贡献给react-native的第一个PR&#xA;React学习收获&#xA;学习《React Hooks 核心原理与实战》笔记 常用hooks依赖检查，从源头提醒避免奇葩bug patch-package 补丁工具使用&#xA;从0到1用Jenkins实现对RN项目一键打包、发布 [todo]</description>
     </item>
     <item>
       <title>React 学习</title>
