@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>从0到1用Jenkins实现对RN项目一键打包、发布 | zyestin</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="Jenkins for iOS（第二次搭建记录） 运行环境搭建（简略版） 下载 jenkins.war jdk8 运行jenkins 首次设置账户信息（备忘） 账户: admin 密码: admin
+建Job &amp; 配置 建第一个Job 设置Git 添加git 地址 添加ssh凭据【注意】 账号：生成ssh时的邮箱(~/.ssh/id_rsa.pub 最末尾可见） 密码：ssh秘钥（取于 ~/.ssh/id_rsa） 配置 脚本 #!/bin/bash -il echo &#39;Hi, start building ...&#39; pwd whoami export LANG=en_US.UTF-8 export LANGUAGE=en_US.UTF-8 export LC_ALL=en_US.UTF-8 #工程环境路径 workspace_path=. #项目名称 project_name=myApp #ipa 所存放的文件夹 ipaPath=&#34;ipa&#34; echo &#34;第一步，更新库文件&#34; yarn cd ios /usr/local/bin/pod install --verbose --no-repo-update echo &#34;第二步，清除缓存文件....................&#34; xcodebuild clean rm -rf archive rm -f $ipaPath/$project_name.ipa echo &#34;第三步，设置打包环境，准备开始打ipa包....................&#34; #sed -i &#39;&#39; &#39;s/\app-store\&lt;\/string\&gt;/\ad-hoc\&lt;\/string\&gt;/&#39; archieveOpt.">
+    <meta name="generator" content="Hugo 0.122.0">
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/zyestin/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+<link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/51897571?s=40&amp;v=4" type="image/x-icon" />
+
+
+    
+
+    
+    
+    <meta property="og:title" content="从0到1用Jenkins实现对RN项目一键打包、发布" />
+<meta property="og:description" content="Jenkins for iOS（第二次搭建记录） 运行环境搭建（简略版） 下载 jenkins.war jdk8 运行jenkins 首次设置账户信息（备忘） 账户: admin 密码: admin
+建Job &amp; 配置 建第一个Job 设置Git 添加git 地址 添加ssh凭据【注意】 账号：生成ssh时的邮箱(~/.ssh/id_rsa.pub 最末尾可见） 密码：ssh秘钥（取于 ~/.ssh/id_rsa） 配置 脚本 #!/bin/bash -il echo &#39;Hi, start building ...&#39; pwd whoami export LANG=en_US.UTF-8 export LANGUAGE=en_US.UTF-8 export LC_ALL=en_US.UTF-8 #工程环境路径 workspace_path=. #项目名称 project_name=myApp #ipa 所存放的文件夹 ipaPath=&#34;ipa&#34; echo &#34;第一步，更新库文件&#34; yarn cd ios /usr/local/bin/pod install --verbose --no-repo-update echo &#34;第二步，清除缓存文件....................&#34; xcodebuild clean rm -rf archive rm -f $ipaPath/$project_name.ipa echo &#34;第三步，设置打包环境，准备开始打ipa包....................&#34; #sed -i &#39;&#39; &#39;s/\app-store\&lt;\/string\&gt;/\ad-hoc\&lt;\/string\&gt;/&#39; archieveOpt." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zyestin.github.io/zyestin/posts/rn/tool-rn-jenkins-ios/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-11-01T12:00:11+08:00" />
+<meta property="article:modified_time" content="2023-11-01T12:00:11+08:00" />
+
+<meta itemprop="name" content="从0到1用Jenkins实现对RN项目一键打包、发布">
+<meta itemprop="description" content="Jenkins for iOS（第二次搭建记录） 运行环境搭建（简略版） 下载 jenkins.war jdk8 运行jenkins 首次设置账户信息（备忘） 账户: admin 密码: admin
+建Job &amp; 配置 建第一个Job 设置Git 添加git 地址 添加ssh凭据【注意】 账号：生成ssh时的邮箱(~/.ssh/id_rsa.pub 最末尾可见） 密码：ssh秘钥（取于 ~/.ssh/id_rsa） 配置 脚本 #!/bin/bash -il echo &#39;Hi, start building ...&#39; pwd whoami export LANG=en_US.UTF-8 export LANGUAGE=en_US.UTF-8 export LC_ALL=en_US.UTF-8 #工程环境路径 workspace_path=. #项目名称 project_name=myApp #ipa 所存放的文件夹 ipaPath=&#34;ipa&#34; echo &#34;第一步，更新库文件&#34; yarn cd ios /usr/local/bin/pod install --verbose --no-repo-update echo &#34;第二步，清除缓存文件....................&#34; xcodebuild clean rm -rf archive rm -f $ipaPath/$project_name.ipa echo &#34;第三步，设置打包环境，准备开始打ipa包....................&#34; #sed -i &#39;&#39; &#39;s/\app-store\&lt;\/string\&gt;/\ad-hoc\&lt;\/string\&gt;/&#39; archieveOpt."><meta itemprop="datePublished" content="2023-11-01T12:00:11+08:00" />
+<meta itemprop="dateModified" content="2023-11-01T12:00:11+08:00" />
+<meta itemprop="wordCount" content="240">
+<meta itemprop="keywords" content="react-native," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="从0到1用Jenkins实现对RN项目一键打包、发布"/>
+<meta name="twitter:description" content="Jenkins for iOS（第二次搭建记录） 运行环境搭建（简略版） 下载 jenkins.war jdk8 运行jenkins 首次设置账户信息（备忘） 账户: admin 密码: admin
+建Job &amp; 配置 建第一个Job 设置Git 添加git 地址 添加ssh凭据【注意】 账号：生成ssh时的邮箱(~/.ssh/id_rsa.pub 最末尾可见） 密码：ssh秘钥（取于 ~/.ssh/id_rsa） 配置 脚本 #!/bin/bash -il echo &#39;Hi, start building ...&#39; pwd whoami export LANG=en_US.UTF-8 export LANGUAGE=en_US.UTF-8 export LC_ALL=en_US.UTF-8 #工程环境路径 workspace_path=. #项目名称 project_name=myApp #ipa 所存放的文件夹 ipaPath=&#34;ipa&#34; echo &#34;第一步，更新库文件&#34; yarn cd ios /usr/local/bin/pod install --verbose --no-repo-update echo &#34;第二步，清除缓存文件....................&#34; xcodebuild clean rm -rf archive rm -f $ipaPath/$project_name.ipa echo &#34;第三步，设置打包环境，准备开始打ipa包....................&#34; #sed -i &#39;&#39; &#39;s/\app-store\&lt;\/string\&gt;/\ad-hoc\&lt;\/string\&gt;/&#39; archieveOpt."/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/zyestin/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        <img src="https://avatars.githubusercontent.com/u/51897571?s=40&amp;v=4" class="w100 mw5-ns" alt="zyestin" />
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+    
+    <a href="https://zyestin.github.io/zyestin/posts/rn/readme/" target="_blank" rel="noopener" class="ALL ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="ALL link" aria-label="follow on ALL——Opens in a new window">
+      
+        ALL
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    
+    <a href="https://github.com/zyestin" target="_blank" rel="noopener" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" aria-label="follow on GitHub——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    
+    <a href="https://www.jianshu.com/u/3601cd1fe82d" target="_blank" rel="noopener" class="jianshu ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Jian link" aria-label="follow on Jian——Opens in a new window">
+      
+        Jian
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    
+    <a href="https://blog.csdn.net/wustzhy2016" target="_blank" rel="noopener" class="CSDN ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="csdn link" aria-label="follow on csdn——Opens in a new window">
+      
+        csdn
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">从0到1用Jenkins实现对RN项目一键打包、发布</h1>
+      
+      <p class="tracked">
+        By <strong>yestin</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2023-11-01T12:00:11+08:00">November 1, 2023</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy avenir bg-near-white f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="jenkins-for-ios第二次搭建记录">Jenkins for iOS（第二次搭建记录）</h1>
+<h2 id="运行环境搭建简略版">运行环境搭建（简略版）</h2>
+<ul>
+<li>下载 jenkins.war jdk8</li>
+<li>运行jenkins</li>
+</ul>
+<p>首次设置账户信息（备忘）
+账户: admin
+密码: admin</p>
+<h2 id="建job--配置">建Job &amp; 配置</h2>
+<h4 id="建第一个job">建第一个Job</h4>
+<p><img src="media/16098490112039/16101883747357.jpg" alt="-w276">
+<img src="media/16098490112039/16101883970717.jpg" alt="-w821"></p>
+<h4 id="设置git">设置Git</h4>
+<ul>
+<li>添加git 地址</li>
+<li>添加ssh凭据【注意】
+<ol>
+<li>账号：生成ssh时的邮箱(~/.ssh/id_rsa.pub 最末尾可见）</li>
+<li>密码：ssh秘钥（取于 ~/.ssh/id_rsa）</li>
+</ol>
+</li>
+</ul>
+<h4 id="配置-脚本">配置 脚本</h4>
+<p><img src="media/16098490112039/16101897920275.jpg" alt="-w889"></p>
+<pre tabindex="0"><code>#!/bin/bash -il
+
+echo &#39;Hi, start building ...&#39;
+
+pwd
+whoami
+
+export LANG=en_US.UTF-8
+
+export LANGUAGE=en_US.UTF-8
+
+export LC_ALL=en_US.UTF-8
+
+#工程环境路径
+workspace_path=.
+
+#项目名称
+project_name=myApp
+
+#ipa 所存放的文件夹
+ipaPath=&#34;ipa&#34;
+
+echo &#34;第一步，更新库文件&#34;
+
+yarn
+
+cd ios
+
+/usr/local/bin/pod install --verbose --no-repo-update
+
+
+echo &#34;第二步，清除缓存文件....................&#34;
+xcodebuild clean
+rm -rf archive
+rm -f $ipaPath/$project_name.ipa
+
+
+echo &#34;第三步，设置打包环境，准备开始打ipa包....................&#34;
+#sed -i &#39;&#39; &#39;s/\app-store\&lt;\/string\&gt;/\ad-hoc\&lt;\/string\&gt;/&#39; archieveOpt.plist
+#sed -i &#39;&#39; &#39;s/ProvisioningStyle = Automatic;/ProvisioningStyle = Manual;/&#39; $project_name.xcodeproj/project.pbxproj
+
+
+echo &#34;第四步，执行编译生成.app命令&#34;
+#解决main.jsbundle找不到的问题
+yarn build:ios
+
+xcodebuild archive -workspace $project_name.xcworkspace -scheme $project_name -configuration Release -archivePath archive/$project_name.xcarchive #CODE_SIGN_IDENTITY=&#34;iPhone Distribution: Beijing Maihuo Technology Co., Ltd. (HFNWKQ65UU)&#34; PROVISIONING_PROFILE_SPECIFIER=&#34;093cc99a-e0ce-47fb-a14d-ba1a0f5a290d.mobileprovision&#34;
+
+
+echo &#34;第五步，执行编译生成.ipa命令&#34;
+xcodebuild -exportArchive -exportOptionsPlist archieveOpt.plist -archivePath archive/$project_name.xcarchive -exportPath $ipaPath -configuration Release
+
+#改名 “我的应用.ipa” 为 &#34;myApp.ipa&#34;
+mv ${ipaPath}/*.ipa ${ipaPath}/${project_name}.ipa
+
+
+echo &#34;第六步，上传ipa到蒲公英&#34;
+curl -F &#34;file=@${ipaPath}/${project_name}.ipa&#34; -F &#34;uKey=get_uKey_from_pgyer&#34; -F &#34;_api_key=get_api_key_from_pgyer&#34; https://www.pgyer.com/apiv1/app/upload
+</code></pre><p>其中，脚本的最后部分是 上传蒲公英。参照蒲公英官网教程获取 get_uKey_from_pgyer，get_api_key_from_pgyer 去吧。</p>
+<blockquote>
+<p>到这里就可以结束了。当然，如果定制更多功能，优化流程，可以继续看下去。</p>
+</blockquote>
+<h4 id="配置-钉钉通知">配置 钉钉通知</h4>
+<blockquote>
+<p>参考: <a href="https://www.zyxiao.com/p/46030">Jenkins配置钉钉通知</a></p>
+</blockquote>
+<p><img src="media/16098490112039/16098957484917.jpg" alt="-w813"></p>
+<p>按照👆钉钉群里机器人的设置，挨个配置到jenkins的钉钉通知插件里👇
+<img src="media/16098490112039/16098958226425.jpg" alt="-w733"></p>
+<p>然后，对某个Job添加 钉钉通知👇
+<img src="media/16098490112039/16101897370386.jpg" alt="-w1196"></p>
+<h4 id="配置-build前选择tag">配置 build前选择tag</h4>
+<p>安装 <code>Git Parameter</code>插件
+<img src="media/16098490112039/16101883185462.jpg" alt="-w676"></p>
+<p>然后往Job里设置
+<img src="media/16098490112039/16101880435560.jpg" alt="-w1174"></p>
+<hr>
+<p>最后，可以愉快的使用了，简单傻瓜式点击，即可实现 拉取对应tag代码、打包、上传到蒲公英，并且通知到钉钉群了。
+<img src="media/16098490112039/16101895474220.jpg" alt="-w699"></p>
+<h2 id="错误记录">错误记录</h2>
+<h4 id="q两个job首次在jenkins执行build均出现-打包失败">Q：两个Job首次在jenkins执行build，均出现 打包失败</h4>
+<p><img src="media/16098490112039/16098996332618.jpg" alt="-w1088"></p>
+<pre tabindex="0"><code>diff: /Podfile.lock: No such file or directory
+diff: /Manifest.lock: No such file or directory
+error: The sandbox is not in sync with the Podfile.lock. Run &#39;pod install&#39; or update your CocoaPods installation.
+
+** ARCHIVE FAILED **
+</code></pre><p>R: 通过ios/Pods/ 可以发现，三方库不全。往往需要多试几次，才能集成完。
+A: 第二次执行build，就ok了</p>
+<h4 id="q上传蒲公英失败">Q：上传蒲公英失败</h4>
+<p><img src="media/16098490112039/16098998369975.jpg" alt="-w1050"></p>
+<pre tabindex="0"><code>curl: (26) Failed to open/read local data from file/application
+</code></pre><p>Action:
+去 <code>/用户/yestin/.jenkins/workspace</code>目录下，发现<code>ios/</code>下的ipa文件名是 <code>我的应用.ipa</code>，并不是<code>myApp.ipa</code>，莫非是这个影响？</p>
+<p>果然就是。因为<code>xcodebuild -exportArchive</code>不支持直接对ipa包命名，可能要结合Xcode某个设置。</p>
+<p>A: 先找简单方法解决吧👇，命令 更改文件名</p>
+<pre tabindex="0"><code>#改名 “我的应用.ipa” 为 &#34;myApp.ipa&#34;
+mv ${ipaPath}/*.ipa ${ipaPath}/${project_name}.ipa
+
+echo &#34;第六步，上传ipa到蒲公英&#34;
+curl -F &#34;file=@${ipaPath}/${project_name}.ipa&#34; -F &#34;uKey=e2ff6a115f6763483e2559741d20e06f&#34; -F &#34;_api_key=3352a89fc193379c982ae1ad51444103&#34; https://www.pgyer.com/apiv1/app/upload
+</code></pre><h2 id="其它">其它</h2>
+<p><a href="https://www.jianshu.com/p/004384b56d0f">这哥们</a> 提供了较详细的脚本，要做的更复杂可以参考下~</p>
+<ul class="pa0">
+  
+   <li class="list di">
+     <a href="/zyestin/tags/react-native/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">react-native</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/waterfall-list-autoscroll/"> 实现 FlatList 、flashList、masonryFlashList 各种列表的自动滚动动画</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/multi-gestture-sticker/">RN 动画 - 缩放、旋转、拖拽</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/vscode-efficient/">React Native 在VSCode编码提效</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/readme/">React Native 开发沉淀</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/course-react/">React 学习</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/tool-dev-react/">hooks开发工具</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/tool-npm/">npm 工具</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/tool-npm-patch/">patch-package 补丁工具使用</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/code-standards/">代码规范</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/course-react-hooks/">学习《React Hooks 核心原理与实战》笔记</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/alert-multiple/">实现 差不多理想的极简RN弹窗</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/textinput-alert/">封装 低耦合、易用的文本输入框弹窗</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/base-components/">封装常用基础组件</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/douyin-label-input/">模仿抖音、小红书 输入 #标签 高亮</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/waterfall-list-horizontal/">横向 瀑布流列表</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://zyestin.github.io/zyestin/" >
+    &copy;  zyestin 2024 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+    
+    <a href="https://zyestin.github.io/zyestin/posts/rn/readme/" target="_blank" rel="noopener" class="ALL ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="ALL link" aria-label="follow on ALL——Opens in a new window">
+      
+        ALL
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    
+    <a href="https://github.com/zyestin" target="_blank" rel="noopener" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" aria-label="follow on GitHub——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    
+    <a href="https://www.jianshu.com/u/3601cd1fe82d" target="_blank" rel="noopener" class="jianshu ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Jian link" aria-label="follow on Jian——Opens in a new window">
+      
+        Jian
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    
+    <a href="https://blog.csdn.net/wustzhy2016" target="_blank" rel="noopener" class="CSDN ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="csdn link" aria-label="follow on csdn——Opens in a new window">
+      
+        csdn
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>

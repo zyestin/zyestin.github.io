@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>学习《React Hooks 核心原理与实战》笔记 | zyestin</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1">
+    <meta name="description" content="《React Hooks 核心原理与实战》学习 hooks Q: 为什么 Facebook 要发明React Hooks？React Hooks 解决了什么问题？
+A: 简化了逻辑重用
+hooks之前，复用逻辑要用到高阶组件或者render props
+组件每次渲染，内部的函数会重新创建，导致 接收传递函数的子组件 也重新渲染
+useCallback 对组件间传递的 (回调)函数 尽量都包裹 useMemo 缓存计算 useCallback，useMemo 只是为了避免 React 组件的重复渲染而导致的性能损失。
+而对于原生的节点，比如 div, input 这些，它们已经是原子节点了，不再有子节点， 所以不存在重复刷新带来的性能损失。
+useEffect执行时机是 DOM渲染后 useEffect中用到的变量，需要作为依赖参数 拆分复杂组件：不同逻辑拆到不同的Hooks里 Context 适用场景：仅 主题色、语言切换 redux 数据共享 避免不必要的请求 state 使用注意 state 避免定义多余的，找唯一数据源头 去发起改变 上次同事libin提到过这个场景：A传参value1给B，B又传value1给C，C里面能触发改变value1
+方案1：C中的操作触发value1变更时，C不维护value1 state，由C回调给B再回调给A，由A改变value1，从而重新渲染B、C
+方案2：C中的操作触发value1变更时，C改变C内部的value1，同时回调给B、A去更新(C外部)对应的value1
+根据这篇来看，更倾向于方案1 。避免在子组件定义多余的state(value1)，找唯一数据源头A 去发起改变
+设计模式 所谓「设计模式」，就是针对特定场景，提供一种公认的最佳实践
+保证状态的唯一数据源 语义化的拆分复杂组件 Hooks 的一个重要规则，即：Hooks 必须在顶层作用域调用 而不能放在条件判断、循环等语句中，同时也不能在可能的 return 语句之后执行。换句话说，Hooks 必须按顺序被执行到。
+容器模式，把条件判断的结果放到两个组件之中。可用Hooks替代 function CounterRenderProps({ children }) { .">
+    <meta name="generator" content="Hugo 0.122.0">
+    
+    
+    
+    
+      <meta name="robots" content="noindex, nofollow">
+    
+
+    
+<link rel="stylesheet" href="/zyestin/ananke/css/main.min.css" >
+
+
+
+    
+    
+    
+      
+<link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/51897571?s=40&amp;v=4" type="image/x-icon" />
+
+
+    
+
+    
+    
+    <meta property="og:title" content="学习《React Hooks 核心原理与实战》笔记" />
+<meta property="og:description" content="《React Hooks 核心原理与实战》学习 hooks Q: 为什么 Facebook 要发明React Hooks？React Hooks 解决了什么问题？
+A: 简化了逻辑重用
+hooks之前，复用逻辑要用到高阶组件或者render props
+组件每次渲染，内部的函数会重新创建，导致 接收传递函数的子组件 也重新渲染
+useCallback 对组件间传递的 (回调)函数 尽量都包裹 useMemo 缓存计算 useCallback，useMemo 只是为了避免 React 组件的重复渲染而导致的性能损失。
+而对于原生的节点，比如 div, input 这些，它们已经是原子节点了，不再有子节点， 所以不存在重复刷新带来的性能损失。
+useEffect执行时机是 DOM渲染后 useEffect中用到的变量，需要作为依赖参数 拆分复杂组件：不同逻辑拆到不同的Hooks里 Context 适用场景：仅 主题色、语言切换 redux 数据共享 避免不必要的请求 state 使用注意 state 避免定义多余的，找唯一数据源头 去发起改变 上次同事libin提到过这个场景：A传参value1给B，B又传value1给C，C里面能触发改变value1
+方案1：C中的操作触发value1变更时，C不维护value1 state，由C回调给B再回调给A，由A改变value1，从而重新渲染B、C
+方案2：C中的操作触发value1变更时，C改变C内部的value1，同时回调给B、A去更新(C外部)对应的value1
+根据这篇来看，更倾向于方案1 。避免在子组件定义多余的state(value1)，找唯一数据源头A 去发起改变
+设计模式 所谓「设计模式」，就是针对特定场景，提供一种公认的最佳实践
+保证状态的唯一数据源 语义化的拆分复杂组件 Hooks 的一个重要规则，即：Hooks 必须在顶层作用域调用 而不能放在条件判断、循环等语句中，同时也不能在可能的 return 语句之后执行。换句话说，Hooks 必须按顺序被执行到。
+容器模式，把条件判断的结果放到两个组件之中。可用Hooks替代 function CounterRenderProps({ children }) { ." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zyestin.github.io/zyestin/posts/rn/course-react-hooks/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-11-01T12:00:11+08:00" />
+<meta property="article:modified_time" content="2023-11-01T12:00:11+08:00" />
+
+<meta itemprop="name" content="学习《React Hooks 核心原理与实战》笔记">
+<meta itemprop="description" content="《React Hooks 核心原理与实战》学习 hooks Q: 为什么 Facebook 要发明React Hooks？React Hooks 解决了什么问题？
+A: 简化了逻辑重用
+hooks之前，复用逻辑要用到高阶组件或者render props
+组件每次渲染，内部的函数会重新创建，导致 接收传递函数的子组件 也重新渲染
+useCallback 对组件间传递的 (回调)函数 尽量都包裹 useMemo 缓存计算 useCallback，useMemo 只是为了避免 React 组件的重复渲染而导致的性能损失。
+而对于原生的节点，比如 div, input 这些，它们已经是原子节点了，不再有子节点， 所以不存在重复刷新带来的性能损失。
+useEffect执行时机是 DOM渲染后 useEffect中用到的变量，需要作为依赖参数 拆分复杂组件：不同逻辑拆到不同的Hooks里 Context 适用场景：仅 主题色、语言切换 redux 数据共享 避免不必要的请求 state 使用注意 state 避免定义多余的，找唯一数据源头 去发起改变 上次同事libin提到过这个场景：A传参value1给B，B又传value1给C，C里面能触发改变value1
+方案1：C中的操作触发value1变更时，C不维护value1 state，由C回调给B再回调给A，由A改变value1，从而重新渲染B、C
+方案2：C中的操作触发value1变更时，C改变C内部的value1，同时回调给B、A去更新(C外部)对应的value1
+根据这篇来看，更倾向于方案1 。避免在子组件定义多余的state(value1)，找唯一数据源头A 去发起改变
+设计模式 所谓「设计模式」，就是针对特定场景，提供一种公认的最佳实践
+保证状态的唯一数据源 语义化的拆分复杂组件 Hooks 的一个重要规则，即：Hooks 必须在顶层作用域调用 而不能放在条件判断、循环等语句中，同时也不能在可能的 return 语句之后执行。换句话说，Hooks 必须按顺序被执行到。
+容器模式，把条件判断的结果放到两个组件之中。可用Hooks替代 function CounterRenderProps({ children }) { ."><meta itemprop="datePublished" content="2023-11-01T12:00:11+08:00" />
+<meta itemprop="dateModified" content="2023-11-01T12:00:11+08:00" />
+<meta itemprop="wordCount" content="465">
+<meta itemprop="keywords" content="react-native," /><meta name="twitter:card" content="summary"/><meta name="twitter:title" content="学习《React Hooks 核心原理与实战》笔记"/>
+<meta name="twitter:description" content="《React Hooks 核心原理与实战》学习 hooks Q: 为什么 Facebook 要发明React Hooks？React Hooks 解决了什么问题？
+A: 简化了逻辑重用
+hooks之前，复用逻辑要用到高阶组件或者render props
+组件每次渲染，内部的函数会重新创建，导致 接收传递函数的子组件 也重新渲染
+useCallback 对组件间传递的 (回调)函数 尽量都包裹 useMemo 缓存计算 useCallback，useMemo 只是为了避免 React 组件的重复渲染而导致的性能损失。
+而对于原生的节点，比如 div, input 这些，它们已经是原子节点了，不再有子节点， 所以不存在重复刷新带来的性能损失。
+useEffect执行时机是 DOM渲染后 useEffect中用到的变量，需要作为依赖参数 拆分复杂组件：不同逻辑拆到不同的Hooks里 Context 适用场景：仅 主题色、语言切换 redux 数据共享 避免不必要的请求 state 使用注意 state 避免定义多余的，找唯一数据源头 去发起改变 上次同事libin提到过这个场景：A传参value1给B，B又传value1给C，C里面能触发改变value1
+方案1：C中的操作触发value1变更时，C不维护value1 state，由C回调给B再回调给A，由A改变value1，从而重新渲染B、C
+方案2：C中的操作触发value1变更时，C改变C内部的value1，同时回调给B、A去更新(C外部)对应的value1
+根据这篇来看，更倾向于方案1 。避免在子组件定义多余的state(value1)，找唯一数据源头A 去发起改变
+设计模式 所谓「设计模式」，就是针对特定场景，提供一种公认的最佳实践
+保证状态的唯一数据源 语义化的拆分复杂组件 Hooks 的一个重要规则，即：Hooks 必须在顶层作用域调用 而不能放在条件判断、循环等语句中，同时也不能在可能的 return 语句之后执行。换句话说，Hooks 必须按顺序被执行到。
+容器模式，把条件判断的结果放到两个组件之中。可用Hooks替代 function CounterRenderProps({ children }) { ."/>
+
+	
+  </head>
+
+  <body class="ma0 avenir bg-near-white">
+
+    
+   
+  
+
+  <header>
+    <div class="bg-black">
+      <nav class="pv3 ph3 ph4-ns" role="navigation">
+  <div class="flex-l justify-between items-center center">
+    <a href="/zyestin/" class="f3 fw2 hover-white no-underline white-90 dib">
+      
+        <img src="https://avatars.githubusercontent.com/u/51897571?s=40&amp;v=4" class="w100 mw5-ns" alt="zyestin" />
+      
+    </a>
+    <div class="flex-l items-center">
+      
+
+      
+      
+<div class="ananke-socials">
+  
+    
+    <a href="https://zyestin.github.io/zyestin/posts/rn/readme/" target="_blank" rel="noopener" class="ALL ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="ALL link" aria-label="follow on ALL——Opens in a new window">
+      
+        ALL
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    
+    <a href="https://github.com/zyestin" target="_blank" rel="noopener" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" aria-label="follow on GitHub——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    
+    <a href="https://www.jianshu.com/u/3601cd1fe82d" target="_blank" rel="noopener" class="jianshu ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Jian link" aria-label="follow on Jian——Opens in a new window">
+      
+        Jian
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    
+    <a href="https://blog.csdn.net/wustzhy2016" target="_blank" rel="noopener" class="CSDN ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="csdn link" aria-label="follow on csdn——Opens in a new window">
+      
+        csdn
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+</div>
+
+    </div>
+  </div>
+</nav>
+
+    </div>
+  </header>
+
+
+
+    <main class="pb7" role="main">
+      
+  
+  <article class="flex-l flex-wrap justify-between mw8 center ph3">
+    <header class="mt4 w-100">
+      <aside class="instapaper_ignoref b helvetica tracked">
+          
+        POSTS
+      </aside>
+      
+
+
+
+
+
+
+
+
+
+
+  <div id="sharing" class="mt3 ananke-socials">
+    
+  </div>
+
+
+      <h1 class="f1 athelas mt3 mb1">学习《React Hooks 核心原理与实战》笔记</h1>
+      
+      <p class="tracked">
+        By <strong>yestin</strong>
+      </p>
+      
+      
+      
+      <time class="f6 mv4 dib tracked" datetime="2023-11-01T12:00:11+08:00">November 1, 2023</time>
+      
+
+      
+      
+    </header>
+    <div class="nested-copy-line-height lh-copy avenir bg-near-white f4 nested-links mid-gray pr4-l w-two-thirds-l"><h1 id="react-hooks-核心原理与实战学习">《React Hooks 核心原理与实战》学习</h1>
+<h2 id="hooks">hooks</h2>
+<ul>
+<li>
+<p>Q: 为什么 Facebook 要发明React Hooks？React Hooks 解决了什么问题？</p>
+<p>A: 简化了逻辑重用</p>
+<p>hooks之前，复用逻辑要用到高阶组件或者render props</p>
+</li>
+<li>
+<p>组件每次渲染，内部的函数会重新创建，导致 接收传递函数的子组件 也重新渲染</p>
+</li>
+</ul>
+<p><img src="media/17098124161476/17098124962754.jpg" alt=""></p>
+<ul>
+<li>useCallback 对组件间传递的 (回调)函数 尽量都包裹</li>
+</ul>
+<p><img src="media/17098124161476/17098125157904.jpg" alt=""></p>
+<p><img src="media/17098124161476/17098125933411.jpg" alt=""></p>
+<ul>
+<li>useMemo 缓存计算</li>
+</ul>
+<p><img src="media/17098124161476/17098126043814.jpg" alt=""></p>
+<ul>
+<li>
+<p>useCallback，useMemo 只是为了避免 React 组件的重复渲染而导致的性能损失。</p>
+</li>
+<li>
+<p>而对于原生的节点，比如 div, input 这些，它们已经是原子节点了，不再有子节点， 所以不存在重复刷新带来的性能损失。</p>
+</li>
+</ul>
+<p><img src="media/17098124161476/17098126475470.jpg" alt=""></p>
+<ul>
+<li>useEffect执行时机是 DOM渲染后</li>
+</ul>
+<p><img src="media/17098124161476/17098126690843.jpg" alt=""></p>
+<ul>
+<li>useEffect中用到的变量，需要作为依赖参数</li>
+</ul>
+<p><img src="media/17098124161476/17098799474210.jpg" alt=""></p>
+<ul>
+<li>拆分复杂组件：不同逻辑拆到不同的Hooks里</li>
+</ul>
+<p><img src="media/17098124161476/17098803509156.jpg" alt=""></p>
+<ul>
+<li>Context 适用场景：仅 主题色、语言切换</li>
+</ul>
+<p><img src="media/17098124161476/17098804696996.jpg" alt=""></p>
+<ul>
+<li>redux 数据共享 避免不必要的请求</li>
+</ul>
+<p><img src="media/17098124161476/17098805273501.jpg" alt=""></p>
+<ul>
+<li>state 使用注意</li>
+</ul>
+<p>state 避免定义多余的，找唯一数据源头 去发起改变
+<img src="media/17098124161476/17098806342200.jpg" alt=""></p>
+<blockquote>
+<p>上次同事libin提到过这个场景：A传参value1给B，B又传value1给C，C里面能触发改变value1</p>
+<p>方案1：C中的操作触发value1变更时，C不维护value1 state，由C回调给B再回调给A，由A改变value1，从而重新渲染B、C</p>
+<p>方案2：C中的操作触发value1变更时，C改变C内部的value1，同时回调给B、A去更新(C外部)对应的value1</p>
+<p>根据这篇来看，更倾向于方案1 。避免在子组件定义多余的state(value1)，找唯一数据源头A 去发起改变</p>
+</blockquote>
+<h2 id="设计模式">设计模式</h2>
+<p>所谓「设计模式」，就是针对特定场景，提供一种公认的最佳实践</p>
+<ul>
+<li>保证状态的唯一数据源</li>
+<li>语义化的拆分复杂组件</li>
+</ul>
+<blockquote>
+<p>Hooks 的一个重要规则，即：Hooks 必须在顶层作用域调用
+而不能放在条件判断、循环等语句中，同时也不能在可能的 return 语句之后执行。换句话说，Hooks 必须按顺序被执行到。</p>
+</blockquote>
+<ul>
+<li>容器模式，把条件判断的结果放到两个组件之中。可用Hooks替代</li>
+</ul>
+<pre tabindex="0"><code>function CounterRenderProps({ children }) {
+...
+return children({ count, increment, decrement });
+}
+</code></pre><ul>
+<li>render props 模式，重用 UI 逻辑</li>
+</ul>
+<pre tabindex="0"><code>function ListWithMore({ renderItem, data = [], max })
+</code></pre><h2 id="拆包分包提高首屏页面的打开速度">拆包/分包：提高首屏页面的打开速度</h2>
+<pre tabindex="0"><code>function ProfilePage() {
+  // 定义一个 state 用于存放需要加载的组件
+  const [RealPage, setRealPage] = useState(null);
+  // 根据路径动态加载真正的组件实现
+  import(&#39;./RealProfilePage&#39;).then((comp) =&gt; {
+  setRealPage(Comp);
+  });
+  // 如果组件未加载则显示 Loading 状态
+  if (!RealPage) return &#39;Loading....&#39;;
+  // 组件加载成功后则将其渲染到界面
+  return &lt;RealPage /&gt;
+}
+</code></pre><p>import() 这个语句完全是由 Webpack 进行处理的</p>
+<blockquote>
+<p>Webpack 会将以“./RealProfilePage”模块为起点的所有依赖模块，单独打成一个包。
+并且，Webpack 还会生成代码，用于按需加载这个模块。</p>
+</blockquote>
+<ul>
+<li>react-lodable，实现组件的异步加载</li>
+</ul>
+<blockquote>
+<p>通过高阶组件来实现的，这个高阶组件实现了模块加载、loading 状态以及错误处理的功能。</p>
+</blockquote>
+<pre tabindex="0"><code>import Loadable from &#34;react-loadable&#34;;
+// 创建一个显示加载状态的组件
+function Loading({ error }) {
+  return error ? &#39;Failed&#39; : &#39;Loading&#39;;
+}
+// 创建加载器组件
+const HelloLazyLoad = Loadable({
+  loader: () =&gt; import(&#34;./RealHelloLazyLoad&#34;),
+  loading: Loading,
+});
+</code></pre><ul>
+<li>service worker 缓存前端资源：提高第二次以及后续打开 App 的速度</li>
+</ul>
+<blockquote>
+<p>可以把 Service Worker 看作一种前端的资源请求代理。Service Worker 会拦截所有浏览器发送出来的请求，你可以通过代码去控制Rest API 这些请求发送到服务器；而 JS、CSS 等静态资源，则通过 Cache Storage 存储
+在浏览器端。</p>
+</blockquote>
+<h2 id="webpack">Webpack</h2>
+<blockquote>
+<p>为主流的前端应用打包工具，它的核心思路是将源代码以及图片、样式文件等资源文件都视为模块，然后通过提供对不同类型资源的处理器，将它们进行统一处理，形成最终可在浏览器运行的代码。</p>
+</blockquote>
+<p><img src="media/17098124161476/17098809085641.jpg" alt=""></p>
+<ol>
+<li>输入输出配置：定义你的应用程序的入口，以及打包结果输出的文件夹位置。</li>
+<li>配置对于每一类资源文件的处理器：比如说，对 JavaScript 是用 babel-loader 去编
+译；对 less 文件则是用 less-loader 去编译；图片则用 file-loader 去处理。你在项目
+中能使用哪些技术或者资源，完全取决于配置了哪些 loader。</li>
+<li>插件配置：除了核心的源代码编译和打包流程，Webpack 还支持插件扩展功能，可以
+通过插件生成额外的打包结果，或者进行一些其它的处理。比如打包过程生成
+index.html，源代码分析报表，提取 CSS 到独立文件，代码压缩，等等。</li>
+</ol>
+<pre tabindex="0"><code>const HtmlWebpackPlugin = require(&#39;html-webpack-plugin&#39;);
+const path = require(&#39;path&#39;);
+
+module.exports = {
+  entry: {
+    // 定义ath.resolve(__dirname, &#39;./src/app.js&#39;),
+  },
+  output: {
+    // 打包输出的文件名，这里将生成 main.bundle.js
+    filename: &#39;[name].bundle.js&#39;,
+    // 定义打包结果的输出位置
+    path: path.resolve(__dirname, &#39;build&#39;),
+  },
+  module: {
+    // 定义处理源文件的规则，rules 下会按顺序使用匹配的规则
+    rules: [
+      {
+        // 遇到 .js 结尾的文件则使用这个规则
+        test: /\.js$/,
+        // 忽略 node_modules 目录下的 js 文件
+        exclude: /node_modules/,
+        use: {
+          // 使用 babel-loader 处理 js
+          loader: &#39;babel-loader&#39;,
+          // babel-loader 的一些选项
+          options: {
+            presets: [&#39;@babel/preset-env&#39;],
+          },
+        },
+      },
+    ],
+  },
+  plugins: [
+    // 使用 HtmlWebpackPlugin 生成一个 index.html，其中自动引入 js
+    // 并配置了页面的 title
+    new HtmlWebpackPlugin({
+      title: &#39;Webpack Output&#39;,
+    }),
+  ],
+};
+</code></pre><p>针对这段配置代码，我们一般会把它存储为 webpack.config.js 这样一个文件，这样在我
+们的项目下运行 webpack 命令，就会使用这个文件作为配置。</p>
+<p>代码中其实已经很直观了，我们不仅定义了输入输出，还配置了 babel-loader，用于编译
+JavaScript 文件到兼容主流浏览器的代码。同时，还为 babel-loader 设置了参数</p>
+<p><strong>Less 允许我们通过更强大的机制去写 Css，比如可以定义变量，允许嵌套的规则定义，等等。</strong><br>
+要让一个 Less 文件最终打包到目标文件中，并被浏览器运行，那么首先需要把 Less
+代码转换成 Css，再通过 style 标记插入到浏览器中。</p>
+<p>这个过程涉及到三个 loader，如下：</p>
+<ol>
+<li>less-loader：用于将 Less 代码转换成 Css。</li>
+<li>css-loader：用于处理 Css 中的 import、url 等语句，以便能分析出图片等静态资源打
+包到最终结果。</li>
+<li>style-loader：会自动生成代码，并将打包后的 Css 插入到页面 style 标签。这个
+loader 会将 Css 打包到 js 文件中，在应用运行时，自动生成的代码再把这些 css 应用
+到页面上。</li>
+</ol>
+<pre tabindex="0"><code>module.exports = {
+  // ...
+  module: {
+    rules: [
+      // ...
+      {
+        // 检测 less 文件
+        test: /\.less$/,
+        // 使用了三个 loader，注意执行顺序是数组的倒序
+        // 也就是先执行 less-loader
+        use: [&#39;style-loader&#39;, &#39;css-loader&#39;, &#39;less-loader&#39;],
+      },
+    ],
+  },
+  //...
+};
+</code></pre><p>如果项目要支持 sass 作为 Css 预处理器，那么顺序就是 sass-loader -&gt; css-
+loader -&gt; style-loader。可以看到，我们只要替换 less-loader 为 sass-loader，后两个
+loader 是完全一样的。</p>
+<p><strong>常见QA</strong></p>
+<ul>
+<li>
+<p>为什么 CSS 代码会进入到 JavaScript 文件中呢？最终它是怎么应用到页面的呢？</p>
+<p>其实背后的过程主要是，生成的 CSS 代码会以字符串的形式作为一个模块打包
+到最终结果，然后在运行时由 style-loader 提供的一个函数 injectStylesIntoStyleTag ，
+来将这个模块加入到页面的 style 标签中，从而最终生效。</p>
+</li>
+<li>
+<p>如果我们想让生成的 CSS 文件和 JavaScript 文件分开，应该如何做呢？</p>
+<p>从 rules 中去掉 style-loader 这个配置，以避免 CSS 进入到 JavaScript 文件中。
+实现提取 CSS 模块到单独 CSS 文件的 plugin 是 mini-css-extract-plugin</p>
+</li>
+<li>
+<p>plugin 和 loader 的区别</p>
+<ul>
+<li>loader主要用于处理不同类型的资源，将它们转换成模块；</li>
+<li>plugin 通常用于生成一些除了JavaScript bundle 之外的一些打包结果，比如例子中的 index.html 和 css 文件</li>
+</ul>
+</li>
+<li>
+<p>React Native中用到 babel的例子</p>
+</li>
+</ul>
+<p><img src="media/17098124161476/17098811091836.jpg" alt=""></p>
+<ul>
+<li>Webpack 动态加载模块</li>
+</ul>
+<p><img src="media/17098124161476/17098811259370.jpg" alt=""></p>
+<h2 id="感谢">感谢</h2>
+<ul>
+<li>
+<p>感谢公司购买了这个课程《React Hooks 核心原理与实战》</p>
+</li>
+<li>
+<p>感谢《React Hooks 核心原理与实战》作者分享这些经验</p>
+</li>
+</ul>
+<ul class="pa0">
+  
+   <li class="list di">
+     <a href="/zyestin/tags/react-native/" class="link f5 grow no-underline br-pill ba ph3 pv2 mb2 dib black sans-serif">react-native</a>
+   </li>
+  
+</ul>
+<div class="mt6 instapaper_ignoref">
+      
+      
+      </div>
+    </div>
+
+    <aside class="w-30-l mt6-l">
+
+
+
+
+  <div class="bg-light-gray pa3 nested-list-reset nested-copy-line-height nested-links">
+    <p class="f5 b mb3">Related</p>
+    <ul class="pa0 list">
+	   
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/waterfall-list-autoscroll/"> 实现 FlatList 、flashList、masonryFlashList 各种列表的自动滚动动画</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/multi-gestture-sticker/">RN 动画 - 缩放、旋转、拖拽</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/vscode-efficient/">React Native 在VSCode编码提效</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/readme/">React Native 开发沉淀</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/course-react/">React 学习</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/tool-dev-react/">hooks开发工具</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/tool-npm/">npm 工具</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/tool-npm-patch/">patch-package 补丁工具使用</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/tool-rn-jenkins-ios/">从0到1用Jenkins实现对RN项目一键打包、发布</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/code-standards/">代码规范</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/alert-multiple/">实现 差不多理想的极简RN弹窗</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/textinput-alert/">封装 低耦合、易用的文本输入框弹窗</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/base-components/">封装常用基础组件</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/douyin-label-input/">模仿抖音、小红书 输入 #标签 高亮</a>
+        </li>
+	    
+	     <li  class="mb2">
+          <a href="/zyestin/posts/rn/waterfall-list-horizontal/">横向 瀑布流列表</a>
+        </li>
+	    
+    </ul>
+</div>
+
+</aside>
+
+  </article>
+
+    </main>
+    <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+  <div class="flex justify-between">
+  <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://zyestin.github.io/zyestin/" >
+    &copy;  zyestin 2024 
+  </a>
+    <div>
+<div class="ananke-socials">
+  
+    
+    <a href="https://zyestin.github.io/zyestin/posts/rn/readme/" target="_blank" rel="noopener" class="ALL ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="ALL link" aria-label="follow on ALL——Opens in a new window">
+      
+        ALL
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    
+    <a href="https://github.com/zyestin" target="_blank" rel="noopener" class="github ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="GitHub link" aria-label="follow on GitHub——Opens in a new window">
+      
+        <span class="icon"><svg style="enable-background:new 0 0 512 512;" version="1.1" viewBox="0 0 512 512"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+  <path d="M256,32C132.3,32,32,134.8,32,261.7c0,101.5,64.2,187.5,153.2,217.9c11.2,2.1,15.3-5,15.3-11.1   c0-5.5-0.2-19.9-0.3-39.1c-62.3,13.9-75.5-30.8-75.5-30.8c-10.2-26.5-24.9-33.6-24.9-33.6c-20.3-14.3,1.5-14,1.5-14   c22.5,1.6,34.3,23.7,34.3,23.7c20,35.1,52.4,25,65.2,19.1c2-14.8,7.8-25,14.2-30.7c-49.7-5.8-102-25.5-102-113.5   c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,18.8-6.2,61.6,23.5c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7   c42.8-29.7,61.5-23.5,61.5-23.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3   c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,6.1,4,13.3,15.4,11C415.9,449.1,480,363.1,480,261.7   C480,134.8,379.7,32,256,32z"/>
+</svg>
+</span>
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    
+    <a href="https://www.jianshu.com/u/3601cd1fe82d" target="_blank" rel="noopener" class="jianshu ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="Jian link" aria-label="follow on Jian——Opens in a new window">
+      
+        Jian
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+    
+    <a href="https://blog.csdn.net/wustzhy2016" target="_blank" rel="noopener" class="CSDN ananke-social-link link-transition stackoverflow link dib z-999 pt3 pt0-l mr1" title="csdn link" aria-label="follow on csdn——Opens in a new window">
+      
+        csdn
+      
+<span class="new-window"><svg  height="8px"  style="enable-background:new 0 0 1000 1000;" version="1.1" viewBox="0 0 1000 1000"  xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
+<path d="M598 128h298v298h-86v-152l-418 418-60-60 418-418h-152v-86zM810 810v-298h86v298c0 46-40 86-86 86h-596c-48 0-86-40-86-86v-596c0-46 38-86 86-86h298v86h-298v596h596z" style="fill-rule:evenodd;clip-rule:evenodd;"/>
+</svg>
+</span></a>
+  
+</div>
+</div>
+  </div>
+</footer>
+
+  </body>
+</html>
