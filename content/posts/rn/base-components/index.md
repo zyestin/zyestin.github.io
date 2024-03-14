@@ -119,7 +119,7 @@ export default FeedList;
 优点： 使用了高性能图片库FastImage，封装为 可配置图片加载失败后展示的占位error图
 
 
-使用示例
+### 使用示例
 ```javascript
 // aliyun oss image format
 // error image url: https://cdn.xxx.com/pic/illustrationstory/default/default_cover_720-1080.png?x-oss-process=image/resize,w_150/quality,q_85/format,webp
@@ -183,3 +183,84 @@ const getHeightFromSize = (size) => {
   return Math.min((imageSize * size.height) / size.width, maxImageHeight);
 };
 ```
+
+
+# 状态栏导航栏组件
+
+源码：[BaseNavBar.js](./BaseNavBar.js)
+
+优点：  
+* 带 返回按钮，点击返回上一页
+* 带 title
+* 支持自定义导航栏内子视图
+* 使用时无需考虑状态栏适配了（内部处理了）
+
+### 使用示例
+
+* 最常规用法 [ `返回键` + `title` ]  
+  使用场景：几乎所有页面  
+ ![normal](media/nav/nav_normal.png)
+  ```javascript
+  import BaseNavBar from "app/components/navBar/base";
+  <BaseNavBar title={"书架筛选"} />
+  ```
+
+* 自定义导航栏内容用法  
+  使用场景：导航栏需要特别自定义时  
+ ![custom](media/nav/nav_custom_child.png)
+  ```javascript
+  import BaseNavBar from "app/components/navBar/base";
+  <BaseNavBar>
+    {/* 搜索栏 */}
+    <View style={styles.inputContainer}>
+      <TextInput
+        style={styles.textInput}
+        placeholder={placeholder || "输入搜索关键字"}
+        placeholderTextColor={"#999999"}
+        onChangeText={onChangeText}
+        value={keyword}
+        onSubmitEditing={_onClickSubmit}
+        keyboardType="web-search"
+        returnKeyType="search"
+        autoFocus={true}
+      />
+      <TouchableOpacity style={styles.closeButton} onPress={clearInput}>
+        <Image
+          style={styles.closeButtonImage}
+          source={require("./images/close-gray.png")}
+        />
+      </TouchableOpacity>
+    </View>
+    <TouchableOpacity style={styles.searchButton} onPress={_onClickSubmit}>
+      <Text style={{ fontSize: px2dp(16), color: "#666666" }}>搜索</Text>
+    </TouchableOpacity>
+  </BaseNavBar>
+  ```
+
+# 页面左上角的返回按钮组件
+
+源码：[LeftUpBackButton.js](./LeftUpBackButton.js)
+
+优点：  
+* 避开了状态栏
+* 热区足够大
+* 使用起来极简
+
+使用场景：不需要导航栏 但需要返回按钮的页面，e.g. 一些全屏弹窗（图片查看器...）  
+
+### 使用示例
+
+![custom](media/nav/back_button.png)
+
+```javascript
+import LeftUpBackButton from "app/components/LeftUpBackButton";
+<LeftUpBackButton
+  //iconType="white"
+  //onPress={() => {
+    //dismiss alert
+  //}}
+/>
+```
+
+
+
