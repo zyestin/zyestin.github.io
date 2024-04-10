@@ -175,6 +175,26 @@ If enabled, MasonryFlashList will try to reduce difference in column height by m
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
+      <a href="/zyestin/posts/rn/status-sync-global/" class="link black dim">
+        最佳实践 点赞(收藏等)状态的全局同步更新
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      有这么一个常见的需求 在对某个帖子进行点赞后，该帖子所出现的各个地方，e.g.帖子列表(可能多处)、帖子详情(可能多个)，点赞状态实时同步、数量加/减1同步。
+iOS 方案 在iOS，我是在每个帖子 所对应的 Model(数据)对象里 监听通知，判断 帖子ID，ID匹配 则更新 点赞状态，以此达到操作点赞后 实时同步同一帖子的点赞状态，非常简单好使！
+RN 方案 但RN里，数据是一个{id:xx, ...}这样的对象，是不支持像在iOS那样，在这样对象里 写监听通知的代码的。
+于是，那就放到hooks去实现。
+Q：那需要什么样的hooks呢？ A：也就是需要怎样的 设计最优雅的API，or调用方式 （如下），才是决定了设计什么样的hooks函数
+最优雅API 调用方式 const PostComp = () =&gt; { const { isActive: liked, activeCount: likeCount, changeActiveStatus: changeLikeStatus, } = useActiveStatus({ id: id, originalActiveCount: originalLikeCount, originalActiveStatus: originalLikedStatus, notificationKey: kPostLikeStatusChangeNotification, requestFunc: ({ isActive }) =&gt; { return likePost({ postId: id, isLike: isActive }); // send request to toggle liked status }, }); return ( &lt;View&gt; &lt;Icon liked={liked} /&gt; &lt;Text&gt;{likeCount}&lt;/Text&gt; &lt;Button onPress={() =&gt; { changeLikeStatus() }} /&gt; &lt;/View&gt; ) } useActiveStatus这个hooks的实现源码， 如下
+    </div>
+  </div>
+</div>
+
+        
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
       <a href="/zyestin/posts/rn/rn-pull-request/" class="link black dim">
         第一次提交PR给react-native
       </a>
@@ -314,11 +334,12 @@ Mac、VSC快捷键 Mac 系统自带
 封装一个 易用的、远程字体动态下载&amp;应用组件
 封装一个 低耦合、易用的文本输入框弹窗
 实现 差不多理想的极简RN弹窗
+最佳实践 点赞(收藏等)状态的全局同步更新
 实践 列表Item精确曝光埋点 [todo]
 实践 多tab多列表滑动吸顶效果 [todo]
 实践 服务端下发自定义组件代码 前端接收&amp;渲染[todo]
 实践 拆包 [todo]
-组件库 易用的应用远程字体的text组件库 - react-native-remote-font 其它（提效、工具&hellip;) 探究 代码规范
+组件库 易用的应用远程字体的text组件库 - react-native-remote-font 其它（提效、工具、学习&hellip;) 探究 代码规范
 React Native 编码提效 on VSCode
 用脚手架 制作一个RN库 放npm(含踏坑记录)
 贡献给react-native的第一个PR
@@ -567,6 +588,16 @@ import { StyleSheet, Text, TouchableOpacity, View } from &#34;react-native&#34;;
 
     </main>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
+
+<script src="https://utteranc.es/client.js"
+  repo="zyestin/zyestin"
+  issue-term="title"
+  theme="github-light"
+  crossorigin="anonymous"
+  async
+>
+</script>  
+
   <div class="flex justify-between">
   <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://zyestin.github.io/zyestin/" >
     &copy;  zyestin 2024 
