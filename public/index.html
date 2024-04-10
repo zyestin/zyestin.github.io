@@ -199,35 +199,6 @@ If enabled, MasonryFlashList will try to reduce difference in column height by m
       
       <div class="blah w-100">
         <h1 class="f3 fw1 athelas mt0 lh-title">
-          <a href="/zyestin/posts/rn/status-sync-global/" class="color-inherit dim link">
-            最佳实践 点赞(收藏等)状态的全局同步更新
-            </a>
-        </h1>
-        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
-          有这么一个常见的需求 在对某个帖子进行点赞后，该帖子所出现的各个地方，e.g.帖子列表(可能多处)、帖子详情(可能多个)，点赞状态实时同步、数量加/减1同步。
-iOS 方案 在iOS，我是在每个帖子 所对应的 Model(数据)对象里 监听通知，判断 帖子ID，ID匹配 则更新 点赞状态，以此达到操作点赞后 实时同步同一帖子的点赞状态，非常简单好使！
-RN 方案 但RN里，数据是一个{id:xx, ...}这样的对象，是不支持像在iOS那样，在这样对象里 写监听通知的代码的。
-于是，那就放到hooks去实现。
-Q：那需要什么样的hooks呢？ A：也就是需要怎样的 设计最优雅的API，or调用方式 （如下），才是决定了设计什么样的hooks函数
-最优雅API 调用方式 const PostComp = () =&gt; { const { isActive: liked, activeCount: likeCount, changeActiveStatus: changeLikeStatus, } = useActiveStatus({ id: id, originalActiveCount: originalLikeCount, originalActiveStatus: originalLikedStatus, notificationKey: kPostLikeStatusChangeNotification, requestFunc: ({ isActive }) =&gt; { return likePost({ postId: id, isLike: isActive }); // send request to toggle liked status }, }); return ( &lt;View&gt; &lt;Icon liked={liked} /&gt; &lt;Text&gt;{likeCount}&lt;/Text&gt; &lt;Button onPress={() =&gt; { changeLikeStatus() }} /&gt; &lt;/View&gt; ) } useActiveStatus这个hooks的实现源码， 如下
-        </div>
-          <a href="/zyestin/posts/rn/status-sync-global/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
-        
-      </div>
-    </div>
-  </div>
-</article>
-
-          </div>
-        
-          <div class="relative w-100 mb4">
-            
-<article class="bb b--black-10">
-  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
-    <div class="flex flex-column flex-row-ns">
-      
-      <div class="blah w-100">
-        <h1 class="f3 fw1 athelas mt0 lh-title">
           <a href="/zyestin/posts/rn/rn-pull-request/" class="color-inherit dim link">
             第一次提交PR给react-native
             </a>
@@ -311,18 +282,36 @@ ESLint提供，检查useEffect依赖 &amp;&amp; autoFix，
 
           </div>
         
+          <div class="relative w-100 mb4">
+            
+<article class="bb b--black-10">
+  <div class="db pv4 ph3 ph0-l no-underline dark-gray">
+    <div class="flex flex-column flex-row-ns">
+      
+      <div class="blah w-100">
+        <h1 class="f3 fw1 athelas mt0 lh-title">
+          <a href="/zyestin/posts/rn/tool-npm/" class="color-inherit dim link">
+            npm 工具
+            </a>
+        </h1>
+        <div class="f6 f5-l lh-copy nested-copy-line-height nested-links">
+           patch-package 补丁工具使用 
+        </div>
+          <a href="/zyestin/posts/rn/tool-npm/" class="ba b--moon-gray bg-light-gray br2 color-inherit dib f7 hover-bg-moon-gray link mt2 ph2 pv1">read more</a>
+        
+      </div>
+    </div>
+  </div>
+</article>
+
+          </div>
+        
       </section>
 
       
       <section class="w-100">
         <h1 class="f3">More</h1>
         
-        
-          <h2 class="f5 fw4 mb4 dib mr3">
-            <a href="/zyestin/posts/rn/tool-npm/" class="link black dim">
-              npm 工具
-            </a>
-          </h2>
         
           <h2 class="f5 fw4 mb4 dib mr3">
             <a href="/zyestin/posts/rn/tool-npm-patch/" class="link black dim">
@@ -342,6 +331,12 @@ ESLint提供，检查useEffect依赖 &amp;&amp; autoFix，
             </a>
           </h2>
         
+          <h2 class="f5 fw4 mb4 dib mr3">
+            <a href="/zyestin/posts/rn/course-react/" class="link black dim">
+              React 学习
+            </a>
+          </h2>
+        
 
         
         
@@ -355,16 +350,6 @@ ESLint提供，检查useEffect依赖 &amp;&amp; autoFix，
 
     </main>
     <footer class="bg-black bottom-0 w-100 pa3" role="contentinfo">
-
-<script src="https://utteranc.es/client.js"
-  repo="zyestin/zyestin"
-  issue-term="title"
-  theme="github-light"
-  crossorigin="anonymous"
-  async
->
-</script>  
-
   <div class="flex justify-between">
   <a class="f4 fw4 hover-white no-underline white-70 dn dib-ns pv2 ph3" href="https://zyestin.github.io/zyestin/" >
     &copy;  zyestin 2024 
