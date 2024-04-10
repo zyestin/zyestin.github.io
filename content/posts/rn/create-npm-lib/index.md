@@ -2,7 +2,7 @@
 title: "用脚手架 制作一个RN库 放npm"
 date: 2023-11-01T12:00:11+08:00
 draft: false
-tags: [react-native]
+tags: [contribution, package, react-native]
 ---
 
 

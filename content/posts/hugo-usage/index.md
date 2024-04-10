@@ -4,6 +4,7 @@ date: 2023-08-24T09:11:47+08:00
 # draft: true
 # bookComments: false
 # bookSearchExclude: false
+tags: [tool, write]
 ---
 
  2023最新 `hugo` + `github pages` 使用方式

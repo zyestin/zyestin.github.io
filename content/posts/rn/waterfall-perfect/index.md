@@ -2,7 +2,7 @@
 title: "瀑布流最佳实践：双列均匀分布，高度计算&缓存"
 date: 2024-03-05T19:36:11+08:00
 draft: false
-tags: [react-native]
+tags: [best-practice, react-native]
 ---
 
 # MasonryFlashList 瀑布流布局列高不均 解决方案

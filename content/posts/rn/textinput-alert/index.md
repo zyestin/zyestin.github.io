@@ -2,7 +2,7 @@
 title: "封装 低耦合、易用的文本输入框弹窗"
 date: 2023-11-01T12:00:11+08:00
 draft: false
-tags: [react-native]
+tags: [best-practice, react-native]
 ---
 
 

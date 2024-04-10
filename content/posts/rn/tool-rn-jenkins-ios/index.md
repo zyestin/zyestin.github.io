@@ -2,7 +2,7 @@
 title: "从0到1用Jenkins实现对RN项目一键打包、发布"
 date: 2023-11-01T12:00:11+08:00
 draft: false
-tags: [react-native]
+tags: [tool, react-native, ios]
 ---
 
 # Jenkins for iOS（第二次搭建记录）
