@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>封装常用基础组件 - zyestin</title><meta name="Description" content="Hugo theme - LoveIt"><meta property="og:title" content="封装常用基础组件" />
+<meta property="og:description" content="目录
+瀑布流列表base组件 图片base组件 状态栏导航栏组件 页面左上角的返回按钮组件 瀑布流列表base组件 源码：BaseList.js
+优点：将下拉刷新、上拉加载更多相关的 pageNo逻辑，封装到BaseList中，使用方仅需关注 数据请求的api，让使用方代码量降到最少。
+使用示例 平替 FlatList 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 import BaseList from &#34;app/components/list/base&#34;; import { getFanList } from &#34;./service&#34;; const pageSize = 10; const FanList = (props) =&gt; { const { userId } = props; const _requestFunc = (page, pageSize) =&gt; { return getFanList({ userId: userId, pageNo: page, pageSize }); }; const _renderItem = ({ item, index }) =&gt; { return &lt;Item {." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zyestin.github.io/zyestin/base-components/" /><meta property="og:image" content="https://zyestin.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-11-01T12:00:11+08:00" />
+<meta property="article:modified_time" content="2024-03-14T16:21:07+08:00" /><meta property="og:site_name" content="LoveIt-zyestin" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zyestin.github.io/logo.png" /><meta name="twitter:title" content="封装常用基础组件"/>
+<meta name="twitter:description" content="目录
+瀑布流列表base组件 图片base组件 状态栏导航栏组件 页面左上角的返回按钮组件 瀑布流列表base组件 源码：BaseList.js
+优点：将下拉刷新、上拉加载更多相关的 pageNo逻辑，封装到BaseList中，使用方仅需关注 数据请求的api，让使用方代码量降到最少。
+使用示例 平替 FlatList 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 import BaseList from &#34;app/components/list/base&#34;; import { getFanList } from &#34;./service&#34;; const pageSize = 10; const FanList = (props) =&gt; { const { userId } = props; const _requestFunc = (page, pageSize) =&gt; { return getFanList({ userId: userId, pageNo: page, pageSize }); }; const _renderItem = ({ item, index }) =&gt; { return &lt;Item {."/>
+<meta name="twitter:site" content="@YestinZz"/>
+<meta name="application-name" content="LoveIt-zyestin">
+<meta name="apple-mobile-web-app-title" content="LoveIt-zyestin"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://avatars.githubusercontent.com/u/51897571?s=40&amp;v=4"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zyestin.github.io/zyestin/base-components/" /><link rel="prev" href="https://zyestin.github.io/zyestin/douyin-label-input/" /><link rel="next" href="https://zyestin.github.io/zyestin/textinput-alert/" /><link rel="stylesheet" href="/zyestin/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "封装常用基础组件",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zyestin.github.io\/zyestin\/base-components\/"
+        },"image": ["https:\/\/avatars.githubusercontent.com\/u\/51897571?s=40\u0026v=4"],"genre": "posts","keywords": "react-native","wordcount":  690 ,
+        "url": "https:\/\/zyestin.github.io\/zyestin\/base-components\/","datePublished": "2023-11-01T12:00:11+08:00","dateModified": "2024-03-14T16:21:07+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "zyestin","logo": "https:\/\/avatars.githubusercontent.com\/u\/51897571?s=40\u0026v=4"},"author": {
+                "@type": "Person",
+                "name": "zyestin"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/zyestin/" title="zyestin"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>LoveIt</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/zyestin/posts/"> Posts </a><a class="menu-item" href="/zyestin/tags/"> Tags </a><a class="menu-item" href="/zyestin/categories/"> Categories </a><a class="menu-item" href="/zyestin/categories/documentation/"> Docs </a><a class="menu-item" href="/zyestin/about/"> About </a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="Select Language">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/zyestin/base-components/" selected>English</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/zyestin/" title="zyestin"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>LoveIt</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/zyestin/posts/" title="">Posts</a><a class="menu-item" href="/zyestin/tags/" title="">Tags</a><a class="menu-item" href="/zyestin/categories/" title="">Categories</a><a class="menu-item" href="/zyestin/categories/documentation/" title="">Docs</a><a class="menu-item" href="/zyestin/about/" title="">About</a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="Select Language">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/zyestin/base-components/" selected>English</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">封装常用基础组件</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/zyestin" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zyestin</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-11-01">2023-11-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;690 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#使用示例">使用示例</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#使用示例-1">使用示例</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#使用示例-2">使用示例</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#使用示例-3">使用示例</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>目录</p>
+<ul>
+<li><a href="#%e7%80%91%e5%b8%83%e6%b5%81%e5%88%97%e8%a1%a8base%e7%bb%84%e4%bb%b6" rel="">瀑布流列表base组件</a></li>
+<li><a href="#%e5%9b%be%e7%89%87base%e7%bb%84%e4%bb%b6" rel="">图片base组件</a></li>
+<li><a href="#%e7%8a%b6%e6%80%81%e6%a0%8f%e5%af%bc%e8%88%aa%e6%a0%8f%e7%bb%84%e4%bb%b6" rel="">状态栏导航栏组件</a></li>
+<li><a href="#%e9%a1%b5%e9%9d%a2%e5%b7%a6%e4%b8%8a%e8%a7%92%e7%9a%84%e8%bf%94%e5%9b%9e%e6%8c%89%e9%92%ae%e7%bb%84%e4%bb%b6" rel="">页面左上角的返回按钮组件</a></li>
+</ul>
+<h1 id="瀑布流列表base组件">瀑布流列表base组件</h1>
+<p>源码：<a href="./BaseList.js" rel="">BaseList.js</a></p>
+<p>优点：将下拉刷新、上拉加载更多相关的 pageNo逻辑，封装到BaseList中，使用方仅需关注 数据请求的api，让使用方代码量降到最少。</p>
+<h3 id="使用示例">使用示例</h3>
+<ul>
+<li>平替 <code>FlatList</code></li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">BaseList</span> <span class="nx">from</span> <span class="s2">&#34;app/components/list/base&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">getFanList</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;./service&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">pageSize</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">FanList</span> <span class="o">=</span> <span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="p">{</span> <span class="nx">userId</span> <span class="p">}</span> <span class="o">=</span> <span class="nx">props</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">_requestFunc</span> <span class="o">=</span> <span class="p">(</span><span class="nx">page</span><span class="p">,</span> <span class="nx">pageSize</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">getFanList</span><span class="p">({</span> <span class="nx">userId</span><span class="o">:</span> <span class="nx">userId</span><span class="p">,</span> <span class="nx">pageNo</span><span class="o">:</span> <span class="nx">page</span><span class="p">,</span> <span class="nx">pageSize</span> <span class="p">});</span>
+</span></span><span class="line"><span class="cl">  <span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">_renderItem</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">item</span><span class="p">,</span> <span class="nx">index</span> <span class="p">})</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="o">&lt;</span><span class="nx">Item</span> <span class="p">{...</span><span class="nx">item</span><span class="p">}</span> <span class="o">/&gt;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// &lt;View style={{ flex: 1 }}&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="o">&lt;</span><span class="nx">BaseList</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">requestFunc</span><span class="o">=</span><span class="p">{(</span><span class="nx">page</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">_requestFunc</span><span class="p">(</span><span class="nx">page</span><span class="p">,</span> <span class="nx">pageSize</span><span class="p">)}</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">contentContainerStyle</span><span class="o">=</span><span class="p">{{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">paddingVertical</span><span class="o">:</span> <span class="nx">px2dp</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">paddingLeft</span><span class="o">:</span> <span class="nx">px2dp</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}}</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">renderItem</span><span class="o">=</span><span class="p">{</span><span class="nx">_renderItem</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="c1">// numColumns={1}
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="nx">uniqueKey</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;userId&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// &lt;/View&gt;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>可能会有双列分布不均问题，即某一列大量空白现象</p>
+</blockquote>
+<ul>
+<li>最完美（渲染均匀、性能最佳）用法</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">StyleSheet</span><span class="p">,</span> <span class="nx">Text</span><span class="p">,</span> <span class="nx">View</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;react-native&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">React</span><span class="p">,</span> <span class="p">{</span> <span class="nx">forwardRef</span><span class="p">,</span> <span class="nx">useCallback</span><span class="p">,</span> <span class="nx">useEffect</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;react&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">ImageTextFeed</span><span class="p">,</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">sizeForItem</span> <span class="nx">as</span> <span class="nx">imageTextFeedSizeForItem</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;./Feed/ImageTextFeed&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">TextFeed</span><span class="p">,</span> <span class="p">{</span> <span class="nx">sizeForItem</span> <span class="nx">as</span> <span class="nx">textFeedSizeForItem</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;./Feed/TextFeed&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">px2dp</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;app/utils/ScreenUtils&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">BaseList</span> <span class="nx">from</span> <span class="s2">&#34;app/components/list/base&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">SA</span> <span class="nx">from</span> <span class="s2">&#34;app/utils/SaUtil&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">FeedList</span> <span class="o">=</span> <span class="nx">forwardRef</span><span class="p">((</span><span class="nx">props</span><span class="p">,</span> <span class="nx">ref</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">requestFunc</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">ListHeaderComponent</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">disableAutoLoadNew</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">ListEmptyComponent</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span> <span class="o">=</span> <span class="nx">props</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">useEffect</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&#34;useEffect:FeedList&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span> <span class="p">[]);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">_renderItem</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">item</span><span class="p">,</span> <span class="nx">index</span> <span class="p">})</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">previewUri</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="o">&lt;</span><span class="nx">ImageTextFeed</span> <span class="nx">item</span><span class="o">=</span><span class="p">{</span><span class="nx">item</span><span class="p">}</span> <span class="o">/&gt;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="o">&lt;</span><span class="nx">TextFeed</span> <span class="nx">item</span><span class="o">=</span><span class="p">{</span><span class="nx">item</span><span class="p">}</span> <span class="o">/&gt;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">};</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="nx">BaseList</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">ref</span><span class="o">=</span><span class="p">{</span><span class="nx">ref</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">requestFunc</span><span class="o">=</span><span class="p">{(</span><span class="nx">page</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">requestFunc</span><span class="p">(</span><span class="nx">page</span><span class="p">)}</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">contentContainerStyle</span><span class="o">=</span><span class="p">{{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">paddingVertical</span><span class="o">:</span> <span class="nx">px2dp</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">paddingLeft</span><span class="o">:</span> <span class="nx">px2dp</span><span class="p">(</span><span class="mi">12</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}}</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">renderItem</span><span class="o">=</span><span class="p">{</span><span class="nx">_renderItem</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">numColumns</span><span class="o">=</span><span class="p">{</span><span class="mi">2</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">uniqueKey</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;id&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">getItemType</span><span class="o">=</span><span class="p">{(</span><span class="nx">item</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">item</span><span class="p">.</span><span class="nx">previewUri</span> <span class="o">?</span> <span class="s2">&#34;ImageText&#34;</span> <span class="o">:</span> <span class="s2">&#34;Text&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}}</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">headRefreshEnable</span><span class="o">=</span><span class="p">{</span><span class="kc">true</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">ListHeaderComponent</span><span class="o">=</span><span class="p">{</span><span class="nx">ListHeaderComponent</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">disableAutoLoadNew</span><span class="o">=</span><span class="p">{</span><span class="nx">disableAutoLoadNew</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">ListEmptyComponent</span><span class="o">=</span><span class="p">{</span><span class="nx">ListEmptyComponent</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">sizeForItem</span><span class="o">=</span><span class="p">{(</span><span class="nx">item</span><span class="p">,</span> <span class="nx">index</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">item</span><span class="p">.</span><span class="nx">previewUri</span>
+</span></span><span class="line"><span class="cl">          <span class="o">?</span> <span class="nx">imageTextFeedSizeForItem</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">          <span class="o">:</span> <span class="nx">textFeedSizeForItem</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">/&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">export</span> <span class="k">default</span> <span class="nx">FeedList</span><span class="p">;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="图片base组件">图片base组件</h1>
+<p>源码：<a href="./BaseImage.js" rel="">BaseImage.js</a></p>
+<p>优点： 使用了高性能图片库FastImage，封装为 可配置图片加载失败后展示的占位error图</p>
+<h3 id="使用示例-1">使用示例</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="c1">// aliyun oss image format
+</span></span></span><span class="line"><span class="cl"><span class="c1">// error image url: https://cdn.xxx.com/pic/illustrationstory/default/default_cover_720-1080.png?x-oss-process=image/resize,w_150/quality,q_85/format,webp
+</span></span></span><span class="line"><span class="cl"><span class="c1">// normal image url: https://cdn.xxx.com/pic/illustrationstory/custom/scene/202310/2721/1698415166233-0yZkuCBu9I_960-960.png?x-oss-process=image/resize,w_150/quality,q_85/format,webp
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">HBImage</span> <span class="nx">from</span> <span class="s2">&#34;app/components/image/HBImage&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">import</span> <span class="p">{</span> <span class="nx">getSize</span><span class="p">,</span> <span class="nx">parseSize</span> <span class="p">}</span> <span class="nx">from</span> <span class="s2">&#34;app/utils/image/measurer&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">FeedItem</span> <span class="o">=</span> <span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">coverUrl</span> <span class="o">=</span> <span class="nx">useMemo</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="p">()</span> <span class="p">=&gt;</span> <span class="nx">getImageUrl</span><span class="p">(</span><span class="nx">item</span><span class="p">.</span><span class="nx">coverUrl</span><span class="p">,</span> <span class="nx">imageWidth</span><span class="p">),</span> <span class="c1">//oss resize 拼接url
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">[</span><span class="nx">item</span><span class="p">.</span><span class="nx">coverUrl</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="nx">imageHeightFromUrl</span> <span class="o">=</span> <span class="nx">useMemo</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">getHeightFromSize</span><span class="p">(</span><span class="nx">parseSize</span><span class="p">(</span><span class="nx">coverUrl</span><span class="p">));</span> <span class="c1">// parseSize 从url(..._720-1080.png...)中解析出宽高 【正常100%都能取出】
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="p">},</span> <span class="p">[</span><span class="nx">coverUrl</span><span class="p">]);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="kr">const</span> <span class="p">[</span><span class="nx">imageHeight</span><span class="p">,</span> <span class="nx">setImageHeight</span><span class="p">]</span> <span class="o">=</span> <span class="nx">useState</span><span class="p">(</span><span class="nx">imageHeightFromUrl</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nx">useEffect</span><span class="p">(()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nx">imageHeightFromUrl</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span> 
+</span></span><span class="line"><span class="cl">    <span class="c1">//若从url中未能解析出宽高，就通过RN官方Image.getSize方式获取宽高 【正常100%不可能走这里头】
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>      <span class="kd">let</span> <span class="nx">h</span> <span class="o">=</span> <span class="nx">imageSize</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">getSize</span><span class="p">(</span><span class="nx">coverUrl</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">size</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="k">if</span> <span class="p">(</span><span class="nx">size</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">h</span> <span class="o">=</span> <span class="nx">getHeightFromSize</span><span class="p">(</span><span class="nx">size</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">          <span class="p">}</span>
+</span></span><span class="line"><span class="cl">          <span class="nx">setImageHeight</span><span class="p">(</span><span class="nx">h</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">          <span class="nx">kImageHeightCache</span><span class="p">[</span><span class="nx">coverUrl</span><span class="p">]</span> <span class="o">=</span> <span class="nx">h</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">})</span>
+</span></span><span class="line"><span class="cl">        <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">err</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="nx">setImageHeight</span><span class="p">(</span><span class="nx">h</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="p">});</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">kImageHeightCache</span><span class="p">[</span><span class="nx">coverUrl</span><span class="p">]</span> <span class="o">=</span> <span class="nx">imageHeightFromUrl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span> <span class="p">[</span><span class="nx">coverUrl</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="o">&lt;&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span><span class="nx">imageHeightFromUrl</span> <span class="o">||</span> <span class="nx">imageHeight</span> <span class="o">?</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="o">&lt;</span><span class="nx">HBImage</span>
+</span></span><span class="line"><span class="cl">          <span class="nx">style</span><span class="o">=</span><span class="p">{[</span>
+</span></span><span class="line"><span class="cl">            <span class="nx">localStyles</span><span class="p">.</span><span class="nx">image</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="p">{</span>
+</span></span><span class="line"><span class="cl">              <span class="nx">height</span><span class="o">:</span> <span class="nx">imageHeightFromUrl</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="nx">imageHeightFromUrl</span> <span class="o">:</span> <span class="nx">imageHeight</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">            <span class="p">},</span>
+</span></span><span class="line"><span class="cl">          <span class="p">]}</span>
+</span></span><span class="line"><span class="cl">          <span class="nx">source</span><span class="o">=</span><span class="p">{{</span> <span class="nx">uri</span><span class="o">:</span> <span class="nx">coverUrl</span> <span class="p">}}</span>
+</span></span><span class="line"><span class="cl">          <span class="nx">resizeMode</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;contain&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">          <span class="nx">errorSource</span><span class="o">=</span><span class="p">{</span><span class="nx">require</span><span class="p">(</span><span class="s2">&#34;app/components/image/default_cover_720-1080.png&#34;</span><span class="p">)}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">/&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="p">)</span> <span class="o">:</span> <span class="kc">null</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;</span><span class="err">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">getHeightFromSize</span> <span class="o">=</span> <span class="p">(</span><span class="nx">size</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nx">size</span><span class="o">?</span><span class="p">.</span><span class="nx">width</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">||</span> <span class="o">!</span><span class="p">(</span><span class="nx">size</span><span class="o">?</span><span class="p">.</span><span class="nx">height</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nb">Math</span><span class="p">.</span><span class="nx">min</span><span class="p">((</span><span class="nx">imageSize</span> <span class="o">*</span> <span class="nx">size</span><span class="p">.</span><span class="nx">height</span><span class="p">)</span> <span class="o">/</span> <span class="nx">size</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span> <span class="nx">maxImageHeight</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h1 id="状态栏导航栏组件">状态栏导航栏组件</h1>
+<p>源码：<a href="./BaseNavBar.js" rel="">BaseNavBar.js</a></p>
+<p>优点：</p>
+<ul>
+<li>带 返回按钮，点击返回上一页</li>
+<li>带 title</li>
+<li>支持自定义导航栏内子视图</li>
+<li>使用时无需考虑状态栏适配了（内部处理了）</li>
+</ul>
+<h3 id="使用示例-2">使用示例</h3>
+<ul>
+<li>
+<p>最常规用法 [ <code>返回键</code> + <code>title</code> ]<br>
+使用场景：几乎所有页面<br>
+<img
+        class="lazyload"
+        src="/zyestin/svg/loading.min.svg"
+        data-src="/zyestin/base-components/media/nav/nav_normal.png"
+        data-srcset="/zyestin/base-components/media/nav/nav_normal.png, /zyestin/base-components/media/nav/nav_normal.png 1.5x, /zyestin/base-components/media/nav/nav_normal.png 2x"
+        data-sizes="auto"
+        alt="/zyestin/base-components/media/nav/nav_normal.png"
+        title="normal" width="934" height="282" /></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">BaseNavBar</span> <span class="nx">from</span> <span class="s2">&#34;app/components/navBar/base&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nx">BaseNavBar</span> <span class="nx">title</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;书架筛选&#34;</span><span class="p">}</span> <span class="o">/&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>自定义导航栏内容用法<br>
+使用场景：导航栏需要特别自定义时<br>
+<img
+        class="lazyload"
+        src="/zyestin/svg/loading.min.svg"
+        data-src="/zyestin/base-components/media/nav/nav_custom_child.png"
+        data-srcset="/zyestin/base-components/media/nav/nav_custom_child.png, /zyestin/base-components/media/nav/nav_custom_child.png 1.5x, /zyestin/base-components/media/nav/nav_custom_child.png 2x"
+        data-sizes="auto"
+        alt="/zyestin/base-components/media/nav/nav_custom_child.png"
+        title="custom" width="898" height="368" /></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">BaseNavBar</span> <span class="nx">from</span> <span class="s2">&#34;app/components/navBar/base&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nx">BaseNavBar</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">{</span><span class="cm">/* 搜索栏 */</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;</span><span class="nx">View</span> <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">inputContainer</span><span class="p">}</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="nx">TextInput</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">textInput</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">placeholder</span><span class="o">=</span><span class="p">{</span><span class="nx">placeholder</span> <span class="o">||</span> <span class="s2">&#34;输入搜索关键字&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">placeholderTextColor</span><span class="o">=</span><span class="p">{</span><span class="s2">&#34;#999999&#34;</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">onChangeText</span><span class="o">=</span><span class="p">{</span><span class="nx">onChangeText</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">value</span><span class="o">=</span><span class="p">{</span><span class="nx">keyword</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">onSubmitEditing</span><span class="o">=</span><span class="p">{</span><span class="nx">_onClickSubmit</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">keyboardType</span><span class="o">=</span><span class="s2">&#34;web-search&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">returnKeyType</span><span class="o">=</span><span class="s2">&#34;search&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="nx">autoFocus</span><span class="o">=</span><span class="p">{</span><span class="kc">true</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="nx">TouchableOpacity</span> <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">closeButton</span><span class="p">}</span> <span class="nx">onPress</span><span class="o">=</span><span class="p">{</span><span class="nx">clearInput</span><span class="p">}</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="nx">Image</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">closeButtonImage</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">source</span><span class="o">=</span><span class="p">{</span><span class="nx">require</span><span class="p">(</span><span class="s2">&#34;./images/close-gray.png&#34;</span><span class="p">)}</span>
+</span></span><span class="line"><span class="cl">      <span class="o">/&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="err">/TouchableOpacity&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;</span><span class="err">/View&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;</span><span class="nx">TouchableOpacity</span> <span class="nx">style</span><span class="o">=</span><span class="p">{</span><span class="nx">styles</span><span class="p">.</span><span class="nx">searchButton</span><span class="p">}</span> <span class="nx">onPress</span><span class="o">=</span><span class="p">{</span><span class="nx">_onClickSubmit</span><span class="p">}</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="nx">Text</span> <span class="nx">style</span><span class="o">=</span><span class="p">{{</span> <span class="nx">fontSize</span><span class="o">:</span> <span class="nx">px2dp</span><span class="p">(</span><span class="mi">16</span><span class="p">),</span> <span class="nx">color</span><span class="o">:</span> <span class="s2">&#34;#666666&#34;</span> <span class="p">}}</span><span class="o">&gt;</span><span class="nx">搜索</span><span class="o">&lt;</span><span class="err">/Text&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">&lt;</span><span class="err">/TouchableOpacity&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="err">/BaseNavBar&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h1 id="页面左上角的返回按钮组件">页面左上角的返回按钮组件</h1>
+<p>源码：<a href="./LeftUpBackButton.js" rel="">LeftUpBackButton.js</a></p>
+<p>优点：</p>
+<ul>
+<li>避开了状态栏</li>
+<li>热区足够大</li>
+<li>使用起来极简</li>
+</ul>
+<p>使用场景：不需要导航栏 但需要返回按钮的页面，e.g. 一些全屏弹窗（图片查看器&hellip;）</p>
+<h3 id="使用示例-3">使用示例</h3>
+<p><img
+        class="lazyload"
+        src="/zyestin/svg/loading.min.svg"
+        data-src="/zyestin/base-components/media/nav/back_button.png"
+        data-srcset="/zyestin/base-components/media/nav/back_button.png, /zyestin/base-components/media/nav/back_button.png 1.5x, /zyestin/base-components/media/nav/back_button.png 2x"
+        data-sizes="auto"
+        alt="/zyestin/base-components/media/nav/back_button.png"
+        title="custom" width="2008" height="698" /></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="line"><span class="cl"><span class="kr">import</span> <span class="nx">LeftUpBackButton</span> <span class="nx">from</span> <span class="s2">&#34;app/components/LeftUpBackButton&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">&lt;</span><span class="nx">LeftUpBackButton</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">//iconType=&#34;white&#34;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">//onPress={() =&gt; {
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//dismiss alert
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">//}}
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="err">/&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-03-14&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/10fef7bf609cbfe6cfd2dec5d4cb4edaa52a3f17" target="_blank" title="commit by zhaoyang(zhaoyang@ihuaben.com) 10fef7bf609cbfe6cfd2dec5d4cb4edaa52a3f17: update doc 《导航栏组件》目录">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>10fef7b</a></span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/zyestin/base-components/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zyestin.github.io/zyestin/base-components/" data-title="封装常用基础组件" data-via="YestinZz" data-hashtags="react-native"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zyestin.github.io/zyestin/base-components/" data-hashtag="react-native"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zyestin.github.io/zyestin/base-components/" data-title="封装常用基础组件"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zyestin.github.io/zyestin/base-components/" data-title="封装常用基础组件"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zyestin.github.io/zyestin/base-components/" data-title="封装常用基础组件"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/zyestin/tags/react-native/">react-native</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/zyestin/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/zyestin/douyin-label-input/" class="prev" rel="prev" title="模仿抖音、小红书 输入 #标签 高亮"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>模仿抖音、小红书 输入 #标签 高亮</a>
+            <a href="/zyestin/textinput-alert/" class="next" rel="next" title="封装 低耦合、易用的文本输入框弹窗">封装 低耦合、易用的文本输入框弹窗<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://giscus.app">Giscus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.122.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/zyestin" target="_blank">zyestin</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"giscus":{"category":"Announcements","categoryId":"DIC_kwDOKJ2IzM4Celi_","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zyestin/zyestin","repoId":"R_kgDOKJ2IzA"}},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.en","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/zyestin/js/theme.min.js"></script></body>
+</html>

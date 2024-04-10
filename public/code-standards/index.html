@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>代码规范 - zyestin</title><meta name="Description" content="Hugo theme - LoveIt"><meta property="og:title" content="代码规范" />
+<meta property="og:description" content="讨论背景 相信大家写代码时 对自己都有一些要求，比如下面的
+基本期望：写出他人能容易看懂的代码 更高追求：写出他人看起来很爽的代码 每经历一个阶段，大家都对编码有不同程度的进步提升，可以分享；同时也会积累一些场景下代码如屎的烦恼，想要破局。
+于是，阶段性的，需要一个机会，大家开个交流会进行讨论
+（对于每个个体）互通有无，集思广益，团队每人都有所提升 （对于互相之间协作）更多地了解到彼此 阅读代码、写代码的风格习惯，增进理解 （对于工作）对现阶段遇到的痛点，找出更优解，或制定调研计划 每次讨论，规范条款上的收获，不在于多少，至少会收获了一些代码细节上的技巧或认知，最重要的是 大大增进了互相的了解，协作起来将越来越紧密顺畅。
+讨论成果 组件代码结构 关键点: 打开文件后，更方便的看到核心代码（那就尽量靠前咯）
+也就是 render/return组件 之前的代码量尽可能少；那么，就需要通过函数提炼、划分职责等方式转移到别处。
+组件代码 书写顺序 示例如下
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 // AAView." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zyestin.github.io/zyestin/code-standards/" /><meta property="og:image" content="https://zyestin.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-11-01T12:00:11+08:00" />
+<meta property="article:modified_time" content="2023-11-24T12:33:40+08:00" /><meta property="og:site_name" content="LoveIt-zyestin" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zyestin.github.io/logo.png" /><meta name="twitter:title" content="代码规范"/>
+<meta name="twitter:description" content="讨论背景 相信大家写代码时 对自己都有一些要求，比如下面的
+基本期望：写出他人能容易看懂的代码 更高追求：写出他人看起来很爽的代码 每经历一个阶段，大家都对编码有不同程度的进步提升，可以分享；同时也会积累一些场景下代码如屎的烦恼，想要破局。
+于是，阶段性的，需要一个机会，大家开个交流会进行讨论
+（对于每个个体）互通有无，集思广益，团队每人都有所提升 （对于互相之间协作）更多地了解到彼此 阅读代码、写代码的风格习惯，增进理解 （对于工作）对现阶段遇到的痛点，找出更优解，或制定调研计划 每次讨论，规范条款上的收获，不在于多少，至少会收获了一些代码细节上的技巧或认知，最重要的是 大大增进了互相的了解，协作起来将越来越紧密顺畅。
+讨论成果 组件代码结构 关键点: 打开文件后，更方便的看到核心代码（那就尽量靠前咯）
+也就是 render/return组件 之前的代码量尽可能少；那么，就需要通过函数提炼、划分职责等方式转移到别处。
+组件代码 书写顺序 示例如下
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 // AAView."/>
+<meta name="twitter:site" content="@YestinZz"/>
+<meta name="application-name" content="LoveIt-zyestin">
+<meta name="apple-mobile-web-app-title" content="LoveIt-zyestin"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://avatars.githubusercontent.com/u/51897571?s=40&amp;v=4"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zyestin.github.io/zyestin/code-standards/" /><link rel="prev" href="https://zyestin.github.io/zyestin/course-react-hooks/" /><link rel="next" href="https://zyestin.github.io/zyestin/tool-rn-jenkins-ios/" /><link rel="stylesheet" href="/zyestin/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "代码规范",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zyestin.github.io\/zyestin\/code-standards\/"
+        },"image": ["https:\/\/avatars.githubusercontent.com\/u\/51897571?s=40\u0026v=4"],"genre": "posts","keywords": "react-native","wordcount":  690 ,
+        "url": "https:\/\/zyestin.github.io\/zyestin\/code-standards\/","datePublished": "2023-11-01T12:00:11+08:00","dateModified": "2023-11-24T12:33:40+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "zyestin","logo": "https:\/\/avatars.githubusercontent.com\/u\/51897571?s=40\u0026v=4"},"author": {
+                "@type": "Person",
+                "name": "zyestin"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/zyestin/" title="zyestin"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>LoveIt</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/zyestin/posts/"> Posts </a><a class="menu-item" href="/zyestin/tags/"> Tags </a><a class="menu-item" href="/zyestin/categories/"> Categories </a><a class="menu-item" href="/zyestin/categories/documentation/"> Docs </a><a class="menu-item" href="/zyestin/about/"> About </a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="Select Language">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/zyestin/code-standards/" selected>English</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/zyestin/" title="zyestin"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>LoveIt</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/zyestin/posts/" title="">Posts</a><a class="menu-item" href="/zyestin/tags/" title="">Tags</a><a class="menu-item" href="/zyestin/categories/" title="">Categories</a><a class="menu-item" href="/zyestin/categories/documentation/" title="">Docs</a><a class="menu-item" href="/zyestin/about/" title="">About</a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="Select Language">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/zyestin/code-standards/" selected>English</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">代码规范</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/zyestin" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zyestin</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-11-01">2023-11-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;690 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#组件代码结构">组件代码结构</a></li>
+    <li><a href="#较复杂模块拆分后的目录结构">较复杂模块拆分后的目录结构</a></li>
+    <li><a href="#通知命名">通知命名</a></li>
+    <li><a href="#单个函数的总行数-限制多大合适">单个函数的总行数 限制多大合适？</a></li>
+    <li><a href="#单个文件代码行数-限制多大合适">单个文件代码行数 限制多大合适？</a></li>
+    <li><a href="#单行代码-字符串宽度数量限制">单行代码 字符串宽度/数量限制</a></li>
+    <li><a href="#其它">其它</a>
+      <ul>
+        <li><a href="#市面上-大而全的-javascript-规范">市面上 大而全的 JavaScript 规范</a></li>
+        <li><a href="#代码规范的常用工具">代码规范的常用工具</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="讨论背景">讨论背景</h1>
+<p>相信大家写代码时 对自己都有一些要求，比如下面的</p>
+<ul>
+<li>基本期望：写出他人能容易看懂的代码</li>
+<li>更高追求：写出他人看起来很爽的代码</li>
+</ul>
+<p>每经历一个阶段，大家都对编码有不同程度的进步提升，可以分享；同时也会积累一些场景下代码如屎的烦恼，想要破局。</p>
+<p>于是，阶段性的，需要一个机会，大家开个交流会进行讨论</p>
+<ul>
+<li>（对于每个个体）互通有无，集思广益，团队每人都有所提升</li>
+<li>（对于互相之间协作）更多地了解到彼此 阅读代码、写代码的风格习惯，增进理解</li>
+<li>（对于工作）对现阶段遇到的痛点，找出更优解，或制定调研计划</li>
+</ul>
+<p>每次讨论，规范条款上的收获，不在于多少，至少会收获了一些代码细节上的技巧或认知，最重要的是 大大增进了互相的了解，协作起来将越来越紧密顺畅。</p>
+<h1 id="讨论成果">讨论成果</h1>
+<h2 id="组件代码结构">组件代码结构</h2>
+<p>关键点: 打开文件后，更方便的看到核心代码（那就尽量靠前咯）</p>
+<blockquote>
+<p>也就是 render/return组件 之前的代码量尽可能少；那么，就需要通过函数提炼、划分职责等方式转移到别处。</p>
+</blockquote>
+<p>组件代码 书写顺序 示例如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span><span class="lnt">121
+</span><span class="lnt">122
+</span><span class="lnt">123
+</span><span class="lnt">124
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="o">//</span> <span class="n">AAView</span><span class="o">.</span><span class="n">js</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">import</span> <span class="p">{</span> <span class="n">xxCalculate</span><span class="p">,</span> <span class="n">xxUploadEvent</span> <span class="p">}</span> <span class="n">from</span> <span class="s1">&#39;app/components/XxModule&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">import</span> <span class="n">AView</span> <span class="n">from</span> <span class="s1">&#39;./components/AView&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">import</span> <span class="n">BView</span> <span class="n">from</span> <span class="s1">&#39;./components/BView&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">//$$</span> <span class="err">用于组件函数内的变量</span> <span class="err">紧邻写在组件函数上方</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="n">variableUsedInXXComp</span> <span class="o">=</span> <span class="o">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">//</span><span class="err">组件函数</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="n">AAView</span> <span class="o">=</span> <span class="n">props</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="o">//$$</span> <span class="n">props解构</span><span class="p">,</span> <span class="err">放第一行</span>
+</span></span><span class="line"><span class="cl">  <span class="o">///</span><span class="n">reason</span><span class="err">：即使</span><span class="n">AAView上面不写</span><span class="err">@</span><span class="n">param注释</span><span class="err">，通过这里的解构也能看出</span><span class="n">props的参数</span>
+</span></span><span class="line"><span class="cl">  <span class="k">const</span> <span class="p">{</span> <span class="n">paramA</span><span class="p">,</span> <span class="n">paramB</span> <span class="p">}</span> <span class="o">=</span> <span class="n">props</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="o">//$$</span> <span class="err">副作用函数</span><span class="p">(</span><span class="err">即</span><span class="n">use开头的函数</span><span class="p">)</span><span class="err">，写在顶层作用域，</span>
+</span></span><span class="line"><span class="cl">  <span class="k">const</span> <span class="p">[</span><span class="n">aEverClicked</span><span class="p">,</span> <span class="n">setAEverClicked</span><span class="p">]</span> <span class="o">=</span> <span class="n">useState</span><span class="p">(</span><span class="bp">false</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">const</span> <span class="p">[</span><span class="n">bClickedTime</span><span class="p">,</span> <span class="n">setBClickedTime</span><span class="p">]</span> <span class="o">=</span> <span class="n">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="o">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="o">//$$</span> <span class="err">归类逻辑代码到</span><span class="n">hooks</span><span class="err">，</span><span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span> <span class="err">数据处理（获取数据、更新数据）聚合到一个</span><span class="n">hooks</span><span class="err">，</span> <span class="err">滑动相关监听处理</span> <span class="err">聚合到另一个</span><span class="n">hooks</span>
+</span></span><span class="line"><span class="cl">  <span class="k">const</span> <span class="p">{</span><span class="n">loading</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">addData</span><span class="p">,</span> <span class="n">updateData</span><span class="p">}</span> <span class="o">=</span> <span class="n">useLoadData</span><span class="p">({</span><span class="n">id</span><span class="p">:</span> <span class="n">paramA</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">  <span class="o">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="o">//$$</span> <span class="err">业务逻辑处理。</span> <span class="err">注意：如果这部分代码较多，一般是可以转移几个</span><span class="n">api</span><span class="err">，挪到</span> <span class="err">某单一职责的</span><span class="n">hooks里去</span>
+</span></span><span class="line"><span class="cl">  <span class="k">const</span> <span class="n">onPressAView</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">//</span><span class="err">如果复杂逻辑</span><span class="p">(</span><span class="err">多行</span> <span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span> <span class="mi">15</span><span class="err">行</span><span class="p">)</span><span class="err">，抽取纯函数，</span> <span class="err">与</span><span class="n">XXComp并列</span> <span class="err">放其后面</span>
+</span></span><span class="line"><span class="cl">    <span class="n">addData</span><span class="p">(</span> <span class="n">calculateAndCreateItemData</span><span class="p">(</span><span class="n">inputX</span><span class="p">,</span> <span class="n">bClickedTime</span><span class="p">)</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">setAEverClicked</span><span class="p">(</span><span class="bp">true</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">xxUploadEvent</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="k">const</span> <span class="n">onPressBView</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">//</span><span class="err">简单逻辑</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span> <span class="o">&lt;</span><span class="mi">10</span><span class="err">行</span><span class="p">)</span><span class="err">，直接写在这里</span>
+</span></span><span class="line"><span class="cl">    <span class="n">updateData</span><span class="p">({</span> <span class="n">count</span><span class="p">:</span> <span class="n">bClickedTime</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="n">variableUsedInXXComp</span> <span class="p">})</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span><span class="line"><span class="cl">    <span class="n">setBClickedTime</span><span class="p">(</span><span class="n">bClickedTime</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="o">...</span>
+</span></span><span class="line"><span class="cl">  <span class="o">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="o">//$$</span> <span class="n">render</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;</span><span class="n">View</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="n">styles</span><span class="o">.</span><span class="n">container</span><span class="p">}</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="n">AView</span> <span class="n">onPress</span><span class="o">=</span><span class="p">{</span><span class="n">onPressAView</span><span class="p">}</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">{</span><span class="n">aEverClicked</span> <span class="err">?</span> <span class="o">&lt;</span><span class="n">View</span><span class="o">&gt;</span> <span class="o">...</span> <span class="o">&lt;/</span><span class="n">View</span><span class="o">&gt;</span> <span class="p">:</span> <span class="n">null</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="o">...</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;/</span><span class="n">AView</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;</span><span class="n">BView</span> <span class="n">param</span><span class="o">=</span><span class="p">{</span><span class="n">inputY</span><span class="p">}</span> <span class="n">onPress</span><span class="o">=</span><span class="p">{</span><span class="n">onPressBView</span><span class="p">}</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">...</span>
+</span></span><span class="line"><span class="cl">      <span class="o">&lt;/</span><span class="n">BView</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="o">...</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">data</span><span class="err">?</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">item</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">View</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="n">styles</span><span class="o">.</span><span class="n">content</span><span class="p">}}</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">          <span class="o">&lt;</span><span class="n">Text</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="n">styles</span><span class="o">.</span><span class="n">title</span><span class="p">}</span><span class="o">&gt;</span><span class="p">{</span><span class="n">styles</span><span class="o">.</span><span class="n">title</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">Text</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">          <span class="o">&lt;</span><span class="ne">Image</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="n">styles</span><span class="o">.</span><span class="n">cover</span><span class="p">}</span> <span class="n">source</span><span class="o">=</span><span class="p">{</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">cover</span><span class="p">}</span> <span class="o">/&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">&lt;/</span><span class="n">View</span><span class="o">&gt;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">      <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&lt;/</span><span class="n">View</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">//$$</span> <span class="n">hooks</span> <span class="err">数据获取相关逻辑：请求、</span><span class="n">loading状态</span><span class="err">、错误、数据处理</span><span class="p">(</span><span class="n">response</span> <span class="n">data</span> <span class="o">-&gt;</span> <span class="n">UI</span> <span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="n">useLoadData</span> <span class="o">=</span> <span class="p">({</span><span class="n">id</span><span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">const</span> <span class="p">[</span><span class="n">data</span><span class="p">,</span> <span class="n">setData</span><span class="p">]</span> <span class="o">=</span> <span class="n">useState</span><span class="p">(</span><span class="n">null</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">const</span> <span class="p">[</span><span class="n">loading</span><span class="p">,</span> <span class="n">setLoading</span><span class="p">]</span> <span class="o">=</span> <span class="n">useState</span><span class="p">(</span><span class="bp">false</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">const</span> <span class="p">[</span><span class="n">error</span><span class="p">,</span> <span class="n">setError</span><span class="p">]</span> <span class="o">=</span> <span class="n">useState</span><span class="p">(</span><span class="n">null</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="n">useEffect</span><span class="p">(()</span><span class="o">=&gt;</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">request</span><span class="p">({</span><span class="n">id</span><span class="p">})</span><span class="o">.</span><span class="n">then</span><span class="p">(</span><span class="n">res</span><span class="o">=&gt;</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="n">setData</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">});</span>
+</span></span><span class="line"><span class="cl">	<span class="p">},</span> <span class="p">[])</span>
+</span></span><span class="line"><span class="cl">	<span class="o">//</span><span class="err">请求</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	    <span class="n">data</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	    <span class="n">loading</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">	    <span class="n">error</span>
+</span></span><span class="line"><span class="cl">	    <span class="o">...</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">//$$</span> <span class="err">仅用于组件内部的函数</span> <span class="err">紧邻写在组件函数下方</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="n">calculateAndCreateItemData</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">let</span> <span class="n">result</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">  <span class="o">//</span><span class="err">复杂逻辑</span>
+</span></span><span class="line"><span class="cl">  <span class="o">...</span>
+</span></span><span class="line"><span class="cl">  <span class="o">...</span>
+</span></span><span class="line"><span class="cl">  <span class="n">result</span><span class="o">.</span><span class="n">count</span> <span class="o">=</span> <span class="n">xxCalculate</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">result</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">//</span> <span class="err">方法提炼到这里</span> <span class="n">reason</span><span class="err">：</span>
+</span></span><span class="line"><span class="cl"><span class="o">//</span> <span class="mf">1.</span><span class="err">提炼纯函数，略利于性能</span>
+</span></span><span class="line"><span class="cl"><span class="o">//</span> <span class="mf">2.</span><span class="err">移到这里，减少对核心代码的干扰</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">//$$</span> <span class="err">仅用于样式的变量</span> <span class="err">紧邻写在</span><span class="n">styles声明的上方</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="n">listWidth</span> <span class="o">=</span> <span class="n">px2dp</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="n">styles</span> <span class="o">=</span> <span class="n">StyleSheet</span><span class="o">.</span><span class="n">create</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">  <span class="n">container</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">//</span><span class="err">约束自身</span>
+</span></span><span class="line"><span class="cl">    <span class="n">flex</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">backgroundColor</span><span class="p">:</span> <span class="s1">&#39;#eee&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">marginTop</span><span class="p">:</span> <span class="n">px2dp</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="o">//</span><span class="err">约束子视图的</span>
+</span></span><span class="line"><span class="cl">    <span class="n">paddingHorizontal</span><span class="p">:</span> <span class="n">px2dp</span><span class="p">(</span><span class="mi">15</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="n">flexDirection</span><span class="p">:</span> <span class="s2">&#34;row&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">alignItems</span><span class="p">:</span> <span class="s2">&#34;center&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">justifyContent</span><span class="p">:</span> <span class="s2">&#34;space-between&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="n">list</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">marginHorizontal</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">width</span><span class="p">:</span> <span class="n">listWidth</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="o">...</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="o">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="较复杂模块拆分后的目录结构">较复杂模块拆分后的目录结构</h2>
+<blockquote>
+<p>目录 体现着模块划分思维</p>
+</blockquote>
+<p>取项目里的一个典型示例</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&gt; tree ./app/screens/graphic/tabs/userHome/   
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">./app/screens/graphic/tabs/userHome/
+</span></span><span class="line"><span class="cl">├── components
+</span></span><span class="line"><span class="cl">│   ├── Header
+</span></span><span class="line"><span class="cl">│   │   ├── BackgroundImage.js
+</span></span><span class="line"><span class="cl">│   │   ├── MoreButton.js
+</span></span><span class="line"><span class="cl">│   │   ├── OpaqueNavBar.js
+</span></span><span class="line"><span class="cl">│   │   ├── index.js
+</span></span><span class="line"><span class="cl">│   │   └── useHeader.js
+</span></span><span class="line"><span class="cl">│   ├── LoadingView.js
+</span></span><span class="line"><span class="cl">│   ├── Tabbar.js
+</span></span><span class="line"><span class="cl">│   ├── TabsStickScrollView.js
+</span></span><span class="line"><span class="cl">│   └── list
+</span></span><span class="line"><span class="cl">│       ├── HistoryWorkList.js
+</span></span><span class="line"><span class="cl">│       ├── LikedWorkList.js
+</span></span><span class="line"><span class="cl">│       ├── MineWorkList.js
+</span></span><span class="line"><span class="cl">│       ├── UserWorkList.js
+</span></span><span class="line"><span class="cl">│       └── item
+</span></span><span class="line"><span class="cl">│           ├── UnpublishedEntryItem.js
+</span></span><span class="line"><span class="cl">│           ├── UnpublishedType.js
+</span></span><span class="line"><span class="cl">│           └── index.js
+</span></span><span class="line"><span class="cl">├── index.js
+</span></span><span class="line"><span class="cl">├── otherScreens
+</span></span><span class="line"><span class="cl">│   ├── DraftScreen.js
+</span></span><span class="line"><span class="cl">│   └── RejectScreen.js
+</span></span><span class="line"><span class="cl">└── utils
+</span></span><span class="line"><span class="cl">    └── DraftDataManager.js
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>合理拆分模块，避免单文件代码行数过多，统一命名风格，将大大减少理解阻碍</p>
+</blockquote>
+<h2 id="通知命名">通知命名</h2>
+<p>以后会出这样一个 通知名 集中存放的文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="o">//</span><span class="n">NotificationCenter</span><span class="o">.</span><span class="n">js</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">export</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">listen</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">emit</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">//</span> <span class="err">参考</span> <span class="n">iOS通知命名</span><span class="err">，</span><span class="n">UIKeyboardWillChangeFrameNotification</span><span class="err">，</span>
+</span></span><span class="line"><span class="cl"><span class="o">//</span> <span class="err">命名表达出</span> <span class="n">who</span> <span class="n">did</span> <span class="p">(</span><span class="o">/</span><span class="n">will</span> <span class="k">do</span><span class="p">)</span> <span class="n">what</span><span class="err">，（即将）谁做了什么</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">//</span><span class="err">画本（某作品）点赞状态改变</span>
+</span></span><span class="line"><span class="cl"><span class="k">export</span> <span class="k">const</span> <span class="n">kGraphicLikeStatusChangeNotification</span> <span class="o">=</span> <span class="s1">&#39;kGraphicLikeStatusChangeNotification&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">/*</span> <span class="err">使用示例</span>
+</span></span><span class="line"><span class="cl"><span class="n">import</span> <span class="p">{</span> <span class="n">emit</span><span class="p">,</span> <span class="n">kGraphicLikeStatusChangeNotification</span> <span class="p">}</span> <span class="n">from</span> <span class="s1">&#39;app/.../NotificationCenter&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">emit</span><span class="p">(</span><span class="n">kGraphicLikeStatusChangeNotification</span><span class="p">,</span> <span class="p">{</span> <span class="n">graphicId</span><span class="p">:</span> <span class="mi">123</span><span class="p">,</span> <span class="n">likeStatus</span><span class="p">:</span> <span class="mi">1</span> <span class="p">});</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">import</span> <span class="p">{</span> <span class="n">listen</span><span class="p">,</span> <span class="n">kGraphicLikeStatusChangeNotification</span> <span class="p">}</span> <span class="n">from</span> <span class="s1">&#39;app/.../NotificationCenter&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="n">listener</span> <span class="o">=</span> <span class="n">listen</span><span class="p">(</span><span class="n">kGraphicLikeStatusChangeNotification</span><span class="p">,</span> <span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">listener</span><span class="o">.</span><span class="n">remove</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"> <span class="o">*/</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="单个函数的总行数-限制多大合适">单个函数的总行数 限制多大合适？</h2>
+<ul>
+<li>《阿里巴巴 Java 开发手册 v1.4.0（详尽版）》 ：80 行</li>
+</ul>
+<p><a href="https://edu.aliyun.com/article/103" target="_blank" rel="noopener noreffer ">https://edu.aliyun.com/article/103</a> <img
+        class="lazyload"
+        src="/zyestin/svg/loading.min.svg"
+        data-src="/zyestin/code-standards/media/16878312754494/16878347664695.jpg"
+        data-srcset="/zyestin/code-standards/media/16878312754494/16878347664695.jpg, /zyestin/code-standards/media/16878312754494/16878347664695.jpg 1.5x, /zyestin/code-standards/media/16878312754494/16878347664695.jpg 2x"
+        data-sizes="auto"
+        alt="/zyestin/code-standards/media/16878312754494/16878347664695.jpg"
+        title="/zyestin/code-standards/media/16878312754494/16878347664695.jpg" width="2638" height="618" /></p>
+<p>若结合到咱公司自己项目， <code>&lt;&gt;</code> 与 <code>&lt;/&gt;</code>、<code>{</code> 与 <code>}</code> 等标签的开始、结束（作用域）内尽量不超过 80 行</p>
+<blockquote>
+<p>示例中的组件函数<code>AAView</code>比较特殊，其本身可能超 100 行，甚至更多 也没问题。因为其内部包含多个子函数、子组件；<code>AAView</code>内部的子函数、子组件<code>&lt;View&gt;&lt;/View&gt;</code>等可以参考 80 行限制</p>
+</blockquote>
+<ul>
+<li>《代码不朽》：15 行</li>
+</ul>
+<blockquote>
+<p><a href="https://www.zhihu.com/question/280041384/answer/468623926" target="_blank" rel="noopener noreffer ">https://www.zhihu.com/question/280041384/answer/468623926</a></p>
+</blockquote>
+<p><img
+        class="lazyload"
+        src="/zyestin/svg/loading.min.svg"
+        data-src="/zyestin/code-standards/media/16878312754494/16878366535499.jpg"
+        data-srcset="/zyestin/code-standards/media/16878312754494/16878366535499.jpg, /zyestin/code-standards/media/16878312754494/16878366535499.jpg 1.5x, /zyestin/code-standards/media/16878312754494/16878366535499.jpg 2x"
+        data-sizes="auto"
+        alt="/zyestin/code-standards/media/16878312754494/16878366535499.jpg"
+        title="/zyestin/code-standards/media/16878312754494/16878366535499.jpg" width="617" height="532" /></p>
+<ul>
+<li>为什么编程应遵循 “30” 规则</li>
+</ul>
+<blockquote>
+<p><a href="https://www.infoq.cn/article/uu6zgvebe9w1ab1yqilb" target="_blank" rel="noopener noreffer ">https://www.infoq.cn/article/uu6zgvebe9w1ab1yqilb</a></p>
+</blockquote>
+<p>《代码大全》Steve McConnell 指出，理论上，一个方法或函数的最佳最大限制是在一个屏幕上可以容纳的行数。</p>
+<h2 id="单个文件代码行数-限制多大合适">单个文件代码行数 限制多大合适？</h2>
+<p>核心点</p>
+<ul>
+<li>维护成本：长而冗长的代码通常更难以理解、调试和维护。通过设置代码行数限制，可以鼓励开发者编写更简洁、模块化的代码，从而减少维护成本。</li>
+</ul>
+<p>ChatGPT 的看法<br>
+<img
+        class="lazyload"
+        src="/zyestin/svg/loading.min.svg"
+        data-src="/zyestin/code-standards/media/16878312754494/16878361932346.jpg"
+        data-srcset="/zyestin/code-standards/media/16878312754494/16878361932346.jpg, /zyestin/code-standards/media/16878312754494/16878361932346.jpg 1.5x, /zyestin/code-standards/media/16878312754494/16878361932346.jpg 2x"
+        data-sizes="auto"
+        alt="/zyestin/code-standards/media/16878312754494/16878361932346.jpg"
+        title="/zyestin/code-standards/media/16878312754494/16878361932346.jpg" width="2484" height="1044" /></p>
+<p>掘金文章 看法</p>
+<ul>
+<li>
+<p><a href="https://juejin.cn/s/%e4%b8%80%e4%b8%aa%e6%96%87%e4%bb%b6%e4%bb%a3%e7%a0%81%e8%a1%8c%e6%95%b0%e4%b8%8d%e8%b6%85%e8%bf%87%e5%a4%9a%e5%b0%91" target="_blank" rel="noopener noreffer ">https://juejin.cn/s/一个文件代码行数不超过多少</a> 300~500</p>
+</li>
+<li>
+<p><a href="https://juejin.cn/s/%e4%b8%80%e4%b8%aa%e6%96%87%e4%bb%b6%e4%bb%a3%e7%a0%81%e8%a1%8c%e6%95%b0%e4%b8%8d%e8%b6%85%e8%bf%87%e5%a4%9a%e5%b0%91%e8%a1%8c%20%e5%8d%8e%e4%b8%ba" target="_blank" rel="noopener noreffer ">https://juejin.cn/s/一个文件代码行数不超过多少行%20华为</a> 200</p>
+</li>
+</ul>
+<p>其它看法</p>
+<ul>
+<li>【生理上】人的记忆只有三屏，80 行预计在两屏至两屏半之间。</li>
+<li>【原则上】主干逻辑清晰，简洁易读</li>
+<li>【要纯】初期代码多烂其实问题都不大的, 只要你函数全都是纯的, 以后化简还是拆起来都不是问题.</li>
+<li>按照《重构》去做了，就不会出现单文件代码行数多的问题了</li>
+<li>《好代码，坏代码》<br>
+<img
+        class="lazyload"
+        src="/zyestin/svg/loading.min.svg"
+        data-src="/zyestin/code-standards/media/16878312754494/16878389258066.jpg"
+        data-srcset="/zyestin/code-standards/media/16878312754494/16878389258066.jpg, /zyestin/code-standards/media/16878312754494/16878389258066.jpg 1.5x, /zyestin/code-standards/media/16878312754494/16878389258066.jpg 2x"
+        data-sizes="auto"
+        alt="/zyestin/code-standards/media/16878312754494/16878389258066.jpg"
+        title="/zyestin/code-standards/media/16878312754494/16878389258066.jpg" width="2068" height="910" /></li>
+</ul>
+<h2 id="单行代码-字符串宽度数量限制">单行代码 字符串宽度/数量限制</h2>
+<p>上面提到的<strong>文件代码行数</strong>、<strong>函数代码行数</strong>在各大公司标准中 基本没有指明，但<strong>代码列数限制</strong>到是不少标准里 提到。</p>
+<p>谷歌的<a href="https://google.github.io/styleguide/jsguide.html#formatting-column-limit" target="_blank" rel="noopener noreffer ">Google JavaScript Style Guide</a> 80</p>
+<p><img
+        class="lazyload"
+        src="/zyestin/svg/loading.min.svg"
+        data-src="/zyestin/code-standards/media/16878312754494/16878399494187.jpg"
+        data-srcset="/zyestin/code-standards/media/16878312754494/16878399494187.jpg, /zyestin/code-standards/media/16878312754494/16878399494187.jpg 1.5x, /zyestin/code-standards/media/16878312754494/16878399494187.jpg 2x"
+        data-sizes="auto"
+        alt="/zyestin/code-standards/media/16878312754494/16878399494187.jpg"
+        title="/zyestin/code-standards/media/16878312754494/16878399494187.jpg" width="2272" height="720" /></p>
+<h2 id="其它">其它</h2>
+<h3 id="市面上-大而全的-javascript-规范">市面上 大而全的 JavaScript 规范</h3>
+<ul>
+<li><a href="https://airbnb.io/javascript/react/#basic-rules" target="_blank" rel="noopener noreffer ">Airbnb JavaScript Style Guide</a></li>
+<li><a href="https://google.github.io/styleguide/jsguide.html" target="_blank" rel="noopener noreffer ">Google JavaScript Style Guide</a></li>
+<li><a href="https://standardjs.com/" target="_blank" rel="noopener noreffer ">Standard JavaScript</a></li>
+</ul>
+<h3 id="代码规范的常用工具">代码规范的常用工具</h3>
+<p>eslint prettier</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-11-24&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/83e298dcf21697fec023979169ce036780df301b" target="_blank" title="commit by zhaoyang(zhaoyang@ihuaben.com) 83e298dcf21697fec023979169ce036780df301b: add doc 《仿抖音/小红书，对贴图/贴字 进行拖拽、缩放、旋转等复杂手势》">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>83e298d</a></span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/zyestin/code-standards/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zyestin.github.io/zyestin/code-standards/" data-title="代码规范" data-via="YestinZz" data-hashtags="react-native"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zyestin.github.io/zyestin/code-standards/" data-hashtag="react-native"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zyestin.github.io/zyestin/code-standards/" data-title="代码规范"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zyestin.github.io/zyestin/code-standards/" data-title="代码规范"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zyestin.github.io/zyestin/code-standards/" data-title="代码规范"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/zyestin/tags/react-native/">react-native</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/zyestin/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/zyestin/course-react-hooks/" class="prev" rel="prev" title="学习《React Hooks 核心原理与实战》笔记"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>学习《React Hooks 核心原理与实战》笔记</a>
+            <a href="/zyestin/tool-rn-jenkins-ios/" class="next" rel="next" title="从0到1用Jenkins实现对RN项目一键打包、发布">从0到1用Jenkins实现对RN项目一键打包、发布<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://giscus.app">Giscus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.122.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/zyestin" target="_blank">zyestin</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"giscus":{"category":"Announcements","categoryId":"DIC_kwDOKJ2IzM4Celi_","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zyestin/zyestin","repoId":"R_kgDOKJ2IzA"}},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.en","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/zyestin/js/theme.min.js"></script></body>
+</html>

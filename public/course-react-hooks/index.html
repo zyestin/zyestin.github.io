@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>学习《React Hooks 核心原理与实战》笔记 - zyestin</title><meta name="Description" content="Hugo theme - LoveIt"><meta property="og:title" content="学习《React Hooks 核心原理与实战》笔记" />
+<meta property="og:description" content="《React Hooks 核心原理与实战》学习 hooks Q: 为什么 Facebook 要发明React Hooks？React Hooks 解决了什么问题？
+A: 简化了逻辑重用
+hooks之前，复用逻辑要用到高阶组件或者render props
+组件每次渲染，内部的函数会重新创建，导致 接收传递函数的子组件 也重新渲染
+useCallback 对组件间传递的 (回调)函数 尽量都包裹 useMemo 缓存计算 useCallback，useMemo 只是为了避免 React 组件的重复渲染而导致的性能损失。
+而对于原生的节点，比如 div, input 这些，它们已经是原子节点了，不再有子节点， 所以不存在重复刷新带来的性能损失。
+useEffect执行时机是 DOM渲染后 useEffect中用到的变量，需要作为依赖参数 拆分复杂组件：不同逻辑拆到不同的Hooks里 Context 适用场景：仅 主题色、语言切换 redux 数据共享 避免不必要的请求 state 使用注意 state 避免定义多余的，找唯一数据源头 去发起改变 上次同事libin提到过这个场景：A传参value1给B，B又传value1给C，C里面能触发改变value1
+方案1：C中的操作触发value1变更时，C不维护value1 state，由C回调给B再回调给A，由A改变value1，从而重新渲染B、C
+方案2：C中的操作触发value1变更时，C改变C内部的value1，同时回调给B、A去更新(C外部)对应的value1
+根据这篇来看，更倾向于方案1 。避免在子组件定义多余的state(value1)，找唯一数据源头A 去发起改变
+设计模式 所谓「设计模式」，就是针对特定场景，提供一种公认的最佳实践
+保证状态的唯一数据源 语义化的拆分复杂组件 Hooks 的一个重要规则，即：Hooks 必须在顶层作用域调用 而不能放在条件判断、循环等语句中，同时也不能在可能的 return 语句之后执行。换句话说，Hooks 必须按顺序被执行到。
+容器模式，把条件判断的结果放到两个组件之中。可用Hooks替代 1 2 3 4 function CounterRenderProps({ children }) { ." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zyestin.github.io/zyestin/course-react-hooks/" /><meta property="og:image" content="https://zyestin.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-11-01T12:00:11+08:00" />
+<meta property="article:modified_time" content="2024-03-13T11:14:13+08:00" /><meta property="og:site_name" content="LoveIt-zyestin" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zyestin.github.io/logo.png" /><meta name="twitter:title" content="学习《React Hooks 核心原理与实战》笔记"/>
+<meta name="twitter:description" content="《React Hooks 核心原理与实战》学习 hooks Q: 为什么 Facebook 要发明React Hooks？React Hooks 解决了什么问题？
+A: 简化了逻辑重用
+hooks之前，复用逻辑要用到高阶组件或者render props
+组件每次渲染，内部的函数会重新创建，导致 接收传递函数的子组件 也重新渲染
+useCallback 对组件间传递的 (回调)函数 尽量都包裹 useMemo 缓存计算 useCallback，useMemo 只是为了避免 React 组件的重复渲染而导致的性能损失。
+而对于原生的节点，比如 div, input 这些，它们已经是原子节点了，不再有子节点， 所以不存在重复刷新带来的性能损失。
+useEffect执行时机是 DOM渲染后 useEffect中用到的变量，需要作为依赖参数 拆分复杂组件：不同逻辑拆到不同的Hooks里 Context 适用场景：仅 主题色、语言切换 redux 数据共享 避免不必要的请求 state 使用注意 state 避免定义多余的，找唯一数据源头 去发起改变 上次同事libin提到过这个场景：A传参value1给B，B又传value1给C，C里面能触发改变value1
+方案1：C中的操作触发value1变更时，C不维护value1 state，由C回调给B再回调给A，由A改变value1，从而重新渲染B、C
+方案2：C中的操作触发value1变更时，C改变C内部的value1，同时回调给B、A去更新(C外部)对应的value1
+根据这篇来看，更倾向于方案1 。避免在子组件定义多余的state(value1)，找唯一数据源头A 去发起改变
+设计模式 所谓「设计模式」，就是针对特定场景，提供一种公认的最佳实践
+保证状态的唯一数据源 语义化的拆分复杂组件 Hooks 的一个重要规则，即：Hooks 必须在顶层作用域调用 而不能放在条件判断、循环等语句中，同时也不能在可能的 return 语句之后执行。换句话说，Hooks 必须按顺序被执行到。
+容器模式，把条件判断的结果放到两个组件之中。可用Hooks替代 1 2 3 4 function CounterRenderProps({ children }) { ."/>
+<meta name="twitter:site" content="@YestinZz"/>
+<meta name="application-name" content="LoveIt-zyestin">
+<meta name="apple-mobile-web-app-title" content="LoveIt-zyestin"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://avatars.githubusercontent.com/u/51897571?s=40&amp;v=4"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zyestin.github.io/zyestin/course-react-hooks/" /><link rel="prev" href="https://zyestin.github.io/zyestin/alert-multiple/" /><link rel="next" href="https://zyestin.github.io/zyestin/code-standards/" /><link rel="stylesheet" href="/zyestin/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "学习《React Hooks 核心原理与实战》笔记",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zyestin.github.io\/zyestin\/course-react-hooks\/"
+        },"image": ["https:\/\/avatars.githubusercontent.com\/u\/51897571?s=40\u0026v=4"],"genre": "posts","keywords": "react-native","wordcount":  548 ,
+        "url": "https:\/\/zyestin.github.io\/zyestin\/course-react-hooks\/","datePublished": "2023-11-01T12:00:11+08:00","dateModified": "2024-03-13T11:14:13+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "zyestin","logo": "https:\/\/avatars.githubusercontent.com\/u\/51897571?s=40\u0026v=4"},"author": {
+                "@type": "Person",
+                "name": "zyestin"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/zyestin/" title="zyestin"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>LoveIt</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/zyestin/posts/"> Posts </a><a class="menu-item" href="/zyestin/tags/"> Tags </a><a class="menu-item" href="/zyestin/categories/"> Categories </a><a class="menu-item" href="/zyestin/categories/documentation/"> Docs </a><a class="menu-item" href="/zyestin/about/"> About </a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="Select Language">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/zyestin/course-react-hooks/" selected>English</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/zyestin/" title="zyestin"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>LoveIt</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/zyestin/posts/" title="">Posts</a><a class="menu-item" href="/zyestin/tags/" title="">Tags</a><a class="menu-item" href="/zyestin/categories/" title="">Categories</a><a class="menu-item" href="/zyestin/categories/documentation/" title="">Docs</a><a class="menu-item" href="/zyestin/about/" title="">About</a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="Select Language">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/zyestin/course-react-hooks/" selected>English</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">学习《React Hooks 核心原理与实战》笔记</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/zyestin" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zyestin</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-11-01">2023-11-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;548 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#hooks">hooks</a></li>
+    <li><a href="#设计模式">设计模式</a></li>
+    <li><a href="#拆包分包提高首屏页面的打开速度">拆包/分包：提高首屏页面的打开速度</a></li>
+    <li><a href="#webpack">Webpack</a></li>
+    <li><a href="#感谢">感谢</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="react-hooks-核心原理与实战学习">《React Hooks 核心原理与实战》学习</h1>
+<h2 id="hooks">hooks</h2>
+<ul>
+<li>
+<p>Q: 为什么 Facebook 要发明React Hooks？React Hooks 解决了什么问题？</p>
+<p>A: 简化了逻辑重用</p>
+<p>hooks之前，复用逻辑要用到高阶组件或者render props</p>
+</li>
+<li>
+<p>组件每次渲染，内部的函数会重新创建，导致 接收传递函数的子组件 也重新渲染</p>
+</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/zyestin/svg/loading.min.svg"
+        data-src="/zyestin/course-react-hooks/media/17098124161476/17098124962754.jpg"
+        data-srcset="/zyestin/course-react-hooks/media/17098124161476/17098124962754.jpg, /zyestin/course-react-hooks/media/17098124161476/17098124962754.jpg 1.5x, /zyestin/course-react-hooks/media/17098124161476/17098124962754.jpg 2x"
+        data-sizes="auto"
+        alt="/zyestin/course-react-hooks/media/17098124161476/17098124962754.jpg"
+        title="/zyestin/course-react-hooks/media/17098124161476/17098124962754.jpg" width="828" height="621" /></p>
+<ul>
+<li>useCallback 对组件间传递的 (回调)函数 尽量都包裹</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/zyestin/svg/loading.min.svg"
+        data-src="/zyestin/course-react-hooks/media/17098124161476/17098125157904.jpg"
+        data-srcset="/zyestin/course-react-hooks/media/17098124161476/17098125157904.jpg, /zyestin/course-react-hooks/media/17098124161476/17098125157904.jpg 1.5x, /zyestin/course-react-hooks/media/17098124161476/17098125157904.jpg 2x"
+        data-sizes="auto"
+        alt="/zyestin/course-react-hooks/media/17098124161476/17098125157904.jpg"
+        title="/zyestin/course-react-hooks/media/17098124161476/17098125157904.jpg" width="828" height="646" /></p>
+<p><img
+        class="lazyload"
+        src="/zyestin/svg/loading.min.svg"
+        data-src="/zyestin/course-react-hooks/media/17098124161476/17098125933411.jpg"
+        data-srcset="/zyestin/course-react-hooks/media/17098124161476/17098125933411.jpg, /zyestin/course-react-hooks/media/17098124161476/17098125933411.jpg 1.5x, /zyestin/course-react-hooks/media/17098124161476/17098125933411.jpg 2x"
+        data-sizes="auto"
+        alt="/zyestin/course-react-hooks/media/17098124161476/17098125933411.jpg"
+        title="/zyestin/course-react-hooks/media/17098124161476/17098125933411.jpg" width="1280" height="454" /></p>
+<ul>
+<li>useMemo 缓存计算</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/zyestin/svg/loading.min.svg"
+        data-src="/zyestin/course-react-hooks/media/17098124161476/17098126043814.jpg"
+        data-srcset="/zyestin/course-react-hooks/media/17098124161476/17098126043814.jpg, /zyestin/course-react-hooks/media/17098124161476/17098126043814.jpg 1.5x, /zyestin/course-react-hooks/media/17098124161476/17098126043814.jpg 2x"
+        data-sizes="auto"
+        alt="/zyestin/course-react-hooks/media/17098124161476/17098126043814.jpg"
+        title="/zyestin/course-react-hooks/media/17098124161476/17098126043814.jpg" width="1280" height="572" /></p>
+<ul>
+<li>
+<p>useCallback，useMemo 只是为了避免 React 组件的重复渲染而导致的性能损失。</p>
+</li>
+<li>
+<p>而对于原生的节点，比如 div, input 这些，它们已经是原子节点了，不再有子节点， 所以不存在重复刷新带来的性能损失。</p>
+</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/zyestin/svg/loading.min.svg"
+        data-src="/zyestin/course-react-hooks/media/17098124161476/17098126475470.jpg"
+        data-srcset="/zyestin/course-react-hooks/media/17098124161476/17098126475470.jpg, /zyestin/course-react-hooks/media/17098124161476/17098126475470.jpg 1.5x, /zyestin/course-react-hooks/media/17098124161476/17098126475470.jpg 2x"
+        data-sizes="auto"
+        alt="/zyestin/course-react-hooks/media/17098124161476/17098126475470.jpg"
+        title="/zyestin/course-react-hooks/media/17098124161476/17098126475470.jpg" width="1792" height="828" /></p>
+<ul>
+<li>useEffect执行时机是 DOM渲染后</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/zyestin/svg/loading.min.svg"
+        data-src="/zyestin/course-react-hooks/media/17098124161476/17098126690843.jpg"
+        data-srcset="/zyestin/course-react-hooks/media/17098124161476/17098126690843.jpg, /zyestin/course-react-hooks/media/17098124161476/17098126690843.jpg 1.5x, /zyestin/course-react-hooks/media/17098124161476/17098126690843.jpg 2x"
+        data-sizes="auto"
+        alt="/zyestin/course-react-hooks/media/17098124161476/17098126690843.jpg"
+        title="/zyestin/course-react-hooks/media/17098124161476/17098126690843.jpg" width="1280" height="336" /></p>
+<ul>
+<li>useEffect中用到的变量，需要作为依赖参数</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/zyestin/svg/loading.min.svg"
+        data-src="/zyestin/course-react-hooks/media/17098124161476/17098799474210.jpg"
+        data-srcset="/zyestin/course-react-hooks/media/17098124161476/17098799474210.jpg, /zyestin/course-react-hooks/media/17098124161476/17098799474210.jpg 1.5x, /zyestin/course-react-hooks/media/17098124161476/17098799474210.jpg 2x"
+        data-sizes="auto"
+        alt="/zyestin/course-react-hooks/media/17098124161476/17098799474210.jpg"
+        title="/zyestin/course-react-hooks/media/17098124161476/17098799474210.jpg" width="1280" height="403" /></p>
+<ul>
+<li>拆分复杂组件：不同逻辑拆到不同的Hooks里</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/zyestin/svg/loading.min.svg"
+        data-src="/zyestin/course-react-hooks/media/17098124161476/17098803509156.jpg"
+        data-srcset="/zyestin/course-react-hooks/media/17098124161476/17098803509156.jpg, /zyestin/course-react-hooks/media/17098124161476/17098803509156.jpg 1.5x, /zyestin/course-react-hooks/media/17098124161476/17098803509156.jpg 2x"
+        data-sizes="auto"
+        alt="/zyestin/course-react-hooks/media/17098124161476/17098803509156.jpg"
+        title="/zyestin/course-react-hooks/media/17098124161476/17098803509156.jpg" width="1280" height="591" /></p>
+<ul>
+<li>Context 适用场景：仅 主题色、语言切换</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/zyestin/svg/loading.min.svg"
+        data-src="/zyestin/course-react-hooks/media/17098124161476/17098804696996.jpg"
+        data-srcset="/zyestin/course-react-hooks/media/17098124161476/17098804696996.jpg, /zyestin/course-react-hooks/media/17098124161476/17098804696996.jpg 1.5x, /zyestin/course-react-hooks/media/17098124161476/17098804696996.jpg 2x"
+        data-sizes="auto"
+        alt="/zyestin/course-react-hooks/media/17098124161476/17098804696996.jpg"
+        title="/zyestin/course-react-hooks/media/17098124161476/17098804696996.jpg" width="828" height="967" /></p>
+<ul>
+<li>redux 数据共享 避免不必要的请求</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/zyestin/svg/loading.min.svg"
+        data-src="/zyestin/course-react-hooks/media/17098124161476/17098805273501.jpg"
+        data-srcset="/zyestin/course-react-hooks/media/17098124161476/17098805273501.jpg, /zyestin/course-react-hooks/media/17098124161476/17098805273501.jpg 1.5x, /zyestin/course-react-hooks/media/17098124161476/17098805273501.jpg 2x"
+        data-sizes="auto"
+        alt="/zyestin/course-react-hooks/media/17098124161476/17098805273501.jpg"
+        title="/zyestin/course-react-hooks/media/17098124161476/17098805273501.jpg" width="1366" height="2118" /></p>
+<ul>
+<li>state 使用注意</li>
+</ul>
+<p>state 避免定义多余的，找唯一数据源头 去发起改变
+<img
+        class="lazyload"
+        src="/zyestin/svg/loading.min.svg"
+        data-src="/zyestin/course-react-hooks/media/17098124161476/17098806342200.jpg"
+        data-srcset="/zyestin/course-react-hooks/media/17098124161476/17098806342200.jpg, /zyestin/course-react-hooks/media/17098124161476/17098806342200.jpg 1.5x, /zyestin/course-react-hooks/media/17098124161476/17098806342200.jpg 2x"
+        data-sizes="auto"
+        alt="/zyestin/course-react-hooks/media/17098124161476/17098806342200.jpg"
+        title="/zyestin/course-react-hooks/media/17098124161476/17098806342200.jpg" width="1458" height="3014" /></p>
+<blockquote>
+<p>上次同事libin提到过这个场景：A传参value1给B，B又传value1给C，C里面能触发改变value1</p>
+<p>方案1：C中的操作触发value1变更时，C不维护value1 state，由C回调给B再回调给A，由A改变value1，从而重新渲染B、C</p>
+<p>方案2：C中的操作触发value1变更时，C改变C内部的value1，同时回调给B、A去更新(C外部)对应的value1</p>
+<p>根据这篇来看，更倾向于方案1 。避免在子组件定义多余的state(value1)，找唯一数据源头A 去发起改变</p>
+</blockquote>
+<h2 id="设计模式">设计模式</h2>
+<p>所谓「设计模式」，就是针对特定场景，提供一种公认的最佳实践</p>
+<ul>
+<li>保证状态的唯一数据源</li>
+<li>语义化的拆分复杂组件</li>
+</ul>
+<blockquote>
+<p>Hooks 的一个重要规则，即：Hooks 必须在顶层作用域调用
+而不能放在条件判断、循环等语句中，同时也不能在可能的 return 语句之后执行。换句话说，Hooks 必须按顺序被执行到。</p>
+</blockquote>
+<ul>
+<li>容器模式，把条件判断的结果放到两个组件之中。可用Hooks替代</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">function CounterRenderProps({ children }) {
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">return children({ count, increment, decrement });
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>render props 模式，重用 UI 逻辑</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">function ListWithMore({ renderItem, data = [], max })
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="拆包分包提高首屏页面的打开速度">拆包/分包：提高首屏页面的打开速度</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">function</span> <span class="n">ProfilePage</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="o">//</span> <span class="err">定义一个</span> <span class="n">state</span> <span class="err">用于存放需要加载的组件</span>
+</span></span><span class="line"><span class="cl">  <span class="k">const</span> <span class="p">[</span><span class="n">RealPage</span><span class="p">,</span> <span class="n">setRealPage</span><span class="p">]</span> <span class="o">=</span> <span class="n">useState</span><span class="p">(</span><span class="n">null</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="o">//</span> <span class="err">根据路径动态加载真正的组件实现</span>
+</span></span><span class="line"><span class="cl">  <span class="n">import</span><span class="p">(</span><span class="s1">&#39;./RealProfilePage&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">then</span><span class="p">((</span><span class="n">comp</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">setRealPage</span><span class="p">(</span><span class="n">Comp</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">});</span>
+</span></span><span class="line"><span class="cl">  <span class="o">//</span> <span class="err">如果组件未加载则显示</span> <span class="n">Loading</span> <span class="err">状态</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">RealPage</span><span class="p">)</span> <span class="k">return</span> <span class="s1">&#39;Loading....&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">//</span> <span class="err">组件加载成功后则将其渲染到界面</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="o">&lt;</span><span class="n">RealPage</span> <span class="o">/&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>import() 这个语句完全是由 Webpack 进行处理的</p>
+<blockquote>
+<p>Webpack 会将以“./RealProfilePage”模块为起点的所有依赖模块，单独打成一个包。
+并且，Webpack 还会生成代码，用于按需加载这个模块。</p>
+</blockquote>
+<ul>
+<li>react-lodable，实现组件的异步加载</li>
+</ul>
+<blockquote>
+<p>通过高阶组件来实现的，这个高阶组件实现了模块加载、loading 状态以及错误处理的功能。</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">import</span> <span class="n">Loadable</span> <span class="n">from</span> <span class="s2">&#34;react-loadable&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">//</span> <span class="err">创建一个显示加载状态的组件</span>
+</span></span><span class="line"><span class="cl"><span class="n">function</span> <span class="n">Loading</span><span class="p">({</span> <span class="n">error</span> <span class="p">})</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="n">error</span> <span class="err">?</span> <span class="s1">&#39;Failed&#39;</span> <span class="p">:</span> <span class="s1">&#39;Loading&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">//</span> <span class="err">创建加载器组件</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="n">HelloLazyLoad</span> <span class="o">=</span> <span class="n">Loadable</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">  <span class="n">loader</span><span class="p">:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">import</span><span class="p">(</span><span class="s2">&#34;./RealHelloLazyLoad&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">loading</span><span class="p">:</span> <span class="n">Loading</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="p">});</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>service worker 缓存前端资源：提高第二次以及后续打开 App 的速度</li>
+</ul>
+<blockquote>
+<p>可以把 Service Worker 看作一种前端的资源请求代理。Service Worker 会拦截所有浏览器发送出来的请求，你可以通过代码去控制Rest API 这些请求发送到服务器；而 JS、CSS 等静态资源，则通过 Cache Storage 存储
+在浏览器端。</p>
+</blockquote>
+<h2 id="webpack">Webpack</h2>
+<blockquote>
+<p>为主流的前端应用打包工具，它的核心思路是将源代码以及图片、样式文件等资源文件都视为模块，然后通过提供对不同类型资源的处理器，将它们进行统一处理，形成最终可在浏览器运行的代码。</p>
+</blockquote>
+<p><img
+        class="lazyload"
+        src="/zyestin/svg/loading.min.svg"
+        data-src="/zyestin/course-react-hooks/media/17098124161476/17098809085641.jpg"
+        data-srcset="/zyestin/course-react-hooks/media/17098124161476/17098809085641.jpg, /zyestin/course-react-hooks/media/17098124161476/17098809085641.jpg 1.5x, /zyestin/course-react-hooks/media/17098124161476/17098809085641.jpg 2x"
+        data-sizes="auto"
+        alt="/zyestin/course-react-hooks/media/17098124161476/17098809085641.jpg"
+        title="/zyestin/course-react-hooks/media/17098124161476/17098809085641.jpg" width="1354" height="618" /></p>
+<ol>
+<li>输入输出配置：定义你的应用程序的入口，以及打包结果输出的文件夹位置。</li>
+<li>配置对于每一类资源文件的处理器：比如说，对 JavaScript 是用 babel-loader 去编
+译；对 less 文件则是用 less-loader 去编译；图片则用 file-loader 去处理。你在项目
+中能使用哪些技术或者资源，完全取决于配置了哪些 loader。</li>
+<li>插件配置：除了核心的源代码编译和打包流程，Webpack 还支持插件扩展功能，可以
+通过插件生成额外的打包结果，或者进行一些其它的处理。比如打包过程生成
+index.html，源代码分析报表，提取 CSS 到独立文件，代码压缩，等等。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="k">const</span> <span class="n">HtmlWebpackPlugin</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;html-webpack-plugin&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="k">const</span> <span class="n">path</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s1">&#39;path&#39;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">module</span><span class="o">.</span><span class="n">exports</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">entry</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">//</span> <span class="err">定义</span><span class="n">ath</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">__dirname</span><span class="p">,</span> <span class="s1">&#39;./src/app.js&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="n">output</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">//</span> <span class="err">打包输出的文件名，这里将生成</span> <span class="n">main</span><span class="o">.</span><span class="n">bundle</span><span class="o">.</span><span class="n">js</span>
+</span></span><span class="line"><span class="cl">    <span class="n">filename</span><span class="p">:</span> <span class="s1">&#39;[name].bundle.js&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="o">//</span> <span class="err">定义打包结果的输出位置</span>
+</span></span><span class="line"><span class="cl">    <span class="n">path</span><span class="p">:</span> <span class="n">path</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">__dirname</span><span class="p">,</span> <span class="s1">&#39;build&#39;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="n">module</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="o">//</span> <span class="err">定义处理源文件的规则，</span><span class="n">rules</span> <span class="err">下会按顺序使用匹配的规则</span>
+</span></span><span class="line"><span class="cl">    <span class="n">rules</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="o">//</span> <span class="err">遇到</span> <span class="o">.</span><span class="n">js</span> <span class="err">结尾的文件则使用这个规则</span>
+</span></span><span class="line"><span class="cl">        <span class="n">test</span><span class="p">:</span> <span class="o">/</span>\<span class="o">.</span><span class="n">js</span><span class="o">$/</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="o">//</span> <span class="err">忽略</span> <span class="n">node_modules</span> <span class="err">目录下的</span> <span class="n">js</span> <span class="err">文件</span>
+</span></span><span class="line"><span class="cl">        <span class="n">exclude</span><span class="p">:</span> <span class="o">/</span><span class="n">node_modules</span><span class="o">/</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="n">use</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">          <span class="o">//</span> <span class="err">使用</span> <span class="n">babel</span><span class="o">-</span><span class="n">loader</span> <span class="err">处理</span> <span class="n">js</span>
+</span></span><span class="line"><span class="cl">          <span class="n">loader</span><span class="p">:</span> <span class="s1">&#39;babel-loader&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">          <span class="o">//</span> <span class="n">babel</span><span class="o">-</span><span class="n">loader</span> <span class="err">的一些选项</span>
+</span></span><span class="line"><span class="cl">          <span class="n">options</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">presets</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;@babel/preset-env&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">          <span class="p">},</span>
+</span></span><span class="line"><span class="cl">        <span class="p">},</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="n">plugins</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">    <span class="o">//</span> <span class="err">使用</span> <span class="n">HtmlWebpackPlugin</span> <span class="err">生成一个</span> <span class="n">index</span><span class="o">.</span><span class="n">html</span><span class="err">，其中自动引入</span> <span class="n">js</span>
+</span></span><span class="line"><span class="cl">    <span class="o">//</span> <span class="err">并配置了页面的</span> <span class="n">title</span>
+</span></span><span class="line"><span class="cl">    <span class="n">new</span> <span class="n">HtmlWebpackPlugin</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">      <span class="n">title</span><span class="p">:</span> <span class="s1">&#39;Webpack Output&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}),</span>
+</span></span><span class="line"><span class="cl">  <span class="p">],</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>针对这段配置代码，我们一般会把它存储为 webpack.config.js 这样一个文件，这样在我
+们的项目下运行 webpack 命令，就会使用这个文件作为配置。</p>
+<p>代码中其实已经很直观了，我们不仅定义了输入输出，还配置了 babel-loader，用于编译
+JavaScript 文件到兼容主流浏览器的代码。同时，还为 babel-loader 设置了参数</p>
+<p><strong>Less 允许我们通过更强大的机制去写 Css，比如可以定义变量，允许嵌套的规则定义，等等。</strong><br>
+要让一个 Less 文件最终打包到目标文件中，并被浏览器运行，那么首先需要把 Less
+代码转换成 Css，再通过 style 标记插入到浏览器中。</p>
+<p>这个过程涉及到三个 loader，如下：</p>
+<ol>
+<li>less-loader：用于将 Less 代码转换成 Css。</li>
+<li>css-loader：用于处理 Css 中的 import、url 等语句，以便能分析出图片等静态资源打
+包到最终结果。</li>
+<li>style-loader：会自动生成代码，并将打包后的 Css 插入到页面 style 标签。这个
+loader 会将 Css 打包到 js 文件中，在应用运行时，自动生成的代码再把这些 css 应用
+到页面上。</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">module</span><span class="o">.</span><span class="n">exports</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="o">//</span> <span class="o">...</span>
+</span></span><span class="line"><span class="cl">  <span class="n">module</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">rules</span><span class="p">:</span> <span class="p">[</span>
+</span></span><span class="line"><span class="cl">      <span class="o">//</span> <span class="o">...</span>
+</span></span><span class="line"><span class="cl">      <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="o">//</span> <span class="err">检测</span> <span class="n">less</span> <span class="err">文件</span>
+</span></span><span class="line"><span class="cl">        <span class="n">test</span><span class="p">:</span> <span class="o">/</span>\<span class="o">.</span><span class="n">less</span><span class="o">$/</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">        <span class="o">//</span> <span class="err">使用了三个</span> <span class="n">loader</span><span class="err">，注意执行顺序是数组的倒序</span>
+</span></span><span class="line"><span class="cl">        <span class="o">//</span> <span class="err">也就是先执行</span> <span class="n">less</span><span class="o">-</span><span class="n">loader</span>
+</span></span><span class="line"><span class="cl">        <span class="n">use</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;style-loader&#39;</span><span class="p">,</span> <span class="s1">&#39;css-loader&#39;</span><span class="p">,</span> <span class="s1">&#39;less-loader&#39;</span><span class="p">],</span>
+</span></span><span class="line"><span class="cl">      <span class="p">},</span>
+</span></span><span class="line"><span class="cl">    <span class="p">],</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="o">//...</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果项目要支持 sass 作为 Css 预处理器，那么顺序就是 sass-loader -&gt; css-
+loader -&gt; style-loader。可以看到，我们只要替换 less-loader 为 sass-loader，后两个
+loader 是完全一样的。</p>
+<p><strong>常见QA</strong></p>
+<ul>
+<li>
+<p>为什么 CSS 代码会进入到 JavaScript 文件中呢？最终它是怎么应用到页面的呢？</p>
+<p>其实背后的过程主要是，生成的 CSS 代码会以字符串的形式作为一个模块打包
+到最终结果，然后在运行时由 style-loader 提供的一个函数 injectStylesIntoStyleTag ，
+来将这个模块加入到页面的 style 标签中，从而最终生效。</p>
+</li>
+<li>
+<p>如果我们想让生成的 CSS 文件和 JavaScript 文件分开，应该如何做呢？</p>
+<p>从 rules 中去掉 style-loader 这个配置，以避免 CSS 进入到 JavaScript 文件中。
+实现提取 CSS 模块到单独 CSS 文件的 plugin 是 mini-css-extract-plugin</p>
+</li>
+<li>
+<p>plugin 和 loader 的区别</p>
+<ul>
+<li>loader主要用于处理不同类型的资源，将它们转换成模块；</li>
+<li>plugin 通常用于生成一些除了JavaScript bundle 之外的一些打包结果，比如例子中的 index.html 和 css 文件</li>
+</ul>
+</li>
+<li>
+<p>React Native中用到 babel的例子</p>
+</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/zyestin/svg/loading.min.svg"
+        data-src="/zyestin/course-react-hooks/media/17098124161476/17098811091836.jpg"
+        data-srcset="/zyestin/course-react-hooks/media/17098124161476/17098811091836.jpg, /zyestin/course-react-hooks/media/17098124161476/17098811091836.jpg 1.5x, /zyestin/course-react-hooks/media/17098124161476/17098811091836.jpg 2x"
+        data-sizes="auto"
+        alt="/zyestin/course-react-hooks/media/17098124161476/17098811091836.jpg"
+        title="/zyestin/course-react-hooks/media/17098124161476/17098811091836.jpg" width="1590" height="1512" /></p>
+<ul>
+<li>Webpack 动态加载模块</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/zyestin/svg/loading.min.svg"
+        data-src="/zyestin/course-react-hooks/media/17098124161476/17098811259370.jpg"
+        data-srcset="/zyestin/course-react-hooks/media/17098124161476/17098811259370.jpg, /zyestin/course-react-hooks/media/17098124161476/17098811259370.jpg 1.5x, /zyestin/course-react-hooks/media/17098124161476/17098811259370.jpg 2x"
+        data-sizes="auto"
+        alt="/zyestin/course-react-hooks/media/17098124161476/17098811259370.jpg"
+        title="/zyestin/course-react-hooks/media/17098124161476/17098811259370.jpg" width="1352" height="2414" /></p>
+<h2 id="感谢">感谢</h2>
+<ul>
+<li>
+<p>感谢公司购买了这个课程《React Hooks 核心原理与实战》</p>
+</li>
+<li>
+<p>感谢《React Hooks 核心原理与实战》作者分享这些经验</p>
+</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-03-13&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/fe6d024bf060c4c6afc0794af903284554755450" target="_blank" title="commit by zhaoyang(zhaoyang@ihuaben.com) fe6d024bf060c4c6afc0794af903284554755450: update doc 《从0到1用Jenkins实现对RN项目一键打包、发布》">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>fe6d024</a></span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/zyestin/course-react-hooks/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zyestin.github.io/zyestin/course-react-hooks/" data-title="学习《React Hooks 核心原理与实战》笔记" data-via="YestinZz" data-hashtags="react-native"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zyestin.github.io/zyestin/course-react-hooks/" data-hashtag="react-native"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zyestin.github.io/zyestin/course-react-hooks/" data-title="学习《React Hooks 核心原理与实战》笔记"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zyestin.github.io/zyestin/course-react-hooks/" data-title="学习《React Hooks 核心原理与实战》笔记"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zyestin.github.io/zyestin/course-react-hooks/" data-title="学习《React Hooks 核心原理与实战》笔记"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/zyestin/tags/react-native/">react-native</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/zyestin/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/zyestin/alert-multiple/" class="prev" rel="prev" title="实现 差不多理想的极简RN弹窗"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>实现 差不多理想的极简RN弹窗</a>
+            <a href="/zyestin/code-standards/" class="next" rel="next" title="代码规范">代码规范<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://giscus.app">Giscus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.122.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/zyestin" target="_blank">zyestin</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"giscus":{"category":"Announcements","categoryId":"DIC_kwDOKJ2IzM4Celi_","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zyestin/zyestin","repoId":"R_kgDOKJ2IzA"}},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.en","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/zyestin/js/theme.min.js"></script></body>
+</html>

@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>patch-package 补丁工具使用 - zyestin</title><meta name="Description" content="Hugo theme - LoveIt"><meta property="og:title" content="patch-package 补丁工具使用" />
+<meta property="og:description" content="patch-package 官方地址 https://www.npmjs.com/package/patch-package
+首次安装 失败&amp;&amp;解决 package.json内scripts下 添加
+1 &#34;postinstall&#34;: &#34;patch-package&#34; 安装，失败
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 npm i patch-package 10:18:05 npm ERR! code ECONNREFUSED npm ERR! errno ECONNREFUSED npm ERR! FetchError: request to https://mirrors.huaweicloud.com/repository/npm/patch-package failed, reason: connect ECONNREFUSED 127.0.0.1:1087 npm ERR! at ClientRequest.&lt;anonymous&gt; (/usr/local/lib/node_modules/npm/node_modules/node-fetch-npm/src/index.js:68:14) npm ERR! at ClientRequest.emit (events.js:400:28) npm ERR!" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zyestin.github.io/zyestin/tool-npm-patch/" /><meta property="og:image" content="https://zyestin.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-11-01T12:00:11+08:00" />
+<meta property="article:modified_time" content="2024-03-13T11:14:13+08:00" /><meta property="og:site_name" content="LoveIt-zyestin" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zyestin.github.io/logo.png" /><meta name="twitter:title" content="patch-package 补丁工具使用"/>
+<meta name="twitter:description" content="patch-package 官方地址 https://www.npmjs.com/package/patch-package
+首次安装 失败&amp;&amp;解决 package.json内scripts下 添加
+1 &#34;postinstall&#34;: &#34;patch-package&#34; 安装，失败
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 npm i patch-package 10:18:05 npm ERR! code ECONNREFUSED npm ERR! errno ECONNREFUSED npm ERR! FetchError: request to https://mirrors.huaweicloud.com/repository/npm/patch-package failed, reason: connect ECONNREFUSED 127.0.0.1:1087 npm ERR! at ClientRequest.&lt;anonymous&gt; (/usr/local/lib/node_modules/npm/node_modules/node-fetch-npm/src/index.js:68:14) npm ERR! at ClientRequest.emit (events.js:400:28) npm ERR!"/>
+<meta name="twitter:site" content="@YestinZz"/>
+<meta name="application-name" content="LoveIt-zyestin">
+<meta name="apple-mobile-web-app-title" content="LoveIt-zyestin"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://avatars.githubusercontent.com/u/51897571?s=40&amp;v=4"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zyestin.github.io/zyestin/tool-npm-patch/" /><link rel="prev" href="https://zyestin.github.io/zyestin/vscode-efficient/" /><link rel="next" href="https://zyestin.github.io/zyestin/tool-npm/" /><link rel="stylesheet" href="/zyestin/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "patch-package 补丁工具使用",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zyestin.github.io\/zyestin\/tool-npm-patch\/"
+        },"image": ["https:\/\/avatars.githubusercontent.com\/u\/51897571?s=40\u0026v=4"],"genre": "posts","keywords": "react-native","wordcount":  914 ,
+        "url": "https:\/\/zyestin.github.io\/zyestin\/tool-npm-patch\/","datePublished": "2023-11-01T12:00:11+08:00","dateModified": "2024-03-13T11:14:13+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "zyestin","logo": "https:\/\/avatars.githubusercontent.com\/u\/51897571?s=40\u0026v=4"},"author": {
+                "@type": "Person",
+                "name": "zyestin"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/zyestin/" title="zyestin"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>LoveIt</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/zyestin/posts/"> Posts </a><a class="menu-item" href="/zyestin/tags/"> Tags </a><a class="menu-item" href="/zyestin/categories/"> Categories </a><a class="menu-item" href="/zyestin/categories/documentation/"> Docs </a><a class="menu-item" href="/zyestin/about/"> About </a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="Select Language">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/zyestin/tool-npm-patch/" selected>English</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/zyestin/" title="zyestin"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>LoveIt</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/zyestin/posts/" title="">Posts</a><a class="menu-item" href="/zyestin/tags/" title="">Tags</a><a class="menu-item" href="/zyestin/categories/" title="">Categories</a><a class="menu-item" href="/zyestin/categories/documentation/" title="">Docs</a><a class="menu-item" href="/zyestin/about/" title="">About</a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="Select Language">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/zyestin/tool-npm-patch/" selected>English</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">patch-package 补丁工具使用</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/zyestin" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zyestin</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-11-01">2023-11-01</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;914 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;5 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#首次安装-失败解决">首次安装 失败&amp;&amp;解决</a></li>
+    <li><a href="#搜">搜</a></li>
+    <li><a href="#优势">优势</a></li>
+    <li><a href="#遇到过的bug">遇到过的bug</a>
+      <ul>
+        <li><a href="#执行npm-ireact-native-image-crop-picker0380patch-apply会失败">执行<code>npm i</code>，<code>react-native-image-crop-picker+0.38.0.patch </code>apply会失败</a></li>
+        <li><a href="#执行npx-patch-package-react-native-xx-patch会出现许多多余的文件字符串">执行<code>npx patch-package react-native-xx</code>, <code>.patch</code>会出现许多多余的文件字符串</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>patch-package 官方地址
+<a href="https://www.npmjs.com/package/patch-package" target="_blank" rel="noopener noreffer ">https://www.npmjs.com/package/patch-package</a></p>
+<h2 id="首次安装-失败解决">首次安装 失败&amp;&amp;解决</h2>
+<p>package.json内<code>scripts</code>下 添加</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&#34;postinstall&#34;: &#34;patch-package&#34;
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>安装，失败</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">npm</span> <span class="nx">i</span> <span class="nx">patch</span><span class="o">-</span><span class="kn">package</span>                                                                                                                          <span class="mi">10</span><span class="p">:</span><span class="mi">18</span><span class="p">:</span><span class="mo">05</span>
+</span></span><span class="line"><span class="cl"><span class="nx">npm</span> <span class="nx">ERR</span><span class="p">!</span> <span class="nx">code</span> <span class="nx">ECONNREFUSED</span>
+</span></span><span class="line"><span class="cl"><span class="nx">npm</span> <span class="nx">ERR</span><span class="p">!</span> <span class="nx">errno</span> <span class="nx">ECONNREFUSED</span>
+</span></span><span class="line"><span class="cl"><span class="nx">npm</span> <span class="nx">ERR</span><span class="p">!</span> <span class="nx">FetchError</span><span class="p">:</span> <span class="nx">request</span> <span class="nx">to</span> <span class="nx">https</span><span class="p">:</span><span class="c1">//mirrors.huaweicloud.com/repository/npm/patch-package failed, reason: connect ECONNREFUSED 127.0.0.1:1087
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">npm</span> <span class="nx">ERR</span><span class="p">!</span>     <span class="nx">at</span> <span class="nx">ClientRequest</span><span class="p">.&lt;</span><span class="nx">anonymous</span><span class="p">&gt;</span> <span class="p">(</span><span class="o">/</span><span class="nx">usr</span><span class="o">/</span><span class="nx">local</span><span class="o">/</span><span class="nx">lib</span><span class="o">/</span><span class="nx">node_modules</span><span class="o">/</span><span class="nx">npm</span><span class="o">/</span><span class="nx">node_modules</span><span class="o">/</span><span class="nx">node</span><span class="o">-</span><span class="nx">fetch</span><span class="o">-</span><span class="nx">npm</span><span class="o">/</span><span class="nx">src</span><span class="o">/</span><span class="nx">index</span><span class="p">.</span><span class="nx">js</span><span class="p">:</span><span class="mi">68</span><span class="p">:</span><span class="mi">14</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">npm</span> <span class="nx">ERR</span><span class="p">!</span>     <span class="nx">at</span> <span class="nx">ClientRequest</span><span class="p">.</span><span class="nf">emit</span> <span class="p">(</span><span class="nx">events</span><span class="p">.</span><span class="nx">js</span><span class="p">:</span><span class="mi">400</span><span class="p">:</span><span class="mi">28</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">npm</span> <span class="nx">ERR</span><span class="p">!</span>     <span class="nx">at</span> <span class="nf">onerror</span> <span class="p">(</span><span class="o">/</span><span class="nx">usr</span><span class="o">/</span><span class="nx">local</span><span class="o">/</span><span class="nx">lib</span><span class="o">/</span><span class="nx">node_modules</span><span class="o">/</span><span class="nx">npm</span><span class="o">/</span><span class="nx">node_modules</span><span class="o">/</span><span class="nx">agent</span><span class="o">-</span><span class="nx">base</span><span class="o">/</span><span class="nx">index</span><span class="p">.</span><span class="nx">js</span><span class="p">:</span><span class="mi">101</span><span class="p">:</span><span class="mi">9</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">npm</span> <span class="nx">ERR</span><span class="p">!</span>     <span class="nx">at</span> <span class="nf">callbackError</span> <span class="p">(</span><span class="o">/</span><span class="nx">usr</span><span class="o">/</span><span class="nx">local</span><span class="o">/</span><span class="nx">lib</span><span class="o">/</span><span class="nx">node_modules</span><span class="o">/</span><span class="nx">npm</span><span class="o">/</span><span class="nx">node_modules</span><span class="o">/</span><span class="nx">agent</span><span class="o">-</span><span class="nx">base</span><span class="o">/</span><span class="nx">index</span><span class="p">.</span><span class="nx">js</span><span class="p">:</span><span class="mi">123</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">npm</span> <span class="nx">ERR</span><span class="p">!</span>     <span class="nx">at</span> <span class="nf">processTicksAndRejections</span> <span class="p">(</span><span class="nx">internal</span><span class="o">/</span><span class="nx">process</span><span class="o">/</span><span class="nx">task_queues</span><span class="p">.</span><span class="nx">js</span><span class="p">:</span><span class="mi">95</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">npm</span> <span class="nx">ERR</span><span class="p">!</span>  <span class="nx">FetchError</span><span class="p">:</span> <span class="nx">request</span> <span class="nx">to</span> <span class="nx">https</span><span class="p">:</span><span class="c1">//mirrors.huaweicloud.com/repository/npm/patch-package failed, reason: connect ECONNREFUSED 127.0.0.1:1087
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nx">npm</span> <span class="nx">ERR</span><span class="p">!</span>     <span class="nx">at</span> <span class="nx">ClientRequest</span><span class="p">.&lt;</span><span class="nx">anonymous</span><span class="p">&gt;</span> <span class="p">(</span><span class="o">/</span><span class="nx">usr</span><span class="o">/</span><span class="nx">local</span><span class="o">/</span><span class="nx">lib</span><span class="o">/</span><span class="nx">node_modules</span><span class="o">/</span><span class="nx">npm</span><span class="o">/</span><span class="nx">node_modules</span><span class="o">/</span><span class="nx">node</span><span class="o">-</span><span class="nx">fetch</span><span class="o">-</span><span class="nx">npm</span><span class="o">/</span><span class="nx">src</span><span class="o">/</span><span class="nx">index</span><span class="p">.</span><span class="nx">js</span><span class="p">:</span><span class="mi">68</span><span class="p">:</span><span class="mi">14</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">npm</span> <span class="nx">ERR</span><span class="p">!</span>     <span class="nx">at</span> <span class="nx">ClientRequest</span><span class="p">.</span><span class="nf">emit</span> <span class="p">(</span><span class="nx">events</span><span class="p">.</span><span class="nx">js</span><span class="p">:</span><span class="mi">400</span><span class="p">:</span><span class="mi">28</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">npm</span> <span class="nx">ERR</span><span class="p">!</span>     <span class="nx">at</span> <span class="nf">onerror</span> <span class="p">(</span><span class="o">/</span><span class="nx">usr</span><span class="o">/</span><span class="nx">local</span><span class="o">/</span><span class="nx">lib</span><span class="o">/</span><span class="nx">node_modules</span><span class="o">/</span><span class="nx">npm</span><span class="o">/</span><span class="nx">node_modules</span><span class="o">/</span><span class="nx">agent</span><span class="o">-</span><span class="nx">base</span><span class="o">/</span><span class="nx">index</span><span class="p">.</span><span class="nx">js</span><span class="p">:</span><span class="mi">101</span><span class="p">:</span><span class="mi">9</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">npm</span> <span class="nx">ERR</span><span class="p">!</span>     <span class="nx">at</span> <span class="nf">callbackError</span> <span class="p">(</span><span class="o">/</span><span class="nx">usr</span><span class="o">/</span><span class="nx">local</span><span class="o">/</span><span class="nx">lib</span><span class="o">/</span><span class="nx">node_modules</span><span class="o">/</span><span class="nx">npm</span><span class="o">/</span><span class="nx">node_modules</span><span class="o">/</span><span class="nx">agent</span><span class="o">-</span><span class="nx">base</span><span class="o">/</span><span class="nx">index</span><span class="p">.</span><span class="nx">js</span><span class="p">:</span><span class="mi">123</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nx">npm</span> <span class="nx">ERR</span><span class="p">!</span>     <span class="nx">at</span> <span class="nf">processTicksAndRejections</span> <span class="p">(</span><span class="nx">internal</span><span class="o">/</span><span class="nx">process</span><span class="o">/</span><span class="nx">task_queues</span><span class="p">.</span><span class="nx">js</span><span class="p">:</span><span class="mi">95</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="nx">npm</span> <span class="nx">ERR</span><span class="p">!</span>   <span class="kd">type</span><span class="p">:</span> <span class="err">&#39;</span><span class="nx">system</span><span class="err">&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nx">npm</span> <span class="nx">ERR</span><span class="p">!</span>   <span class="nx">errno</span><span class="p">:</span> <span class="err">&#39;</span><span class="nx">ECONNREFUSED</span><span class="err">&#39;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"><span class="nx">npm</span> <span class="nx">ERR</span><span class="p">!</span>   <span class="nx">code</span><span class="p">:</span> <span class="err">&#39;</span><span class="nx">ECONNREFUSED</span><span class="err">&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">npm</span> <span class="nx">ERR</span><span class="p">!</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nx">npm</span> <span class="nx">ERR</span><span class="p">!</span> 
+</span></span><span class="line"><span class="cl"><span class="nx">npm</span> <span class="nx">ERR</span><span class="p">!</span> <span class="nx">If</span> <span class="nx">you</span> <span class="nx">are</span> <span class="nx">behind</span> <span class="nx">a</span> <span class="nx">proxy</span><span class="p">,</span> <span class="nx">please</span> <span class="nx">make</span> <span class="nx">sure</span> <span class="nx">that</span> <span class="nx">the</span>
+</span></span><span class="line"><span class="cl"><span class="nx">npm</span> <span class="nx">ERR</span><span class="p">!</span> <span class="err">&#39;</span><span class="nx">proxy</span><span class="err">&#39;</span> <span class="nx">config</span> <span class="nx">is</span> <span class="nx">set</span> <span class="nx">properly</span><span class="p">.</span>  <span class="nx">See</span><span class="p">:</span> <span class="err">&#39;</span><span class="nx">npm</span> <span class="nx">help</span> <span class="nx">config</span><span class="err">&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">npm</span> <span class="nx">ERR</span><span class="p">!</span> <span class="nx">A</span> <span class="nx">complete</span> <span class="nx">log</span> <span class="nx">of</span> <span class="nx">this</span> <span class="nx">run</span> <span class="nx">can</span> <span class="nx">be</span> <span class="nx">found</span> <span class="nx">in</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl"><span class="nx">npm</span> <span class="nx">ERR</span><span class="p">!</span>     <span class="o">/</span><span class="nx">Users</span><span class="o">/</span><span class="nx">yestin</span><span class="o">/</span><span class="p">.</span><span class="nx">npm</span><span class="o">/</span><span class="nx">_logs</span><span class="o">/</span><span class="mi">2022</span><span class="o">-</span><span class="mo">07</span><span class="o">-</span><span class="mi">14</span><span class="nx">T02_30_35_701Z</span><span class="o">-</span><span class="nx">debug</span><span class="p">.</span><span class="nx">log</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="搜">搜</h2>
+<p><a href="https://segmentfault.com/a/1190000023314583" target="_blank" rel="noopener noreffer ">https://segmentfault.com/a/1190000023314583</a></p>
+<p>solution:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"># 配置指向源
+</span></span><span class="line"><span class="cl">$ npm config set registry http://registry.npm.taobao.org
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>配置前</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">~/workspace/ihuaben-app dev_zy_i *2 !1 &gt; npm config list                                                                                                                    1m 12s 10:34:40
+</span></span><span class="line"><span class="cl">; cli configs
+</span></span><span class="line"><span class="cl">metrics-registry = &#34;https://mirrors.huaweicloud.com/repository/npm/&#34;
+</span></span><span class="line"><span class="cl">scope = &#34;&#34;
+</span></span><span class="line"><span class="cl">user-agent = &#34;npm/6.14.15 node/v14.18.3 darwin x64&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">; userconfig /Users/yestin/.npmrc
+</span></span><span class="line"><span class="cl">home = &#34;https://npm.taobao.org&#34;
+</span></span><span class="line"><span class="cl">registry = &#34;https://mirrors.huaweicloud.com/repository/npm/&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">; node bin location = /usr/local/bin/node
+</span></span><span class="line"><span class="cl">; cwd = /Users/yestin/workspace/ihuaben-app
+</span></span><span class="line"><span class="cl">; HOME = /Users/yestin
+</span></span><span class="line"><span class="cl">; &#34;npm config ls -l&#34; to show all defaults.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>配置后</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl"> npm config list                                                                                                                           10:39:05
+</span></span><span class="line"><span class="cl">; cli configs
+</span></span><span class="line"><span class="cl">metrics-registry = &#34;http://registry.npm.taobao.org/&#34;
+</span></span><span class="line"><span class="cl">scope = &#34;&#34;
+</span></span><span class="line"><span class="cl">user-agent = &#34;npm/6.14.15 node/v14.18.3 darwin x64&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">; userconfig /Users/yestin/.npmrc
+</span></span><span class="line"><span class="cl">home = &#34;https://npm.taobao.org&#34;
+</span></span><span class="line"><span class="cl">registry = &#34;http://registry.npm.taobao.org/&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">; node bin location = /usr/local/bin/node
+</span></span><span class="line"><span class="cl">; cwd = /Users/yestin/workspace/ihuaben-app
+</span></span><span class="line"><span class="cl">; HOME = /Users/yestin
+</span></span><span class="line"><span class="cl">; &#34;npm config ls -l&#34; to show all defaults.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>然后 安装成功</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">npm</span> <span class="nx">i</span> <span class="nx">patch</span><span class="o">-</span><span class="kn">package</span>                                                                                                                       <span class="mi">10</span><span class="p">:</span><span class="mi">39</span><span class="p">:</span><span class="mi">10</span>
+</span></span><span class="line"><span class="cl"><span class="nx">npm</span> <span class="nx">WARN</span> <span class="err">@</span><span class="nx">babel</span><span class="o">/</span><span class="nx">plugin</span><span class="o">-</span><span class="nx">bugfix</span><span class="o">-</span><span class="nx">v8</span><span class="o">-</span><span class="nx">spread</span><span class="o">-</span><span class="nx">parameters</span><span class="o">-</span><span class="nx">in</span><span class="o">-</span><span class="nx">optional</span><span class="o">-</span><span class="nx">chaining</span><span class="err">@</span><span class="mf">7.14.5</span> <span class="nx">requires</span> <span class="nx">a</span> <span class="nx">peer</span> <span class="nx">of</span> <span class="err">@</span><span class="nx">babel</span><span class="o">/</span><span class="nx">core</span><span class="err">@</span><span class="p">^</span><span class="mf">7.13.0</span> <span class="nx">but</span> <span class="nx">none</span> <span class="nx">is</span> <span class="nx">installed</span><span class="p">.</span> <span class="nx">You</span> <span class="nx">must</span> <span class="nx">install</span> <span class="nx">peer</span> <span class="nx">dependencies</span> <span class="nx">yourself</span><span class="p">.</span>
+</span></span><span class="line"><span class="cl"><span class="nx">npm</span> <span class="nx">WARN</span> <span class="err">@</span><span class="nx">babel</span><span class="o">/</span><span class="nx">plugin</span><span class="o">-</span><span class="nx">proposal</span><span class="o">-</span><span class="nx">class</span><span class="o">-</span><span class="nx">static</span><span class="o">-</span><span class="nx">block</span><span class="err">@</span><span class="mf">7.14.5</span> <span class="nx">requires</span> <span class="nx">a</span> <span class="nx">peer</span> <span class="nx">of</span> <span class="err">@</span><span class="nx">babel</span><span class="o">/</span><span class="nx">core</span><span class="err">@</span><span class="p">^</span><span class="mf">7.12.0</span> <span class="nx">but</span> <span class="nx">none</span> <span class="nx">is</span> <span class="nx">installed</span><span class="p">.</span> <span class="nx">You</span> <span class="nx">must</span> <span class="nx">install</span> <span class="nx">peer</span> <span class="nx">dependencies</span> <span class="nx">yourself</span><span class="p">.</span>
+</span></span><span class="line"><span class="cl"><span class="nx">npm</span> <span class="nx">WARN</span> <span class="err">@</span><span class="nx">react</span><span class="o">-</span><span class="nx">native</span><span class="o">-</span><span class="nx">community</span><span class="o">/</span><span class="nx">cameraroll</span><span class="err">@</span><span class="mf">1.2.1</span> <span class="nx">requires</span> <span class="nx">a</span> <span class="nx">peer</span> <span class="nx">of</span> <span class="nx">react</span><span class="o">-</span><span class="nx">native</span><span class="err">@</span><span class="o">&gt;=</span><span class="mf">0.57</span> <span class="o">&lt;=</span><span class="mf">0.59</span> <span class="nx">but</span> <span class="nx">none</span> <span class="nx">is</span> <span class="nx">installed</span><span class="p">.</span> <span class="nx">You</span> <span class="nx">must</span> <span class="nx">install</span> <span class="nx">peer</span> <span class="nx">dependencies</span> <span class="nx">yourself</span><span class="p">.</span>
+</span></span><span class="line"><span class="cl"><span class="o">...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">+</span> <span class="nx">patch</span><span class="o">-</span><span class="kn">package</span><span class="err">@</span><span class="mf">6.4.7</span>
+</span></span><span class="line"><span class="cl"><span class="nx">added</span> <span class="mi">12</span> <span class="nx">packages</span> <span class="nx">from</span> <span class="mi">23</span> <span class="nx">contributors</span> <span class="nx">and</span> <span class="nx">removed</span> <span class="mi">153</span> <span class="nx">packages</span> <span class="nx">in</span> <span class="mf">40.037</span><span class="nx">s</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="mi">52</span> <span class="nx">packages</span> <span class="nx">are</span> <span class="nx">looking</span> <span class="k">for</span> <span class="nx">funding</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">run</span> <span class="s">`npm fund`</span> <span class="k">for</span> <span class="nx">details</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>yarn</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-gdscript3" data-lang="gdscript3"><span class="line"><span class="cl"><span class="n">yarn</span> <span class="n">add</span> <span class="n">patch</span><span class="o">-</span><span class="n">package</span> <span class="n">postinstall</span><span class="o">-</span><span class="n">postinstall</span>                                                                                        <span class="mi">41</span><span class="n">s</span> <span class="mi">10</span><span class="p">:</span><span class="mi">40</span><span class="p">:</span><span class="mi">04</span>
+</span></span><span class="line"><span class="cl"><span class="n">yarn</span> <span class="n">add</span> <span class="n">v1</span><span class="o">.</span><span class="mf">22.19</span>
+</span></span><span class="line"><span class="cl"><span class="n">warning</span> <span class="n">package</span><span class="o">-</span><span class="n">lock</span><span class="o">.</span><span class="n">json</span> <span class="n">found</span><span class="o">.</span> <span class="n">Your</span> <span class="n">project</span> <span class="n">contains</span> <span class="n">lock</span> <span class="n">files</span> <span class="n">generated</span> <span class="n">by</span> <span class="n">tools</span> <span class="n">other</span> <span class="n">than</span> <span class="n">Yarn</span><span class="o">.</span> <span class="n">It</span> <span class="n">is</span> <span class="n">advised</span> <span class="ow">not</span> <span class="n">to</span> <span class="n">mix</span> <span class="n">package</span> <span class="n">managers</span> <span class="ow">in</span> <span class="n">order</span> <span class="n">to</span> <span class="n">avoid</span> <span class="n">resolution</span> <span class="n">inconsistencies</span> <span class="n">caused</span> <span class="n">by</span> <span class="n">unsynchronized</span> <span class="n">lock</span> <span class="n">files</span><span class="o">.</span> <span class="n">To</span> <span class="n">clear</span> <span class="n">this</span> <span class="n">warning</span><span class="p">,</span> <span class="n">remove</span> <span class="n">package</span><span class="o">-</span><span class="n">lock</span><span class="o">.</span><span class="n">json</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">4</span><span class="p">]</span> <span class="err">🔍</span>  <span class="n">Resolving</span> <span class="n">packages</span><span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="n">info</span> <span class="n">There</span> <span class="n">appears</span> <span class="n">to</span> <span class="n">be</span> <span class="n">trouble</span> <span class="n">with</span> <span class="n">your</span> <span class="n">network</span> <span class="n">connection</span><span class="o">.</span> <span class="n">Retrying</span><span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">2</span><span class="o">/</span><span class="mi">4</span><span class="p">]</span> <span class="err">🚚</span>  <span class="n">Fetching</span> <span class="n">packages</span><span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">3</span><span class="o">/</span><span class="mi">4</span><span class="p">]</span> <span class="err">🔗</span>  <span class="n">Linking</span> <span class="n">dependencies</span><span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="n">warning</span> <span class="s2">&#34;hox &gt; react-reconciler@0.25.1&#34;</span> <span class="n">has</span> <span class="n">incorrect</span> <span class="n">peer</span> <span class="n">dependency</span> <span class="s2">&#34;react@^16.13.1&#34;</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">warning</span> <span class="s2">&#34; &gt; mobx-react@5.3.5&#34;</span> <span class="n">has</span> <span class="n">unmet</span> <span class="n">peer</span> <span class="n">dependency</span> <span class="s2">&#34;mobx@^4.0.0 || ^5.0.0&#34;</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">warning</span> <span class="s2">&#34; &gt; react-native-elements@3.4.2&#34;</span> <span class="n">has</span> <span class="n">unmet</span> <span class="n">peer</span> <span class="n">dependency</span> <span class="s2">&#34;react-native-safe-area-context@^3.1.9&#34;</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">warning</span> <span class="s2">&#34; &gt; react-native-elements@3.4.2&#34;</span> <span class="n">has</span> <span class="n">incorrect</span> <span class="n">peer</span> <span class="n">dependency</span> <span class="s2">&#34;react-native-vector-icons@&gt;7.0.0&#34;</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">warning</span> <span class="s2">&#34; &gt; react-native-fs@2.18.0&#34;</span> <span class="n">has</span> <span class="n">unmet</span> <span class="n">peer</span> <span class="n">dependency</span> <span class="s2">&#34;react-native-windows@*&#34;</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">warning</span> <span class="s2">&#34; &gt; react-native-head-tab-view@2.1.7&#34;</span> <span class="n">has</span> <span class="n">incorrect</span> <span class="n">peer</span> <span class="n">dependency</span> <span class="s2">&#34;@react-native-community/viewpager@^3.3.0&#34;</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">warning</span> <span class="s2">&#34; &gt; react-native-iap@6.2.1&#34;</span> <span class="n">has</span> <span class="n">incorrect</span> <span class="n">peer</span> <span class="n">dependency</span> <span class="s2">&#34;react@&gt;=16.13.1&#34;</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">warning</span> <span class="s2">&#34;react-native-router-flux &gt; react-navigation-stack@1.10.3&#34;</span> <span class="n">has</span> <span class="n">incorrect</span> <span class="n">peer</span> <span class="n">dependency</span> <span class="s2">&#34;react-native-screens@^1.0.0 || ^1.0.0-alpha&#34;</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">warning</span> <span class="s2">&#34; &gt; react-native-selfadapt-modal@1.1.3&#34;</span> <span class="n">has</span> <span class="n">incorrect</span> <span class="n">peer</span> <span class="n">dependency</span> <span class="s2">&#34;react-native@^0.41.2&#34;</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">warning</span> <span class="s2">&#34;@react-native-community/eslint-config &gt; @typescript-eslint/eslint-plugin@1.13.0&#34;</span> <span class="n">has</span> <span class="n">incorrect</span> <span class="n">peer</span> <span class="n">dependency</span> <span class="s2">&#34;eslint@^5.0.0&#34;</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">warning</span> <span class="s2">&#34;@react-native-community/eslint-config &gt; @typescript-eslint/parser@1.13.0&#34;</span> <span class="n">has</span> <span class="n">incorrect</span> <span class="n">peer</span> <span class="n">dependency</span> <span class="s2">&#34;eslint@^5.0.0&#34;</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">warning</span> <span class="s2">&#34;@react-native-community/eslint-config &gt; eslint-plugin-react@7.12.4&#34;</span> <span class="n">has</span> <span class="n">incorrect</span> <span class="n">peer</span> <span class="n">dependency</span> <span class="s2">&#34;eslint@^3.0.0 || ^4.0.0 || ^5.0.0&#34;</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">warning</span> <span class="s2">&#34;@react-native-community/eslint-config &gt; eslint-plugin-react-native@3.6.0&#34;</span> <span class="n">has</span> <span class="n">incorrect</span> <span class="n">peer</span> <span class="n">dependency</span> <span class="s2">&#34;eslint@^3.17.0 || ^4 || ^5&#34;</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="mi">4</span><span class="o">/</span><span class="mi">4</span><span class="p">]</span> <span class="err">🔨</span>  <span class="n">Building</span> <span class="n">fresh</span> <span class="n">packages</span><span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="n">success</span> <span class="n">Saved</span> <span class="n">lockfile</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">success</span> <span class="n">Saved</span> <span class="mi">10</span> <span class="n">new</span> <span class="n">dependencies</span><span class="o">.</span>
+</span></span><span class="line"><span class="cl"><span class="n">info</span> <span class="n">Direct</span> <span class="n">dependencies</span>
+</span></span><span class="line"><span class="cl"><span class="err">├─</span> <span class="n">patch</span><span class="o">-</span><span class="n">package</span><span class="err">@</span><span class="mf">6.4</span><span class="o">.</span><span class="mi">7</span>
+</span></span><span class="line"><span class="cl"><span class="err">├─</span> <span class="n">postinstall</span><span class="o">-</span><span class="n">postinstall</span><span class="err">@</span><span class="mf">2.1</span><span class="o">.</span><span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="err">├─</span> <span class="n">react</span><span class="o">-</span><span class="n">native</span><span class="o">-</span><span class="n">gesture</span><span class="o">-</span><span class="n">handler</span><span class="err">@</span><span class="mf">1.10</span><span class="o">.</span><span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="err">└─</span> <span class="n">react</span><span class="o">-</span><span class="n">native</span><span class="o">-</span><span class="n">head</span><span class="o">-</span><span class="n">tab</span><span class="o">-</span><span class="n">view</span><span class="err">@</span><span class="mf">2.1</span><span class="o">.</span><span class="mi">7</span>
+</span></span><span class="line"><span class="cl"><span class="n">info</span> <span class="n">All</span> <span class="n">dependencies</span>
+</span></span><span class="line"><span class="cl"><span class="err">├─</span> <span class="err">@</span><span class="n">yarnpkg</span><span class="o">/</span><span class="n">lockfile</span><span class="err">@</span><span class="mf">1.1</span><span class="o">.</span><span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="err">├─</span> <span class="n">cross</span><span class="o">-</span><span class="n">fetch</span><span class="err">@</span><span class="mf">3.1</span><span class="o">.</span><span class="mi">5</span>
+</span></span><span class="line"><span class="cl"><span class="err">├─</span> <span class="n">find</span><span class="o">-</span><span class="n">yarn</span><span class="o">-</span><span class="n">workspace</span><span class="o">-</span><span class="n">root</span><span class="err">@</span><span class="mf">2.0</span><span class="o">.</span><span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="err">├─</span> <span class="n">klaw</span><span class="o">-</span><span class="n">sync</span><span class="err">@</span><span class="mf">6.0</span><span class="o">.</span><span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="err">├─</span> <span class="n">patch</span><span class="o">-</span><span class="n">package</span><span class="err">@</span><span class="mf">6.4</span><span class="o">.</span><span class="mi">7</span>
+</span></span><span class="line"><span class="cl"><span class="err">├─</span> <span class="n">picomatch</span><span class="err">@</span><span class="mf">2.3</span><span class="o">.</span><span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="err">├─</span> <span class="n">postinstall</span><span class="o">-</span><span class="n">postinstall</span><span class="err">@</span><span class="mf">2.1</span><span class="o">.</span><span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="err">├─</span> <span class="n">react</span><span class="o">-</span><span class="n">native</span><span class="o">-</span><span class="n">gesture</span><span class="o">-</span><span class="n">handler</span><span class="err">@</span><span class="mf">1.10</span><span class="o">.</span><span class="mi">3</span>
+</span></span><span class="line"><span class="cl"><span class="err">├─</span> <span class="n">react</span><span class="o">-</span><span class="n">native</span><span class="o">-</span><span class="n">head</span><span class="o">-</span><span class="n">tab</span><span class="o">-</span><span class="n">view</span><span class="err">@</span><span class="mf">2.1</span><span class="o">.</span><span class="mi">7</span>
+</span></span><span class="line"><span class="cl"><span class="err">└─</span> <span class="n">whatwg</span><span class="o">-</span><span class="n">url</span><span class="err">@</span><span class="mf">5.0</span><span class="o">.</span><span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="o">$</span> <span class="n">patch</span><span class="o">-</span><span class="n">package</span>
+</span></span><span class="line"><span class="cl"><span class="n">patch</span><span class="o">-</span><span class="n">package</span> <span class="mf">6.4</span><span class="o">.</span><span class="mi">7</span>
+</span></span><span class="line"><span class="cl"><span class="n">Applying</span> <span class="n">patches</span><span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="n">No</span> <span class="n">patch</span> <span class="n">files</span> <span class="n">found</span>
+</span></span><span class="line"><span class="cl"><span class="err">✨</span>  <span class="n">Done</span> <span class="ow">in</span> <span class="mf">93.67</span><span class="n">s</span><span class="o">.</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="优势">优势</h2>
+<p>一人 操作下面3步，其它人完全无感知，<code>npm i</code>时 自动完成补丁的应用</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">//package.json
+</span></span><span class="line"><span class="cl"> &#34;scripts&#34;: {
+</span></span><span class="line"><span class="cl">+  &#34;postinstall&#34;: &#34;patch-package&#34;
+</span></span><span class="line"><span class="cl"> }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">npm i patch-package
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">npx</span> <span class="nx">patch</span><span class="o">-</span><span class="kn">package</span> <span class="nx">libxx</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="遇到过的bug">遇到过的bug</h2>
+<h3 id="执行npm-ireact-native-image-crop-picker0380patch-apply会失败">执行<code>npm i</code>，<code>react-native-image-crop-picker+0.38.0.patch </code>apply会失败</h3>
+<ul>
+<li>方法1 删三方库重新安装（较快）</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">rm -rf node_modules/react-native-image-crop-picker &amp;&amp; npm i
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>方法2</li>
+</ul>
+<p>于是照着<code>react-native-image-crop-picker+0.38.0.patch</code>改文件里的源码，再次执行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">npx</span> <span class="nx">patch</span><span class="o">-</span><span class="kn">package</span> <span class="nx">react</span><span class="o">-</span><span class="nx">native</span><span class="o">-</span><span class="nx">image</span><span class="o">-</span><span class="nx">crop</span><span class="o">-</span><span class="nx">picker</span> <span class="o">--</span><span class="nx">include</span> <span class="err">&#39;</span><span class="nx">PickerModule</span><span class="p">.</span><span class="nx">java</span><span class="err">&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>发现<code>react-native-image-crop-picker+0.38.0.patch</code>什么也没改
+然后执行<code>npm i</code>就成功了</p>
+<p>后来发现原因，如下，<code>.patch</code>文件中，会出现好多行 带有绝对路径<code>/Users/...</code>的文件路径</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">-#Wed Jun 29 16:49:45 CST 2022
+</span></span><span class="line"><span class="cl">-/Users/lsye/ihuaben-app/node_modules/react-native-picker/android/src/main/res/layout/picker_view_linkage.xml=/Users/lsye/ihuaben-app/node_modules/react-native-picker/android/build/intermediates/packaged_res/debug/layout/picker_view_linkage.xml
+</span></span><span class="line"><span class="cl">... 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>可能是同事执行时，出现异常情况了</p>
+<h3 id="执行npx-patch-package-react-native-xx-patch会出现许多多余的文件字符串">执行<code>npx patch-package react-native-xx</code>, <code>.patch</code>会出现许多多余的文件字符串</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">index 408362c..5fd7d55 100644
+</span></span><span class="line"><span class="cl">Binary files a/node_modules/react-native-picker/android/build/intermediates/runtime_library_classes/release/classes.jar and b/node_modules/react-native-picker/android/build/intermediates/runtime_library_classes/release/classes.jar differ
+</span></span><span class="line"><span class="cl">diff --git a/node_modules/react-native-picker/android/src/main/java/com/beefe/picker/.DS_Store b/node_modules/react-native-picker/android/src/main/java/com/beefe/picker/.DS_Store
+</span></span><span class="line"><span class="cl">new file mode 100644
+</span></span><span class="line"><span class="cl">index 0000000..7a08108
+</span></span><span class="line"><span class="cl">Binary files /dev/null and b/node_modules/react-native-picker/android/src/main/java/com/beefe/picker/.DS_Store differ
+</span></span><span class="line"><span class="cl">diff --git a/node_modules/react-native-picker/android/src/main/java/com/beefe/picker/view/OnItemSelectedRunnable.java b/node_modules/react-native-picker/android/src/main/java/com/beefe/picker/view/OnItemSelectedRunnable.java
+</span></span><span class="line"><span class="cl">index c52b1a7..7990d96 100644
+</span></span><span class="line"><span class="cl">--- a/node_modules/react-native-picker/android/src/main/java/com/beefe/picker/view/OnItemSelectedRunnable.java
+</span></span><span class="line"><span class="cl">+++ b/node_modules/react-native-picker/android/src/main/java/com/beefe/picker/view/OnItemSelectedRunnable.java
+</span></span><span class="line"><span class="cl">@@ -10,6 +10,10 @@ final class OnItemSelectedRunnable implements Runnable {
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">     @Override
+</span></span><span class="line"><span class="cl">     public final void run() {
+</span></span><span class="line"><span class="cl">-        loopView.onItemSelectedListener.onItemSelected(loopView.getSelectedItem(),loopView.getSelectedIndex());
+</span></span><span class="line"><span class="cl">+        try {
+</span></span><span class="line"><span class="cl">+            loopView.onItemSelectedListener.onItemSelected(loopView.getSelectedItem(), loopView.getSelectedIndex());
+</span></span><span class="line"><span class="cl">+        } catch (Exception e) {
+</span></span><span class="line"><span class="cl">+            e.printStackTrace();
+</span></span><span class="line"><span class="cl">+        }
+</span></span><span class="line"><span class="cl">     }
+</span></span><span class="line"><span class="cl"> }
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>原因是 安卓build之后的产物，在执行<code>npx patch-package ...</code>时 被莫名其妙带进去了</p>
+<p><strong>解决方案</strong></p>
+<ul>
+<li>
+<p>方法1<br>
+可以把改后的文件拷贝出来，将三方库删了重装，再覆盖 拷贝的文件，再执行<code>npx patch-package ...</code></p>
+</li>
+<li>
+<p>方法2<br>
+使用绝对路径</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="nx">npx</span> <span class="nx">patch</span><span class="o">-</span><span class="kn">package</span> <span class="nx">react</span><span class="o">-</span><span class="nx">native</span><span class="o">-</span><span class="nx">xx</span> <span class="o">--</span><span class="nx">include</span> <span class="err">&#39;</span><span class="nx">file1</span><span class="p">|</span><span class="nx">file2</span><span class="err">&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2024-03-13&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/fe6d024bf060c4c6afc0794af903284554755450" target="_blank" title="commit by zhaoyang(zhaoyang@ihuaben.com) fe6d024bf060c4c6afc0794af903284554755450: update doc 《从0到1用Jenkins实现对RN项目一键打包、发布》">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>fe6d024</a></span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/zyestin/tool-npm-patch/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zyestin.github.io/zyestin/tool-npm-patch/" data-title="patch-package 补丁工具使用" data-via="YestinZz" data-hashtags="react-native"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zyestin.github.io/zyestin/tool-npm-patch/" data-hashtag="react-native"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zyestin.github.io/zyestin/tool-npm-patch/" data-title="patch-package 补丁工具使用"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zyestin.github.io/zyestin/tool-npm-patch/" data-title="patch-package 补丁工具使用"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zyestin.github.io/zyestin/tool-npm-patch/" data-title="patch-package 补丁工具使用"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/zyestin/tags/react-native/">react-native</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/zyestin/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/zyestin/vscode-efficient/" class="prev" rel="prev" title="React Native 在VSCode编码提效"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>React Native 在VSCode编码提效</a>
+            <a href="/zyestin/tool-npm/" class="next" rel="next" title="npm 工具">npm 工具<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://giscus.app">Giscus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.122.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/zyestin" target="_blank">zyestin</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"giscus":{"category":"Announcements","categoryId":"DIC_kwDOKJ2IzM4Celi_","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zyestin/zyestin","repoId":"R_kgDOKJ2IzA"}},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.en","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/zyestin/js/theme.min.js"></script></body>
+</html>

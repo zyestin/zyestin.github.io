@@ -138,6 +138,24 @@
   <div class="bg-white mb3 pa4 gray overflow-hidden">
     <span class="f6 db">Posts</span>
     <h1 class="f3 near-black">
+      <a href="/zyestin/posts/rn/art-text/" class="link black dim">
+        远程字体的动态加载&amp;应用
+      </a>
+    </h1>
+    <div class="nested-links f5 lh-copy nested-copy-line-height">
+      示例效果展示 切换到新字体，经过loading后，应用上新字体 切换到已加载过的字体，直接应用上 iOS Android 使用/Usage 封装后，如下这样使用，解耦的干干净净
+import { StyleSheet, Text, TouchableOpacity, View } from &#34;react-native&#34;; import React, { useState } from &#34;react&#34;; import ArtText from &#34;./ArtText&#34;; const ArtTextDemo = () =&gt; { const [fontInfoIndex, setFontInfoIndex] = useState(0); return ( &lt;View style={{ flex: 1, padding:100 }}&gt; &lt;TouchableOpacity style={{padding:10}} onPress={() =&gt; { setFontInfoIndex((fontInfoIndex + 1) % fontInfoList.length); }} &gt; &lt;Text&gt;{&#34;Switch Font&#34;}&lt;/Text&gt; &lt;/TouchableOpacity&gt; &lt;Text style={{ marginVertical: 20 }}&gt; {&#34;Current font - &#34; + fontInfoIndex + &#34; - &#34; + fontInfoList[fontInfoIndex].
+    </div>
+  </div>
+</div>
+
+        </div>
+      
+        <div class="relative w-100 w-30-l mb4 bg-white">
+          <div class="relative w-100 mb4 bg-white nested-copy-line-height">
+  <div class="bg-white mb3 pa4 gray overflow-hidden">
+    <span class="f6 db">Posts</span>
+    <h1 class="f3 near-black">
       <a href="/zyestin/posts/hugo-usage/" class="link black dim">
         hugo &#43; github pages usage
       </a>

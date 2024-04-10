@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>第一次提交PR给react-native - zyestin</title><meta name="Description" content="Hugo theme - LoveIt"><meta property="og:title" content="第一次提交PR给react-native" />
+<meta property="og:description" content="用了3年RN了，第一次给RN提交PR，有点激动，值得记录呀！
+操作记录 git操作全在github完成
+2023.12.05 7:52PM 提交 fork -&gt; 创建分支 -&gt; 改代码 -&gt; 提交
+然后进入pull request tab ，就能看到Compare &amp; pull request入口，点击它
+生成的PR地址： https://github.com/facebook/react-native/pull/41803
+然后就进入 PR描述编辑区，按提示编辑完，提交即可
+首次提交PR，提示需要签署CLA
+跳转到这里 https://github.com/facebook/react-native/pull/41803/checks?check_run_id=19326140445
+再打开 https://code.facebook.com/cla， 进行签署CLA
+签署后，这个页面就进入一个无法编辑的状态，虽然顶部有提示，如果在签CLA之前已经提交了一个，再耐心等待会，会自动处理的
+👉🏻这个友人的经历是很好的借鉴
+于是，从21:49，等啊等，到了 23:54，才有反馈
+第二天早上一看 10:13，还给了我建议，我点击一下 Commit suggestion就ok了
+最后就差maintainer批准了 一般多久批准呢？ 浏览了2个merged的PR，都是2天
+2023.12.13 11:24PM 终于收到邮件 PR被合并 1 This pull request was successfully merged by @zyestin in 5217cc9. 并且紧接着收到邮件 PR被关闭 1 Closed #41803 via 5217cc9. 那何时 带有我贡献的代码 会被发布呢？
+等待下一个版本被推出的时候咯
+待续~" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://zyestin.github.io/zyestin/rn-pull-request/" /><meta property="og:image" content="https://zyestin.github.io/logo.png" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-12-18T12:00:11+08:00" />
+<meta property="article:modified_time" content="2023-12-18T18:07:32+08:00" /><meta property="og:site_name" content="LoveIt-zyestin" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://zyestin.github.io/logo.png" /><meta name="twitter:title" content="第一次提交PR给react-native"/>
+<meta name="twitter:description" content="用了3年RN了，第一次给RN提交PR，有点激动，值得记录呀！
+操作记录 git操作全在github完成
+2023.12.05 7:52PM 提交 fork -&gt; 创建分支 -&gt; 改代码 -&gt; 提交
+然后进入pull request tab ，就能看到Compare &amp; pull request入口，点击它
+生成的PR地址： https://github.com/facebook/react-native/pull/41803
+然后就进入 PR描述编辑区，按提示编辑完，提交即可
+首次提交PR，提示需要签署CLA
+跳转到这里 https://github.com/facebook/react-native/pull/41803/checks?check_run_id=19326140445
+再打开 https://code.facebook.com/cla， 进行签署CLA
+签署后，这个页面就进入一个无法编辑的状态，虽然顶部有提示，如果在签CLA之前已经提交了一个，再耐心等待会，会自动处理的
+👉🏻这个友人的经历是很好的借鉴
+于是，从21:49，等啊等，到了 23:54，才有反馈
+第二天早上一看 10:13，还给了我建议，我点击一下 Commit suggestion就ok了
+最后就差maintainer批准了 一般多久批准呢？ 浏览了2个merged的PR，都是2天
+2023.12.13 11:24PM 终于收到邮件 PR被合并 1 This pull request was successfully merged by @zyestin in 5217cc9. 并且紧接着收到邮件 PR被关闭 1 Closed #41803 via 5217cc9. 那何时 带有我贡献的代码 会被发布呢？
+等待下一个版本被推出的时候咯
+待续~"/>
+<meta name="twitter:site" content="@YestinZz"/>
+<meta name="application-name" content="LoveIt-zyestin">
+<meta name="apple-mobile-web-app-title" content="LoveIt-zyestin"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://avatars.githubusercontent.com/u/51897571?s=40&amp;v=4"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://zyestin.github.io/zyestin/rn-pull-request/" /><link rel="prev" href="https://zyestin.github.io/zyestin/waterfall-list-autoscroll/" /><link rel="next" href="https://zyestin.github.io/zyestin/status-sync-global/" /><link rel="stylesheet" href="/zyestin/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "第一次提交PR给react-native",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/zyestin.github.io\/zyestin\/rn-pull-request\/"
+        },"image": ["https:\/\/avatars.githubusercontent.com\/u\/51897571?s=40\u0026v=4"],"genre": "posts","keywords": "react-native","wordcount":  68 ,
+        "url": "https:\/\/zyestin.github.io\/zyestin\/rn-pull-request\/","datePublished": "2023-12-18T12:00:11+08:00","dateModified": "2023-12-18T18:07:32+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "zyestin","logo": "https:\/\/avatars.githubusercontent.com\/u\/51897571?s=40\u0026v=4"},"author": {
+                "@type": "Person",
+                "name": "zyestin"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/zyestin/" title="zyestin"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>LoveIt</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/zyestin/posts/"> Posts </a><a class="menu-item" href="/zyestin/tags/"> Tags </a><a class="menu-item" href="/zyestin/categories/"> Categories </a><a class="menu-item" href="/zyestin/categories/documentation/"> Docs </a><a class="menu-item" href="/zyestin/about/"> About </a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a><a href="javascript:void(0);" class="menu-item language" title="Select Language">
+                    <i class="fa fa-globe" aria-hidden="true"></i>                      
+                    <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/zyestin/rn-pull-request/" selected>English</option></select>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/zyestin/" title="zyestin"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>LoveIt</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/zyestin/posts/" title="">Posts</a><a class="menu-item" href="/zyestin/tags/" title="">Tags</a><a class="menu-item" href="/zyestin/categories/" title="">Categories</a><a class="menu-item" href="/zyestin/categories/documentation/" title="">Docs</a><a class="menu-item" href="/zyestin/about/" title="">About</a><a class="menu-item" href="https://github.com/dillonzq/LoveIt" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="Select Language">
+                    <i class="fa fa-globe fa-fw" aria-hidden="true"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/zyestin/rn-pull-request/" selected>English</option></select>
+                </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">第一次提交PR给react-native</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/zyestin" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>zyestin</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-12-18">2023-12-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;68 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#操作记录">操作记录</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>用了3年RN了，第一次给RN提交PR，有点激动，值得记录呀！</p>
+<h2 id="操作记录">操作记录</h2>
+<p>git操作全在github完成</p>
+<ul>
+<li><strong><u>2023.12.05 7:52PM</u></strong> 提交</li>
+</ul>
+<p><code>fork</code> -&gt; 创建分支 -&gt; 改代码 -&gt; 提交</p>
+<p>然后进入<code>pull request</code> tab ，就能看到<code>Compare &amp; pull request</code>入口，点击它</p>
+<blockquote>
+<p>生成的PR地址：
+<a href="https://github.com/facebook/react-native/pull/41803" target="_blank" rel="noopener noreffer ">https://github.com/facebook/react-native/pull/41803</a></p>
+</blockquote>
+<p>然后就进入 PR描述编辑区，按提示编辑完，提交即可</p>
+<p>首次提交PR，提示需要签署CLA</p>
+<p><img
+        class="lazyload"
+        src="/zyestin/svg/loading.min.svg"
+        data-src="/zyestin/rn-pull-request/media/17017774574258/17017777560530.jpg"
+        data-srcset="/zyestin/rn-pull-request/media/17017774574258/17017777560530.jpg, /zyestin/rn-pull-request/media/17017774574258/17017777560530.jpg 1.5x, /zyestin/rn-pull-request/media/17017774574258/17017777560530.jpg 2x"
+        data-sizes="auto"
+        alt="/zyestin/rn-pull-request/media/17017774574258/17017777560530.jpg"
+        title="/zyestin/rn-pull-request/media/17017774574258/17017777560530.jpg" width="2264" height="1404" /></p>
+<p>跳转到这里
+<a href="https://github.com/facebook/react-native/pull/41803/checks?check_run_id=19326140445" target="_blank" rel="noopener noreffer ">https://github.com/facebook/react-native/pull/41803/checks?check_run_id=19326140445</a></p>
+<p>再打开  <a href="https://code.facebook.com/cla" target="_blank" rel="noopener noreffer ">https://code.facebook.com/cla</a>， 进行签署CLA</p>
+<p><img
+        class="lazyload"
+        src="/zyestin/svg/loading.min.svg"
+        data-src="/zyestin/rn-pull-request/media/17017774574258/17017774633833.jpg"
+        data-srcset="/zyestin/rn-pull-request/media/17017774574258/17017774633833.jpg, /zyestin/rn-pull-request/media/17017774574258/17017774633833.jpg 1.5x, /zyestin/rn-pull-request/media/17017774574258/17017774633833.jpg 2x"
+        data-sizes="auto"
+        alt="/zyestin/rn-pull-request/media/17017774574258/17017774633833.jpg"
+        title="/zyestin/rn-pull-request/media/17017774574258/17017774633833.jpg" width="3096" height="1800" /></p>
+<p>签署后，这个页面就进入一个无法编辑的状态，虽然顶部有提示，如果在签CLA之前已经提交了一个，再耐心等待会，会自动处理的</p>
+<blockquote>
+<p>👉🏻<a href="https://juejin.cn/post/7056792726104178702" target="_blank" rel="noopener noreffer ">这个友人的经历是很好的借鉴</a></p>
+</blockquote>
+<p>于是，从21:49，等啊等，到了 23:54，才有反馈</p>
+<p><img
+        class="lazyload"
+        src="/zyestin/svg/loading.min.svg"
+        data-src="/zyestin/rn-pull-request/media/17017774574258/17018283116105.jpg"
+        data-srcset="/zyestin/rn-pull-request/media/17017774574258/17018283116105.jpg, /zyestin/rn-pull-request/media/17017774574258/17018283116105.jpg 1.5x, /zyestin/rn-pull-request/media/17017774574258/17018283116105.jpg 2x"
+        data-sizes="auto"
+        alt="/zyestin/rn-pull-request/media/17017774574258/17018283116105.jpg"
+        title="/zyestin/rn-pull-request/media/17017774574258/17018283116105.jpg" width="2030" height="1466" /></p>
+<p>第二天早上一看 10:13，还给了我建议，我点击一下 <code>Commit suggestion</code>就ok了</p>
+<p>最后就差<code>maintainer</code>批准了
+<img
+        class="lazyload"
+        src="/zyestin/svg/loading.min.svg"
+        data-src="/zyestin/rn-pull-request/media/17017774574258/17018284043383.jpg"
+        data-srcset="/zyestin/rn-pull-request/media/17017774574258/17018284043383.jpg, /zyestin/rn-pull-request/media/17017774574258/17018284043383.jpg 1.5x, /zyestin/rn-pull-request/media/17017774574258/17018284043383.jpg 2x"
+        data-sizes="auto"
+        alt="/zyestin/rn-pull-request/media/17017774574258/17018284043383.jpg"
+        title="/zyestin/rn-pull-request/media/17017774574258/17018284043383.jpg" width="1998" height="1358" /></p>
+<blockquote>
+<p>一般多久批准呢？
+浏览了2个merged的PR，都是2天</p>
+</blockquote>
+<hr>
+<ul>
+<li><strong><u>2023.12.13 11:24PM</u></strong> 终于收到邮件 PR被合并</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">This pull request was successfully merged by @zyestin in 5217cc9.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>并且紧接着收到邮件 PR被关闭</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Closed #41803 via 5217cc9.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img
+        class="lazyload"
+        src="/zyestin/svg/loading.min.svg"
+        data-src="/zyestin/rn-pull-request/media/17017774574258/17026222613956.jpg"
+        data-srcset="/zyestin/rn-pull-request/media/17017774574258/17026222613956.jpg, /zyestin/rn-pull-request/media/17017774574258/17026222613956.jpg 1.5x, /zyestin/rn-pull-request/media/17017774574258/17026222613956.jpg 2x"
+        data-sizes="auto"
+        alt="/zyestin/rn-pull-request/media/17017774574258/17026222613956.jpg"
+        title="/zyestin/rn-pull-request/media/17017774574258/17026222613956.jpg" width="2986" height="1704" /></p>
+<blockquote>
+<p>那何时 带有我贡献的代码 会被发布呢？<br>
+等待下一个版本被推出的时候咯</p>
+</blockquote>
+<hr>
+<p>待续~</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2023-12-18&nbsp;<a class="git-hash" href="https://github.com/dillonzq/LoveIt/commit/02ad38840a4f06550314524bb241d4037bfb5ad7" target="_blank" title="commit by zhaoyang(zhaoyang@ihuaben.com) 02ad38840a4f06550314524bb241d4037bfb5ad7: add 《第一次提交PR给react-native》">
+                                    <i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>02ad388</a></span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/zyestin/rn-pull-request/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://zyestin.github.io/zyestin/rn-pull-request/" data-title="第一次提交PR给react-native" data-via="YestinZz" data-hashtags="react-native"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://zyestin.github.io/zyestin/rn-pull-request/" data-hashtag="react-native"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://zyestin.github.io/zyestin/rn-pull-request/" data-title="第一次提交PR给react-native"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://zyestin.github.io/zyestin/rn-pull-request/" data-title="第一次提交PR给react-native"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://zyestin.github.io/zyestin/rn-pull-request/" data-title="第一次提交PR给react-native"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/zyestin/tags/react-native/">react-native</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/zyestin/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/zyestin/waterfall-list-autoscroll/" class="prev" rel="prev" title=" 实现 FlatList 、flashList、masonryFlashList 各种列表的自动滚动动画"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i> 实现 FlatList 、flashList、masonryFlashList 各种列表的自动滚动动画</a>
+            <a href="/zyestin/status-sync-global/" class="next" rel="next" title="最佳实践 点赞(收藏等)状态的全局同步更新">最佳实践 点赞(收藏等)状态的全局同步更新<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"><div id="giscus" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://giscus.app">Giscus</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.122.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.11"><i class="far fa-kiss-wink-heart fa-fw" aria-hidden="true"></i> LoveIt</a>
+                </div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2019 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/zyestin" target="_blank">zyestin</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{"giscus":{"category":"Announcements","categoryId":"DIC_kwDOKJ2IzM4Celi_","darkTheme":"dark","emitMetadata":"0","inputPosition":"bottom","lang":"en","lazyLoading":false,"lightTheme":"light","mapping":"pathname","reactionsEnabled":"1","repo":"zyestin/zyestin","repoId":"R_kgDOKJ2IzA"}},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.en","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/zyestin/js/theme.min.js"></script></body>
+</html>
