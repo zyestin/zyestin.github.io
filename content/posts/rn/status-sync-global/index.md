@@ -2,7 +2,8 @@
 title: "最佳实践 点赞(收藏等)状态的全局同步更新"
 date: 2023-12-18T12:00:11+08:00
 draft: false
-tags: [react-native]
+categories: [react-native]
+tags: [best-practice, react-native]
 ---
 
 

@@ -2,6 +2,7 @@
 title: "模仿抖音、小红书 输入 #标签 高亮"
 date: 2023-11-01T12:00:11+08:00
 draft: false
+categories: [react-native]
 tags: [react-native]
 ---
 

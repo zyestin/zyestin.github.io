@@ -2,6 +2,7 @@
 title: "实现 差不多理想的极简RN弹窗"
 date: 2023-11-01T12:00:11+08:00
 draft: false
+categories: [react-native]
 tags: [best-practice, react-native]
 ---
 

@@ -1,0 +1,48 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>react - Category - zyestin</title>
+        <link>https://zyestin.github.io/zyestin/categories/react/</link>
+        <description>react - Category - zyestin</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>zyestin@gmail.com (zyestin)</managingEditor>
+            <webMaster>zyestin@gmail.com (zyestin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 01 Nov 2023 12:00:11 &#43;0800</lastBuildDate><atom:link href="https://zyestin.github.io/zyestin/categories/react/" rel="self" type="application/rss+xml" /><item>
+    <title>hooks开发工具</title>
+    <link>https://zyestin.github.io/zyestin/tool-dev-react/</link>
+    <pubDate>Wed, 01 Nov 2023 12:00:11 &#43;0800</pubDate>
+    <author>zyestin</author>
+    <guid>https://zyestin.github.io/zyestin/tool-dev-react/</guid>
+    <description><![CDATA[常用hooks依赖检查，从源头提醒避免奇葩bug https://github.com/facebook/react/issues/14920
+ESLint提供，检查useEffect依赖 &amp;&amp; autoFix，
+用上后 估计能大大降低 无法获取state最新值、漏掉依赖后奇怪的bug]]></description>
+</item>
+<item>
+    <title>React 学习</title>
+    <link>https://zyestin.github.io/zyestin/course-react/</link>
+    <pubDate>Wed, 01 Nov 2023 12:00:11 &#43;0800</pubDate>
+    <author>zyestin</author>
+    <guid>https://zyestin.github.io/zyestin/course-react/</guid>
+    <description><![CDATA[ 学习《React Hooks 核心原理与实战》笔记
+hooks开发工具
+常用hooks依赖检查，从源头提醒避免奇葩bug[todo] &hellip; ]]></description>
+</item>
+<item>
+    <title>学习《React Hooks 核心原理与实战》笔记</title>
+    <link>https://zyestin.github.io/zyestin/course-react-hooks/</link>
+    <pubDate>Wed, 01 Nov 2023 12:00:11 &#43;0800</pubDate>
+    <author>zyestin</author>
+    <guid>https://zyestin.github.io/zyestin/course-react-hooks/</guid>
+    <description><![CDATA[《React Hooks 核心原理与实战》学习 hooks Q: 为什么 Facebook 要发明React Hooks？React Hooks 解决了什么问题？
+A: 简化了逻辑重用
+hooks之前，复用逻辑要用到高阶组件或者render props
+组件每次渲染，内部的函数会重新创建，导致 接收传递函数的子组件 也重新渲染
+useCallback 对组件间传递的 (回调)函数 尽量都包裹 useMemo 缓存计算 useCallback，useMemo 只是为了避免 React 组件的重复渲染而导致的性能损失。
+而对于原生的节点，比如 div, input 这些，它们已经是原子节点了，不再有子节点， 所以不存在重复刷新带来的性能损失。
+useEffect执行时机是 DOM渲染后 useEffect中用到的变量，需要作为依赖参数 拆分复杂组件：不同逻辑拆到不同的Hooks里 Context 适用场景：仅 主题色、语言切换 redux 数据共享 避免不必要的请求 state 使用注意 state 避免定义多余的，找唯一数据源头 去发起改变 上次同事libin提到过这个场景：A传参value1给B，B又传value1给C，C里面能触发改变value1
+方案1：C中的操作触发value1变更时，C不维护value1 state，由C回调给B再回调给A，由A改变value1，从而重新渲染B、C
+方案2：C中的操作触发value1变更时，C改变C内部的value1，同时回调给B、A去更新(C外部)对应的value1
+根据这篇来看，更倾向于方案1 。避免在子组件定义多余的state(value1)，找唯一数据源头A 去发起改变
+设计模式 所谓「设计模式」，就是针对特定场景，提供一种公认的最佳实践
+保证状态的唯一数据源 语义化的拆分复杂组件 Hooks 的一个重要规则，即：Hooks 必须在顶层作用域调用 而不能放在条件判断、循环等语句中，同时也不能在可能的 return 语句之后执行。换句话说，Hooks 必须按顺序被执行到。
+容器模式，把条件判断的结果放到两个组件之中。可用Hooks替代 1 2 3 4 function CounterRenderProps({ children }) { .]]></description>
+</item>
+</channel>
+</rss>

@@ -2,6 +2,7 @@
 title: "React Native 开发沉淀"
 date: 2023-11-01T12:00:11+08:00
 draft: false
+categories: [react-native]
 tags: [contribution, react-native]
 ---
 

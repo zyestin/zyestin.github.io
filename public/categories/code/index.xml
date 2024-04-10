@@ -1,0 +1,23 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>code - Category - zyestin</title>
+        <link>https://zyestin.github.io/zyestin/categories/code/</link>
+        <description>code - Category - zyestin</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>zyestin@gmail.com (zyestin)</managingEditor>
+            <webMaster>zyestin@gmail.com (zyestin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 01 Nov 2023 12:00:11 &#43;0800</lastBuildDate><atom:link href="https://zyestin.github.io/zyestin/categories/code/" rel="self" type="application/rss+xml" /><item>
+    <title>代码规范</title>
+    <link>https://zyestin.github.io/zyestin/code-standards/</link>
+    <pubDate>Wed, 01 Nov 2023 12:00:11 &#43;0800</pubDate>
+    <author>zyestin</author>
+    <guid>https://zyestin.github.io/zyestin/code-standards/</guid>
+    <description><![CDATA[讨论背景 相信大家写代码时 对自己都有一些要求，比如下面的
+基本期望：写出他人能容易看懂的代码 更高追求：写出他人看起来很爽的代码 每经历一个阶段，大家都对编码有不同程度的进步提升，可以分享；同时也会积累一些场景下代码如屎的烦恼，想要破局。
+于是，阶段性的，需要一个机会，大家开个交流会进行讨论
+（对于每个个体）互通有无，集思广益，团队每人都有所提升 （对于互相之间协作）更多地了解到彼此 阅读代码、写代码的风格习惯，增进理解 （对于工作）对现阶段遇到的痛点，找出更优解，或制定调研计划 每次讨论，规范条款上的收获，不在于多少，至少会收获了一些代码细节上的技巧或认知，最重要的是 大大增进了互相的了解，协作起来将越来越紧密顺畅。
+讨论成果 组件代码结构 关键点: 打开文件后，更方便的看到核心代码（那就尽量靠前咯）
+也就是 render/return组件 之前的代码量尽可能少；那么，就需要通过函数提炼、划分职责等方式转移到别处。
+组件代码 书写顺序 示例如下
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 // AAView.]]></description>
+</item>
+</channel>
+</rss>

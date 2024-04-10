@@ -2,6 +2,7 @@
 title: "横向 瀑布流列表"
 date: 2023-11-01T12:00:11+08:00
 draft: false
+categories: [react-native]
 tags: [react-native]
 ---
 

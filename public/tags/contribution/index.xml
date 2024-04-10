@@ -1,0 +1,68 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>contribution - Tag - zyestin</title>
+        <link>https://zyestin.github.io/zyestin/tags/contribution/</link>
+        <description>contribution - Tag - zyestin</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>zyestin@gmail.com (zyestin)</managingEditor>
+            <webMaster>zyestin@gmail.com (zyestin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 18 Dec 2023 12:00:11 &#43;0800</lastBuildDate><atom:link href="https://zyestin.github.io/zyestin/tags/contribution/" rel="self" type="application/rss+xml" /><item>
+    <title>第一次提交PR给react-native</title>
+    <link>https://zyestin.github.io/zyestin/rn-pull-request/</link>
+    <pubDate>Mon, 18 Dec 2023 12:00:11 &#43;0800</pubDate>
+    <author>zyestin</author>
+    <guid>https://zyestin.github.io/zyestin/rn-pull-request/</guid>
+    <description><![CDATA[用了3年RN了，第一次给RN提交PR，有点激动，值得记录呀！
+操作记录 git操作全在github完成
+2023.12.05 7:52PM 提交 fork -&gt; 创建分支 -&gt; 改代码 -&gt; 提交
+然后进入pull request tab ，就能看到Compare &amp; pull request入口，点击它
+生成的PR地址： https://github.com/facebook/react-native/pull/41803
+然后就进入 PR描述编辑区，按提示编辑完，提交即可
+首次提交PR，提示需要签署CLA
+跳转到这里 https://github.com/facebook/react-native/pull/41803/checks?check_run_id=19326140445
+再打开 https://code.facebook.com/cla， 进行签署CLA
+签署后，这个页面就进入一个无法编辑的状态，虽然顶部有提示，如果在签CLA之前已经提交了一个，再耐心等待会，会自动处理的
+👉🏻这个友人的经历是很好的借鉴
+于是，从21:49，等啊等，到了 23:54，才有反馈
+第二天早上一看 10:13，还给了我建议，我点击一下 Commit suggestion就ok了
+最后就差maintainer批准了 一般多久批准呢？ 浏览了2个merged的PR，都是2天
+2023.12.13 11:24PM 终于收到邮件 PR被合并 1 This pull request was successfully merged by @zyestin in 5217cc9. 并且紧接着收到邮件 PR被关闭 1 Closed #41803 via 5217cc9. 那何时 带有我贡献的代码 会被发布呢？
+等待下一个版本被推出的时候咯
+待续~]]></description>
+</item>
+<item>
+    <title>React Native 开发沉淀</title>
+    <link>https://zyestin.github.io/zyestin/readme/</link>
+    <pubDate>Wed, 01 Nov 2023 12:00:11 &#43;0800</pubDate>
+    <author>zyestin</author>
+    <guid>https://zyestin.github.io/zyestin/readme/</guid>
+    <description><![CDATA[一些业务的最佳实践探索 基础组件封装
+瀑布流列表base组件 图片base组件 &hellip; 实现 模仿抖音、小红书 输入 #标签 高亮
+瀑布流列表
+瀑布流最佳实践：双列均匀分布，高度计算&amp;缓存 实现 瀑布流列表·自动滚动动画 实现 横向·瀑布流列表 实现 仿抖音/小红书 对贴图/贴字 进行拖拽、缩放、旋转等复杂手势
+封装一个 易用的、远程字体动态下载&amp;应用组件
+封装一个 低耦合、易用的文本输入框弹窗
+实现 差不多理想的极简RN弹窗
+最佳实践 点赞(收藏等)状态的全局同步更新
+实践 列表Item精确曝光埋点 [todo]
+实践 多tab多列表滑动吸顶效果 [todo]
+实践 服务端下发自定义组件代码 前端接收&amp;渲染[todo]
+实践 拆包 [todo]
+组件库 易用的应用远程字体的text组件库 - react-native-remote-font 其它（提效、工具、学习&hellip;) 探究 代码规范
+React Native 编码提效 on VSCode
+用脚手架 制作一个RN库 放npm(含踏坑记录)
+贡献给react-native的第一个PR
+React学习收获
+学习《React Hooks 核心原理与实战》笔记 常用hooks依赖检查，从源头提醒避免奇葩bug &hellip; npm 好用工具
+patch-package 补丁工具使用 &hellip; 从0到1用Jenkins实现对RN项目一键打包、发布]]></description>
+</item>
+<item>
+    <title>用脚手架 制作一个RN库 放npm</title>
+    <link>https://zyestin.github.io/zyestin/create-npm-lib/</link>
+    <pubDate>Wed, 01 Nov 2023 12:00:11 &#43;0800</pubDate>
+    <author>zyestin</author>
+    <guid>https://zyestin.github.io/zyestin/create-npm-lib/</guid>
+    <description><![CDATA[脚手架 create-react-native-module
+脚手架使用（顺利） 工具安装 1 2 npm install -g yarn npm install -g create-react-native-module 脚手架命令 1 create-react-native-module RemoteFont --object-class-name react-native-remote-font --object-class-name RemoteFontLoader --native-package-id com.yestin.font --platforms ios,android --github-account zyestin --author-name yestin --author-email zyestin@gmail.com --generate-example --example-react-native-template react-native@0.62 过程中发现，若不指定--example-react-native-template react-native@0.62，发现总有这样的报错日志
+1 2 3 4 5 6 7 8 9 10 11 pod --version failure, aborting with broken example app Error while creating library module react-native-remote-font Error: Command failed with ENOENT: pod --version spawnSync pod ENOENT at Object.]]></description>
+</item>
+</channel>
+</rss>

@@ -2,6 +2,7 @@
 title: " 实现 FlatList 、flashList、masonryFlashList 各种列表的自动滚动动画"
 date: 2023-11-01T12:00:11+08:00
 draft: false
+categories: [react-native]
 tags: [react-native]
 ---
 

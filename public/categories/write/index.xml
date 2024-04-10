@@ -1,0 +1,20 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>write - Category - zyestin</title>
+        <link>https://zyestin.github.io/zyestin/categories/write/</link>
+        <description>write - Category - zyestin</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>zyestin@gmail.com (zyestin)</managingEditor>
+            <webMaster>zyestin@gmail.com (zyestin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 24 Aug 2023 09:11:47 &#43;0800</lastBuildDate><atom:link href="https://zyestin.github.io/zyestin/categories/write/" rel="self" type="application/rss+xml" /><item>
+    <title>hugo &#43; github pages usage</title>
+    <link>https://zyestin.github.io/zyestin/hugo-usage/</link>
+    <pubDate>Thu, 24 Aug 2023 09:11:47 &#43;0800</pubDate>
+    <author>zyestin</author>
+    <guid>https://zyestin.github.io/zyestin/hugo-usage/</guid>
+    <description><![CDATA[2023最新 hugo + github pages 使用方式
+网上大多是hugo旧版的使用方式，有好几处明显差异的，不值得借鉴，反正我借鉴后出现各种莫名其妙问题
+严格按照官方这两个链接，就不会出现问题:
+hugo quick start 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 hugo new site quickstart cd quickstart git init git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke echo &#34;theme = &#39;ananke&#39;&#34; &gt;&gt; hugo.toml hugo server hugo new content posts/my-first-post.md open content/posts/my-first-post.md //然后进行修改 hugo server -D //可以编辑后， 在 http://localhost:1313/ 进行预览 hugo //生成web静态资源，以便下一步提交github时进行部署 Host on GitHub Pages 需要注意的地方:
+请先尝试 hugo文档里提供的theme，即ananke，走通一遍流程 我就采坑了，使用了另一个theme，后面在 localhost 一直不出现 my-first-post.]]></description>
+</item>
+</channel>
+</rss>

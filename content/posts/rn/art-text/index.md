@@ -2,6 +2,7 @@
 title: "远程字体的动态加载&应用"
 date: 2023-11-01T12:00:11+08:00
 draft: false
+categories: [react-native]
 tags: [best-practice, react-native]
 ---
 

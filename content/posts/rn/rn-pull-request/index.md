@@ -2,6 +2,7 @@
 title: "第一次提交PR给react-native"
 date: 2023-12-18T12:00:11+08:00
 draft: false
+categories: [react-native]
 tags: [contribution, react-native]
 ---
 

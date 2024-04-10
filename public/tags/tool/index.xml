@@ -1,0 +1,81 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>tool - Tag - zyestin</title>
+        <link>https://zyestin.github.io/zyestin/tags/tool/</link>
+        <description>tool - Tag - zyestin</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>zyestin@gmail.com (zyestin)</managingEditor>
+            <webMaster>zyestin@gmail.com (zyestin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 01 Nov 2023 12:00:11 &#43;0800</lastBuildDate><atom:link href="https://zyestin.github.io/zyestin/tags/tool/" rel="self" type="application/rss+xml" /><item>
+    <title>hooks开发工具</title>
+    <link>https://zyestin.github.io/zyestin/tool-dev-react/</link>
+    <pubDate>Wed, 01 Nov 2023 12:00:11 &#43;0800</pubDate>
+    <author>zyestin</author>
+    <guid>https://zyestin.github.io/zyestin/tool-dev-react/</guid>
+    <description><![CDATA[常用hooks依赖检查，从源头提醒避免奇葩bug https://github.com/facebook/react/issues/14920
+ESLint提供，检查useEffect依赖 &amp;&amp; autoFix，
+用上后 估计能大大降低 无法获取state最新值、漏掉依赖后奇怪的bug]]></description>
+</item>
+<item>
+    <title>npm 工具</title>
+    <link>https://zyestin.github.io/zyestin/tool-npm/</link>
+    <pubDate>Wed, 01 Nov 2023 12:00:11 &#43;0800</pubDate>
+    <author>zyestin</author>
+    <guid>https://zyestin.github.io/zyestin/tool-npm/</guid>
+    <description><![CDATA[ patch-package 补丁工具使用 ]]></description>
+</item>
+<item>
+    <title>patch-package 补丁工具使用</title>
+    <link>https://zyestin.github.io/zyestin/tool-npm-patch/</link>
+    <pubDate>Wed, 01 Nov 2023 12:00:11 &#43;0800</pubDate>
+    <author>zyestin</author>
+    <guid>https://zyestin.github.io/zyestin/tool-npm-patch/</guid>
+    <description><![CDATA[patch-package 官方地址 https://www.npmjs.com/package/patch-package
+首次安装 失败&amp;&amp;解决 package.json内scripts下 添加
+1 &#34;postinstall&#34;: &#34;patch-package&#34; 安装，失败
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 npm i patch-package 10:18:05 npm ERR! code ECONNREFUSED npm ERR! errno ECONNREFUSED npm ERR! FetchError: request to https://mirrors.huaweicloud.com/repository/npm/patch-package failed, reason: connect ECONNREFUSED 127.0.0.1:1087 npm ERR! at ClientRequest.&lt;anonymous&gt; (/usr/local/lib/node_modules/npm/node_modules/node-fetch-npm/src/index.js:68:14) npm ERR! at ClientRequest.emit (events.js:400:28) npm ERR!]]></description>
+</item>
+<item>
+    <title>React Native 在VSCode编码提效</title>
+    <link>https://zyestin.github.io/zyestin/vscode-efficient/</link>
+    <pubDate>Wed, 01 Nov 2023 12:00:11 &#43;0800</pubDate>
+    <author>zyestin</author>
+    <guid>https://zyestin.github.io/zyestin/vscode-efficient/</guid>
+    <description><![CDATA[插件 代码智能提示 copilot
+触发内联建议 Option (⌥)+\ https://docs.github.com/zh/copilot/configuring-github-copilot/configuring-github-copilot-in-your-environment?tool=vscode#keyboard-shortcuts-for-macos
+(键联提示)代码片段
+ES7+ React/Redux/React-Native snippets massCode assistant (配合打开massCode App使用) 标签修改 自动首尾同步 Auto Rename Tag
+拼写检测 Code Spell Checker
+格式化 prettier
+提升阅读感受
+Gitlens 悬停查看代码改动人 Material Icon Theme / vscode-icons 侧边导航区 目录展示icon indent-rainbow 标签开闭连线 Image Preview 在图片路径引用行 左侧展示icon code snippets React/Redux/React-Native snippets
+指令说明：
+https://github.com/ults-io/vscode-react-javascript-snippets/blob/HEAD/docs/Snippets.md
+优点：
+对常用的hooks支持的简直完美
+可以试试输入useeff...。 会提示useEffectSnippet，enter后挨个填词，tab切换光标，set方法自动驼峰，简直完美！ 使用rnfes创建组件，会根据文件名 命名组件 想根据英文记忆一下快捷指令名称，可以参考 Fullstack React/React Native snippets
+对快捷指令 都有英文解释
+Mac、VSC快捷键 Mac 系统自带
+(shift+) ctrl+ (option+) f/b (shift+) ctrl+ p/n VSC 更改了上述快捷键对应的指令，非常糟糕。可以调整下如下 VSC Next Change （Important）]]></description>
+</item>
+<item>
+    <title>从0到1用Jenkins实现对RN项目一键打包、发布</title>
+    <link>https://zyestin.github.io/zyestin/tool-rn-jenkins-ios/</link>
+    <pubDate>Wed, 01 Nov 2023 12:00:11 &#43;0800</pubDate>
+    <author>zyestin</author>
+    <guid>https://zyestin.github.io/zyestin/tool-rn-jenkins-ios/</guid>
+    <description><![CDATA[Jenkins for iOS（第二次搭建记录） 运行环境搭建（简略版） 下载 jenkins.war jdk8 运行jenkins 首次设置账户信息（备忘） 账户: admin 密码: admin
+建Job &amp; 配置 建第一个Job 设置Git 添加git 地址 添加ssh凭据【注意】 账号：生成ssh时的邮箱(~/.ssh/id_rsa.pub 最末尾可见） 密码：ssh秘钥（取于 ~/.ssh/id_rsa） 配置 脚本 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 #!]]></description>
+</item>
+<item>
+    <title>hugo &#43; github pages usage</title>
+    <link>https://zyestin.github.io/zyestin/hugo-usage/</link>
+    <pubDate>Thu, 24 Aug 2023 09:11:47 &#43;0800</pubDate>
+    <author>zyestin</author>
+    <guid>https://zyestin.github.io/zyestin/hugo-usage/</guid>
+    <description><![CDATA[2023最新 hugo + github pages 使用方式
+网上大多是hugo旧版的使用方式，有好几处明显差异的，不值得借鉴，反正我借鉴后出现各种莫名其妙问题
+严格按照官方这两个链接，就不会出现问题:
+hugo quick start 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 hugo new site quickstart cd quickstart git init git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke echo &#34;theme = &#39;ananke&#39;&#34; &gt;&gt; hugo.toml hugo server hugo new content posts/my-first-post.md open content/posts/my-first-post.md //然后进行修改 hugo server -D //可以编辑后， 在 http://localhost:1313/ 进行预览 hugo //生成web静态资源，以便下一步提交github时进行部署 Host on GitHub Pages 需要注意的地方:
+请先尝试 hugo文档里提供的theme，即ananke，走通一遍流程 我就采坑了，使用了另一个theme，后面在 localhost 一直不出现 my-first-post.]]></description>
+</item>
+</channel>
+</rss>

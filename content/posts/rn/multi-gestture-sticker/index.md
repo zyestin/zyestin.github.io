@@ -2,6 +2,7 @@
 title: "RN 动画 - 缩放、旋转、拖拽"
 date: 2023-11-01T12:00:11+08:00
 draft: false
+categories: [react-native]
 tags: [best-practice, react-native]
 ---
 

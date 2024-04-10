@@ -1,0 +1,17 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>ios - Tag - zyestin</title>
+        <link>https://zyestin.github.io/zyestin/tags/ios/</link>
+        <description>ios - Tag - zyestin</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>zyestin@gmail.com (zyestin)</managingEditor>
+            <webMaster>zyestin@gmail.com (zyestin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 01 Nov 2023 12:00:11 &#43;0800</lastBuildDate><atom:link href="https://zyestin.github.io/zyestin/tags/ios/" rel="self" type="application/rss+xml" /><item>
+    <title>从0到1用Jenkins实现对RN项目一键打包、发布</title>
+    <link>https://zyestin.github.io/zyestin/tool-rn-jenkins-ios/</link>
+    <pubDate>Wed, 01 Nov 2023 12:00:11 &#43;0800</pubDate>
+    <author>zyestin</author>
+    <guid>https://zyestin.github.io/zyestin/tool-rn-jenkins-ios/</guid>
+    <description><![CDATA[Jenkins for iOS（第二次搭建记录） 运行环境搭建（简略版） 下载 jenkins.war jdk8 运行jenkins 首次设置账户信息（备忘） 账户: admin 密码: admin
+建Job &amp; 配置 建第一个Job 设置Git 添加git 地址 添加ssh凭据【注意】 账号：生成ssh时的邮箱(~/.ssh/id_rsa.pub 最末尾可见） 密码：ssh秘钥（取于 ~/.ssh/id_rsa） 配置 脚本 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 #!]]></description>
+</item>
+</channel>
+</rss>
