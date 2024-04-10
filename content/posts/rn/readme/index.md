@@ -27,6 +27,8 @@ tags: [react-native]
 
 * [实现 差不多理想的极简RN弹窗](../alert-multiple)
 
+* [最佳实践 点赞(收藏等)状态的全局同步更新](../status-sync-global)
+
 * [实践 列表Item精确曝光埋点]() [todo]
 
 * [实践 多tab多列表滑动吸顶效果]() [todo]
@@ -41,7 +43,7 @@ tags: [react-native]
 * [易用的应用远程字体的text组件库](https://github.com/zyestin/react-native-remote-font) - [react-native-remote-font](https://www.npmjs.com/package/react-native-remote-font)
 
 
-## 其它（提效、工具...)
+## 其它（提效、工具、学习...)
 
 * [探究 代码规范](../code-standards/)
 
