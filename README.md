@@ -11,17 +11,17 @@ I'm zyestin. Used to be an iOSer, now an RNer for 2+ years.
 
 ## react-native 系列
 
-- [代码规范](https://zyestin.github.io/zyestin/posts/rn/code-standards/)
+- [代码规范](https://zyestin.github.io/posts/rn/code-standards/)
 
-- [React Native 编码提效大全 on VSCode](https://zyestin.github.io/zyestin/posts/rn/vscode-efficient/)
+- [React Native 编码提效大全 on VSCode](https://zyestin.github.io/posts/rn/vscode-efficient/)
 
-- [基础组件封装 - 瀑布流列表、图片](https://zyestin.github.io/zyestin/posts/rn/base-components)
+- [基础组件封装 - 瀑布流列表、图片](https://zyestin.github.io/posts/rn/base-components)
 
-- [横向·瀑布流列表+自动滚动动画方案](https://zyestin.github.io/zyestin/posts/rn/waterfall-list-horizontal/)
+- [横向·瀑布流列表+自动滚动动画方案](https://zyestin.github.io/posts/rn/waterfall-list-horizontal/)
 
-- [仿抖音/小红书，对贴图/贴字 进行拖拽、缩放、旋转等复杂手势](https://zyestin.github.io/zyestin/posts/rn/multi-gestture-sticker/)
+- [仿抖音/小红书，对贴图/贴字 进行拖拽、缩放、旋转等复杂手势](https://zyestin.github.io/posts/rn/multi-gestture-sticker/)
 
-- [👉🏻 More ···](https://zyestin.github.io/zyestin/posts/rn/readme)
+- [👉🏻 More ···](https://zyestin.github.io/posts/rn/readme)
 
 ## iOS 系列
 
@@ -41,5 +41,5 @@ I'm zyestin. Used to be an iOSer, now an RNer for 2+ years.
 
 ## 其它
 * [多个父仓库共享某一子模块/代码/仓库 方案对比](https://github.com/zyestin/MainRepoDemo/blob/main/README.md#多人协作-子仓库多人次修改和提交)
-* [使用hugo + github pages 搭建博客](https://zyestin.github.io/zyestin/posts/hugo-usage/)
-* [用脚手架 制作一个RN库 放npm(含踏坑记录)](https://zyestin.github.io/zyestin/posts/rn/create-npm-lib/)
+* [使用hugo + github pages 搭建博客](https://zyestin.github.io/posts/hugo-usage/)
+* [用脚手架 制作一个RN库 放npm(含踏坑记录)](https://zyestin.github.io/posts/rn/create-npm-lib/)
