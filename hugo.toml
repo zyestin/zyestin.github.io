@@ -1,4 +1,4 @@
-baseURL = "https://zyestin.github.io/zyestin/"
+baseURL = "https://zyestin.github.io/"
 
 # theme
 # 主题
@@ -95,7 +95,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
   defaultTheme = "auto"
   # public git repo url only then enableGitInfo is true
   # 公共 git 仓库路径，仅在 enableGitInfo 设为 true 时有效
-  gitRepo = "https://github.com/zyestin/zyestin"
+  gitRepo = "https://zyestin.github.io/"
   # which hash function used for SRI, when empty, no SRI is used
   # ["sha256", "sha384", "sha512", "md5"]
   # 哪种哈希函数用来 SRI, 为空时表示不使用 SRI
@@ -404,7 +404,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
         # You can refer to the official documentation of giscus to use the following configuration.
         # 你可以参考官方文档来使用下列配置
         enable = true
-        repo = "zyestin/zyestin"
+        repo = "zyestin/zyestin.github.io"
         repoId = "R_kgDOKJ2IzA"
         category = "Announcements"
         categoryId = "DIC_kwDOKJ2IzM4Celi_"

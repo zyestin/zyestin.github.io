@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>contribution - Tag - zyestin</title>
-        <link>https://zyestin.github.io/zyestin/tags/contribution/</link>
+        <link>https://zyestin.github.io/tags/contribution/</link>
         <description>contribution - Tag - zyestin</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>zyestin@gmail.com (zyestin)</managingEditor>
-            <webMaster>zyestin@gmail.com (zyestin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 18 Dec 2023 12:00:11 &#43;0800</lastBuildDate><atom:link href="https://zyestin.github.io/zyestin/tags/contribution/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>zyestin@gmail.com (zyestin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 18 Dec 2023 12:00:11 &#43;0800</lastBuildDate><atom:link href="https://zyestin.github.io/tags/contribution/" rel="self" type="application/rss+xml" /><item>
     <title>第一次提交PR给react-native</title>
-    <link>https://zyestin.github.io/zyestin/rn-pull-request/</link>
+    <link>https://zyestin.github.io/rn-pull-request/</link>
     <pubDate>Mon, 18 Dec 2023 12:00:11 &#43;0800</pubDate>
     <author>zyestin</author>
-    <guid>https://zyestin.github.io/zyestin/rn-pull-request/</guid>
+    <guid>https://zyestin.github.io/rn-pull-request/</guid>
     <description><![CDATA[用了3年RN了，第一次给RN提交PR，有点激动，值得记录呀！
 操作记录 git操作全在github完成
 2023.12.05 7:52PM 提交 fork -&gt; 创建分支 -&gt; 改代码 -&gt; 提交
@@ -30,10 +30,10 @@
 </item>
 <item>
     <title>React Native 开发沉淀</title>
-    <link>https://zyestin.github.io/zyestin/readme/</link>
+    <link>https://zyestin.github.io/readme/</link>
     <pubDate>Wed, 01 Nov 2023 12:00:11 &#43;0800</pubDate>
     <author>zyestin</author>
-    <guid>https://zyestin.github.io/zyestin/readme/</guid>
+    <guid>https://zyestin.github.io/readme/</guid>
     <description><![CDATA[一些业务的最佳实践探索 基础组件封装
 瀑布流列表base组件 图片base组件 &hellip; 实现 模仿抖音、小红书 输入 #标签 高亮
 瀑布流列表
@@ -56,10 +56,10 @@ patch-package 补丁工具使用 &hellip; 从0到1用Jenkins实现对RN项目一
 </item>
 <item>
     <title>用脚手架 制作一个RN库 放npm</title>
-    <link>https://zyestin.github.io/zyestin/create-npm-lib/</link>
+    <link>https://zyestin.github.io/create-npm-lib/</link>
     <pubDate>Wed, 01 Nov 2023 12:00:11 &#43;0800</pubDate>
     <author>zyestin</author>
-    <guid>https://zyestin.github.io/zyestin/create-npm-lib/</guid>
+    <guid>https://zyestin.github.io/create-npm-lib/</guid>
     <description><![CDATA[脚手架 create-react-native-module
 脚手架使用（顺利） 工具安装 1 2 npm install -g yarn npm install -g create-react-native-module 脚手架命令 1 create-react-native-module RemoteFont --object-class-name react-native-remote-font --object-class-name RemoteFontLoader --native-package-id com.yestin.font --platforms ios,android --github-account zyestin --author-name yestin --author-email zyestin@gmail.com --generate-example --example-react-native-template react-native@0.62 过程中发现，若不指定--example-react-native-template react-native@0.62，发现总有这样的报错日志
 1 2 3 4 5 6 7 8 9 10 11 pod --version failure, aborting with broken example app Error while creating library module react-native-remote-font Error: Command failed with ENOENT: pod --version spawnSync pod ENOENT at Object.]]></description>

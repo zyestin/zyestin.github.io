@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>component - Tag - zyestin</title>
-        <link>https://zyestin.github.io/zyestin/tags/component/</link>
+        <link>https://zyestin.github.io/tags/component/</link>
         <description>component - Tag - zyestin</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>zyestin@gmail.com (zyestin)</managingEditor>
-            <webMaster>zyestin@gmail.com (zyestin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 01 Nov 2023 12:00:11 &#43;0800</lastBuildDate><atom:link href="https://zyestin.github.io/zyestin/tags/component/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>zyestin@gmail.com (zyestin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 01 Nov 2023 12:00:11 &#43;0800</lastBuildDate><atom:link href="https://zyestin.github.io/tags/component/" rel="self" type="application/rss+xml" /><item>
     <title>封装常用基础组件</title>
-    <link>https://zyestin.github.io/zyestin/base-components/</link>
+    <link>https://zyestin.github.io/base-components/</link>
     <pubDate>Wed, 01 Nov 2023 12:00:11 &#43;0800</pubDate>
     <author>zyestin</author>
-    <guid>https://zyestin.github.io/zyestin/base-components/</guid>
+    <guid>https://zyestin.github.io/base-components/</guid>
     <description><![CDATA[目录
 瀑布流列表base组件 图片base组件 状态栏导航栏组件 页面左上角的返回按钮组件 瀑布流列表base组件 源码：BaseList.js
 优点：将下拉刷新、上拉加载更多相关的 pageNo逻辑，封装到BaseList中，使用方仅需关注 数据请求的api，让使用方代码量降到最少。

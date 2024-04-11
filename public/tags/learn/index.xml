@@ -1,25 +1,25 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>learn - Tag - zyestin</title>
-        <link>https://zyestin.github.io/zyestin/tags/learn/</link>
+        <link>https://zyestin.github.io/tags/learn/</link>
         <description>learn - Tag - zyestin</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>zyestin@gmail.com (zyestin)</managingEditor>
-            <webMaster>zyestin@gmail.com (zyestin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 01 Nov 2023 12:00:11 &#43;0800</lastBuildDate><atom:link href="https://zyestin.github.io/zyestin/tags/learn/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>zyestin@gmail.com (zyestin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 01 Nov 2023 12:00:11 &#43;0800</lastBuildDate><atom:link href="https://zyestin.github.io/tags/learn/" rel="self" type="application/rss+xml" /><item>
     <title>React 学习</title>
-    <link>https://zyestin.github.io/zyestin/course-react/</link>
+    <link>https://zyestin.github.io/course-react/</link>
     <pubDate>Wed, 01 Nov 2023 12:00:11 &#43;0800</pubDate>
     <author>zyestin</author>
-    <guid>https://zyestin.github.io/zyestin/course-react/</guid>
+    <guid>https://zyestin.github.io/course-react/</guid>
     <description><![CDATA[ 学习《React Hooks 核心原理与实战》笔记
 hooks开发工具
 常用hooks依赖检查，从源头提醒避免奇葩bug[todo] &hellip; ]]></description>
 </item>
 <item>
     <title>代码规范</title>
-    <link>https://zyestin.github.io/zyestin/code-standards/</link>
+    <link>https://zyestin.github.io/code-standards/</link>
     <pubDate>Wed, 01 Nov 2023 12:00:11 &#43;0800</pubDate>
     <author>zyestin</author>
-    <guid>https://zyestin.github.io/zyestin/code-standards/</guid>
+    <guid>https://zyestin.github.io/code-standards/</guid>
     <description><![CDATA[讨论背景 相信大家写代码时 对自己都有一些要求，比如下面的
 基本期望：写出他人能容易看懂的代码 更高追求：写出他人看起来很爽的代码 每经历一个阶段，大家都对编码有不同程度的进步提升，可以分享；同时也会积累一些场景下代码如屎的烦恼，想要破局。
 于是，阶段性的，需要一个机会，大家开个交流会进行讨论
@@ -31,10 +31,10 @@ hooks开发工具
 </item>
 <item>
     <title>学习《React Hooks 核心原理与实战》笔记</title>
-    <link>https://zyestin.github.io/zyestin/course-react-hooks/</link>
+    <link>https://zyestin.github.io/course-react-hooks/</link>
     <pubDate>Wed, 01 Nov 2023 12:00:11 &#43;0800</pubDate>
     <author>zyestin</author>
-    <guid>https://zyestin.github.io/zyestin/course-react-hooks/</guid>
+    <guid>https://zyestin.github.io/course-react-hooks/</guid>
     <description><![CDATA[《React Hooks 核心原理与实战》学习 hooks Q: 为什么 Facebook 要发明React Hooks？React Hooks 解决了什么问题？
 A: 简化了逻辑重用
 hooks之前，复用逻辑要用到高阶组件或者render props

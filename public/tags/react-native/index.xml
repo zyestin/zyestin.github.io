@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>react-native - Tag - zyestin</title>
-        <link>https://zyestin.github.io/zyestin/tags/react-native/</link>
+        <link>https://zyestin.github.io/tags/react-native/</link>
         <description>react-native - Tag - zyestin</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>zyestin@gmail.com (zyestin)</managingEditor>
-            <webMaster>zyestin@gmail.com (zyestin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 05 Mar 2024 19:36:11 &#43;0800</lastBuildDate><atom:link href="https://zyestin.github.io/zyestin/tags/react-native/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>zyestin@gmail.com (zyestin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 05 Mar 2024 19:36:11 &#43;0800</lastBuildDate><atom:link href="https://zyestin.github.io/tags/react-native/" rel="self" type="application/rss+xml" /><item>
     <title>瀑布流最佳实践：双列均匀分布，高度计算&amp;缓存</title>
-    <link>https://zyestin.github.io/zyestin/waterfall-perfect/</link>
+    <link>https://zyestin.github.io/waterfall-perfect/</link>
     <pubDate>Tue, 05 Mar 2024 19:36:11 &#43;0800</pubDate>
     <author>zyestin</author>
-    <guid>https://zyestin.github.io/zyestin/waterfall-perfect/</guid>
+    <guid>https://zyestin.github.io/waterfall-perfect/</guid>
     <description><![CDATA[MasonryFlashList 瀑布流布局列高不均 解决方案 瀑布流布局列高不均 演示效果
 最终我对此做了回复 👉🏻 issues/946#issuecomment-1972392998
 方法1：【仅解决了双列】58的方案 方案源码 👉🏻 https://github.com/jiangleo/react-native-classroom/blob/main/src/11_Waterfall/lib/RecyclerListView/WaterfallLayoutProvider.ts
@@ -25,10 +25,10 @@ Demo效果非常棒！ 滚动流畅 + 布局均匀 为何未被合并？
 </item>
 <item>
     <title>最佳实践 点赞(收藏等)状态的全局同步更新</title>
-    <link>https://zyestin.github.io/zyestin/status-sync-global/</link>
+    <link>https://zyestin.github.io/status-sync-global/</link>
     <pubDate>Mon, 18 Dec 2023 12:00:11 &#43;0800</pubDate>
     <author>zyestin</author>
-    <guid>https://zyestin.github.io/zyestin/status-sync-global/</guid>
+    <guid>https://zyestin.github.io/status-sync-global/</guid>
     <description><![CDATA[有这么一个常见的需求 在对某个帖子进行点赞后，该帖子所出现的各个地方，e.g.帖子列表(可能多处)、帖子详情(可能多个)，点赞状态实时同步、数量加/减1同步。
 iOS 方案 在iOS，我是在每个帖子 所对应的 Model(数据)对象里 监听通知，判断 帖子ID，ID匹配 则更新 点赞状态，以此达到操作点赞后 实时同步同一帖子的点赞状态，非常简单好使！
 RN 方案 但RN里，数据是一个{id:xx, ...}这样的对象，是不支持像在iOS那样，在这样对象里 写监听通知的代码的。
@@ -38,10 +38,10 @@ Q：那需要什么样的hooks呢？ A：也就是需要怎样的 设计最优�
 </item>
 <item>
     <title>第一次提交PR给react-native</title>
-    <link>https://zyestin.github.io/zyestin/rn-pull-request/</link>
+    <link>https://zyestin.github.io/rn-pull-request/</link>
     <pubDate>Mon, 18 Dec 2023 12:00:11 &#43;0800</pubDate>
     <author>zyestin</author>
-    <guid>https://zyestin.github.io/zyestin/rn-pull-request/</guid>
+    <guid>https://zyestin.github.io/rn-pull-request/</guid>
     <description><![CDATA[用了3年RN了，第一次给RN提交PR，有点激动，值得记录呀！
 操作记录 git操作全在github完成
 2023.12.05 7:52PM 提交 fork -&gt; 创建分支 -&gt; 改代码 -&gt; 提交
@@ -62,19 +62,19 @@ Q：那需要什么样的hooks呢？ A：也就是需要怎样的 设计最优�
 </item>
 <item>
     <title> 实现 FlatList 、flashList、masonryFlashList 各种列表的自动滚动动画</title>
-    <link>https://zyestin.github.io/zyestin/waterfall-list-autoscroll/</link>
+    <link>https://zyestin.github.io/waterfall-list-autoscroll/</link>
     <pubDate>Wed, 01 Nov 2023 12:00:11 &#43;0800</pubDate>
     <author>zyestin</author>
-    <guid>https://zyestin.github.io/zyestin/waterfall-list-autoscroll/</guid>
+    <guid>https://zyestin.github.io/waterfall-list-autoscroll/</guid>
     <description><![CDATA[ScrollView滚动动画 实现起来就很容易
 源码 展开查看 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 import React, { useRef, useEffect } from &#34;react&#34;; import { ScrollView, Text, View, Animated, Easing } from &#34;react-native&#34;; /** * ScrollView自动滚动了！ */ const AutoScrollScrollView = () =&gt; { const scrollViewRef = useRef(); const scrollY = useRef(new Animated.]]></description>
 </item>
 <item>
     <title>React Native 在VSCode编码提效</title>
-    <link>https://zyestin.github.io/zyestin/vscode-efficient/</link>
+    <link>https://zyestin.github.io/vscode-efficient/</link>
     <pubDate>Wed, 01 Nov 2023 12:00:11 &#43;0800</pubDate>
     <author>zyestin</author>
-    <guid>https://zyestin.github.io/zyestin/vscode-efficient/</guid>
+    <guid>https://zyestin.github.io/vscode-efficient/</guid>
     <description><![CDATA[插件 代码智能提示 copilot
 触发内联建议 Option (⌥)+\ https://docs.github.com/zh/copilot/configuring-github-copilot/configuring-github-copilot-in-your-environment?tool=vscode#keyboard-shortcuts-for-macos
 (键联提示)代码片段
@@ -94,10 +94,10 @@ Mac、VSC快捷键 Mac 系统自带
 </item>
 <item>
     <title>React Native 开发沉淀</title>
-    <link>https://zyestin.github.io/zyestin/readme/</link>
+    <link>https://zyestin.github.io/readme/</link>
     <pubDate>Wed, 01 Nov 2023 12:00:11 &#43;0800</pubDate>
     <author>zyestin</author>
-    <guid>https://zyestin.github.io/zyestin/readme/</guid>
+    <guid>https://zyestin.github.io/readme/</guid>
     <description><![CDATA[一些业务的最佳实践探索 基础组件封装
 瀑布流列表base组件 图片base组件 &hellip; 实现 模仿抖音、小红书 输入 #标签 高亮
 瀑布流列表
@@ -120,10 +120,10 @@ patch-package 补丁工具使用 &hellip; 从0到1用Jenkins实现对RN项目一
 </item>
 <item>
     <title>RN 动画 - 缩放、旋转、拖拽</title>
-    <link>https://zyestin.github.io/zyestin/multi-gestture-sticker/</link>
+    <link>https://zyestin.github.io/multi-gestture-sticker/</link>
     <pubDate>Wed, 01 Nov 2023 12:00:11 &#43;0800</pubDate>
     <author>zyestin</author>
-    <guid>https://zyestin.github.io/zyestin/multi-gestture-sticker/</guid>
+    <guid>https://zyestin.github.io/multi-gestture-sticker/</guid>
     <description><![CDATA[需求 仿抖音、小红书，图片视频编辑区，贴图、贴文字功能
 View支持拖拽 View右下角有一个icon比较特殊，该icon可控制View缩放 icon随手指移动 View缩放（以View中心点为圆心） View会旋转（以View为中心点为圆心） icon位置一直保持在View右下角 View支持双指捏 进行缩放 效果图 源码 HBMultiGestureView.js calculator.js CornerToolGestureView.js 解读 HBMultiGestureView.js 使用的什么手势api？ 通过PanResponder为Animted.View添加手势
 将不同的手势操作 处理为拖拽、旋转、缩放等UI表现，从哪着手？ 通过手势回调onPanResponderGrant、onPanResponderMove、onPanResponderRelease去
@@ -140,19 +140,19 @@ HBMultiGestureView就类似一个三方库，不是面向具体业务的，俗�
 </item>
 <item>
     <title>从0到1用Jenkins实现对RN项目一键打包、发布</title>
-    <link>https://zyestin.github.io/zyestin/tool-rn-jenkins-ios/</link>
+    <link>https://zyestin.github.io/tool-rn-jenkins-ios/</link>
     <pubDate>Wed, 01 Nov 2023 12:00:11 &#43;0800</pubDate>
     <author>zyestin</author>
-    <guid>https://zyestin.github.io/zyestin/tool-rn-jenkins-ios/</guid>
+    <guid>https://zyestin.github.io/tool-rn-jenkins-ios/</guid>
     <description><![CDATA[Jenkins for iOS（第二次搭建记录） 运行环境搭建（简略版） 下载 jenkins.war jdk8 运行jenkins 首次设置账户信息（备忘） 账户: admin 密码: admin
 建Job &amp; 配置 建第一个Job 设置Git 添加git 地址 添加ssh凭据【注意】 账号：生成ssh时的邮箱(~/.ssh/id_rsa.pub 最末尾可见） 密码：ssh秘钥（取于 ~/.ssh/id_rsa） 配置 脚本 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 #!]]></description>
 </item>
 <item>
     <title>实现 差不多理想的极简RN弹窗</title>
-    <link>https://zyestin.github.io/zyestin/alert-multiple/</link>
+    <link>https://zyestin.github.io/alert-multiple/</link>
     <pubDate>Wed, 01 Nov 2023 12:00:11 &#43;0800</pubDate>
     <author>zyestin</author>
-    <guid>https://zyestin.github.io/zyestin/alert-multiple/</guid>
+    <guid>https://zyestin.github.io/alert-multiple/</guid>
     <description><![CDATA[Q: 代码调用一个弹窗的极简方式是怎样的？ A: 这样子👉🏻 XxModuleAlert.show({..})
 为了这个极简用法的目标，我曾经 使用rn-global-modal封装过TextInputAlert，但依然有些问题或难用点，比如遮挡了Toast、更改mask颜色要改源码、布局上有些非正常的地方
 因为不希望弹窗遮挡Toast，于是研究了react-native-root-toast，用的react-native-root-siblings，从而找到了封装理想弹窗的更快的方式
@@ -162,10 +162,10 @@ RN官方Modal 缺点：耦合过多！须visible属性，多1个import useState�
 </item>
 <item>
     <title>封装 低耦合、易用的文本输入框弹窗</title>
-    <link>https://zyestin.github.io/zyestin/textinput-alert/</link>
+    <link>https://zyestin.github.io/textinput-alert/</link>
     <pubDate>Wed, 01 Nov 2023 12:00:11 &#43;0800</pubDate>
     <author>zyestin</author>
-    <guid>https://zyestin.github.io/zyestin/textinput-alert/</guid>
+    <guid>https://zyestin.github.io/textinput-alert/</guid>
     <description><![CDATA[效果展示/UI 切换输入法，避开键盘 输入/粘帖时，文字换行，输入框高度准确变化 使用/Usage 封装后，如下这样使用，解耦的干干净净
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 import TextInputAlert from &#34;./TextInputAlert&#34;; TextInputAlert.show({ text: &#34;hello&#34;, // maxLength: 20, onChange: function didInputChange(text_) { console.log(&#34;didInputChange::&gt;&gt;&#34;, text_); }, onCompleted: () =&gt; { console.log(&#34;onCompleted::&gt;&gt;&#34;, content); }, }); TextInputAlert.hide(); 像原生一样调api方式展示弹窗，不需要Modal那样耦合过多（视图嵌入、visible字段控制&hellip;）
 源码/Code TextInputAlert]]></description>

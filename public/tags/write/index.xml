@@ -1,15 +1,15 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>write - Tag - zyestin</title>
-        <link>https://zyestin.github.io/zyestin/tags/write/</link>
+        <link>https://zyestin.github.io/tags/write/</link>
         <description>write - Tag - zyestin</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>zyestin@gmail.com (zyestin)</managingEditor>
-            <webMaster>zyestin@gmail.com (zyestin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 24 Aug 2023 09:11:47 &#43;0800</lastBuildDate><atom:link href="https://zyestin.github.io/zyestin/tags/write/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>zyestin@gmail.com (zyestin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 24 Aug 2023 09:11:47 &#43;0800</lastBuildDate><atom:link href="https://zyestin.github.io/tags/write/" rel="self" type="application/rss+xml" /><item>
     <title>hugo &#43; github pages usage</title>
-    <link>https://zyestin.github.io/zyestin/hugo-usage/</link>
+    <link>https://zyestin.github.io/hugo-usage/</link>
     <pubDate>Thu, 24 Aug 2023 09:11:47 &#43;0800</pubDate>
     <author>zyestin</author>
-    <guid>https://zyestin.github.io/zyestin/hugo-usage/</guid>
+    <guid>https://zyestin.github.io/hugo-usage/</guid>
     <description><![CDATA[2023最新 hugo + github pages 使用方式
 网上大多是hugo旧版的使用方式，有好几处明显差异的，不值得借鉴，反正我借鉴后出现各种莫名其妙问题
 严格按照官方这两个链接，就不会出现问题:

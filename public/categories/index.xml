@@ -1,47 +1,47 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Categories - Category - zyestin</title>
-        <link>https://zyestin.github.io/zyestin/categories/</link>
+        <link>https://zyestin.github.io/categories/</link>
         <description>Categories - Category - zyestin</description>
         <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>zyestin@gmail.com (zyestin)</managingEditor>
-            <webMaster>zyestin@gmail.com (zyestin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 05 Mar 2024 19:36:11 &#43;0800</lastBuildDate><atom:link href="https://zyestin.github.io/zyestin/categories/" rel="self" type="application/rss+xml" /><item>
+            <webMaster>zyestin@gmail.com (zyestin)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Tue, 05 Mar 2024 19:36:11 &#43;0800</lastBuildDate><atom:link href="https://zyestin.github.io/categories/" rel="self" type="application/rss+xml" /><item>
     <title>react-native</title>
-    <link>https://zyestin.github.io/zyestin/categories/react-native/</link>
+    <link>https://zyestin.github.io/categories/react-native/</link>
     <pubDate>Tue, 05 Mar 2024 19:36:11 &#43;0800</pubDate>
     <author>zyestin</author>
-    <guid>https://zyestin.github.io/zyestin/categories/react-native/</guid>
+    <guid>https://zyestin.github.io/categories/react-native/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
     <title>code</title>
-    <link>https://zyestin.github.io/zyestin/categories/code/</link>
+    <link>https://zyestin.github.io/categories/code/</link>
     <pubDate>Wed, 01 Nov 2023 12:00:11 &#43;0800</pubDate>
     <author>zyestin</author>
-    <guid>https://zyestin.github.io/zyestin/categories/code/</guid>
+    <guid>https://zyestin.github.io/categories/code/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
     <title>npm</title>
-    <link>https://zyestin.github.io/zyestin/categories/npm/</link>
+    <link>https://zyestin.github.io/categories/npm/</link>
     <pubDate>Wed, 01 Nov 2023 12:00:11 &#43;0800</pubDate>
     <author>zyestin</author>
-    <guid>https://zyestin.github.io/zyestin/categories/npm/</guid>
+    <guid>https://zyestin.github.io/categories/npm/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
     <title>react</title>
-    <link>https://zyestin.github.io/zyestin/categories/react/</link>
+    <link>https://zyestin.github.io/categories/react/</link>
     <pubDate>Wed, 01 Nov 2023 12:00:11 &#43;0800</pubDate>
     <author>zyestin</author>
-    <guid>https://zyestin.github.io/zyestin/categories/react/</guid>
+    <guid>https://zyestin.github.io/categories/react/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
     <title>write</title>
-    <link>https://zyestin.github.io/zyestin/categories/write/</link>
+    <link>https://zyestin.github.io/categories/write/</link>
     <pubDate>Thu, 24 Aug 2023 09:11:47 &#43;0800</pubDate>
     <author>zyestin</author>
-    <guid>https://zyestin.github.io/zyestin/categories/write/</guid>
+    <guid>https://zyestin.github.io/categories/write/</guid>
     <description><![CDATA[]]></description>
 </item>
 </channel>
