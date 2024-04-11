@@ -95,7 +95,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
   defaultTheme = "auto"
   # public git repo url only then enableGitInfo is true
   # 公共 git 仓库路径，仅在 enableGitInfo 设为 true 时有效
-  gitRepo = "https://github.com/dillonzq/LoveIt"
+  gitRepo = "https://github.com/zyestin/zyestin"
   # which hash function used for SRI, when empty, no SRI is used
   # ["sha256", "sha384", "sha512", "md5"]
   # 哪种哈希函数用来 SRI, 为空时表示不使用 SRI
@@ -131,7 +131,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
       logo = ""
       # title name
       # 标题名称
-      name = "zyestin"
+      name = "zyestin's blog"
       # you can add extra information before the name (HTML format is supported), such as icons
       # 你可以在名称 (允许 HTML 格式) 之前添加其他信息, 例如图标
       pre = "<i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i>"
@@ -653,14 +653,6 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
         url = "/categories/"
         title = ""
       [[languages.en.menu.main]]
-        weight = 4
-        identifier = "documentation"
-        pre = ""
-        post = ""
-        name = "Docs"
-        url = "/categories/documentation/"
-        title = ""
-      [[languages.en.menu.main]]
         weight = 5
         identifier = "about"
         pre = ""
@@ -674,7 +666,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
         pre = "<i class='fab fa-github fa-fw' aria-hidden='true'></i>"
         post = ""
         name = ""
-        url = "https://github.com/dillonzq/LoveIt"
+        url = "https://github.com/zyestin/zyestin"
         title = "GitHub"
     [languages.en.params]
       [languages.en.params.search]
@@ -696,11 +688,11 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
           enable = true
           gravatarEmail = "zyestin@gmail.com"
           avatarURL = "https://avatars.githubusercontent.com/u/51897571?s=40&v=4"
-          title = "Hello"
-          subtitle = "zyestin's blog"
+          title = "分享RN最佳实践"
+          subtitle = "让我们RNers工作更轻松美好"
           typeit = true
           social = true
-          disclaimer = ""
+          disclaimer = "Let's RNers have nothing hard to do"
       [languages.en.params.social]
         GitHub = "zyestin"
         Twitter = "YestinZz"
@@ -758,7 +750,7 @@ ignoreErrors = ["error-remote-getjson", "error-missing-instagram-accesstoken"]
         pre = "<i class='fab fa-github fa-fw' aria-hidden='true'></i>"
         post = ""
         name = ""
-        url = "https://github.com/dillonzq/LoveIt"
+        url = "https://github.com/zyestin/zyestin"
         title = "GitHub"
     [languages.zh-cn.params]
       [languages.zh-cn.params.search]
